@@ -1,0 +1,7 @@
+-drag MEL script into Maya
+
+-hit 'NEXT' when the offline install prompt shows
+
+-browse to offline folder and point to the zip file
+
+-hit 'INSTALL' and aTools will load

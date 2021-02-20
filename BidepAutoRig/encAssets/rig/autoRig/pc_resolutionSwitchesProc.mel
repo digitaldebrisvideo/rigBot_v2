@@ -1,0 +1,101 @@
+//make resolution/switch/visiblity icons and corresponding groups
+//run:   pc_resolutionSwitchesProc;  
+
+
+global proc string[] pc_renameShapeNodeToParentNodeProc(string $parentNode)
+{
+    string $newShapeNames[];
+    clear $newShapeNames;
+    string $childA[] = `listRelatives -shapes $parentNode`;
+    if (size($childA) == 0)
+    {
+        error "\n This object has no shape nodes";
+    }
+    else
+    {    
+        for ($eachChild in $childA)
+        {
+            $newShapeNames[size($newShapeNames)] = `rename $eachChild ($parentNode + "Shape")`;
+        }
+    }
+    return $newShapeNames;
+}
+
+global proc pc_resolutionSwitchesProc()
+{
+
+    string $visAnim = `curve -d 3 -n "visibility_anim" -p -4.14 0.01 0.76 -p -3.24 0 1.05 -p -2.49 0 0.97 -p -1.75 0 0.14 -p -0.82 0 -0.06 -p -1.62 0 -0.08 -p -2.32 0 -0.95 -p -3.41 0.01 -1.05 -p -4.33 0 -0.85 -p -5.11 0 -0.11 -p -5.45 0 -0.04 -p -5.44 0 0.03 -p -5.06 0 0.14 -p -4.1 0 0.78 -p -4.1 0 0.78 -p -4.34 0.01 -0.24 -p -3.26 0.02 -0.91 -p -2.13 0.02 -0.45 -p -2.08 0 0.42 -p -2.27 0 0.6 -p -2.27 0 0.6 -p -2.27 0 0.6 -p -2.87 -0.02 1.02 -p -3.09 -0.02 0.47 -p -2.64 0 0.12 -p -2.2 0 0.61 -p -2.61 -0.01 0.8`;
+    string $switchAnim = `curve -d 1 -n "switch_anim"   -p 1.56 0 -1.63 -p 1.68 0 -1.57 -p 3.44 0 -1.56 -p 3.5 0 -1.46 -p 3.48 0 1.65 -p 1.8 0 1.65 -p 1.8 0 -1.49 -p 3.5 0 -1.48 -p 3.38 0 -1.64 -p 1.56 0 -1.65 -p 1.56 0 1.46 -p 1.8 0 1.65 -p 1.68 0 1.53 -p 1.68 0 -1.56 -p 1.8 0 -1.5 -p 2.57 0 -1.49 -p 2.57 0 -0.52 -p 2.25 0 -0.51 -p 2.32 0 -0.44 -p 2.33 0.01 0.76 -p 2.28 0.01 0.7 -p 2.33 0 0.77 -p 2.85 0 0.77 -p 2.84 0 0.24 -p 2.34 0 0.24 -p 2.32 0 -0.43 -p 2.75 0 -0.42 -p 2.88 0 -0.51 -p 2.23 -0.01 -0.52 -p 2.24 0 0.65 -p 2.28 0 0.72 -p 2.28 0 -0.49 -p 2.8 0 -0.48 -p 2.81 0 -0.47 -p 2.33 0 0 -p 2.92 0 -0.5 -p 3.3 0 -0.5 -p 3.3 0 -0.2 -p 3.3 0 -0.53 -p 2.91 0 -0.54 -p 2.91 0 -0.3 -p 2.32 0 0.19 -p 2.91 0 -0.38 -p 2.32 0 0.07 -p 2.32 0 -0.07 -p 2.91 0 -0.54 -p 2.91 0 -0.2 -p 2.32 0 0.24 -p 2.84 0 0.24 -p 3.3 0 -0.2 -p 2.91 0 -0.2 -p 2.92 0 -0.4 -p 2.92 0 -0.45 -p 3.3 0 -0.45`;
+    // string $constMeAnim = `curve -d 1 -n "constrainMe_anim" -p 0 -4.09 0.48 -p 0 -4.32 0.13 -p 0 -4.12 0.5 -p 0 -4.09 0.48 -p 0 -4.09 0.54 -p 0 -4.09 0.54 -p 0 -4.04 0.54 -p 0 -3.98 0.6 -p 0 -3.99 0.65 -p 0 -4.02 0.68 -p 0 -4.05 0.65 -p 0 -4.02 0.62 -p 0 -4.06 0.58 -p 0 -4.21 0.71 -p 0 -4.16 0.76 -p 0 -4.13 0.73 -p 0 -4.1 0.77 -p 0 -4.13 0.8 -p 0 -4.18 0.81 -p 0 -4.26 0.73 -p 0 -4.25 0.67 -p 0 -4.08 0.54 -p 0 -4.04 0.54 -p 0 -3.98 0.6 -p 0 -3.9 0.67 -p 0 -3.95 0.68 -p 0 -4.08 0.84 -p 0 -4.07 0.91 -p 0 -3.99 0.96 -p 0 -3.93 0.95 -p 0 -3.83 0.77 -p 0 -3.83 0.71 -p 0 -3.89 0.67 -p 0 -4.04 0.87 -p 0 -3.98 0.91 -p 0 -3.87 0.75 -p 0 -3.92 0.71 -p 0 -3.89 0.67 -p 0 -3.83 0.71 -p 0 -3.77 0.75 -p 0 -3.91 1.01 -p 0 -3.86 1.03 -p 0 -3.73 0.92 -p 0 -3.78 1.07 -p 0 -3.73 1.09 -p 0 -3.63 0.81 -p 0 -3.67 0.8 -p 0 -3.8 0.91 -p 0 -3.73 0.77 -p 0 -3.77 0.75 -p 0 -3.73 0.77 -p 0 -3.8 0.91 -p 0 -3.67 0.8 -p 0 -3.63 0.81 -p 0 -3.57 0.83 -p 0 -3.61 0.86 -p 0 -3.63 0.9 -p 0 -3.58 0.92 -p 0 -3.56 0.88 -p 0 -3.51 0.89 -p 0 -3.52 0.97 -p 0 -3.6 0.95 -p 0 -3.65 0.98 -p 0 -3.68 1.06 -p 0 -3.65 1.11 -p 0 -3.54 1.14 -p 0 -3.5 1.11 -p 0 -3.49 1.06 -p 0 -3.54 1.05 -p 0 -3.55 1.09 -p 0 -3.62 1.07 -p 0 -3.6 1 -p 0 -3.52 1.02 -p 0 -3.48 0.98 -p 0 -3.46 0.9 -p 0 -3.5 0.85 -p 0 -3.57 0.83 -p 0 -3.3 0.87 -p 0 -3.3 1.12 -p 0 -3.22 1.11 -p 0 -3.21 1.16 -p 0 -3.45 1.15 -p 0 -3.45 1.11 -p 0 -3.36 1.11 -p 0 -3.35 0.87 -p 0 -3.15 0.86 -p 0 -3.19 0.86 -p 0 -3.16 1.15 -p 0 -3.01 1.13 -p 0 -2.98 1.08 -p 0 -3 0.99 -p 0 -3.05 0.97 -p 0 -3.01 0.96 -p 0 -3.05 0.83 -p 0 -3.09 0.84 -p 0 -3.06 0.97 -p 0 -3.13 0.98 -p 0 -3.15 0.86 -p 0 -3.11 1.1 -p 0 -3.03 1.08 -p 0 -3.05 1.01 -p 0 -3.12 1.03 -p 0 -3.13 0.98 -p 0 -3.06 0.97 -p 0 -3.09 0.84 -p 0 -2.97 0.81 -p 0 -2.94 0.88 -p 0 -2.87 0.9 -p 0 -2.82 1.01 -p 0 -2.89 1.04 -p 0 -2.94 0.88 -p 0 -2.89 0.86 -p 0 -2.92 0.79 -p 0 -2.88 0.77 -p 0 -2.77 1 -p 0 -2.78 1.05 -p 0 -2.88 1.09 -p 0 -2.94 1.06 -p 0 -3.01 0.82 -p 0 -2.97 0.81 -p 0 -2.94 0.88 -p 0 -2.89 0.86 -p 0 -2.92 0.79 -p 0 -2.88 0.77 -p 0 -2.8 0.73 -p 0 -2.64 0.97 -p 0 -2.7 1.01 -p 0 -2.84 0.75 -p 0 -2.76 0.7 -p 0 -2.59 0.94 -p 0 -2.55 0.91 -p 0 -2.58 0.74 -p 0 -2.48 0.86 -p 0 -2.45 0.82 -p 0 -2.64 0.61 -p 0 -2.67 0.64 -p 0 -2.63 0.8 -p 0 -2.72 0.67 -p 0 -2.76 0.7 -p 0 -2.72 0.67 -p 0 -2.67 0.63 -p 0 -2.63 0.59 -p 0 -2.58 0.54 -p 0 -2.35 0.74 -p 0 -2.35 0.67 -p 0 -2.32 0.63 -p 0 -2.25 0.62 -p 0 -2.5 0.44 -p 0 -2.47 0.39 -p 0 -2.08 0.61 -p 0 -2.13 0.7 -p 0 -2.27 0.69 -p 0 -2.24 0.84 -p 0 -2.32 0.91 -p 0 -2.63 0.59 -p 0 -2.32 0.91 -p 0 -2.24 0.84 -p 0 -2.27 0.69 -p 0 -2.13 0.7 -p 0 -2.08 0.61 -p 0 -2.47 0.39 -p 0 -2.44 0.34 -p 0 -2.19 0.49 -p 0 -2.1 0.35 -p 0 -2.14 0.32 -p 0 -2.2 0.43 -p 0 -2.26 0.39 -p 0 -2.22 0.32 -p 0 -2.26 0.3 -p 0 -2.31 0.36 -p 0 -2.38 0.32 -p 0 -2.32 0.22 -p 0 -2.36 0.2 -p 0 -2.44 0.33 -p -0.4 -2.86 0.17 -p -0.8 -3.28 0.03 -p -0.75 -3.28 0.3 -p -0.56 -3.28 0.55 -p -0.31 -3.28 0.74 -p 0 -3.28 0.8 -p 0.3 -3.28 0.74 -p 0.55 -3.28 0.55 -p 0.74 -3.28 0.3 -p 0.8 -3.28 0 -p 0.74 -3.28 -0.31 -p 0.55 -3.28 -0.56 -p 0.3 -3.28 -0.75 -p 0 -3.28 -0.81 -p -0.31 -3.28 -0.75 -p -0.56 -3.28 -0.56 -p -0.75 -3.28 -0.31 -p -0.81 -3.28 0 -p -0.75 -2.97 0 -p -0.56 -2.71 0 -p -0.12 -2.53 0 -p 0 0 0 -p 0.11 -2.53 0 -p 0.55 -2.71 0 -p 0.74 -2.97 0 -p 0.8 -3.28 0 -p 0.74 -3.59 0 -p 0.55 -3.85 0 -p 0.3 -4.03 0 -p 0 -4.09 0 -p -0.31 -4.03 0 -p -0.56 -3.85 0 -p -0.75 -3.59 0 -p -0.81 -3.28 0 -p -0.75 -3.28 -0.31 -p -0.56 -3.28 -0.56 -p -0.31 -3.28 -0.75 -p 0 -3.28 -0.81 -p 0 -3.59 -0.75 -p 0 -3.85 -0.56 -p 0 -4.03 -0.31 -p 0 -4.09 0 -p 0 -4.03 0.3 -p 0 -3.85 0.55 -p 0 -3.59 0.74 -p 0 -3.28 0.8 -p 0 -2.97 0.74 -p 0 -2.71 0.55 -p 0 -2.53 0.11 -p 0 0 0 -p 0 -2.53 -0.12 -p 0 -2.71 -0.56 -p 0 -2.97 -0.75 -p 0 -3.28 -0.81`;
+  
+     
+//rename shape nodes to match transforms     
+    string $shapeVisAnim[] = pc_renameShapeNodeToParentNodeProc($visAnim);
+    string $shapeSwitchAnim[] = pc_renameShapeNodeToParentNodeProc($switchAnim);
+    
+    // string $shapesConstMeAnim[] = pc_renameShapeNodeToParentNodeProc($constMeAnim);
+
+    //change shape node color
+      for ($eachShape in $shapeVisAnim)
+     {
+        setAttr  ($eachShape + ".overrideEnabled") 1;
+        setAttr  ($eachShape + ".overrideColor") 17;  
+     }
+    
+     for ($eachShape in $shapeSwitchAnim)
+     {
+        setAttr  ($eachShape + ".overrideEnabled") 1;
+        setAttr  ($eachShape + ".overrideColor") 17;  
+     }   
+   
+     // for ($eachShape in $shapesConstMeAnim)
+     // {
+     //    setAttr  ($eachShape + ".overrideEnabled") 1;
+     //    setAttr  ($eachShape + ".overrideColor") 23;  
+     // }         
+
+       //add Attrs to vis ctrl
+    addAttr -ln "________"  -at "enum" -en "Resolution:"  "visibility_anim";
+    setAttr -e-keyable true -lock true  "visibility_anim.________";
+    addAttr -ln "loRez"  -at long  -min 0 -max 1 -dv 0 "visibility_anim";
+    setAttr -e-keyable true "visibility_anim.loRez";
+    addAttr -ln "midRez"  -at long  -min 0 -max 1 -dv 0 "visibility_anim";
+    setAttr -e-keyable true "visibility_anim.midRez";     
+    addAttr -ln "hiRez"  -at long  -min 0 -max 1 -dv 1 "visibility_anim";
+    setAttr -e-keyable true "visibility_anim.hiRez";     
+     
+    addAttr -ln "_______"  -at "enum" -en "Ctrl_Vis:"  "visibility_anim";
+    setAttr -e-keyable true -lock true  "visibility_anim._______";    
+    
+    //rez groups
+    string $geoGrp   = `group -em -n "geoRez_grp"`;
+    string $visSwitchGrp   = `group -em -n "visSwitch_grp"`; 
+    string $skinnedGeoGrp   = `group -em -n "skinnedGeo_grp"`;
+    string $constGeoGrp   = `group -em -n "constrainedGeo_grp"`;
+    string $cageGrp   = `group -em -n "cage_grp"`;
+    
+    string $hiRezSkinGeoGrp = `group -em -n "hiRez_skinGeo_grp"`;
+    string $midRezSkinGeoGrp = `group -em -n "midRez_skinGeo_grp"`;
+    string $loRezSkinGeoGrp = `group -em -n "loRez_skinGeo_grp"`;
+    
+    string $hiRezConstGeoGrp = `group -em -n "hiRez_constrainGeo_grp"`;
+    string $midRezConstGeoGrp = `group -em -n "midRez_constrainGeo_grp"`;
+    string $loRezConstGeoGrp = `group -em -n "loRez_constrainGeo_grp"`;     
+   
+    parent $hiRezSkinGeoGrp $midRezSkinGeoGrp $loRezSkinGeoGrp $skinnedGeoGrp ;
+    parent $hiRezConstGeoGrp $midRezConstGeoGrp $loRezConstGeoGrp $constGeoGrp ;
+   
+    parent $cageGrp $skinnedGeoGrp;
+    parent $skinnedGeoGrp $constGeoGrp $geoGrp;
+    parent $visAnim $switchAnim $visSwitchGrp;
+   
+          //connect hiRezLoRez visability
+     connectAttr -f "visibility_anim.hiRez"   ($hiRezConstGeoGrp + ".v");
+     connectAttr -f "visibility_anim.hiRez"   ($hiRezSkinGeoGrp + ".v");
+     connectAttr -f "visibility_anim.midRez"   ($midRezConstGeoGrp + ".v");
+     connectAttr -f "visibility_anim.midRez"   ($midRezSkinGeoGrp + ".v");     
+     connectAttr -f "visibility_anim.loRez"   ($loRezConstGeoGrp + ".v");
+     connectAttr -f "visibility_anim.loRez"   ($loRezSkinGeoGrp + ".v");  
+     select -r  $visAnim;
+}     
+ pc_resolutionSwitchesProc;  

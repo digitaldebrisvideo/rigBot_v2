@@ -1,0 +1,1155 @@
+global proc shelf_comms_rigging () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+    string $icon_path = python("import rigBot; rigBot.base_path+'/icons/'");
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+O  Open (or New)"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Open"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_open.png")
+        -image1 ($icon_path+"sg_open.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunOpen()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+S  Save (or version up)"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Save"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_save.png")
+        -image1 ($icon_path+"sg_save.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunSaveAs()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+L  Loader (add items to your scene)"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Loader"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_loader.png")
+        -image1 ($icon_path+"sg_loader.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunLoad()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+M  Scene Manager (manage items loaded into your scene)"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Manager"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.2
+        -image ($icon_path+"sg_manager.png")
+        -image1 ($icon_path+"sg_manager.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunManager()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+C  Open the sanity checking tool"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Check"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_checker.png")
+        -image1 ($icon_path+"sg_checker.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunCheck()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+A  Submit a playblast"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Playblast"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_playblast.png")
+        -image1 ($icon_path+"sg_playblast.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunPlayblast()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+R  Submit a render"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Render"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_render.png")
+        -image1 ($icon_path+"sg_render.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunRender()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+X  Publish your work"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Simulate"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_simulation.png")
+        -image1 ($icon_path+"sg_simulation.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunSimulate()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Ctrl+Alt+Shift+P  Publish your work"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Publish"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.25
+        -image ($icon_path+"sg_publisher.png")
+        -image1 ($icon_path+"sg_publisher.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.ShotgunPublish()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 34
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.cmds as mc \nmc.file(mc.file(q=1, loc=1), f=1, o=1)\n"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Revert"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -imageOverlayLabel "Revert"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "pythonFamily.png"
+        -image1 "pythonFamily.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc \nmc.file(mc.file(q=1, loc=1), f=1, o=1)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Print connections"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Print"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"print.png")
+        -image1 ($icon_path+"print.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nutils.printConnections()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Print Connections" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nutils.printConnections()" )
+        -mip 0
+        -mi "Print Selection As List" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.print_list()" )
+        -mip 1
+        -mi "Print World Xforms" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nutils.print_world_xforms()\n" )
+        -mip 2
+        -mi "____________________" ( "print(\"User defined menuItem\");" )
+        -mi "Check Clashing Names " ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.check_clashing_node_names()" )
+        -mip 4
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle local rotation axis visibility"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "LRA"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -imageOverlayLabel "LRA"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "menuIconModify.png"
+        -image1 "menuIconModify.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "ToggleLocalRotationAxes"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Joint display scale"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "JointScale"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.2
+        -image ($icon_path+"kinJoint.png")
+        -image1 ($icon_path+"kinJoint.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "jdsWin"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Joint Display Scale" ( "jdsWin\n" )
+        -mi "Joint Scale: 0.005" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.005)" )
+        -mip 1
+        -mi "Joint Scale: 0.01" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.01)" )
+        -mip 2
+        -mi "Joint Scale: 0.05" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.05)" )
+        -mip 3
+        -mi "Joint Scale: 0.1" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.1)" )
+        -mip 4
+        -mi "Joint Scale: 0.3" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.3)" )
+        -mip 5
+        -mi "Joint Scale: 0.5" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.5)" )
+        -mip 6
+        -mi "Joint Scale: 0.7" ( "import maya.cmds as mc \nmc.jointDisplayScale(0.75)" )
+        -mip 7
+        -mi "Joint Scale: 1.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(1.0)" )
+        -mip 8
+        -mi "Joint Scale: 2.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(2.0)" )
+        -mip 9
+        -mi "Joint Scale: 3.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(3.0)" )
+        -mip 10
+        -mi "Joint Scale: 5.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(5.0)" )
+        -mip 11
+        -mi "Joint Scale: 10.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(10.0)" )
+        -mip 12
+        -mi "Joint Scale: 20.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(20.0)" )
+        -mip 13
+        -mi "Joint Scale: 30.0" ( "import maya.cmds as mc \nmc.jointDisplayScale(30.0)" )
+        -mip 14
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Delete history"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "DeleteCh"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"deleteActive.png")
+        -image1 ($icon_path+"deleteActive.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc\nmc.delete(ch=1)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Delete History" ( "import maya.cmds as mc\nmc.delete(ch=1)\n" )
+        -mip 0
+        -mi "Delete Non-Deformer History" ( "import maya.mel as mm \nmm.eval('doBakeNonDefHistory( 1, {\"prePost\" });')\n\n\n" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Freeze transforms"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Freeze"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"freezeSelected.png")
+        -image1 ($icon_path+"freezeSelected.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc \nmc.makeIdentity(apply=1, t=1, r=1, s=1, n=0, pn=1)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Freeze Transforms" ( "import maya.cmds as mc \nmc.makeIdentity(apply=1, t=1, r=1, s=1, n=0, pn=1)\n" )
+        -mip 0
+        -mi "Freeze Translates" ( "import maya.cmds as mc \nmc.makeIdentity(apply=1, t=1, r=0, s=0, n=0, pn=0)" )
+        -mip 1
+        -mi "Freeze Rotates" ( "import maya.cmds as mc \nmc.makeIdentity(apply=1, t=0, r=1, s=0, n=0, pn=0)" )
+        -mip 2
+        -mi "Freeze Scales" ( "import maya.cmds as mc \nmc.makeIdentity(apply=1, t=0, r=0, s=1, n=0, pn=0)" )
+        -mip 3
+        -mi "________________" ( "print(\"User defined menuItem\");" )
+        -mi "Zero Pivots" ( "import maya.cmds as mc \nmc.xform(piv=(0,0,0))\n" )
+        -mip 5
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 39
+        -height 39
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Unlock attributes"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Unlock"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"unlockGeneric.png")
+        -image1 ($icon_path+"unlockGeneric.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(l=0, k=1)\n\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Unlock Attributes" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(l=0, k=1)\n\n" )
+        -mip 0
+        -mi "Unlock Translates" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='t', l=0, k=1)\n\n" )
+        -mip 1
+        -mi "Unlock Rotates" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='r', l=0, k=1)\n\n" )
+        -mip 2
+        -mi "Unlock Scale" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='s', l=0, k=1)\n\n" )
+        -mip 3
+        -mi "Unlock Visibility" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='v', l=0, k=1)\n\n" )
+        -mip 4
+        -mi "Unlock User Defined" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='ud', l=0, k=1)\n\n" )
+        -mip 5
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 39
+        -height 39
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Lock attributes"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Lock"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"lockGeneric.png")
+        -image1 ($icon_path+"lockGeneric.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(l=1, k=0)"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Lock Attributes" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(l=1, k=0)\n\n" )
+        -mip 0
+        -mi "Lock Translates" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='t', l=1, k=0)" )
+        -mip 1
+        -mi "Lock Rotates" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='r', l=1, k=0)" )
+        -mip 2
+        -mi "Lock Scales" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='s', l=1, k=0)" )
+        -mip 3
+        -mi "Lock Visibility" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='v', l=1, k=0)" )
+        -mip 4
+        -mi "Lock User Defined" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.set_attrs(attrs='ud', l=1, k=0)" )
+        -mip 5
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Add nodes to SEL"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "AddSEL"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0 1 0
+        -overlayLabelBackColor 0 0 0 0.4
+        -image ($icon_path+"addToSet.png")
+        -image1 ($icon_path+"addToSet.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc\nsel = mc.ls(sl=1)\nif len(sel) > 1 and mc.objectType( sel[-1], isType='objectSet' ):\n\tmc.sets(sel[:-1], add=sel[-1])\nelse:\n\tmc.sets()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Add to publish_SEL" ( "import maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=\"publish_SEL\")" )
+        -mip 0
+        -mi "______________________" ( "print(\"User defined menuItem\");" )
+        -mi "Add to cache_SEL" ( "" )
+        -mi "Add to anim_cache_SEL" ( "selName = 'anim_cache_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 3
+        -mi "Add to fx_cache_SEL" ( "selName = 'fx_cache_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 4
+        -mi "Add to proxy_cache_SEL" ( "selName = 'proxy_cache_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 5
+        -mi "Add to texture_cache_SEL" ( "selName = 'texture_cache_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 6
+        -mi "Add to sculpt_cache_SEL" ( "selName = 'sculpt_cache_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 7
+        -mi "Add to engine_SEL" ( "selName = 'engine_SEL'\nimport maya.cmds as m\nsel = m.ls(sl=1)\nif not m.objExists(\"publish_SEL\"):\n    m.sets(name=\"publish_SEL\", empty=True) \nif not m.objExists(selName):\n    m.sets(name=selName, empty=True)\n    m.sets(selName, add='publish_SEL')\nfor item in sel:\n    if m.objectType(item) == 'transform':\n        m.sets(item, add=selName)" )
+        -mip 8
+        -mi "______________________" ( "print(\"User defined menuItem\");" )
+        -mi "Help..." ( "message='''\nAdds selected items to a set\n============================\n\nDefault action\n    Creates a new set with selected items\n    If last selected item is an existing set - add other items to that set\n\nDrop down menu Items:\n    Add items to the official pipeline cache sets under the publish_SEL\n\n    cache_SEL\n    anim_cache_SEL\n    fx_cache_SEL\n    proxy_cache_SEL\n    texture_cache_SEL\n'''\n\nimport maya.cmds as m\nm.confirmDialog( title='Help', message=message, button=['OK'])" )
+        -mip 10
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Remove nodes from SEL"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "RemoveSEL"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 1 0 0
+        -overlayLabelBackColor 0 0 0 0.4
+        -image ($icon_path+"removeFromSet.png")
+        -image1 ($icon_path+"removeFromSet.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc\nsel = mc.ls(sl=1)\nmc.sets(sel[:-1], rm=sel[-1])"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Help..." ( "message='''\nRemoves selected items from a set\n============================\n\nDefault action\n    Removes selected items from set\n\nUsage:\n    Select items first and select set from which to remove them last\n'''\n\nimport maya.cmds as m\nm.confirmDialog( title='Help', message=message, button=['OK'])" )
+        -mip 0
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Cluster tool"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Cls"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"cluster.png" )
+        -image1 ($icon_path+"cluster.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.gui import clusterUI\nfrom rigBot.data import cluster\nclusterUI.run()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ngSkinTools & skin cluster tools"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "NgSkin"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"paintSkinWeights.png")
+        -image1 ($icon_path+"paintSkinWeights.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.mel as mm \nimport rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\ntry:\n\tfrom ngSkinTools.ui.mainwindow import MainWindow\n\tMainWindow.open()\nexcept:\n\tmm.eval('ArtPaintSkinWeightsToolOptions')\n\t"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Copy Bind" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\n\nskinCluster.copy_bind()" )
+        -mip 0
+        -mi "Optimize Skin Cluster (prune, remove unused & rebuild)" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\n\nskinCluster.optimize(rebuild=1)" )
+        -mip 1
+        -mi "______________________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Select Scls Influences" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\n\nskinCluster.get_joints(select=True)" )
+        -mip 3
+        -mi "Print Influence Count" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\n\nskinCluster.joint_count()" )
+        -mip 4
+        -mi "______________________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Go To Bind Pose" ( "gotoBindPose" )
+    ;
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create, edit and manage shapes"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "ShapeEdit"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"blendShapeEditor.png")
+        -image1 ($icon_path+"blendShapeEditor.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "ShapeEditor"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Shape Editor" ( "print(\"User defined menuItem\");" )
+        -mi "Split Shapes UI" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import blendShape\nblendShape.split_targets()" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create, edit and manage pose space deformations"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "PoseEdit"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"poseEditor.png")
+        -image1 ($icon_path+"poseEditor.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "PoseEditor"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Create Translation Based Pose Driver" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import pose\n\npose.transPoseDriverUI()\n\n" )
+        -mip 0
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+        shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select 'current_selection' variable"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Selection"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"selectByObject.png")
+        -image1 ($icon_path+"selectByObject.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as mc\nmc.select(current_selection)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Save Current Selection To Variable 'current_selection'" ( "import maya.cmds as mc\ncurrent_selection = mc.ls(sl=1)\n" )
+        -mip 0
+        -mi "________________________________" ( "" )
+        -mip 1
+        -mi "Select 'current_selection' Variable" ( "import maya.cmds as mc\nmc.select(current_selection)\n\n" )
+        -mip 2
+        -mi "Select Add 'current_selection' Variable" ( "import maya.cmds as mc\nmc.select(current_selection, add=1)\n" )
+        -mip 3
+        -mi "Deselect 'current_selection' Variable" ( "import maya.cmds as mc\nmc.select(current_selection, d=1)\n" )
+        -mip 4
+        -mi "________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Reverse Current Selection " ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.reverse_selection()" )
+        -mip 6
+        -mi "________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Select Mirrored Node Names" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.select_mirror_names()" )
+        -mip 8
+        -mi "Select Add Mirrored Node Names" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.select_mirror_names(add=1)" )
+        -mip 9
+        -mi "________________________________" ( "print(\"User defined menuItem\");" )
+        -mip 10
+        -mi "Print 'current_selection' Variable" ( "print ''\nfor s in current_selection:\n\tprint s" )
+        -mip 11
+        -mi "Print Current Selection" ( "print ''\nfor s in mc.ls(sl=1):\n\tprint s" )
+        -mip 12
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Snap locator"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Loc"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"locator.png")
+        -image1 ($icon_path+"locator.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nutils.snap_locator()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Constraint tools"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Cons"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"parentConstraint.png")
+        -image1 ($icon_path+"parentConstraint.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nimport maya.cmds as mc\nmc.parentConstraint(mo=1)"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Snap Point && Orient" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot import match\n\nmatch.match()\n" )
+        -mip 0
+        -mi "Snap Point" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot import match\n\nmatch.match(orientation=0)\n" )
+        -mip 1
+        -mi "Snap Orient" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot import match\n\nmatch.match(position=0)\n" )
+        -mip 2
+        -mi "________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Parent Constraint (Maintain Offset)" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nimport maya.cmds as mc\nmc.parentConstraint(mo=1)" )
+        -mip 4
+        -mi "Point Constraint" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nimport maya.cmds as mc\nmc.pointConstraint()" )
+        -mip 5
+        -mi "Orient Constraint" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nimport maya.cmds as mc\nmc.orientConstraint()" )
+        -mip 6
+        -mi "Scale Constraint" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\n\nimport maya.cmds as mc\nmc.scaleConstraint()" )
+        -mip 7
+        -mi "________________________________" ( "" )
+        -mi "Prc Multiple  (Select Driver Last)" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import constraints\n\nutils.reverse_selection(); constraints.constraint_multiple(constraint_types=['parentConstraint'])\n" )
+        -mip 9
+        -mi "Prc && Sc Multiple  (Select Driver Last)" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import constraints\n\nutils.reverse_selection(); constraints.constraint_multiple()\n" )
+        -mip 10
+        -mi "________________________________" ( "\n" )
+        -mi "Weighted Constraint (Select Mesh Last)" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import constraints\n\nconstraints.weighted_constraint()" )
+        -mip 12
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 34
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from rigBot import carOnCurve\ncarOnCurve.connect()"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "car"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"car.png")
+        -image1 ($icon_path+"car.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from rigBot import carOnCurve\ncarOnCurve.connect()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Connect Car Rig To Path" ( "from rigBot import carOnCurve\ncarOnCurve.connect()" )
+        -mip 0
+        -mi "Disonnect Car Rig From Path" ( "from rigBot import carOnCurve\ncarOnCurve.disconnect()" )
+        -mip 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Control tools"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Ctls"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"control.png")
+        -image1 ($icon_path+"control.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.gui import controlUI\ncontrolUI.run()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Mirror Control Shapes (L -> R)" ( "import rigBot\nfrom rigBot import control\ncontrol.mirror_shape_by_name()" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Rig build UI"
+        -enableBackground 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "rigBuild"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"rigBuild.png")
+        -image1 ($icon_path+"rigBuild.png")
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\nfrom rigBot.gui import main, mayaWidget\nmain.run()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Reload Rig Build UI" ( "import rigBot\nfrom rigBot import utils, guide, skel, rig, data, model, control\nfrom rigBot.data import skinCluster\nfrom rigBot.gui import main, mayaWidget\nreload(main)\nmain.run()" )
+        -mip 0
+    ;
+
+}

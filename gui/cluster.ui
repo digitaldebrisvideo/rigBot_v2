@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ClusterUI</class>
+ <widget class="QWidget" name="ClusterUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>344</width>
+    <height>562</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cluster UI</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <item>
+    <widget class="QLabel" name="assetLabel_2">
+     <property name="minimumSize">
+      <size>
+       <width>40</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(244, 244, 244);
+background-color: rgb(40, 40,40);</string>
+     </property>
+     <property name="text">
+      <string>Cluster UI</string>
+     </property>
+     <property name="indent">
+      <number>10</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Create </string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Weighted Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Prebind Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="prebind_node_line"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="weighted_node_line"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="prebind_node_btn">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="weighted_node_btn">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="2">
+         <widget class="QLineEdit" name="name_line"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="create_btn">
+        <property name="text">
+         <string>Create Cluster</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="create_soft_btn">
+        <property name="text">
+         <string>Cluster With Soft Selection Weights</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Mirror</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="2" column="2">
+         <widget class="QPushButton" name="mirror_prebind_node_btn">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="mirror_weighted_node_btn">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Source Cluster</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>New Weighted Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>New Prebind Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="mirror_weighted_node_line"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="mirror_prebind_node_line"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="mirror_cluster_line">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="mirror_weighted_node_btn_2">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mirror_btn">
+        <property name="text">
+         <string>Mirror Cluster &amp;&amp; Weights</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Modify</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,0,0">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Source Cluster</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="mod_cluster_line">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="mirror_weighted_node_btn_3">
+          <property name="text">
+           <string>Get Selected</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="add_btn">
+        <property name="text">
+         <string>Add Selection To Cluster</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="set_soft_weights_btn">
+        <property name="text">
+         <string>Set Weights From Soft Selection</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="connect_prebind_btn">
+        <property name="text">
+         <string>Connect Selected To Cluster Prebind</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>154</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>name_line</tabstop>
+  <tabstop>weighted_node_line</tabstop>
+  <tabstop>weighted_node_btn</tabstop>
+  <tabstop>prebind_node_line</tabstop>
+  <tabstop>prebind_node_btn</tabstop>
+  <tabstop>create_btn</tabstop>
+  <tabstop>mirror_cluster_line</tabstop>
+  <tabstop>mirror_weighted_node_btn_2</tabstop>
+  <tabstop>mirror_weighted_node_line</tabstop>
+  <tabstop>mirror_weighted_node_btn</tabstop>
+  <tabstop>mirror_prebind_node_line</tabstop>
+  <tabstop>mirror_prebind_node_btn</tabstop>
+  <tabstop>mirror_btn</tabstop>
+  <tabstop>mod_cluster_line</tabstop>
+  <tabstop>mirror_weighted_node_btn_3</tabstop>
+  <tabstop>add_btn</tabstop>
+  <tabstop>set_soft_weights_btn</tabstop>
+  <tabstop>connect_prebind_btn</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

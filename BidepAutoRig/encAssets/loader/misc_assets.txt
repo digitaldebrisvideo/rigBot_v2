@@ -1,0 +1,33 @@
+Harrison Wells Previs:  Y:\3d\Asset_Library\Animation\Previs\Character Assets Previs\Wells_NoHood
+ArtDeco Airplane (flas213):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-deco-airplane\3d\publish\workfiles\ani_artdecoairplanemaya\v0002
+Cars - Roadrunner: Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-roadrunner\3d\publish\workfiles\rig_roadrunnermaya\v0002
+Cars - Dodge: Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-dodge-charger\3d\workarea\jshulman\workfiles\ani_dodgechargermaya
+Drones - Flas 209 Rig:  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-drone\3d\publish\workfiles\ani_droneminimaya\v0001\--assets_veh-drone_ani_droneminimaya_v0001.mb
+Drones - Flas 209 Rig Clones: Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-drone\3d\publish\workfiles\ani_droneminimaya\v0001\clones
+Helicopter Blackhawk (supr):  Z:\data\diablo2\PROJECTS\supr\04_episodes\--assets\shp-blackhawk\3d\publish\workfiles\rig_blackhawkmaya\v0002
+Helicopter Bell Green:  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\veh-helicopter-green\3d\publish\workfiles\rig_helicoptergreen\v0004\
+Jump Ship FBX:  Z:\data\diablo2\PROJECTS\leot\04_episodes\--assets\veh-jumpship\3d\workarea\jjozwik\jumpship-wip-proxy.FBX
+TramCar (supr112):  Z:\data\diablo2\PROJECTS\supr\04_episodes\--assets\veh-tramcar\3d\publish\workfiles\ani_tramcarmaya\v0003
+Arrow's Arrow:  Z:\data\diablo2\PROJECTS\arro\04_episodes\--assets\prp-arrow\3d\publish\workfiles\rig_arrowmaya\v0001
+Bolo Arrow:  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-boloarrow\3d\publish\workfiles\ani_boloarrowzoic\v0001
+Boot Cuff:  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-bootcuff\3d\publish\workfiles\rig_bootcuffmaya\v0002
+Car Mirror (flas 212):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-roadrunner-sidemirror\3d\publish\workfiles\ani_roadrunnersidemirrormaya\v0001
+Dart (flas 206,217):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-dart\3d\publish\workfiles\rig_dartmaya\v0001
+Glass Shards (flas 212):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-glassshard\3d\publish\workfiles\ani_glassshardmaya\v0002
+Implosion Grenade (flas213):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-implosion-grenade\3d\publish\workfiles\rig_implosiongrenademaya\v0002
+Nitrous Bomb (flas 212):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-nitrousbomb\3d\publish\workfiles\rig_nitrousbombmaya\v0001
+Syringes (flas 207):  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-syringes\3d\publish\workfiles\ani_syringesmaya\v0003
+Wizard Wand:  Z:\data\diablo2\PROJECTS\flas\04_episodes\--assets\prp-wizard-wand\3d\workarea\jshulman\workfiles\rig_wizardwandmaya\
+Alleyway (flas217):  Y:\3d\Asset_Library\Animation\Previs\Enviro_EpisodeSpecific\flas217
+Building Guinness FBX:  Z:\data\diablo2\PROJECTS\flas\04_episodes\208\_seqAssets\models\fbx\bentall-guinness-building_placement_v001.FBX
+Building with Fire Escapes:  Z:\data\diablo2\PROJECTS\flas\04_episodes\207\_seqAssets\buildings\mdl_bld_brick_short_v001.mb
+Central City / National City:  Y:\3d\Asset_Library\Animation\Previs\Enviro_Generic\City\OfficialProxyBuildings
+Earth 2 Central City Proxy:  Y:\3d\Asset_Library\Animation\Previs\Enviro_Generic\City\OfficialProxyBuildings
+Earth 2 Central City HiRes:  Y:\3d\Asset_Library\Animation\Previs\Enviro_Generic\City\Earth2OverusedBuilding_HiRes_v001.mb
+Star Labs Building (Non-Damaged):  Y:\3d\Asset_Library\Animation\Previs\Enviro_Generic\Starlabs
+Star Labs Particle Accelerator:  Y:\3d\Asset_Library\Animation\Previs\Enviro_Generic\Starlabs\ParticleAccelerator
+Temperal Zone:  Z:\data\diablo2\PROJECTS\leot\04_episodes\--assets\env-temperalzone
+Text for Previews:  Y:\3d\Asset_Library\Animation\Text_3D\
+Safe Action Diameter:  Y:\3d\Asset_Library\Animation\Previs\SafeActionSphere\
+Central City 2.0:  Z:\data\diablo2\PROJECTS\libr\04_episodes\env-city\s4\3d\publish\models\CentralCity
+National City 2.0:  Z:\data\diablo2\PROJECTS\libr\04_episodes\env-city\s4\3d\publish\models\NationalCity
