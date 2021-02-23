@@ -1,7 +1,7 @@
 import pymel.core as pm
 import os
 import maya.cmds as cmds
-from rigBot import env
+from rigBot import utils
 __author__ = 'jhachigian'
 
 src_dir = os.path.dirname(__file__)
@@ -10,11 +10,8 @@ system_base_path = os.path.dirname(utils.__file__)
 upScene= cmds.upAxis(q=1, ax=1)
 # if upScene == 'y':
     #cmds.warning('**************************** Y-up system ****************************')
-pp=env.get_parts_paths()[-1].replace ('partsLibrary', '')
-branch=r'BidepAutoRig\encAssets\rig\autoRig\rigfiles\yup'
-shapesLib = os.path.join(pp, "yup")
-# shapesLib = os.path.join(system_base_path, "BipedAutoRig\encAssets\rig\autoRig\RigFiles\yup")
-# shapesLib = env.get_auto_rig_path()
+shapesLib = os.path.join(src_dir, "encRigFiles\yup")
+print shapesLib
 # if upScene == 'z':
 #     #cmds.warning('**************************** Z-up system ****************************')
 #     shapesLib = os.path.join(src_dir, "rigfiles")

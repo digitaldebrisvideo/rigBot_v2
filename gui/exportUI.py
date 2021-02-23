@@ -285,9 +285,9 @@ class ExportUI(mayaWidget.MayaWidget):
             label_item.setSizeHint(qt.QSize(10, 17))
             label_item.setFlags(label_item.flags() & ~qt.Qt.ItemIsSelectable)
 
-            if data_type == 'pose':
-                data_nodes.extend([n.split('.')[0] for n in mc.ls('*.transPoseInterpolatorDrivers')])
-                data_nodes.extend([utils.get_transform(p) for p in mc.ls(type='poseInterpolator')])
+            # if data_type == 'pose':
+            #     data_nodes.extend([n.split('.')[0] for n in mc.ls('*.transPoseInterpolatorDrivers')])
+            #     data_nodes.extend([utils.get_transform(p) for p in mc.ls(type='poseInterpolator')])
 
             for node in nodes:
                 if not mc.objExists(node):

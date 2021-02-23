@@ -32,6 +32,21 @@ from autoRig import setupIKArms
 reload (setupIKArms)
 from autoRig import setupFKArms
 reload (setupFKArms)
+from autoRig import setupIKFKBlendArm
+reload (setupIKFKBlendArm)
+from autoRig import setupStretchIKArm
+reload (setupStretchIKArm)
+from autoRig import setupWrists
+reload (setupWrists)
+from autoRig import setupRibbons
+reload (setupRibbons)
+from autoRig import setupClavicle
+reload (setupClavicle)
+from autoRig import setupScapula
+reload (setupScapula)
+from autoRig import setupTrapezius
+reload (setupTrapezius)
+
 
 class EncBipedArm(standardPart.StandardPart):
     """Biped arm module. Includes FK/ IK, twist, stretch and soft IK. There is also bendy, and auto clavicle functionality
@@ -137,3 +152,26 @@ class EncBipedArm(standardPart.StandardPart):
 
         setupIKArms.setup_ik()
         setupFKArms.setup_fk()
+        setupIKFKBlendArm.setup_ik_fk_blend()
+        setupStretchIKArm.setup_stretch_ik()
+        setupWrists.setup_wrists()
+        setupClavicle.setup_clavicle()
+        setupScapula.setup_scapula()
+        setupTrapezius.setup_trapezius()
+        setupRibbons.setup_ribbons()
+
+        to_parent = [u'elbowPV_Lt_a0', u'elbowPV_Rt_a0', u'shoulder_Lt_a0', u'shoulder_Rt_a0', u'armIKFK_Rt_a0', u'armIKFK_Lt_a0',
+         u'armRibbonCtrl_Lt_grp', u'armRibbonCtrl_Rt_grp', u'armShaper_Lt_grp', u'armShaper_Rt_grp', u'armBase_Rt_loc',
+         u'armBase_Lt_loc', u'clavicle_Lt_a0', u'clavicle_Rt_a0', u'scapulaCtrl_Lt_grp', u'scapulaCtrl_Rt_grp',
+         u'trapezius_Lt_offsetGrp', u'trapezius_Rt_offsetGrp']
+
+        mc.parent (to_parent, ctrl_grps[0])
+
+        mc.parent ([u'armRig_Rt_grp', u'armRig_Lt_grp'], jnt_grps[0])
+        if mc.objExists ('armRollVector_Rt_jnt_aimConstraint1'):
+            mc.setAttr ("armRollVector_Rt_jnt_aimConstraint1.aimVectorX",  1)
+
+        fkiks=[u'armIKFK_Rt_a0', u'armIKFK_Lt_a0']
+        for fkik in fkiks:
+            if mc.objExists (fkik):
+                mc.setAttr (fkik+'.ty', 175)

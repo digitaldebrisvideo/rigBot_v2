@@ -21,6 +21,10 @@ def get_data(nodes=None):
         if mc.objExists('control_SEL'):
             mc.select('control_SEL')
             nodes.extend(mc.ls(sl=1))
+        # nodes.extend(mc.ls('*_CTL'))
+        if mc.objExists ('all_ctrls'):
+            mc.select ('all_ctrls')
+            nodes.extend(mc.ls (sl=1))
         nodes.extend(mc.ls('*_CTL'))
 
     nodes = mc.ls(nodes)

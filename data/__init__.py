@@ -17,7 +17,6 @@ import shutil
         SUPPORTED DATA TYPES:
             :udAttributes: User defined attributes.
             :blendShape: BlendShapes
-            :pose: pose Interpolators
             :nonLinear: Non linear deformers
             :skinCluster: Skin clusters
             :cluster: Clusters
@@ -70,7 +69,6 @@ deformer_types = ['skinCluster',
 
 all_data_types = ['udAttributes',
                   'blendShape',
-                  'pose',
                   'nonLinear',
                   'skinCluster',
                   'lattice',
@@ -339,10 +337,10 @@ def save(data_types=[], nodes=[], model=False, asset=None, variant=None, custom_
     else:
         selection = mc.ls(sl=1)
 
-    if 'pose' in data_types:
-        pose_nodes = data_modules[2].get_pose_nodes() + data_modules[2].get_translation_pose_nodes()
-        if pose_nodes:
-            selection.extend(pose_nodes)
+    # if 'pose' in data_types:
+    #     pose_nodes = data_modules[2].get_pose_nodes() + data_modules[2].get_translation_pose_nodes()
+    #     if pose_nodes:
+    #         selection.extend(pose_nodes)
 
     if not selection:
         if 'lightLocators' not in data_types and 'customRig' not in data_types and 'shaders' not in data_types and 'controlShapes' not in data_types and 'kAttributes' not in data_types:
@@ -390,8 +388,8 @@ def save(data_types=[], nodes=[], model=False, asset=None, variant=None, custom_
     utils.make_dirs(base_path)
 
     # EXport stuff for each node
-    tr_pose_nodes = data_modules[2].get_translation_pose_nodes()
-    pose_nodes_in_scene = data_modules[2].get_pose_nodes()+tr_pose_nodes
+    # tr_pose_nodes = data_modules[2].get_translation_pose_nodes()
+    # pose_nodes_in_scene = data_modules[2].get_pose_nodes()+tr_pose_nodes
 
     exported_buffer = []
 
@@ -492,18 +490,18 @@ def save(data_types=[], nodes=[], model=False, asset=None, variant=None, custom_
                         if file_check(file_path):
                             module.save(file_path, con)
 
-            # get pose nodes
-            elif data_type == 'pose':
-                if node in pose_nodes_in_scene:
-                    if node not in exported_buffer:
-                        exported_buffer.append(node)
-
-                        if node in tr_pose_nodes:
-                            ext = '.trpose'
-
-                        file_path = os.path.join(base_path, node+ext)
-                        if file_check(file_path):
-                            module.save(file_path, node)
+            # # get pose nodes
+            # elif data_type == 'pose':
+            #     if node in pose_nodes_in_scene:
+            #         if node not in exported_buffer:
+            #             exported_buffer.append(node)
+            #
+            #             if node in tr_pose_nodes:
+            #                 ext = '.trpose'
+            #
+            #             file_path = os.path.join(base_path, node+ext)
+            #             if file_check(file_path):
+            #                 module.save(file_path, node)
 
             # All other deformers
             elif data_type in deformer_types:

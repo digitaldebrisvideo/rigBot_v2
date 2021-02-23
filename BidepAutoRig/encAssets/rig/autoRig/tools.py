@@ -1,25 +1,18 @@
 import pymel.core as pm
 import os
 import maya.cmds as cmds
-from rigBot import env
-from rigBot import utils
 __author__ = 'jhachigian'
 
 src_dir = os.path.dirname(__file__)
-system_base_path = os.path.dirname(utils.__file__)
 ####################################
 upScene= cmds.upAxis(q=1, ax=1)
-# if upScene == 'y':
+if upScene == 'y':
     #cmds.warning('**************************** Y-up system ****************************')
-# shapesLib = os.path.join(system_base_path, "RigFiles\yup")
-pp=env.get_parts_paths()[-1]
-branch=r'BipedAutoRig/encAssets/rig/autoRig/RigFiles'
-ppp=pp.replace ('partsLibrary', branch)
-shapesLib = os.path.join(system_base_path, "\yup")
-
-# if upScene == 'z':
-#     #cmds.warning('**************************** Z-up system ****************************')
-#     shapesLib = os.path.join(src_dir, "rigfiles")
+    shapesLib = os.path.join(src_dir, "rigfiles\yup")
+    print shapesLib
+if upScene == 'z':
+    #cmds.warning('**************************** Z-up system ****************************')
+    shapesLib = os.path.join(src_dir, "rigfiles")
 
 #shapesLib = os.path.join(src_dir, "rigfiles")
 #####################################
@@ -34,11 +27,16 @@ def debug_print(s, dbg=True):
 
 
 def get_lr(x):
+    if x.find("_Lt_") != -1:
+        return "Lt"
+    else:
+        return "Rt"
+
+def get_lower_lr(x):
     if x.find("_lt_") != -1:
         return "lt"
     else:
         return "rt"
-
 
 
 
@@ -80,9 +78,9 @@ def set_color(ani, color):
 
 def find_lr_override_color(x):
     key = get_lr(x)
-    # col = {"Lt": 6, "Rt": 13}[key]
-    col = {"lt": 6, "rt": 13}[key]
+    col = {"Lt": 6, "Rt": 13}[key]
     return col
+
 
 
 def rotate_shape(s, rot):
@@ -153,7 +151,7 @@ def apply_shape(x, filename=""):
         shp = [o for o in li if o.type() == 'nurbsCurve'][0]
         par = shp.getParent()
         par_name = "pleeeeeaseDeleteMeLetMeGooooo"
-        shp_name = get_new_name(x, "CTLShape")
+        shp_name = get_new_name(x, "animShape")
         pm.rename(par, par_name)
         pm.rename(shp, shp_name)
         debug_print("\tParenting: " + shp_name + " to: " + x, dbg=debug)

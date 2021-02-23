@@ -21,7 +21,7 @@ upScene= cmds.upAxis(q=1, ax=1)
 def make_attr():
     tools.debug_print("\tMaking attr...", dbg=debug)
     attr = 'traps_scaps_pecs_anim_vis'
-    vis = pm.PyNode("visibility_anim")
+    vis = pm.PyNode("visibility_CTL")
     vis.addAttr(attr, attributeType='bool')
     vis.setAttr(attr, True)
     vis.setAttr(attr, channelBox=True)
@@ -32,8 +32,8 @@ def make_attr():
 def make_mid_loc():
     pnt1_name = "trapezius_Mid_loc"
     pnt1 = pm.spaceLocator(name=pnt1_name)
-    tools.match_xyz(pnt1, "neck03_Mid_bind")
-    pm.parent(pnt1, "chest_Mid_bind")
+    tools.match_xyz(pnt1, "neck03Driven_Mid_bind")
+    pm.parent(pnt1, "chest_armDriven_bind")
 
 
 def make_trapezius_controls(side):
@@ -44,7 +44,7 @@ def make_trapezius_controls(side):
     tools.set_color(ani[0], tools.overrideColors[side])
     """ make the parent """
     grp_name = "trapezius_%s_offsetGrp" % side
-    grp = pm.group(name=grp_name, empty=True, parent="world_anim")
+    grp = pm.group(name=grp_name, empty=True)
     """ get pnt1 """
     pnt1 = pm.PyNode("trapezius_Mid_loc")
     """ place the child and parent, and make the point constraint """

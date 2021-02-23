@@ -208,7 +208,7 @@ rigBot.help()""")
 # load comms rigging  shelf
 def shelf(*kargs):
 
-    shelfName = 'comms_rigging'
+    shelfName = 'rigBot'
 
     if mc.layout(shelfName, q=1, ex=1):
         result = mm.eval('deleteShelfTab "{0}";'.format(shelfName))

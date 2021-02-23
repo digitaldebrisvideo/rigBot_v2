@@ -46,7 +46,7 @@ def setup_fk(parentConstrain=False):
         grp = pm.group(empty=True, name=name)
         grp.setParent(hand_anim, relative=True)
         # tools.apply_circle(grp, (1, 0, 0), degree=1, sections=4)
-        shp = tools.apply_shape(grp, "fourPointArrow_hand_anim")
+        shp = tools.apply_shape(grp, "fourPointArrow_anim")
         tools.set_override_color(shp, 17)
         if grp.startswith("hand"):
             tools.rotate_shape(shp, (0, 0, 90))

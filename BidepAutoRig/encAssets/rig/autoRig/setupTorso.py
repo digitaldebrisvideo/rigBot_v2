@@ -51,7 +51,7 @@ def setup_connections():
         for n in ("collar", "torso"):
             name = tools.get_new_name(bind, "%s_UTmdl" % n)
             mult = pm.createNode("multDoubleLinear", name=name)
-            side = tools.get_lr(bind)
+            side = tools.get_lower_lr(bind)
             mult.setAttr("input2", 0.3)
             pm.connectAttr(bind + ".rotateZ", mult + ".input1")
             if upScene == 'y':

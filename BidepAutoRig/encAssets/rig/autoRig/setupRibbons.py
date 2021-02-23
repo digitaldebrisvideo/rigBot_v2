@@ -689,18 +689,18 @@ def set_colors(key, side):
     tools.set_override_color(elbow_shaper, 24)
 
 
-def init_dict():
-    for key in ['arm', 'leg']:
-        for side in ['Lt', 'Rt']:
-            d = info[key][side]
-            d['key'] = key
-            d['side'] = side
-            d['ctrlGrp'] = make_group("%sRibbonCtrl_%s_grp" % (key, side), None)
-            for pre in ["upr", "lwr"]:
-                d[pre] = {}
-                d[pre]['side'] = side
-                d[pre]['key'] = key
-                d[pre]['prefix'] = pre
+def init_dict(key='arm'):
+    # for key in ['arm', 'leg']:
+    for side in ['Lt', 'Rt']:
+        d = info[key][side]
+        d['key'] = key
+        d['side'] = side
+        d['ctrlGrp'] = make_group("%sRibbonCtrl_%s_grp" % (key, side), None)
+        for pre in ["upr", "lwr"]:
+            d[pre] = {}
+            d[pre]['side'] = side
+            d[pre]['key'] = key
+            d[pre]['prefix'] = pre
 
 
 def build_data(d):
@@ -725,7 +725,7 @@ def build_data(d):
     make_skin_cluster(d)
 
 
-def setup_ribbons():
+def setup_ribbons(key='arm'):
     if not pm.objExists('wrist_Lt_bind'):
         """ ...then this is a test run on a bare skeleton. Insert the wrist joints. """
         tools.insert_joints(end_map)
@@ -734,15 +734,16 @@ def setup_ribbons():
         pm.select("*PV_*a0")
         pm.group(name="___PV_grp___")
     before = pm.ls()
-    init_dict()
-    add_knee_joints()
-    add_elbow_joints()
-    for key in ['arm', 'leg']:
-        for side in ["Lt", "Rt"]:
-            info[key][side]['targets'] = info[key]['targets']
-            grps = info[key][side]
-            build_data(grps)
-            set_colors(key, side)
+    init_dict(key)
+    if key == 'leg':
+        add_knee_joints()
+    if key == 'arm':
+        add_elbow_joints()
+    for side in ["Lt", "Rt"]:
+        info[key][side]['targets'] = info[key]['targets']
+        grps = info[key][side]
+        build_data(grps)
+        set_colors(key, side)
     after = pm.ls()
     msg = str(len(after) - len(before)) + " nodes added for ribbon rig."
     tools.debug_print(msg, dbg=debug)
