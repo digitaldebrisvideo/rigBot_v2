@@ -720,7 +720,8 @@ def build_data(d):
     make_skin_joints(d)
     make_follicles(d)
     make_shapers(d)
-    make_elbow_shapers(d)
+    if key == 'arm':
+        make_elbow_shapers(d)
     make_mid_anims(d)
     make_skin_cluster(d)
 

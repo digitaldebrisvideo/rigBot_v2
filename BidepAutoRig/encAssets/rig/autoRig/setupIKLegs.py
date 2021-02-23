@@ -15,13 +15,12 @@ rigChildren = ["geometry_grp", "setup_grp", "controls_grp"]
 setChildren = ["skeleton_grp", "tech_grp"]
 ctlChildren = ["display_grp"]
 upScene= cmds.upAxis(q=1, ax=1)
-limbs = ["thigh_Lt_jnt", "thigh_Rt_jnt", "shoulder_Lt_jnt", "shoulder_Rt_jnt"]
+limbs = ["thigh_Lt_jnt", "thigh_Rt_jnt"]
 
 
 footIKChains = {'heel_Lt_plc': {"foot_Lt_ik": "toe_Lt_ik", "toe_Lt_ik": "toeEnd_Lt_ik"},
                 'heel_Rt_plc': {"foot_Rt_ik": "toe_Rt_ik", "toe_Rt_ik": "toeEnd_Rt_ik"}}
 
-hands = {'handIkGimbal_Lt_anim': 'hand_Lt_ik', 'handIkGimbal_Rt_anim': 'hand_Rt_ik'}
 
 # Each tuple takes the form of (<name>, <parentObjects>, <placement>)
 feet = {'heel_Lt_plc': [('heel_Lt_a0', 'legIkGimbal_Lt_anim', 'heel_Lt_plc'),
@@ -83,7 +82,6 @@ pvChainDict = {
                'shoulder_Lt_jnt': ["shoulder_Lt_jnt", "elbow_Lt_jnt", "hand_Lt_jnt"],
                'shoulder_Rt_jnt': ["shoulder_Rt_jnt", "elbow_Rt_jnt", "hand_Rt_jnt"]}
 
-handTargets = {"shoulder_Lt_jnt": "hand_Lt_jnt", "shoulder_Rt_jnt": "hand_Rt_jnt"}
 
 footAttrList = [u'Toe_Spin', u'Ball_Spin', u'Heel_Spin', u'Knee_Spin', u'Lean', u'Side_Tilt',
                 u'Toe_Wiggle', u'Roll', u'Roll_Toe_Lift', u'Roll_Toe_Straight']
@@ -97,7 +95,7 @@ visDict = {"Lt": {}, "Rt": {}}
 # ikAttrs = ["root03_Mid_anim"]
 # ikAttrData = {}
 
-pvAttrs = ["world_anim", "character02_Mid_anim", "root03_Mid_anim", "pelvis_Mid_anim"]
+pvAttrs = ["world_anim", "character02_Mid_anim", "root03Driven_Mid_anim", "pelvis_Mid_anim"]
 
 pvAttrData = {}
 
@@ -748,26 +746,17 @@ def setup_ik():
     """
     pm.select(clear=True)
     create_groups()
-    pm.parent("root_Mid_jnt", "skeleton_grp")
+    # pm.parent("root_Mid_jnt", "skeleton_grp")
     """ leg and foot setupSpine """
     for limb in limbs:
         tools.create_duplicate_chain(limb, "ik")
         apply_ik(limb)
         apply_pv(limb)
         draw_pv_line(limb)
-    for obj in ["indexCarpal", "middleCarpal", "ringCarpal", "thumbCarpal", "pinkyCarpal"]:
-        pm.delete(obj + "_*_ik")
-    for obj in ["armEnd_Lt_ik", "armEnd_Rt_ik"]:  # run this in case an pre-v019 skeleton was used for setup.
-        if pm.objExists(obj):
-            pm.delete(obj)
     for foot in feet:
         setup_foot_hierarchy(foot)
         setup_foot_ik(foot)
         reparent_leg_ikh(foot)
-    for hand in hands:
-        tools.debug_print("Orient constraining " + hands[hand] + " to: " + hand, dbg=debug)
-        con = pm.orientConstraint(hand, hands[hand])
-        con.setAttr("interpType", 2)  # "Shortest" interpolation.
     for obj in pm.ls("*_plc"):
         pm.delete(obj)
     for name in legIKattrs:

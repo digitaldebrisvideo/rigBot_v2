@@ -61,11 +61,7 @@ connectArmLt = [
                 ("lwrArmStretch_Lt_UTmdl.outputX", "hand_Lt_ik.translateX"),
                 ]
 
-""" copy the right arm data from the left arm data """
-locArmRt = dict((flip(k), flip(v)) for k, v in locArmLt.items())
-distArmRt = dict((flip(k), (flip(v[0]), flip(v[1]))) for k, v in distArmLt.items())
-nodesArmRt = dict((flip(k), v) for k, v in nodesArmLt.items())
-connectArmRt = [(flip(c[0]), flip(c[1])) for c in connectArmLt]
+#
 
 """ build left leg data from left arm data """
 locLegLt = dict((arm_to_leg(k), arm_to_leg(v)) for k, v in locArmLt.items())
@@ -81,16 +77,7 @@ connectLegRt = [(flip(c[0]), flip(c[1])) for c in connectLegLt]
 
 
 """ build the dictionary """
-strDict = {"armDistance_Lt_grp": {'loc': locArmLt,
-                                  'dist': distArmLt,
-                                  'nodes': nodesArmLt,
-                                  'connect': connectArmLt
-                                  },
-           "armDistance_Rt_grp": {'loc': locArmRt,
-                                  'dist': distArmRt,
-                                  'nodes': nodesArmRt,
-                                  'connect': connectArmRt
-                                  },
+strDict = {
            "legDistance_Lt_grp": {'loc': locLegLt,
                                   'dist': distLegLt,
                                   'nodes': nodesLegLt,

@@ -10,22 +10,17 @@ __author__ = 'jhachigian'
 
 debug = True
 upScene= cmds.upAxis(q=1, ax=1)
-ikFkBlend = {'armIKFK_Lt_anim': {'chain': ('shoulder_Lt_jnt', 'elbow_Lt_jnt', 'hand_Lt_jnt'),
-                                 'offset': (0, 10, 0), 'default': 0.0,
-                                 'ik': ('handIk_Lt_anim', 'elbowUpVectorIk_Lt_anim', 'elbowPV_Lt_a0')},
+ikFkBlend = {
              'legIKFK_Lt_anim': {'chain': ('thigh_Lt_jnt', 'knee_Lt_jnt', 'foot_Lt_bind', 'toe_Lt_bind'),
                                  'offset': (12, 0, -22), 'default': 1.0,
                                  'ik': ('legIk_Lt_anim', 'heel_Lt_anim', 'toeTip_Lt_anim',
                                         'kneeUpVectorIk_Lt_anim', 'kneePV_Lt_a0')},
-             'armIKFK_Rt_anim': {'chain': ('shoulder_Rt_jnt', 'elbow_Rt_jnt', 'hand_Rt_jnt'),
-                                 'offset': (0, -10, 0), 'default': 0.0,
-                                 'ik': ('handIk_Rt_anim', 'elbowUpVectorIk_Rt_anim', 'elbowPV_Rt_a0')},
              'legIKFK_Rt_anim': {'chain': ('thigh_Rt_jnt', 'knee_Rt_jnt', 'foot_Rt_bind', 'toe_Rt_bind'),
                                  'offset': (-12, 0, 22), 'default': 1.0,
                                  'ik': ('legIk_Rt_anim', 'heel_Rt_anim', 'toeTip_Rt_anim',
                                         'kneeUpVectorIk_Rt_anim', 'kneePV_Rt_a0')}}
 
-wristJoints = {'hand_Lt_jnt': 'wrist_Lt_bind', 'hand_Rt_jnt': 'wrist_Rt_bind'}
+
 
 
 spaceSwitching = {}
@@ -91,16 +86,12 @@ def ik_fk_blend(name):
         d['tgt'] = tgt
         sp = tools.get_new_name(tgt, "anim")
         locked = ['scaleX', 'scaleY', 'scaleZ']
-        if sp.startswith("elbow"):
-            locked += ['rotateX', 'rotateZ']
         """ apply constraints. """
         if tgt == tgts[0]:  # root of limb
             d['constraint'] = pm.parentConstraint
             apply_constraint(d)
         else:
             for const in [pm.pointConstraint, pm.orientConstraint]:
-                if const == pm.orientConstraint and tgt in wristJoints:
-                    d['tgt'] = wristJoints[tgt]
                 d['constraint'] = const
                 apply_constraint(d)
         pm.connectAttr(rv + ".outputX", sp + ".visibility")
@@ -111,7 +102,6 @@ def ik_fk_blend(name):
 
 def setup_ik_fk_blend():
     pm.select(clear=True)
-    tools.insert_joints(wristJoints)
     for name in ikFkBlend:
         tgts = ikFkBlend[name]['chain']
         off = ikFkBlend[name]['offset']

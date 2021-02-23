@@ -9,12 +9,10 @@ debug = True
 upScene= cmds.upAxis(q=1, ax=1)
 __author__ = 'jhachigian'
 
-limbs = ["thigh_Lt_jnt", "thigh_Rt_jnt", "shoulder_Lt_jnt", "shoulder_Rt_jnt"]
+limbs = ["thigh_Lt_jnt", "thigh_Rt_jnt"]
 
 fkDict = {"Lt": ('shoulder_Lt_jnt', 'elbow_Lt_jnt', 'hand_Lt_jnt',
-                 'thigh_Lt_jnt', 'knee_Lt_jnt', 'foot_Lt_bind', 'toe_Lt_bind'),
-          "Rt": ('shoulder_Rt_jnt', 'elbow_Rt_jnt', 'hand_Rt_jnt',
-                 'thigh_Rt_jnt', 'knee_Rt_jnt', 'foot_Rt_bind', 'toe_Rt_bind'), }
+                 'thigh_Lt_jnt', 'knee_Lt_jnt', 'foot_Lt_bind', 'toe_Lt_bind')}
 
 visDict = {}
 
@@ -23,8 +21,7 @@ def setup_fk(parentConstrain=False):
     # for limb in ["shoulder_Lt_jnt", "shoulder_Rt_jnt"]:
     for limb in limbs:
         tools.create_duplicate_chain(limb, "fk")
-    for obj in ["indexCarpal", "middleCarpal", "ringCarpal", "thumbCarpal",
-                "pinkyCarpal", "armEnd", "legEnd", "knee_Lt", "knee_Rt"]:
+    for obj in [ "legEnd", "knee_Lt", "knee_Rt"]:
         obj_name = obj + "_*_fk"
         if pm.objExists(obj_name):
             pm.delete(obj_name)
@@ -34,19 +31,14 @@ def setup_fk(parentConstrain=False):
     """ cleanup on Aisle 4! """
     for x in ["Lt", "Rt"]:
         """ define the names """
-        hand_aim = "handAim_" + x + "_loc"
         toe_aim = "toeAim_" + x + "_loc"
-        hand_anim = "hand_" + x + "_anim"
         foot_anim = "foot_" + x + "_anim"
         toe_anim = "toe_" + x + "_anim"
-        hand_end_grp = "handEnd_" + x + "_a0"
         toe_end_grp = "toeEnd_" + x + "_a0"
-        elbow_anim = "elbow_" + x + "_anim"
         """ insert gimbal controls and map them to a dictionary """
-        pars = {foot_anim: ["toe_%s_a0" % x, "footUpVec_%s_loc" % x, "kneeAim_%s_loc" % x, toe_aim],
-                hand_anim: ["handUpVec_%s_loc" % x, hand_aim]}
+        pars = {foot_anim: ["toe_%s_a0" % x, "footUpVec_%s_loc" % x, "kneeAim_%s_loc" % x, toe_aim]}
         grps = {}
-        for anim in [hand_anim, foot_anim]:
+        for anim in [foot_anim]:
             name = tools.expand_prefix(anim, "Gimbal")
             grp = pm.group(empty=True, name=name)
             grp.setParent(anim, relative=True)
@@ -58,16 +50,12 @@ def setup_fk(parentConstrain=False):
             pm.parent(pars[anim], grp)
             grps[anim] = grp
         visDict[x] = {}
-        visDict[x]["arm"] = grps[hand_anim]
-        visDict[x]["arm"] = grps[hand_anim]
         visDict[x]["leg"] = grps[foot_anim]
         """ reparent """
         pm.parent(toe_aim, toe_anim)
         """ delete unwanted leftovers from the chain setup """
-        pm.delete(hand_end_grp)
         pm.delete(toe_end_grp)
         """ set attributes """
-        pm.setAttr(elbow_anim + ".rotateOrder", 3)
         """ if applicable, set parentConstraints """
         if parentConstrain:
             """ parentObjects constrain jnts to FK counterparts """
