@@ -288,13 +288,14 @@ def apply_shapes():
     tools.apply_circle("root_Mid_anim", (0, 1, 0), radius=40.0, degree=1, sections=4, rotate=45.0, color=17)
     for anim in shapeOverrides:
         pm.refresh(force=True)  # this keeps the spine from snapping out-of-place during the autorig build.
-        shp = tools.apply_shape(anim)
-        if shp:
-            if anim in rotateOverrides:
-                tools.rotate_shape(shp, (0, 0, 90))
-            if anim in colorOverrides:
-                col = colorOverrides[anim]
-                tools.set_override_color(shp, col)
+        if cmds.objExists (anim):
+            shp = tools.apply_shape(anim)
+            if shp:
+                if anim in rotateOverrides:
+                    tools.rotate_shape(shp, (0, 0, 90))
+                if anim in colorOverrides:
+                    col = colorOverrides[anim]
+                    tools.set_override_color(shp, col)
 
 
 def lock_anims():

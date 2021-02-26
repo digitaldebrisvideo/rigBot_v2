@@ -168,7 +168,7 @@ class FkChain(standardPart.StandardPart):
                 if not squash_stretch:
                     mc.scaleConstraint(last_nodes[i], bind_jnts[i], mo=1, n=bind_jnts[i]+'_sc')
 
-                if i < len(last_nodes):
+                if i < len(last_nodes)-1:
                     print aimDownBone
                     if aimDownBone:
                         mc.aimConstraint(last_nodes[i+1],
@@ -182,15 +182,13 @@ class FkChain(standardPart.StandardPart):
                     if aimDownBone == False:
                         mc.orientConstraint(last_nodes[i],bind_jnts[i],n=bind_jnts[i]+'_oc')
 
-
-
                 #parent constrain the last joint ot the last ctrl
-                mc.parentConstraint(last_nodes[-1], bind_jnts[-2], mo=1, n=bind_jnts[-2]+'_prc')
-                mc.parentConstraint(last_nodes[-1], bind_jnts[-1], mo=1, n=bind_jnts[-1]+'_prc')
+                # mc.parentConstraint(last_nodes[-1], bind_jnts[-2], mo=1, n=bind_jnts[-2]+'_prc')
+                # mc.parentConstraint(last_nodes[-1], bind_jnts[-1], mo=1, n=bind_jnts[-1]+'_prc')
 
-                if not squash_stretch:
-                    mc.scaleConstraint(last_nodes[-1], bind_jnts[-2], mo=1, n=bind_jnts[-2]+'_sc')
-                    mc.scaleConstraint(last_nodes[-1], bind_jnts[-1], mo=1, n=bind_jnts[-1]+'_sc')
+                # if not squash_stretch:
+                    # mc.scaleConstraint(last_nodes[-1], bind_jnts[-2], mo=1, n=bind_jnts[-2]+'_sc')
+                    # mc.scaleConstraint(last_nodes[-1], bind_jnts[-1], mo=1, n=bind_jnts[-1]+'_sc')
 
         elif single_joint or number_joints == 1:
             mc.parentConstraint(last_nodes[0], bind_jnts[0], mo=1, n=bind_jnts[0]+'_prc')

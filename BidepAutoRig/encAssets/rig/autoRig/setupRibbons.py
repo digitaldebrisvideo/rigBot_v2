@@ -686,7 +686,8 @@ def set_colors(key, side):
         tools.set_override_color(x, 20)
     """ dirty orange (24) """
     elbow_shaper = "elbowShaper_%s_animShape" % side
-    tools.set_override_color(elbow_shaper, 24)
+    if cmds.objExists (elbow_shaper):
+        tools.set_override_color(elbow_shaper, 24)
 
 
 def init_dict(key='arm'):
@@ -726,14 +727,15 @@ def build_data(d):
     make_skin_cluster(d)
 
 
-def setup_ribbons(key='arm'):
-    if not pm.objExists('wrist_Lt_bind'):
-        """ ...then this is a test run on a bare skeleton. Insert the wrist joints. """
-        tools.insert_joints(end_map)
-        """ apply the IK routine. """
-        setupIK.setup_ik()
-        pm.select("*PV_*a0")
-        pm.group(name="___PV_grp___")
+def setup_ribbons(key):
+    if key=='arm':
+        if not pm.objExists('wrist_Lt_bind'):
+            """ ...then this is a test run on a bare skeleton. Insert the wrist joints. """
+            tools.insert_joints(end_map)
+            """ apply the IK routine. """
+            setupIK.setup_ik()
+            pm.select("*PV_*a0")
+            pm.group(name="___PV_grp___")
     before = pm.ls()
     init_dict(key)
     if key == 'leg':

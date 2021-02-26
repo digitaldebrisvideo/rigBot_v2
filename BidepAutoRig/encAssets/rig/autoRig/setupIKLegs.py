@@ -66,9 +66,7 @@ footReparent = {'heel_Lt_plc': ["legIk_Lt_ikh", "foot_Lt_loc"], 'heel_Rt_plc': [
 
 ikDict = {
           'thigh_Lt_jnt': ["thigh_Lt_ik", "foot_Lt_ik", "legIk_Lt_ikh", (0, 1, 0)],
-          'thigh_Rt_jnt': ["thigh_Rt_ik", "foot_Rt_ik", "legIk_Rt_ikh", (0, 1, 0)],
-          'shoulder_Lt_jnt': ["shoulder_Lt_ik", "hand_Lt_ik", "handIk_Lt_ikh", (1, 0, 0)],
-          'shoulder_Rt_jnt': ["shoulder_Rt_ik", "hand_Rt_ik", "handIk_Rt_ikh", (1, 0, 0)]
+          'thigh_Rt_jnt': ["thigh_Rt_ik", "foot_Rt_ik", "legIk_Rt_ikh", (0, 1, 0)]
           }
 
 pvDict = {'thigh_Lt_jnt': ["kneeUpVectorIk_Lt_a0", "legBase_Lt_jnt", (0, 1, 0)],
@@ -78,9 +76,8 @@ pvDict = {'thigh_Lt_jnt': ["kneeUpVectorIk_Lt_a0", "legBase_Lt_jnt", (0, 1, 0)],
 
 pvChainDict = {
                'thigh_Lt_jnt': ["thigh_Lt_jnt", "knee_Lt_jnt", "foot_Lt_bind"],
-               'thigh_Rt_jnt': ["thigh_Rt_jnt", "knee_Rt_jnt", "foot_Rt_bind"],
-               'shoulder_Lt_jnt': ["shoulder_Lt_jnt", "elbow_Lt_jnt", "hand_Lt_jnt"],
-               'shoulder_Rt_jnt': ["shoulder_Rt_jnt", "elbow_Rt_jnt", "hand_Rt_jnt"]}
+               'thigh_Rt_jnt': ["thigh_Rt_jnt", "knee_Rt_jnt", "foot_Rt_bind"]
+                }
 
 
 footAttrList = [u'Toe_Spin', u'Ball_Spin', u'Heel_Spin', u'Knee_Spin', u'Lean', u'Side_Tilt',

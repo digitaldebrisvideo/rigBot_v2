@@ -30,7 +30,7 @@ if upScene == 'z':
                                     'offset': (0, 0, -10)},
                     'thigh_Rt_jnt': {'matchPoints': ('thigh_Rt_jnt', 'knee_Rt_jnt', 'legEnd_Rt_jnt'),
                                     'skinPoints': ('hips_Mid_bind', 'knee_Rt_jnt', 'foot_Rt_bind'),
-                                    'rollJoints': [], 'rollTargets': [], 'aimVector': (-1, 0, 0), 'upVector': (0, 0, 1),
+                                    'rollJoints': [], 'rollTargets': [], 'aimVector': (1, 0, 0), 'upVector': (0, 0, 1),
                                     'curveName': 'legRoll_Rt_crv', 'groupName': 'legRoll_Rt_a0',
                                     'offset': (0, 0, 10)}}
 if upScene == 'y':
@@ -57,7 +57,7 @@ if upScene == 'y':
                                     'offset': (0, 0, -10)},
                     'thigh_Rt_jnt': {'matchPoints': ('thigh_Rt_jnt', 'knee_Rt_jnt', 'legEnd_Rt_jnt'),
                                     'skinPoints': ('hips_Mid_bind', 'knee_Rt_jnt', 'foot_Rt_bind'),
-                                    'rollJoints': [], 'rollTargets': [], 'aimVector': (-1, 0, 0), 'upVector': (0, 0, 1),
+                                    'rollJoints': [], 'rollTargets': [], 'aimVector': (1, 0, 0), 'upVector': (0, 0, 1),
                                     'curveName': 'legRoll_Rt_crv', 'groupName': 'legRoll_Rt_a0',
                                     'offset': (0, 0, 10)}}
 

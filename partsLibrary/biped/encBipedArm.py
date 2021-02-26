@@ -158,7 +158,7 @@ class EncBipedArm(standardPart.StandardPart):
         setupClavicle.setup_clavicle()
         setupScapula.setup_scapula()
         setupTrapezius.setup_trapezius()
-        setupRibbons.setup_ribbons()
+        setupRibbons.setup_ribbons('arm')
 
         to_parent = [u'elbowPV_Lt_a0', u'elbowPV_Rt_a0', u'shoulder_Lt_a0', u'shoulder_Rt_a0', u'armIKFK_Rt_a0', u'armIKFK_Lt_a0',
          u'armRibbonCtrl_Lt_grp', u'armRibbonCtrl_Rt_grp', u'armShaper_Lt_grp', u'armShaper_Rt_grp', u'armBase_Rt_loc',

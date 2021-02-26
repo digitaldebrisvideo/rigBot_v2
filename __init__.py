@@ -161,34 +161,14 @@ self.show()""")
 from rigBot.gui import clusterUI
 clusterUI.run()""")
 
-    mc.menuItem(l='Split Blend Shapes Util', p=menu, c="""
-from rigBot.gui import splitTargetsUI
-splitTargetsUI.run()""")
 
     mc.menuItem(l='Set Hand Poses Util', p=menu, c="""
 from rigBot.gui import handPoseUI
 handPoseUI.run()""")
 
-    mc.menuItem(l='Lighting Locators Util', p=menu, c="""
-from rigBot.gui import lightLocsUI
-lightLocsUI.run()""")
 
-    mc.menuItem(d=1, dl='Anim Utilities', p=menu)
 
-    mc.menuItem(l='Attach Car Rig To Curve', p=menu, c="""
-from rigBot import carOnCurve
-carOnCurve.connect()""")
-
-    mc.menuItem(l='Create Camera Rig', p=menu)
-
-    mc.menuItem(d=1, dl='Prop It', p=menu)
-
-    mc.menuItem(l='Rig Prop - CM Node ( Shotgun Model )', p=menu, c="""
-from rigBot import propIt
-reload(propIt)
-propIt.create_from_cmnode()""")
-
-    mc.menuItem(l='Rig prop - Anim Scene ( Non-Shotgun Model )', p=menu, c="""
+    mc.menuItem(l='Rig prop - Anim Scene ( )', p=menu, c="""
 from rigBot import propIt
 reload(propIt)
 propIt.create()""")
@@ -205,7 +185,7 @@ rigBot.shelf()""")
 import rigBot
 rigBot.help()""")
 
-# load comms rigging  shelf
+# load rigging  shelf
 def shelf(*kargs):
 
     shelfName = 'rigBot'

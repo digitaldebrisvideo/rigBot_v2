@@ -164,3 +164,28 @@ class EncBipedLeg(standardPart.StandardPart):
         setupStretchIKLeg.setup_stretch_ik()
         setupRibbons.setup_ribbons(key='leg')
 
+        nox_grp = self.part_master.replace ('_GRP', '_NOX')
+        print nox_grp
+
+        xx = mc.getAttr('legEnd_Rt_ik.tx')
+        mc.setAttr('legEnd_Rt_ik.tx', (-1 * xx))
+        xx = mc.getAttr('legEnd_Rt_jnt.tx')
+        mc.setAttr('legEnd_Rt_jnt.tx', (-1 * xx))
+
+        y_val = mc.getAttr("legIKFK_Lt_a0.translateY")
+        mc.setAttr("legIKFK_Rt_a0.translateY", y_val)
+
+        jnts=[u'legRig_Lt_grp', u'legRig_Rt_grp']
+        ctrls=[ u'thigh_Lt_a0', u'thigh_Rt_a0', u'legIKFK_Rt_a0', u'legIKFK_Lt_a0',
+         u'legShaper_Lt_grp', u'legShaper_Rt_grp',
+         u'legIk_Lt_a0', u'kneeUpVectorIk_Lt_a0', u'legIk_Rt_a0', u'kneeUpVectorIk_Rt_a0']
+        mc.parent (jnts, nox_grp)
+        mc.parent (ctrls, ctrl_grps[0])
+
+        nox_name=ctrl_grps[0].replace ('_parent_CTLS', '_CTLS_NOX')
+
+        nox_ctrls=[u'kneePV_Lt_a0', u'kneePV_Rt_a0',u'legRibbonCtrl_Lt_grp', u'legRibbonCtrl_Rt_grp']
+        nox=mc.createNode ('transform', name=nox_name, p=ctrl_grps[0])
+        mc.parent (nox_ctrls, nox)
+        mc.setAttr (nox+'.inheritsTransform', 0)
+

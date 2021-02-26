@@ -26,8 +26,13 @@ if y not in sys.path:
 	sys.path.insert(0, y)
 import autoRig
 from autoRig import setupSpine
+reload (setupSpine)
 from autoRig import setupTorso
+reload (setupTorso)
 from autoRig import autoRig
+reload (autoRig)
+from autoRig import b4AutoRigOptions
+reload (b4AutoRigOptions)
 
 
 
@@ -131,25 +136,9 @@ class EncTorso(standardPart.StandardPart):
 
         setupSpine.setup_spine()
         setupSpine.setup_reverse_spine()
-
+        b4AutoRigOptions.makeDistanceWarning(subject="hips_Mid_jnt", distance=80000, parent="root_Mid_anim")
+        autoRig.apply_shapes()
+        autoRig.prep_spine_ik_fk_vis()
         self.finalize_part()
 
 
-    def rebuild_guide_post(self):
-
-        prefix = self.prefix
-        num_joints = self.options.get('numberJoints')
-        chest_jnt = prefix + '_chest_JNT'
-
-        torso_jnts = []
-        for i in range(num_joints - 1):
-            letter = utils.letters[i]
-            torso_jnts.append('{0}_{1}_JNT'.format(prefix, letter))
-
-        ctrls = []
-        for i, jnt in enumerate(torso_jnts[:-1] + [chest_jnt]):
-            ltr = utils.letters[i]
-            fk_name = '{0}_torso_FK_{1}_CTL'.format(prefix, ltr)
-            ctrls.append(fk_name)
-
-        mc.xform(ctrls, a=1, t=[0, 0, 0], ro=[0, 0, 0])
