@@ -32,8 +32,8 @@ def make_attr():
 def make_mid_loc():
     pnt1_name = "trapezius_Mid_loc"
     pnt1 = pm.spaceLocator(name=pnt1_name)
-    tools.match_xyz(pnt1, "driven_neck03_Mid_bind")
-    pm.parent(pnt1, "drivenArm_chest_Mid_bind")
+    tools.match_xyz(pnt1, "neck03Driven_Mid_bind")
+    pm.parent(pnt1, "chest_armDriven_bind")
 
 
 def make_trapezius_controls(side):

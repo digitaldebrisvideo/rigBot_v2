@@ -23,13 +23,14 @@ def setup_fk(parentConstrain=False):
     # for limb in ["shoulder_Lt_jnt", "shoulder_Rt_jnt"]:
     for limb in limbs:
         tools.create_duplicate_chain(limb, "fk")
-    for obj in [ "armEnd", "legEnd", "knee_Lt", "knee_Rt"]:
+    for obj in ["indexCarpal", "middleCarpal", "ringCarpal", "thumbCarpal",
+                "pinkyCarpal", "armEnd", "legEnd", "knee_Lt", "knee_Rt"]:
         obj_name = obj + "_*_fk"
         if pm.objExists(obj_name):
             pm.delete(obj_name)
     for limb in limbs:
         fk_limb = tools.get_new_name(limb, "fk")
-        # setupFingers.chain_setup(fk_limb, base_h=8, base_w=8)
+        setupFingers.chain_setup(fk_limb, base_h=8, base_w=8)
     """ cleanup on Aisle 4! """
     for x in ["Lt", "Rt"]:
         """ define the names """

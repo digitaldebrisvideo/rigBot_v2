@@ -92,7 +92,7 @@ visDict = {"Lt": {}, "Rt": {}}
 # ikAttrs = ["root03_Mid_anim"]
 # ikAttrData = {}
 
-pvAttrs = ["world_anim", "character02_Mid_anim", "driven_root03_Mid_anim", "pelvis_Mid_anim"]
+pvAttrs = ["world_anim", "character02_Mid_anim", "root03Driven_Mid_anim", "pelvis_Mid_anim"]
 
 pvAttrData = {}
 

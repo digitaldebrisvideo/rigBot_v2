@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Nicob\Documents\maya\2020\scripts\rigBot\gui\build.ui',
-# licensing of 'C:\Users\Nicob\Documents\maya\2020\scripts\rigBot\gui\build.ui' applies.
+# Form implementation generated from reading ui file '/job/comms/pipeline/dev/bhamilton/git/ rigBot/rigBot/gui/build.ui'
 #
-# Created: Mon Mar  1 07:46:22 2021
-#      by: pyside2-uic  running on PySide2 5.12.5
+# Created: Wed Aug  7 11:22:35 2019
+#      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -232,6 +231,9 @@ class Ui_guides_form(object):
         self.verticalLayout_11.setSpacing(4)
         self.verticalLayout_11.setContentsMargins(9, 9, 4, 9)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.use_plugin_chx = QtWidgets.QCheckBox(self.options_grp_3)
+        self.use_plugin_chx.setObjectName("use_plugin_chx")
+        self.verticalLayout_11.addWidget(self.use_plugin_chx)
         self.cache_chx = QtWidgets.QCheckBox(self.options_grp_3)
         self.cache_chx.setObjectName("cache_chx")
         self.verticalLayout_11.addWidget(self.cache_chx)
@@ -332,7 +334,8 @@ class Ui_guides_form(object):
         guides_form.setTabOrder(self.doc_browser, self.open_btn)
         guides_form.setTabOrder(self.open_btn, self.open_btn_2)
         guides_form.setTabOrder(self.open_btn_2, self.migrate_btn)
-        guides_form.setTabOrder(self.migrate_btn, self.cache_chx)
+        guides_form.setTabOrder(self.migrate_btn, self.use_plugin_chx)
+        guides_form.setTabOrder(self.use_plugin_chx, self.cache_chx)
         guides_form.setTabOrder(self.cache_chx, self.build_next_btn)
         guides_form.setTabOrder(self.build_next_btn, self.build_selected_btn)
         guides_form.setTabOrder(self.build_selected_btn, self.build_to_selected_btn)
@@ -357,6 +360,8 @@ class Ui_guides_form(object):
         self.migrate_btn.setToolTip(QtCompat.translate("guides_form", "Migrate the selected module from the live tools area to the asset folder", None, -1))
         self.migrate_btn.setText(QtCompat.translate("guides_form", "Migrate Module to Asset", None, -1))
         self.part_label_3.setText(QtCompat.translate("guides_form", "Build Options", None, -1))
+        self.use_plugin_chx.setToolTip(QtCompat.translate("guides_form", "Use  rigBot comms rig nodes to build this rig OR use vanilla Maya", None, -1))
+        self.use_plugin_chx.setText(QtCompat.translate("guides_form", "Use cmRigNodes Plugin Nodes", None, -1))
         self.cache_chx.setToolTip(QtCompat.translate("guides_form", "Saves each built step as a Maya file to the usr/tmp for quick building", None, -1))
         self.cache_chx.setText(QtCompat.translate("guides_form", "Cache Build Steps", None, -1))
         self.part_label_4.setText(QtCompat.translate("guides_form", "Build Utilities", None, -1))

@@ -81,7 +81,6 @@ class EncoreHand(standardPart.StandardPart):
         options = self.options
         mirror_value = self.mirror_value
 
-
         number_fingers = options.get('numberFingers')
         number_joints = options.get('numberJoints')
         number_thumb_joints = options.get('numberThumbJoints')
@@ -168,8 +167,6 @@ class EncoreHand(standardPart.StandardPart):
 
         self.finalize_guide()
         mc.setAttr(self.guide_master + '.jointAxisVis', 1)
-
-
 
     def __build_finger_guide(self, number_joints, name, color, length=1.0):
 

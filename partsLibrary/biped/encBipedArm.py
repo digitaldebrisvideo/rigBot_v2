@@ -65,8 +65,38 @@ class EncBipedArm(standardPart.StandardPart):
     def __init__(self):
         standardPart.StandardPart.__init__(self)
 
-        self.add_option('parent', data_type='hook', default='chest_Mid_bind')
+        self.add_option('parent', data_type='hook', default='C_chest_JNT')
+        self.add_option('ikHandleParent',
+                        data_type='hook',
+                        default='',
+                        tool_tip="Optional IK handle parent for connecting to a " + \
+                                 "foot part. Will default to it's own IK control " + \
+                                 "if the node doesnt exist.")
 
+        self.add_option('numberTwistJoints',
+                        data_type='int',
+                        min=0,
+                        default=4,
+                        tool_tip='Number of twist joints for the upper and lower arms',
+                        rebuild_to_modify=True)
+
+        self.add_option('makeBendy',
+                        data_type='bool',
+                        default=True,
+                        rebuild_to_modify=True,
+                        tool_tip='Add bendy controls.')
+
+        self.add_option('transOrientiation',
+                        data_type='enum',
+                        default='world',
+                        enum='world:downBone',
+                        tool_tip='Orient the translates on IK control to the world OR down the bone.')
+
+        self.add_option('doubleClavicle',
+                        data_type='bool',
+                        default=False,
+                        rebuild_to_modify=True,
+                        tool_tip='Creates a second clavicle joint.')
 
         self.add_option('pickWalkParent',
                         data_type='string',
@@ -88,8 +118,8 @@ class EncBipedArm(standardPart.StandardPart):
 
         noxform_grp = self.guide_master + '_NOX'
 
-        if mc.objExists ('drivenArm_chest_Mid_bind'):
-            mc.delete ('drivenArm_chest_Mid_bind')
+        if mc.objExists ('chest_armDriven_bind'):
+            mc.delete ('chest_armDriven_bind')
 
 
         pp = env.get_parts_paths()[-1]
@@ -97,29 +127,10 @@ class EncBipedArm(standardPart.StandardPart):
         import_path = pp.replace('partsLibrary', branch)
         mc.file(import_path, i=1)
 
-        drivens=[u'drivenArm_chest_Mid_bind', u'driven_neck03_Mid_bind']
-
-        if mc.objExists ('snap_chest_Mid_bind'):
-            mc.delete (mc.parentConstraint ('snap_chest_Mid_bind', drivens[0], mo=0))
-        if mc.objExists('snap_neck03_Mid_bind'):
-            mc.delete(mc.parentConstraint('snap_neck03_Mid_bind', drivens[1], mo=0))
-
-        snaps=[ u'clavicle_Lt_bind', u'clavicleEnd_Lt_jnt', u'scapulaAim_Lt_jnt', u'scapulaEnd_Lt_jnt',
-         u'armBase_Lt_jnt', u'shoulder_Lt_jnt', u'elbow_Lt_jnt', u'hand_Lt_jnt', u'handEnd_Lt_jnt', u'scapulaTarget_jnt',
-         u'clavicle_Rt_bind', u'clavicleEnd_Rt_jnt', u'scapulaAim_Rt_jnt', u'scapulaEnd_Rt_jnt', u'armBase_Rt_jnt',
-         u'shoulder_Rt_jnt', u'elbow_Rt_jnt', u'hand_Rt_jnt', u'handEnd_Rt_jnt']
-        for snap in snaps:
-            target='snap_'+snap
-            if mc.objExists (target):
-                mc.delete (mc.delete (mc.parentConstraint(target, snap, mo=0)))
-
-
-
-
         # This finalizes your guide.
         self.finalize_guide()
         jnts_grp = self.guide_master + '_JNTS'
-        mc.parent ('drivenArm_chest_Mid_bind', jnts_grp)
+        mc.parent ('chest_armDriven_bind', jnts_grp)
 
         self.finalize_guide()
 
@@ -138,8 +149,6 @@ class EncBipedArm(standardPart.StandardPart):
         hooks             = self.hooks
         ctrl_grps         = self.ctrl_grps
         jnt_grps          = self.jnt_grps
-        noxform_grp = self.noxform_grp
-
 
         setupIKArms.setup_ik()
         setupFKArms.setup_fk()
@@ -151,32 +160,18 @@ class EncBipedArm(standardPart.StandardPart):
         setupTrapezius.setup_trapezius()
         setupRibbons.setup_ribbons('arm')
 
-        # to_parent = [u'elbowPV_Lt_a0', u'elbowPV_Rt_a0', u'shoulder_Lt_a0', u'shoulder_Rt_a0', u'armIKFK_Rt_a0', u'armIKFK_Lt_a0',
-        #  u'armRibbonCtrl_Lt_grp', u'armRibbonCtrl_Rt_grp', u'armShaper_Lt_grp', u'armShaper_Rt_grp', u'armBase_Rt_loc',
-        #  u'armBase_Lt_loc', u'clavicle_Lt_a0', u'clavicle_Rt_a0', u'scapulaCtrl_Lt_grp', u'scapulaCtrl_Rt_grp',
-        #  u'trapezius_Lt_offsetGrp', u'trapezius_Rt_offsetGrp']
-        #
-        # mc.parent (to_parent, ctrl_grps[0])
+        to_parent = [u'elbowPV_Lt_a0', u'elbowPV_Rt_a0', u'shoulder_Lt_a0', u'shoulder_Rt_a0', u'armIKFK_Rt_a0', u'armIKFK_Lt_a0',
+         u'armRibbonCtrl_Lt_grp', u'armRibbonCtrl_Rt_grp', u'armShaper_Lt_grp', u'armShaper_Rt_grp', u'armBase_Rt_loc',
+         u'armBase_Lt_loc', u'clavicle_Lt_a0', u'clavicle_Rt_a0', u'scapulaCtrl_Lt_grp', u'scapulaCtrl_Rt_grp',
+         u'trapezius_Lt_offsetGrp', u'trapezius_Rt_offsetGrp']
+
+        mc.parent (to_parent, ctrl_grps[0])
 
         mc.parent ([u'armRig_Rt_grp', u'armRig_Lt_grp'], jnt_grps[0])
         if mc.objExists ('armRollVector_Rt_jnt_aimConstraint1'):
-            mc.setAttr ("armRollVector_Rt_jnt_aimConstraint1.upVectorY" ,-1  )
-
-        # mc.parent (u'armRibbonRig_Rt_grp', u'armRibbonRig_Lt_grp', noxform_grp)
+            mc.setAttr ("armRollVector_Rt_jnt_aimConstraint1.aimVectorX",  1)
 
         fkiks=[u'armIKFK_Rt_a0', u'armIKFK_Lt_a0']
         for fkik in fkiks:
             if mc.objExists (fkik):
                 mc.setAttr (fkik+'.ty', 175)
-
-        tt=mc.getAttr ('armRollReaderUpObj_Lt_loc.t')
-        mc.setAttr ('armRollReaderUpObj_Rt_loc.t', tt[0][0], tt[0][1], tt[0][2]*-1)
-
-        # ctrls=[u'handIk_Lt_a0', u'elbowUpVectorIk_Lt_a0', u'handIk_Rt_a0', u'elbowUpVectorIk_Rt_a0']
-        # mc.parent (ctrls, ctrl_grps[0])
-        #
-        mc.select ('lwrLegTwist_Lt_anim.cv[*]', 'lwrLegTwist_Rt_anim.cv[*]')
-        mc.xform (a=1, r=1, ro=(0, 0, -90))
-        mc.select (cl=1)
-        #
-        # mc.delete ('rig_XXX_grp')

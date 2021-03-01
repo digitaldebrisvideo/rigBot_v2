@@ -69,7 +69,7 @@ global proc pc_resolutionSwitchesProc()
     
     //rez groups
     string $geoGrp   = `group -em -n "geoRez_grp"`;
-    string $visSwitchGrp   = `group -em -n "visibility_CTL_OFF"`; 
+    string $visSwitchGrp   = `group -em -n "visSwitch_grp"`; 
     string $skinnedGeoGrp   = `group -em -n "skinnedGeo_grp"`;
     string $constGeoGrp   = `group -em -n "constrainedGeo_grp"`;
     string $cageGrp   = `group -em -n "cage_grp"`;

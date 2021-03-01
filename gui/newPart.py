@@ -1,7 +1,5 @@
 # StandardPart.py
-from Qt import QtWidgets as wdg
-from Qt import QtGui as gui
-from Qt import QtCore as qt
+
 import maya.cmds as mc
 import maya.mel as mm
 
@@ -25,7 +23,7 @@ except:
 
 #mayaWidget.compile('newPart.ui')
 
-class NewPart(wdg.QDialog):
+class NewPart(QtWidgets.QDialog):
     """Remap UI for remapping shape and influences during import"""
 
     def __init__(self, assembly_mode=False, current_categories=[]):
@@ -57,9 +55,9 @@ class NewPart(wdg.QDialog):
             if not os.access(item.text(), os.W_OK) and user not in item.text():
                 item.setFlags(item.flags() & QtCore.Qt.ItemIsSelectable)
 
-        # item = self.ui.listWidget.item(self.default_path_idx)
-        # self.ui.listWidget.setCurrentItem(item, True)
-        # self.ui.listWidget.setItemSelected(item, True)
+        item = self.ui.listWidget.item(self.default_path_idx)
+        self.ui.listWidget.setCurrentItem(item, True)
+        self.ui.listWidget.setItemSelected(item, True)
 
         if current_categories:
             self.current_categories = current_categories
@@ -136,47 +134,6 @@ class NewPart(wdg.QDialog):
 
     def save_to_asset(self):
         self.check_file_path(self.asset_path)
-
-qt_widget_object = None
-def run(dockable=True, **kwargs):
-    """
-    This is boiler plate code for launching your dockable UI,
-    Copy and paste this into your ui module. then change the className from MayaWidget
-    to whatever your class name is.
-
-    UIs using this run wrapper require your UI class to inherit the MayaWidget
-    class that is defined above, in this module.
-
-    USAGE:
-        import myGui
-        myGui.run()
-
-        (OR)
-        myGui.run(dockable=False)
-
-    RETURNS:
-        object instance of your qt ui
-
-    """
-
-    try:
-        if dockable:
-            try:
-                global qt_widget_object
-                qt_widget_object.run(floating=True)
-
-            except:
-                qt_widget_object = NewPart(**kwargs)
-                qt_widget_object.run(floating=True)
-
-        else:
-            qt_widget_object = NewPart(**kwargs)
-            qt_widget_object.show()
-
-        return qt_widget_object
-
-    except Exception as e:
-        raise RuntimeError(e)
 
 def get_path(assembly_mode=False, current_categories=[]):
     """Simple prompt to ask for a new module name to write to disk.
