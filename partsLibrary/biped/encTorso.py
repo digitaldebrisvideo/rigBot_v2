@@ -109,6 +109,25 @@ class EncTorso(standardPart.StandardPart):
         import_path = pp.replace('partsLibrary', branch)
         mc.file(import_path, i=1)
 
+        snap_jnts = [u'root_Mid_jnt', u'chest_Mid_bind',  u'torso_Lt_bind',
+                     u'pectorals_Lt_jnt',  u'torso_Rt_bind', u'collar_Rt_bind',
+                     u'pectorals_Rt_jnt', u'hips_Mid_jnt', u'spine01_Mid_jnt',
+                     u'spine02_Mid_jnt', u'spine03_Mid_jnt', u'spine04_Mid_jnt',
+                     u'collar_Lt_bind',u'spineEnd_Mid_jnt']
+
+        for snap in snap_jnts:
+            target = ('snap_' + snap)
+            if mc.objExists(target):
+                mc.delete(mc.parentConstraint(target, snap, mo=0))
+
+
+        drivens=[u'clavDriven_Rt_bind', u'clavDriven_Lt_bind']
+        for driven in drivens:
+            xx=driven.replace ('Driven', '')
+            target='snap_'+xx
+            if mc.objExists (target):
+                mc.delete (mc.parentConstraint (target, driven, mo=0))
+
         # This finalizes your guide.
         self.finalize_guide()
         jnts_grp = self.guide_master + '_JNTS'
@@ -132,13 +151,20 @@ class EncTorso(standardPart.StandardPart):
         jnt_grps = self.jnt_grps
         noxform_grp = self.noxform_grp
         world_scale_attr = self.hooks[0] + '.worldScale'
-        #
+
 
         setupSpine.setup_spine()
         setupSpine.setup_reverse_spine()
         b4AutoRigOptions.makeDistanceWarning(subject="hips_Mid_jnt", distance=80000, parent="root_Mid_anim")
         autoRig.apply_shapes()
         autoRig.prep_spine_ik_fk_vis()
+
+
+        # mc.parent ('character_Mid_a0', ctrl_grps[0])
+        # mc.parent ('root_Mid_jnt', jnt_grps[0])
+        # mc.parent ('shaper_grp', ctrl_grps[0])
+        # mc.parent ('spine_rig', noxform_grp)
+        # mc.delete ('spine_ctrls')
         self.finalize_part()
 
 

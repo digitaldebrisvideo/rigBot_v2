@@ -15,9 +15,9 @@ upScene= cmds.upAxis(q=1, ax=1)
 splineCtrlDict = [(u'spine_ctrls', None, u'transform', None),
                   (u'spine_rig', None, u'transform', None),
 
-                  (u'world_anim', u'spine_ctrls', u'joint', None),
+                  (u'world_CTL', u'spine_ctrls', u'joint', None),
 
-                  (u'character_Mid_a0', u'world_anim', u'transform', None),
+                  (u'character_Mid_a0', u'world_CTL', u'transform', None),
                   (u'character_Mid_anim', u'character_Mid_a0', u'joint', None),
 
                   (u'character02_Mid_a0', u'character_Mid_anim', u'transform', None),
@@ -49,7 +49,7 @@ splineCtrlDict = [(u'spine_ctrls', None, u'transform', None),
                   (u'pelvis_Mid_anim', u'pelvis_Mid_a0', u'joint', u'hips_Mid_jnt'),
 
                   (u'hips_Mid_ref', u'pelvis_Mid_anim', u'transform', u'hips_Mid_jnt'),
-                  
+
                   (u'topSpineSkin_Mid_grp', u'spine_rig', u'transform', u'spineEnd_Mid_jnt'),
                   (u'topSpineSkin_Mid_jnt', None, u'joint', u'spineEnd_Mid_jnt'),
                   (u'topSpineSkin_Mid_ref', u'chest_Mid_anim', u'transform', u'topSpineSkin_Mid_jnt'),
@@ -65,7 +65,7 @@ splineCtrlDict = [(u'spine_ctrls', None, u'transform', None),
 """ format: (<controlName>, <controlParent>, <type>, <matchObject>) """
 revSpineCtrlDict = [(u'revSpine03Fk_Mid_ctrlGrp', u'root03_Mid_anim', u'transform', u'spine03Fk_Mid_anim'),
                     (u'revSpine03Fk_Mid_anim', u'revSpine03Fk_Mid_ctrlGrp', u'transform', u'revSpine03Fk_Mid_ctrlGrp'),
-                    
+
                     (u'revSpine02Fk_Mid_ctrlGrp', u'revSpine03Fk_Mid_anim', u'transform', u'spine02Fk_Mid_anim'),
                     (u'revSpine02Fk_Mid_anim', u'revSpine02Fk_Mid_ctrlGrp', u'transform', u'revSpine02Fk_Mid_ctrlGrp'),
 
@@ -96,7 +96,7 @@ curvNode = spineControls[0] + '_arcLength'
 backNode = 'back_curve_normalizedScale'
 
 
-spineShdNodes = ['spine_exp_spineCurveInfo_divBy_world_anim_mult']
+spineShdNodes = ['spine_exp_spineCurveInfo_divBy_world_CTL_mult']
 
 spineAttrs = {spineShdNodes[0]: {'setAttr': {'operation': 2}, 'lockAttr': [],
                                  'connectAttr': []},
@@ -104,7 +104,7 @@ spineAttrs = {spineShdNodes[0]: {'setAttr': {'operation': 2}, 'lockAttr': [],
                          'lockAttr': [], 'connectAttr': []},
               curvNode: {'setAttr': {}, 'lockAttr': [],
                          'connectAttr': [('normalizedScale', spineShdNodes[0] + '.input1X')]},
-              'world_anim': {'setAttr': {}, 'lockAttr': [],
+              'world_CTL': {'setAttr': {}, 'lockAttr': [],
                              'connectAttr': [('globalScale', spineShdNodes[0] + '.input2X')]},
               'bottomSpineSkin_Mid_jnt': {'setAttr': {'drawStyle': 0}, 'lockAttr': [],
                                           'connectAttr': []},
@@ -128,16 +128,17 @@ def prep_root_anim():
 
 
 def prep_world_anim(x):
-    tools.create_attributes(x, " ", ["globalScale"])
-    attr = x + ".globalScale"
-    pm.addAttr(attr, edit=True, hasMinValue=True, minValue=0.01)
-    pm.setAttr(attr, 1.0)
-    for y in [".scaleX", ".scaleY", ".scaleZ"]:
-        attr1 = x + y
-        attr2 = "shaper_grp" + y
-        pm.connectAttr(attr, attr1)
-        pm.connectAttr(attr, attr2)
-        pm.setAttr(attr1, lock=True, keyable=False, channelBox=False)
+    if not cmds.objExists (x+".globalScale"):
+        tools.create_attributes(x, " ", ["globalScale"])
+        attr = x + ".globalScale"
+        pm.addAttr(attr, edit=True, hasMinValue=True, minValue=0.01)
+        pm.setAttr(attr, 1.0)
+        for y in [".scaleX", ".scaleY", ".scaleZ"]:
+            attr1 = x + y
+            attr2 = "shaper_grp" + y
+            pm.connectAttr(attr, attr1)
+            pm.connectAttr(attr, attr2)
+            pm.setAttr(attr1, lock=True, keyable=False, channelBox=False)
 
 
 def prep_mid_anim():
@@ -238,7 +239,7 @@ def setup_spine():
     """ insert root anim controls """
     prep_root_anim()
     """ prep world anim """
-    prep_world_anim("world_anim")
+    prep_world_anim("world_CTL")
     """ prep character_Mid_anim" """
     tools.create_attributes("character_Mid_anim", "visibility", [])
     char = pm.PyNode("character_Mid_anim")

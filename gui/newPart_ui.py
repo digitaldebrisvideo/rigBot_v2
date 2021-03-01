@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/job/commsdev/staff_dev_la_2017/sandbox/bhamilton/common/maya/2017.p5/python/rigBot/gui/newPart.ui'
+# Form implementation generated from reading ui file 'C:\Users\Nicob\Documents\maya\2020\scripts\rigBot\gui\newPart.ui',
+# licensing of 'C:\Users\Nicob\Documents\maya\2020\scripts\rigBot\gui\newPart.ui' applies.
 #
-# Created: Mon Apr  8 17:13:20 2019
-#      by: pyside2-uic  running on PySide2 2.0.0~alpha0
+# Created: Fri Feb 26 15:49:27 2021
+#      by: pyside2-uic  running on PySide2 5.12.5
 #
 # WARNING! All changes made in this file will be lost!
 

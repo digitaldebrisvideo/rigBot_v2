@@ -54,7 +54,7 @@ class BuildUI(mayaWidget.MayaWidget):
         self.asset = ''
         self.variant = ''
         self.variants = ['default']
-        self.use_plugin = True
+        self.use_plugin = False
         self.import_error = False
         self.build_module = None
         self.no_asset_mode = False
@@ -62,7 +62,7 @@ class BuildUI(mayaWidget.MayaWidget):
         self.build_list = []
 
         self.ui.variant_cmb.currentIndexChanged.connect(self.set_variant)
-        self.ui.use_plugin_chx.stateChanged.connect(self.set_use_plugin)
+        # self.ui.use_plugin_chx.stateChanged.connect(self.set_use_plugin)
         self.ui.cache_chx.stateChanged.connect(self.set_cache_build)
 
         self.ui.build_tree.header().setSectionResizeMode(0, wdg.QHeaderView.Stretch)
@@ -249,10 +249,10 @@ class BuildUI(mayaWidget.MayaWidget):
         except:
             pass
 
-        try:
-            self.ui.use_plugin_chx.stateChanged.disconnect(self.set_use_plugin)
-        except:
-            pass
+        # try:
+        #     self.ui.use_plugin_chx.stateChanged.disconnect(self.set_use_plugin)
+        # except:
+        #     pass
 
         try:
             self.ui.cache_chx.stateChanged.disconnect(self.set_cache_build)
@@ -262,7 +262,7 @@ class BuildUI(mayaWidget.MayaWidget):
         self.ui.variant_cmb.clear()
         self.ui.asset_label.setText('Asset: Not Set!')
 
-        self.ui.use_plugin_chx.setChecked(1)
+        # self.ui.use_plugin_chx.setChecked(1)
 
         if os.environ['cache_build'] == 'False':
             self.ui.cache_chx.setChecked(0)
@@ -277,7 +277,7 @@ class BuildUI(mayaWidget.MayaWidget):
         self.ui.build_next_btn,
         self.ui.build_selected_btn,
         self.ui.load_cache_build_btn,
-        self.ui.use_plugin_chx,
+        # self.ui.use_plugin_chx,
         self.ui.cache_chx]
 
         for btn in btns:
@@ -295,7 +295,7 @@ class BuildUI(mayaWidget.MayaWidget):
                 variants.insert(0, 'default')
 
             self.ui.variant_cmb.addItems(variants)
-            self.ui.use_plugin_chx.setChecked(self.use_plugin)
+            # self.ui.use_plugin_chx.setChecked(self.use_plugin)
 
             for btn in btns:
                 btn.setEnabled(1)
@@ -304,7 +304,7 @@ class BuildUI(mayaWidget.MayaWidget):
             self.ui.variant_cmb.setCurrentIndex(idx)
 
         self.ui.variant_cmb.currentIndexChanged.connect(self.set_variant)
-        self.ui.use_plugin_chx.stateChanged.connect(self.set_use_plugin)
+        # self.ui.use_plugin_chx.stateChanged.connect(self.set_use_plugin)
         self.ui.cache_chx.stateChanged.connect(self.set_cache_build)
 
     def set_variant(self):
@@ -315,11 +315,11 @@ class BuildUI(mayaWidget.MayaWidget):
 
         self.initialize_ui_widgets()
 
-    def set_use_plugin(self):
-        """Change the use plugin flag PER variant. This is written to the assets build list file."""
-
-        state = self.ui.use_plugin_chx.isChecked()
-        self.build_module.set_use_plugin(state)
+    # def set_use_plugin(self):
+    #     """Change the use plugin flag PER variant. This is written to the assets build list file."""
+    #
+    #     # state = self.ui.use_plugin_chx.isChecked()
+    #     # self.build_module.set_use_plugin(state)
 
     def set_cache_build(self):
         """Set the cache build variable"""

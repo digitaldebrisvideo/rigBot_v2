@@ -171,7 +171,7 @@ def adjust_weighting():
     curve_name = neckControls[0] + "_curve"
     cluster_name = neckControls[5]
     pm.select(curve_name)
-    pm.skinCluster(edit=True, addInfluence="chestDriven_Mid_jnt")
+    pm.skinCluster(edit=True, addInfluence="drivenArm_chest_Mid_bind")
     """ do not remove the redundant parentheses below -- skinPercent needs a tuple of tuple(s) to work """
     # weights = [(("bottomNeckSkin_Mid_jnt", 1.0)),
     #            (("bottomNeckSkin_Mid_jnt", 1.0)),

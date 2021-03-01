@@ -36,11 +36,11 @@ for obj in ikFkBlend:
     spaceSwitching[key] = {}
     """ add additional data """
     if obj.startswith('arm'):
-        spaceSwitching[key]['targets'] = ['world_anim', 'character02_Mid_anim', 'root03_Mid_anim', 'pelvis_Mid_anim',
+        spaceSwitching[key]['targets'] = ['world_CTL', 'character02_Mid_anim', 'root03_Mid_anim', 'pelvis_Mid_anim',
                                      'spine03Fk_Mid_anim', 'head_Mid_anim', 'clavicle_%s_anim' % tools.get_lr(obj)]
         spaceSwitching[key]['def'] = 'spine03Fk_Mid_anim'
     else:
-        spaceSwitching[key]['targets'] = ['world_anim', 'character02_Mid_anim', 'root03_Mid_anim', 'pelvis_Mid_anim']
+        spaceSwitching[key]['targets'] = ['world_CTL', 'character02_Mid_anim', 'root03_Mid_anim', 'pelvis_Mid_anim']
         spaceSwitching[key]['def'] = 'character02_Mid_anim'
     spaceSwitching[key]['interpType'] = 2
     spaceSwitching[key]['constraint'] = pm.parentConstraint

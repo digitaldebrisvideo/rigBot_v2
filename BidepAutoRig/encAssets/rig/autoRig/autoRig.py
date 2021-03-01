@@ -48,19 +48,20 @@ reload(setupScapula)
 reload(setupWrists)
 reload(encLib)
 
+from rigBot import utils
+
 __author__ = 'jhachigian'
 
-doNotLockScale = ["world_anim", "trap_Lt_anim", "trap_Rt_anim", "torso_Lt_anim", "torso_Rt_anim",
+doNotLockScale = ["world_CTL", "trap_Lt_anim", "trap_Rt_anim", "torso_Lt_anim", "torso_Rt_anim",
                   "spineShaper01_Mid_anim", "spineShaper02_Mid_anim", "spineShaper03_Mid_anim",
                   "spineShaper04_Mid_anim", "hipsShaper_Mid_anim",
                   "headTop_Mid_anim", "headRear_Mid_anim", "headSide_Lt_anim", "headSide_Rt_anim"]
 
 """ key/value format: {parent: (children)} """
-parentDict = {"controls_grp": ("world_anim", "shaper_grp"),
-              "world_anim": ("armRibbonCtrl_Lt_grp", "armRibbonCtrl_Rt_grp",
+parentDict = {"controls_grp": ("world_CTL", "shaper_grp"),
+              "world_CTL": ("armRibbonCtrl_Lt_grp", "armRibbonCtrl_Rt_grp",
                              "legRibbonCtrl_Lt_grp", "legRibbonCtrl_Rt_grp"),
               "character_Mid_anim": ("neck_ctrls",
-                                     "fingers_Rt_a0", "fingers_Lt_a0",
                                      "legIk_Lt_a0", "legIk_Rt_a0",
                                      "handIk_Lt_a0", "handIk_Rt_a0",
                                      "kneeUpVectorIk_Lt_a0", "kneeUpVectorIk_Rt_a0",
@@ -103,7 +104,7 @@ ikFkBlend = {'armIKFK_Lt_anim': {'chain': ('shoulder_Lt_jnt', 'elbow_Lt_jnt', 'h
 
 deleteList = ["spine_ctrls"]
 
-shapeOverrides = ["world_anim", "character_Mid_anim", "character02_Mid_anim",
+shapeOverrides = ["world_CTL", "character_Mid_anim", "character02_Mid_anim",
                   "hips_Mid_anim", "pelvis_Mid_anim", "torso_Mid_anim",
                   "spine01Fk_Mid_anim", "spine02Fk_Mid_anim", "chest_Mid_anim", "spine03Fk_Mid_anim",
                   "neck01Fk_Mid_anim", "head_Mid_anim",
@@ -128,8 +129,7 @@ constraint_targets = ["character_Mid_anim", "root_Mid_anim"]
 
 body_ctrls_vis_targets = ['armIKFK_Lt_anim', 'armIKFK_Rt_anim', 'chest_Mid_anim', 'clavicle_Lt_anim',
                           'clavicle_Rt_anim', 'collar_Lt_anim', 'collar_Rt_anim', 'elbowUpVectorIk_Lt_anim',
-                          'elbowUpVectorIk_Rt_anim', 'elbow_Lt_anim', 'elbow_Rt_anim', 'fingerPoses_Lt_anim',
-                          'fingerPoses_Rt_anim', 'foot_Lt_anim', 'foot_Rt_anim', 'handIk_Lt_anim',
+                          'elbowUpVectorIk_Rt_anim', 'elbow_Lt_anim', 'elbow_Rt_anim', 'foot_Lt_anim', 'foot_Rt_anim', 'handIk_Lt_anim',
                           'handIk_Rt_anim', 'hand_Lt_anim', 'hand_Rt_anim', 'head_Mid_anim', 'heel_Lt_anim',
                           'heel_Rt_anim', 'hips_Mid_anim', 'index01_Lt_anim', 'index01_Rt_anim', 'index02_Lt_anim',
                           'index02_Rt_anim', 'index03_Lt_anim', 'index03_Rt_anim', 'kneeUpVectorIk_Lt_anim',
@@ -236,11 +236,14 @@ def hide_objects():
     tools.pattern_visibility("setup_grp", False)
     tools.pattern_visibility("armRig_*_grp", False)
     tools.pattern_visibility("legRig_*_grp", False)
+    cmds.select ("*RollVector_*t_jnt")
+    unlocks=cmds.ls (sl=1)
+    utils.set_attrs(unlocks, 'v', l=0, k=1)
     tools.pattern_visibility("*RollVector_*t_jnt", False)
     tools.pattern_visibility("*RibbonMid_*t_jnt", False)
     # tools.pattern_visibility("indexCarpal_*t_boxShape", False)
     # tools.pattern_visibility("middleCarpal_*t_boxShape", False)
-    tools.list_visibility(setupFingers.blacklist, False)
+    # tools.list_visibility(setupFingers.blacklist, False)
     tools.list_visibility(['bottomSpineSkin_Mid_jnt', 'topSpineSkin_Mid_jnt', 'midSpineSkin_Mid_jnt'], False)
     tools.pattern_visibility("scapulaUpObj_*_loc", False)
     tools.pattern_visibility("scapulaTarget_*_loc", False)
@@ -258,22 +261,22 @@ def delete_objects():
 def connect_attrs():
     tools.debug_print("Connecting attrs...", dbg=debug)
     for x in ["X", "Y", "Z"]:
-        pm.connectAttr("world_anim.globalScale", "skeleton_grp.scale%s" % x)
-        pm.connectAttr("world_anim.globalScale", "visSwitch_grp.scale%s" % x)
+        pm.connectAttr("world_CTL.globalScale", "skeleton_grp.scale%s" % x)
+        pm.connectAttr("world_CTL.globalScale", "visibility_CTL_OFF.scale%s" % x)
     for x in ["armGlobalScale_Lt_UTmd", "armGlobalScale_Rt_UTmd", "legGlobalScale_Lt_UTmd", "legGlobalScale_Rt_UTmd"]:
-        pm.connectAttr("world_anim.globalScale", x + ".input2X")
-    for key in ["arm", "leg"]:
-        for side in ["Lt", "Rt"]:
-            ctrl = "%sIKFK_%s_anim" % (key, side)
-            info = setupRibbons.info[key][side]
-            pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info["lwr"]['twistCtrlMid'].getShape() + ".visibility")
-            pm.connectAttr(ctrl + ".gimbalCtrlVis", setupFK.visDict[side][key].getShape() + ".visibility")
-            pm.connectAttr(ctrl + ".gimbalCtrlVis", setupIK.visDict[side][key].getShape() + ".visibility")
-            for pre in ["upr", "lwr"]:
-                pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info[pre]['twistCtrl'].getShape() + ".visibility")
-                pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info[pre]['midAnim'].getShape() + ".visibility")
-                for shp in info[pre]['shapers']['anims']:
-                    pm.connectAttr(ctrl + ".shaperCtrlsVis", shp.getShape() + ".visibility")
+        pm.connectAttr("world_CTL.globalScale", x + ".input2X")
+    # for key in ["arm", "leg"]:
+    #     for side in ["Lt", "Rt"]:
+    #         ctrl = "%sIKFK_%s_anim" % (key, side)
+    #         info = setupRibbons.info[key][side]
+    #         # pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info["lwr"]['twistCtrlMid'].getShape() + ".visibility")
+    #         # pm.connectAttr(ctrl + ".gimbalCtrlVis", setupFK.visDict[side][key].getShape() + ".visibility")
+    #         # pm.connectAttr(ctrl + ".gimbalCtrlVis", setupIK.visDict[side][key].getShape() + ".visibility")
+    #         for pre in ["upr", "lwr"]:
+    #             # pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info[pre]['twistCtrl'].getShape() + ".visibility")
+    #             # pm.connectAttr(ctrl + ".bendyTwistyCtrlsVis", info[pre]['midAnim'].getShape() + ".visibility")
+    #             for shp in info[pre]['shapers']['anims']:
+    #                 pm.connectAttr(ctrl + ".shaperCtrlsVis", shp.getShape() + ".visibility")
 
 
 def hide_attrs():
@@ -285,7 +288,8 @@ def hide_attrs():
 
 
 def apply_shapes():
-    tools.apply_circle("root_Mid_anim", (0, 1, 0), radius=40.0, degree=1, sections=4, rotate=45.0, color=17)
+    if not cmds.objExists ('root_Mid_anim'):
+        tools.apply_circle("root_Mid_anim", (0, 1, 0), radius=40.0, degree=1, sections=4, rotate=45.0, color=17)
     for anim in shapeOverrides:
         pm.refresh(force=True)  # this keeps the spine from snapping out-of-place during the autorig build.
         if cmds.objExists (anim):
@@ -315,12 +319,12 @@ def create_sets():
     li += add_ons
     pm.sets(li, name="all_ctrls")
     """ hand ctrl sets """
-    li = [x for x in setupFingers.hand_sel_list if x.find("_Lt_") != -1 and x not in blacklist]
-    li.insert(0, setupHandPoses.handCtrls[0])
-    pm.sets(li, name="hand_Lt_ctrls")
-    li = [x for x in setupFingers.hand_sel_list if x.find("_Rt_") != -1 and x not in blacklist]
-    li.insert(0, setupHandPoses.handCtrls[1])
-    pm.sets(li, name="hand_Rt_ctrls")
+    # li = [x for x in setupFingers.hand_sel_list if x.find("_Lt_") != -1 and x not in blacklist]
+    # li.insert(0, setupHandPoses.handCtrls[0])
+    # pm.sets(li, name="hand_Lt_ctrls")
+    # li = [x for x in setupFingers.hand_sel_list if x.find("_Rt_") != -1 and x not in blacklist]
+    # li.insert(0, setupHandPoses.handCtrls[1])
+    # pm.sets(li, name="hand_Rt_ctrls")
     """ torso_ctrls """
     temp = []
     for pattern in ["root", "hips", "pelvis", "spine", "chest", "scapula", "torso", "trap"]:
@@ -330,7 +334,7 @@ def create_sets():
     """ body_ctrls """
     for pattern in ["*Shaper*", "*character*", "*Ribbon*", "*Gimbal*", "*Twist*"]:
         blacklist += pm.ls(pattern)
-    blacklist += ["world_anim", "visibility_anim"]
+    blacklist += ["world_CTL", "visibility_anim"]
     li = [x for x in pm.ls("*_anim") if x not in blacklist]
     li += add_ons
     pm.sets(li, name="body_ctrls")
@@ -394,7 +398,7 @@ def prep_spine_ik_fk_vis():
         pm.connectAttr(name + ".extraRootAnimVis", x + ".visibility")
 
     """ setup stretch indicator and visibility """
-    pm.connectAttr("spine_exp_spineCurveInfo_divBy_world_anim_mult.outputX", "stretchIndicatorLevel.translateY")
+    pm.connectAttr("spine_exp_spineCurveInfo_divBy_world_CTL_mult.outputX", "stretchIndicatorLevel.translateY")
     pm.connectAttr(name + ".stretchIndicatorVis", "stretchIndicator_grp.visibility")
 
     """ setup shaper visibility """

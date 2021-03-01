@@ -9,7 +9,6 @@ upScene= cmds.upAxis(q=1, ax=1)
 if upScene == 'y':
     #cmds.warning('**************************** Y-up system ****************************')
     shapesLib = os.path.join(src_dir, "rigfiles\yup")
-    print shapesLib
 if upScene == 'z':
     #cmds.warning('**************************** Z-up system ****************************')
     shapesLib = os.path.join(src_dir, "rigfiles")

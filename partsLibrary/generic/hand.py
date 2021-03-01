@@ -169,6 +169,48 @@ class Hand(standardPart.StandardPart):
         self.finalize_guide()
         mc.setAttr(self.guide_master+'.jointAxisVis', 1)
 
+        side=options.get('side')
+        name=options.get('name')
+        p = utils.join_strings([side, name])
+        pre = p+'_'
+        sd=''
+        if prefix.startswith ('L_'):
+            sd='_Lt_'
+        if prefix.startswith ('R_'):
+            sd = '_Rt_'
+        if prefix.startswith('C_'):
+            sd = '_Mid_'
+
+        if mc.objExists ( u'snap_thumbCarpal' + sd + 'bind'):
+            thumbs_dict = utils.snap_to_transform( u'snap_thumbCarpal' + sd + 'bind', pre + 'thumb_A_JNT_PLC')
+
+        thumbs_dict = {pre + 'thumb_B_JNT_PLC': u'snap_thumb01' + sd + 'bind',
+                       pre + 'thumb_C_JNT_PLC': u'snap_thumb02' + sd + 'bind',
+                       pre + 'thumbD_JNT_PLC': u'snap_thumbEnd' + sd + 'bind'}
+        keys = list(thumbs_dict.keys())
+        for key in keys:
+            target = thumbs_dict[key]
+            if mc.objExists(key) and mc.objExists(target):
+                mc.delete(mc.pointConstraint(target, key,  mo=0))
+
+        fingers = ['index', 'middle', 'ring', 'pinky']
+        for finger in fingers:
+            if mc.objExists ('snap_' + finger + 'Carpal' + sd + 'bind'):
+                utils.snap_to_transform( u'snap_' + finger + 'Carpal' + sd + 'bind', pre + finger + '_A_JNT_PLC')
+        for finger in fingers:
+            finger_dict = { pre + finger + '_B_JNT_PLC': u'snap_' + finger + '01' + sd + 'bind',
+                           pre + finger + '_C_JNT_PLC': u'snap_' + finger + '02' + sd + 'bind',
+                           pre + finger + '_D_JNT_PLC': u'snap_' + finger + '03' + sd + 'bind',
+                           pre + finger + '_E_JNT_PLC': u'snap_' + finger + 'End' + sd + 'bind'}
+
+            keys = list(finger_dict.keys())
+            for key in keys:
+                target = finger_dict[key]
+                if mc.objExists(key) and mc.objExists(target):
+                    mc.delete(mc.pointConstraint(target, key,  mo=0))
+                else:
+                    print 'target {} probably does not exist'.format(target)
+
     def __build_finger_guide(self, number_joints, name, color, length=1.0):
 
         zeros, plcs, jnts = self.guide_joint_chain(name, num_joints=number_joints, length=length)
@@ -483,7 +525,7 @@ class Hand(standardPart.StandardPart):
         # This finalizes guide and creates rig sets
         utils.set_attrs(master_ctrl, 't r s rotateOrder', l=1, k=0)
 
-        # Load attributes IF the fgile exits
+        # Load attributes IF the file exits
 
         ext = kAttributes.file_extention
         file_filter = data.get_file_filter('kAttributes')[0]

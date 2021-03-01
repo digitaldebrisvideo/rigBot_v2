@@ -47,7 +47,7 @@ def setup_anims():
 
 
 def setup_connections():
-    for bind in ["clavDriven_lt_bind", "clavDriven_rt_bind"]:
+    for bind in ["driven_clavicle_lt_bind", "driven_clavicle_rt_bind"]:
         for n in ("collar", "torso"):
             name = tools.get_new_name(bind, "%s_UTmdl" % n)
             mult = pm.createNode("multDoubleLinear", name=name)

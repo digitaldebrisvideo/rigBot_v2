@@ -36,7 +36,7 @@ def make_aim_targets():
         loc = pm.spaceLocator(name=loc_name)
         grp = pm.group(name=grp_name)
         tools.match_xyz(grp, "scapulaTarget_jnt")
-        pm.parent(grp, "chest_armDriven_bind")
+        pm.parent(grp, "drivenArm_chest_Mid_bind")
         scapula_dict[side]["targetLoc"] = loc
         scapula_dict[side]["targetGrp"] = grp
 
@@ -44,7 +44,7 @@ def make_aim_targets():
 def constrain_targets():
     for side in ["Lt", "Rt"]:
         tgt1 = "clavicleEnd_%s_jnt" % side
-        tgt2 = "chest_armDriven_bind"
+        tgt2 = "drivenArm_chest_Mid_bind"
         grp = scapula_dict[side]["targetGrp"]
         pm.pointConstraint(tgt1, grp, maintainOffset=True, skip=("x", "z"), weight=1.0)
         pm.pointConstraint(tgt2, grp, maintainOffset=True, skip=("x", "z"), weight=0.5)

@@ -1,37 +1,38 @@
-# StandardPart.py
-from Qt import QtWidgets as wdg
-from Qt import QtGui as gui
-from Qt import QtCore as qt
 import maya.cmds as mc
-import maya.mel as mm
+import maya.OpenMaya as om
+import maya.OpenMayaAnim as oma
 
-import re
-import os
-import getpass
 from functools import partial
 
+from rigBot import utils
+
+
+import maya.cmds as mc
+
+import os
+import getpass
+
 from rigBot import env
-from rigBot import control
 
 from rigBot.gui import newPart_ui
+
+
 from rigBot.gui import mayaWidget
 from rigBot import partsLibrary
+from functools import partial
 
-try:
-    from Qt import QtCompat, QtGui, QtCore, QtWidgets
+from Qt import QtWidgets
+from Qt import QtCore
 
-except:
-    from PySide2 import QtCompat, QtGui, QtCore, QtWidgets
 
-#mayaWidget.compile('newPart.ui')
+class NewPartUI(mayaWidget.MayaWidget):
 
-class NewPart(wdg.QDialog):
     """Remap UI for remapping shape and influences during import"""
 
     def __init__(self, assembly_mode=False, current_categories=[]):
-        super(NewPart, self).__init__(mayaWidget.maya_main_window)
+        super(NewPartUI, self).__init__(mayaWidget.maya_main_window)
 
-        title = 'argPromptUI'
+        title = 'newPartUI'
         if mc.window(title, q=1, ex=1):
             mc.deleteUI(title)
 
@@ -68,6 +69,7 @@ class NewPart(wdg.QDialog):
             self.current_categories.sort()
 
         self.resize(650, 350)
+
 
         # add categoris
         self.ui.lineEdit_2.setPlaceholderText('Enter part name')
@@ -137,8 +139,10 @@ class NewPart(wdg.QDialog):
     def save_to_asset(self):
         self.check_file_path(self.asset_path)
 
+
+# you need this
 qt_widget_object = None
-def run(dockable=True, **kwargs):
+def run(dockable=False, **kwargs):
     """
     This is boiler plate code for launching your dockable UI,
     Copy and paste this into your ui module. then change the className from MayaWidget
@@ -166,26 +170,15 @@ def run(dockable=True, **kwargs):
                 qt_widget_object.run(floating=True)
 
             except:
-                qt_widget_object = NewPart(**kwargs)
+                qt_widget_object = NewPartUI(**kwargs)
                 qt_widget_object.run(floating=True)
 
         else:
-            qt_widget_object = NewPart(**kwargs)
+            qt_widget_object = NewPartUI(**kwargs)
             qt_widget_object.show()
 
         return qt_widget_object
 
     except Exception as e:
         raise RuntimeError(e)
-
-def get_path(assembly_mode=False, current_categories=[]):
-    """Simple prompt to ask for a new module name to write to disk.
-        Will prompt you to overwrite if the file exists.file
-
-        RETUNRS:
-            :output_path: Either a string path or None type"""
-
-    prompt = NewPart(assembly_mode, current_categories)
-    prompt.exec_()
-    return prompt.output_path
 

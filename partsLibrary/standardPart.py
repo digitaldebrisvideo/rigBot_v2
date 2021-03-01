@@ -1261,7 +1261,7 @@ class StandardPart():
                 else:
                     letter=str(i+1)
 
-            jnt_name = name+letter
+            jnt_name = name+'_'+letter
 
             if placer_only:
                 zero, jnt = self.guide_joint(jnt_name, placer_only=True, constraint_type=constraint_type, alt_prefix=alt_prefix)

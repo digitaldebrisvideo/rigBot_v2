@@ -25,10 +25,10 @@ if x not in sys.path:
 import encAssets
 if y not in sys.path:
 	sys.path.insert(0, y)
-import autoRig
 from autoRig import setupNeck
+reload (setupNeck)
 from autoRig import autoRig
-
+reload (autoRig)
 
 
 class EncNeck(standardPart.StandardPart):
@@ -37,37 +37,8 @@ class EncNeck(standardPart.StandardPart):
         standardPart.StandardPart.__init__(self)
 
         self.add_option('side', default='C')
-        self.add_option('parent', data_type='hook', default='C_chest_end_JNT')
+        self.add_option('parent', data_type='hook', default='chest_Mid_bind')
 
-        self.add_option('numberJoints',
-                        data_type='int',
-                        rebuild_to_modify=True,
-                        default=4,
-                        tool_tip='Numder of neck joints.',
-                        hidden=True,
-                        min=2)
-
-        self.add_option('numberMidCtrls',
-                        data_type='int',
-                        rebuild_to_modify=True,
-                        default=1,
-                        min=1,
-                        hidden=True,
-                        tool_tip='Number of mid neck IK ctrls.')
-
-        self.add_option('createJaw',
-                        data_type='bool',
-                        rebuild_to_modify=True,
-                        default=True,
-                        hidden=True,
-                        tool_tip='Create jaw joint and control.')
-
-        self.add_option('createReverseJaw',
-                        data_type='bool',
-                        rebuild_to_modify=True,
-                        default=False,
-                        hidden=True,
-                        tool_tip='Create reverse jaw ctrl for the upper head.')
 
         self.add_option('pickWalkParent',
                         data_type='string',
@@ -94,8 +65,8 @@ class EncNeck(standardPart.StandardPart):
 
         noxform_grp = self.guide_master + '_NOX'
 
-        if mc.objExists ('chestDriven_Mid_jnt'):
-            mc.delete ('chestDriven_Mid_jnt')
+        if mc.objExists ('drivenArm_chest_Mid_bind'):
+            mc.delete ('drivenArm_chest_Mid_bind')
 
 
         pp = env.get_parts_paths()[-1]
@@ -103,10 +74,26 @@ class EncNeck(standardPart.StandardPart):
         import_path = pp.replace('partsLibrary', branch)
         mc.file(import_path, i=1)
 
+        if mc.objExists ('snap_chest_Mid_jnt'):
+            mc.delete (mc.parentConstraint ('snap_chest_Mid_bind', 'drivenNeck_chest_Mid_bind'))
+
+
+        snaps=[u'head_Mid_bind', u'headEnd_Mid_jnt', u'eye_Lt_bind', u'eye_Rt_bind', u'headTop_Mid_bind',
+         u'headRear_Mid_bind', u'headSide_Lt_bind', u'headSide_Rt_bind', u'neck01_Mid_bind', u'neck02_Mid_bind',
+         u'neck03_Mid_bind', u'neckEnd_Mid_jnt']
+
+        for snap in snaps:
+            target='snap_'+snap
+            if mc.objExists (target):
+                mc.delete (mc.parentConstraint (target, snap))
+
+
+
+
         # This finalizes your guide.
         self.finalize_guide()
         jnts_grp = self.guide_master + '_JNTS'
-        mc.parent ('chestDriven_Mid_jnt', jnts_grp)
+        mc.parent ('drivenNeck_chest_Mid_bind', jnts_grp)
 
         self.finalize_guide()
 
@@ -127,13 +114,19 @@ class EncNeck(standardPart.StandardPart):
         noxform_grp = self.noxform_grp
         world_scale_attr = self.hooks[0] + '.worldScale'
 
-        # num_joints = options.get('numberJoints')
-        # number_mid_ctrl = options.get('numberMidCtrls')
-        # create_jaw = options.get('createJaw')
-        # create_skull = options.get('createReverseJaw')
-        # pickWalk_parent = options.get('pickWalkParent')
-        # create_surface = options.get('createSurfaceDriver')
-        # create_fk_ctrls = options.get('createFKShaperCtrls')
 
         setupNeck.setup_neck()
         setupNeck.setup_head()
+        autoRig.apply_shapes()
+
+
+        #
+        # mc.parent ('bottomNeckSkin_Mid_jnt', 'topNeckSkin_Mid_jnt', jnt_grps[0])
+        # mc.parent ('neck_rig', noxform_grp)
+        # mc.parent ('neck_ctrls', ctrl_grps[0])
+        # mc.parent ('rotateReader_grp', jnt_grps[0])
+        #
+        # mc.parent ('drivenArm_chest_Mid_bind', jnt_grps[0])
+        #
+        # scales = [u'neck01_Mid_bind', u'neck02_Mid_bind', u'neck03_Mid_bind', u'neckEnd_Mid_jnt',u'headTop_Mid_bind', u'headRear_Mid_bind', u'headSide_Lt_bind', u'headSide_Rt_bind']
+        # utils.break_connections(nodes=scales, attrs='s')
