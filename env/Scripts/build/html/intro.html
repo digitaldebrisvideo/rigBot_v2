@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading rigBot2 &#8212; rigBot 2021 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UI Workflow" href="uiWorkflow.html" />
+    <link rel="prev" title="Welcome to the rigBot 2.0 documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="loading-rigbot2">
+<h1>Loading rigBot2<a class="headerlink" href="#loading-rigbot2" title="Permalink to this headline">¶</a></h1>
+<p>To launch the rigBot data toolset, run the following command</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;/path/to/package/file&#39;</span>
+<span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">rigBot</span>
+<span class="n">reload</span> <span class="p">(</span><span class="n">rigBot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the package imports a menu item named “rigBot”</p>
+<p>From here you can access all the UIs and this documentation.</p>
+</div>
+<div class="section" id="key-concepts">
+<h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list">
+<dt class="field-odd">Asset Environment</dt>
+<dd class="field-odd"><p>The asset environment is a set of of variables that define the current asset and rig variant you are currently
+working on. Setting your asset also modifes your python sys path to include the asset’s rigbuild folder, along with any inherited asset paths you may have specified.</p>
+</dd>
+<dt class="field-even">Rig Build Folder</dt>
+<dd class="field-even"><p>Folder on disk specific to the asset on a particular job. All asset related data and custom files lives in
+this folder.</p>
+</dd>
+<dt class="field-odd">Rig Variant</dt>
+<dd class="field-odd"><p>Rigs that are for the same asset, but have a different function.  Examples are animation rig, a mocap rig or any rig that is a one off or special case.
+Users can easily swap the between these rigs in a scene at any given time.</p>
+</dd>
+<dt class="field-even">Parts</dt>
+<dd class="field-even"><p>A python module for a specific type of rig. ie. bipedArm, quadLeg, torso, hand foot.
+This module defines options for the part and contains all the build code for the guide and the anim rig.</p>
+</dd>
+<dt class="field-odd">Part Options</dt>
+<dd class="field-odd"><p>Each part module has it’s own specifc set of customizable options. These options determine the things like the
+parenting of your rig, number of joints, control behaivor, etc. Example options include: side tokens, naming prefix, parent, number twist joints.</p>
+</dd>
+<dt class="field-even">Guide</dt>
+<dd class="field-even"><p>A placement rig that is built by a part module that is used to set rig paramters, layout joint positions and orientations as
+well as customizing rig control shapes and fitting them to your character. Each guide is its own stand alone “mini rig”.</p>
+</dd>
+<dt class="field-odd">Assembly</dt>
+<dd class="field-odd"><p>Assemblies are simply a template generated from a guides file. It records all parts, build options and positions.
+ie genericBiped, genericQuadraped, humanFace</p>
+</dd>
+<dt class="field-even">Guides File</dt>
+<dd class="field-even"><p>Is a Maya scene file that contains all of your guides. This file will ultimately be used to build all your
+rig variants. Guides can always be modified down the line. Making this a somewhat non-linear rigging approach.</p>
+</dd>
+<dt class="field-odd">Skeleton</dt>
+<dd class="field-odd"><p>A skeleton is a rig variant that contains a single heirarchy of <strong>only</strong> all the bind joints the will end up in the
+final rig. This is generated from the guides file.</p>
+</dd>
+<dt class="field-even">Anim Rig</dt>
+<dd class="field-even"><p>This is the actual animation control rig, which can be used in mutiple rig variants.</p>
+</dd>
+<dt class="field-odd">Asset Data</dt>
+<dd class="field-odd"><p>Any binding information or settings pertaining specifically to a single asset. Things like skinClusters, blendShapes,
+setDrivenKeyframes, control shape information, contraints and connections specific to a single rig variant.</p>
+</dd>
+<dt class="field-even">Asset Custom File</dt>
+<dd class="field-even"><p>Every asset has its own empty python module where you can add add any custom python code to further customize
+your rig. This single file contains all the custom code for all variants related to this asset.</p>
+<p>This custom python module can also inherit the custom code from other assets if you so choose.</p>
+<p>This file lives in the asset rigbuild folder.</p>
+</dd>
+<dt class="field-odd">Asset Build List</dt>
+<dd class="field-odd"><p>Every asset has its own build list which also lives in the rigbuild folder. This build list defines an ordered
+set of commands to build your rig variant from start to finish. This list can also be executed through the script editor.</p>
+</dd>
+<dt class="field-even">Asset Inheritance</dt>
+<dd class="field-even"><p>You can optionally set an asset environment to include in your sys.path the rigbuild path for a different asset.
+This allows you to use code and asset data from different assets without having to physically copy code from file to file.</p>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">rigBot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Loading rigBot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#key-concepts">Key Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">UI Workflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uiWorkflow.html">UI Workflow</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Coded Workflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codeWorkflow.html">Scripted Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module Documentaiton</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to the rigBot 2.0 documentation!</a></li>
+      <li>Next: <a href="uiWorkflow.html" title="next chapter">UI Workflow</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Briana Hamilton.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2+/2e57929</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/intro.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

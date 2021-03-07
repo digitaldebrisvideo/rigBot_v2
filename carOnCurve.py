@@ -1,4 +1,3 @@
-# -*- rigBot: part -*-
 import pymel.core as pm
 import maya.cmds as mc
 import maya.mel as mm

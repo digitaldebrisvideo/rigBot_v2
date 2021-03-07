@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Module Documentaiton &mdash; rigBot 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Scripted Workflow" href="codeWorkflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rigBot
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Loading rigBot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#key-concepts">Key Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">UI Workflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uiWorkflow.html">UI Workflow</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Coded Workflow:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="codeWorkflow.html">Scripted Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Module Documentaiton</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rig-parts">Rig Parts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bipedarm">bipedArm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bipedleg">bipedLeg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fkchain">fkChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foot">foot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hand">hand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neck">neck</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#piston">piston</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#splinechain">splineChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tongue">tongue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#torso">torso</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worldroot">worldRoot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rig-build-modules">Rig Build Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#env">env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#guide">guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skel">skel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rig">rig</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#asset-specific-modules">Asset Specific Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#asset-rigall">asset.rigAll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asset-custom">asset.custom</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deformers-data">Deformers &amp; Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data">data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-attributes">data.attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-blendshape">data.blendShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-cluster">data.cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-connections">data.connections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-constraints">data.constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-controlshapes">data.controlShapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-deltamush">data.deltaMush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-lattice">data.lattice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-nonlinear">data.nonLinear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-pose">data.pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-sculpt">data.sculpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-sdk">data.sdk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-skincluster">data.skinCluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-stack">data.stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilites-tools">Utilites &amp; Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#utils">utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control">control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ikchain">ikChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spline">spline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spaces">spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rivet">rivet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rigBot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Module Documentaiton</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-documentaiton">
+<h1>Module Documentaiton<a class="headerlink" href="#module-documentaiton" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rig-parts">
+<h2>Rig Parts<a class="headerlink" href="#rig-parts" title="Permalink to this headline">¶</a></h2>
+<p id="parts-label">Available rig parts. These modules are all located under <em>rigBot.parts</em></p>
+<div class="section" id="bipedarm">
+<h3>bipedArm<a class="headerlink" href="#bipedarm" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="bipedleg">
+<h3>bipedLeg<a class="headerlink" href="#bipedleg" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="fkchain">
+<h3>fkChain<a class="headerlink" href="#fkchain" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="foot">
+<h3>foot<a class="headerlink" href="#foot" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="hand">
+<h3>hand<a class="headerlink" href="#hand" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="neck">
+<h3>neck<a class="headerlink" href="#neck" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="piston">
+<h3>piston<a class="headerlink" href="#piston" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="splinechain">
+<h3>splineChain<a class="headerlink" href="#splinechain" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="tongue">
+<h3>tongue<a class="headerlink" href="#tongue" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="torso">
+<h3>torso<a class="headerlink" href="#torso" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+<div class="section" id="worldroot">
+<h3>worldRoot<a class="headerlink" href="#worldroot" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For building guides and their respective rigs use <a class="reference internal" href="#label-name"><span class="std std-ref">guide.build</span></a>,
+<a class="reference internal" href="#skel-name"><span class="std std-ref">skel.build</span></a> and
+<a class="reference internal" href="#rig-name"><span class="std std-ref">rig.build</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="rig-build-modules">
+<h2>Rig Build Modules<a class="headerlink" href="#rig-build-modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="env">
+<h3>env<a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h3>
+<p id="env-label">Functions for setting and querying asset / variant environment.</p>
+</div>
+<div class="section" id="guide">
+<h3>guide<a class="headerlink" href="#guide" title="Permalink to this headline">¶</a></h3>
+<p id="label-name">Functions for building guide rigs, creating new part modules and migrating parts to the asset.</p>
+</div>
+<div class="section" id="skel">
+<h3>skel<a class="headerlink" href="#skel" title="Permalink to this headline">¶</a></h3>
+<p id="skel-name">Functions for building a skeleton.</p>
+</div>
+<div class="section" id="rig">
+<h3>rig<a class="headerlink" href="#rig" title="Permalink to this headline">¶</a></h3>
+<p id="rig-name">Functions for building rigs.</p>
+</div>
+</div>
+<div class="section" id="asset-specific-modules">
+<h2>Asset Specific Modules<a class="headerlink" href="#asset-specific-modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="asset-rigall">
+<h3>asset.rigAll<a class="headerlink" href="#asset-rigall" title="Permalink to this headline">¶</a></h3>
+<p id="rigall-label">For now this is a master build list to build all rig parts, import your
+latest model and load any deformers.
+This file lives in the <code class="docutils literal notranslate"><span class="pre">${ASSET}//rigbuild</span></code> directory</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This will eventually change to allow for better UI introspection.</p>
+</div>
+</div>
+<div class="section" id="asset-custom">
+<h3>asset.custom<a class="headerlink" href="#asset-custom" title="Permalink to this headline">¶</a></h3>
+<p id="assetcustom-label">This is an asset specific custom build script to insert custom code into your build.
+This file lives in the <code class="docutils literal notranslate"><span class="pre">${ASSET}/rigbuild</span></code> directory.</p>
+</div>
+</div>
+<div class="section" id="deformers-data">
+<h2>Deformers &amp; Data<a class="headerlink" href="#deformers-data" title="Permalink to this headline">¶</a></h2>
+<p id="data-label">The data module allows you to save and load data for either a whole asset, which saves
+data to the asset’s data folder OR you can save and load standalone files.</p>
+<p>Scroll down to see what data types are supported.</p>
+<div class="section" id="data">
+<h3>data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-attributes">
+<h3>data.attributes<a class="headerlink" href="#data-attributes" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-blendshape">
+<h3>data.blendShape<a class="headerlink" href="#data-blendshape" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-cluster">
+<h3>data.cluster<a class="headerlink" href="#data-cluster" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-connections">
+<h3>data.connections<a class="headerlink" href="#data-connections" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-constraints">
+<h3>data.constraints<a class="headerlink" href="#data-constraints" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-controlshapes">
+<h3>data.controlShapes<a class="headerlink" href="#data-controlshapes" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-deltamush">
+<span id="control-shape-label"></span><h3>data.deltaMush<a class="headerlink" href="#data-deltamush" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-lattice">
+<h3>data.lattice<a class="headerlink" href="#data-lattice" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-nonlinear">
+<h3>data.nonLinear<a class="headerlink" href="#data-nonlinear" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-pose">
+<h3>data.pose<a class="headerlink" href="#data-pose" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-sculpt">
+<h3>data.sculpt<a class="headerlink" href="#data-sculpt" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-sdk">
+<h3>data.sdk<a class="headerlink" href="#data-sdk" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-skincluster">
+<h3>data.skinCluster<a class="headerlink" href="#data-skincluster" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-stack">
+<h3>data.stack<a class="headerlink" href="#data-stack" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="utilites-tools">
+<h2>Utilites &amp; Tools<a class="headerlink" href="#utilites-tools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="utils">
+<h3>utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h3>
+<p>Assorted utilies.</p>
+</div>
+<div class="section" id="control">
+<h3>control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h3>
+<p id="control-label">Functions for creating and modifying animation controls.</p>
+</div>
+<div class="section" id="ikchain">
+<h3>ikChain<a class="headerlink" href="#ikchain" title="Permalink to this headline">¶</a></h3>
+<p>Functions for working with ik joint chains.</p>
+</div>
+<div class="section" id="spline">
+<h3>spline<a class="headerlink" href="#spline" title="Permalink to this headline">¶</a></h3>
+<p>Functions for working with spline setups. (Uses cmRigNodes plugin. Optionally build using vanilla Maya.)</p>
+</div>
+<div class="section" id="spaces">
+<h3>spaces<a class="headerlink" href="#spaces" title="Permalink to this headline">¶</a></h3>
+<p>Functions for setting up animation control spaces.</p>
+</div>
+<div class="section" id="rivet">
+<h3>rivet<a class="headerlink" href="#rivet" title="Permalink to this headline">¶</a></h3>
+<p>Create rivets on poly meshes and nurbs surfaces</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="codeWorkflow.html" class="btn btn-neutral float-left" title="Scripted Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

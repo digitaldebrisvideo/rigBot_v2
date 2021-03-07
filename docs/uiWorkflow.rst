@@ -1,0 +1,212 @@
+.. commsrigging 2 documentation master file, created by
+   sphinx-quickstart on Sun Jul 22 11:04:41 2018.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+*********************
+UI Workflow
+*********************
+
+The rigBot Rig Build UI is a central UI with several tabs. One for each step of the rigging process.
+
+.. note:: The bottom path bar shows the full path the current asset's rigbuild folder. To open a browser to that location on disk,
+    click "..."
+
+Asset Env Tab
+**********************
+
+.. figure:: assetEnv.jpg
+   :scale: 80 %
+   :alt:  asset without rigbuild files.
+
+   rigBot Rig Build UI - Asset Env Tab
+
+Setting asset environment
+--------------------------
+
+The asset environment widget is a set of os variables that allow your build process to
+find the appropriate python files, deformer data and geo for your final rig.
+
+The left side column lists all available assets. Some will already have rigbuild file and some will not.
+
+Select an asset in the list to set your environment to that asset.
+
+.. note:: If rigbuild files do not exist, the environment will not be set. Instead, you will see a widget prompting you
+    to create new rigbuild files.
+
+Creating rig asset files
+----------------------------------
+
+If an asset does not yet have rigbuild files you will be prompted to create files for that asset.
+
+To create these files, click "Create Rig Files On Disk"
+
+A "Default" rig variant will be created automatically for each asset.
+
+.. figure:: create.jpg
+   :scale: 80 %
+   :alt:  asset without rigbuild files.
+
+   Widget for creating new rigbuild assets.
+
+Creating Rig Variants
+----------------------
+
+To create a new rig variant for an asset click "Add Rig Variants". You will be prompted to select a predifined variant or create a different one by choosing other.
+
+To set a variant as the "primary" tick the checkbox. This means that this will be the main rig with render geo.
+
+..note:: If you wish to change the primary rig, just click "Add Rig Variants" and set your primary rig. This works even though
+    the variant already exists.
+
+.. figure:: variant.jpg
+   :scale: 80 %
+   :alt:  asset without rigbuild files.
+
+.. figure:: variant2.jpg
+   :scale: 100 %
+   :alt:Asset without rigbuild files.
+
+
+Guides Tab
+*******************
+
+Guides are placement rigs used by riggers to position joints in their proper place on a model
+and to fit the animation controls around their character. Each part has its own unique set of options
+to allow you to vastly customize your rig to meet the needs of your animators.
+
+.. note:: If you wish to scale the whole guide rig then grab the top node in the outliner, named ``guides`` and scale that. In addition, Every guide part is also scalable.
+    any new parts added should also be coded to be scalable
+
+.. seealso:: For more information on part modules see
+    :ref:`Rig Parts<parts-label>`
+
+.. figure:: guides.jpg
+   :scale: 80 %
+   :alt:
+
+   Widget for creating and modifying guides.
+
+Building guides & assemblies
+-----------------------------
+
+To build a guide choose a part or assembly from "Add Part / Assembly" menu.
+
+Before the part builds, set all your options you want then click "Build Guide".
+
+If building an assembly, no options will be displayed before building,  but you can set these to whatever you want once all the parts have built.
+
+
+Updating guide options
+------------------------
+Updating options allows you to change build options, rename the part or update the side.
+
+.. note:: There are some build options that are locked once the guide is built. If you try to change those options you will be prompted to rebuild the part. Sometimes depending on what new joints or controls are created they may build in odd positions. You will have to position them accordingly.
+
+To change options choose a guide in the left column and modify option you wish and hit enter.  You will notified if there are name conflicts, a new part needs to be built, etc.
+
+
+Mirroring guides
+------------------
+Mirror a guide either from left to right OR right to left. If the new mirrored part does not
+exists it will be created, otherwise it will update the existing part.
+
+To mirror you must select a guide from the left column and click "Mirror Guide".
+
+..note:: You can mirror from right to left or left to right, but center sided guides cannot be mirrored. You can mirror several guides at once.
+
+
+Duplicating guides
+--------------------
+Duplicating a guide creates an exact copy with the same build options.
+You will be prompted to specify a new name for this new part.
+
+.. warning:: At the moment this is a little buggy. It may rename your guides incorrectly so proceed with caution.
+
+To duplicate you must select a guide from the left column and click "Duplicate Guide".
+
+Opening & saving guides
+------------------------
+
+To open the **latest** guides click "Load Guides"
+
+To save the guides click "Save Guides"
+
+Saving Assemblies
+--------------------
+
+Assemblies are simply a template generated from a guides file. It records all parts, build options and positions.
+
+To save a new assembly You must have the guides loaded in your scene. Simply click "Save New Assembly" from the "Add / Part
+    Assembly" pulldown.
+
+Creating New Part Modules
+--------------------------
+
+You can create new part modules and code them up however you'd like. There are many helper functions to create placement joints and create reference controls that you have at your disposal.  All parts are inherited from the StandardPart module.
+
+.. warning:: At the momment this function attemps to save to the rigBot directory, so you will need to be in your user sandbox to have the corrct write permissions. This will be ironed out in due time.
+
+To create a new empty part module choose "Create New Part Module" from the "Add / Part
+    Assembly" pulldown.
+
+
+Build Rig Tab
+*******************
+
+This tab is where everything comes together. At the top you choose which rig variant you want to build. This will set your asset env's rig_variant variable.
+
+.. figure:: build.jpg
+   :scale: 80 %
+
+   Widget for creating and modifying controls.
+
+On the left is your rig build list. On the right is modules information for the selected step in the build list.
+
+To build single step at a time, in sequence. click "Build Next Step."
+
+To build only selected steps, highlight the steps you wish to build and click "Build Selected Steps."
+
+To build the entire rig. click "Build All Remaining Steps"
+
+Hand Pose Utility
+--------------------
+
+Utility for setting hand poses in the rig
+
+Export Data Tab
+*******************
+
+.. figure:: export.jpg
+   :scale: 80 %
+   :alt:Asset without rigbuild files.
+   Widget for exporting asset data.
+
+
+
+Modifying Control Shapes & Colors
+***********************************
+
+In a guide scene all ctrls can be translated, scaled and rotated on a transform level. When the final rig is built, thier transform information gets transferred to the shape node and the ctrl pivots and offsets will be in their appropriate positions .
+    Guide controls are only REFERENCE used for shape placement, rotation, scaling and color.
+
+You can always change the shapes and colors of the controls either in the guide stage or after the rig has been built.
+
+Changing control shapes & colors
+-----------------------------------
+
+Use the modify section of the control UI to change shapes and colors for selected controls.
+
+
+.. figure:: control.jpg
+   :scale: 80 %
+
+
+   Widget for creating and modifying controls.
+
+.. note:: You can always adjust control shapes and colors **after** the rig has been built. That control data can then be exported to the asset rig build folder.
+
+
+
+
+

@@ -13,81 +13,46 @@ class GenericBiped():
 		"""Build Assembly guide parts"""
 
 		guide.build("worldRoot", **{'side': u'C', 'name': u''})
-		guide.build("hand", **{'createIkCtrls': False, 'parent': u'R_wrist_end_JNT', 'numberFingers': 4, 'createThumb': True, 'pickWalkParent': u'R_arm_IK_CTL', 'numberThumbJoints': 3, 'numberJoints': 4, 'side': u'R', 'name': u''})
-		guide.build("foot", **{'name': u'', 'parent': u'R_leg_end_JNT', 'switchCtrlDriver': u'R_leg_IK_switch_CTL', 'attrCtrlDriver': u'R_leg_IK_CTL', 'ikCtrlParent': u'R_leg_IK_handle_driver_JNT', 'pickWalkParent': u'R_leg_PV_CTL', 'fkCtrlParent': u'R_legEnd_FK_CTL', 'side': u'R'})
-		guide.build("bipedLeg", **{'flipJoints': False, 'name': u'', 'parent': u'C_hip_JNT', 'transOrientiation': u'world', 'fkAnkleJoint': u'R_ankle_JNT', 'side': u'R', 'pickWalkParent': u'C_hip_CTL', 'ikHandleParent': u'R_foot_IK_handle_driver_JNT', 'numberTwistJoints': 4, 'makeBendy': False})
-		guide.build("bipedArm", **{'name': u'', 'parent': u'C_chest_JNT', 'transOrientiation': u'world', 'numberTwistJoints': 4, 'side': u'R', 'pickWalkParent': u'C_chest_CTL', 'doubleClavicle': False, 'ikHandleParent': u'', 'makeBendy': False})
 		guide.build("hand", **{'createIkCtrls': False, 'parent': u'L_wrist_end_JNT', 'numberFingers': 4, 'createThumb': True, 'pickWalkParent': u'L_arm_IK_CTL', 'numberThumbJoints': 3, 'numberJoints': 4, 'side': u'L', 'name': u''})
 		guide.build("foot", **{'name': u'', 'parent': u'L_leg_end_JNT', 'switchCtrlDriver': u'L_leg_IK_switch_CTL', 'attrCtrlDriver': u'L_leg_IK_CTL', 'ikCtrlParent': u'L_leg_IK_handle_driver_JNT', 'pickWalkParent': u'L_leg_PV_CTL', 'fkCtrlParent': u'L_legEnd_FK_CTL', 'side': u'L'})
 		guide.build("bipedLeg", **{'flipJoints': False, 'name': u'', 'parent': u'C_hip_JNT', 'transOrientiation': u'world', 'fkAnkleJoint': u'L_ankle_JNT', 'side': u'L', 'pickWalkParent': u'C_hip_CTL', 'ikHandleParent': u'L_foot_IK_handle_driver_JNT', 'numberTwistJoints': 4, 'makeBendy': False})
 		guide.build("bipedArm", **{'name': u'', 'parent': u'C_chest_JNT', 'transOrientiation': u'world', 'numberTwistJoints': 4, 'side': u'L', 'pickWalkParent': u'C_chest_CTL', 'doubleClavicle': False, 'ikHandleParent': u'', 'makeBendy': False})
 		guide.build("torso", **{'numberMidCtrls': 1, 'parent': u'C_root_JNT', 'pickWalkParent': u'world_CTL', 'numberJoints': 6, 'side': u'C', 'name': u''})
 		guide.build("neck", **{'numberMidCtrls': 1, 'parent': u'C_chest_end_JNT', 'pickWalkParent': u'C_chest_CTL', 'createReverseJaw': True, 'name': u'', 'numberJoints': 4, 'side': u'C', 'createJaw': True})
+		guide.build("eyeLookAt", **{'pickWalkParent': u'C_head_CTL', 'side': u'C', 'parent': u'C_head_JNT', 'name': u''})
 
 		#Position nodes
-		if mc.objExists("R_hand_guide"):
-			if not mc.getAttr("R_hand_guide.rotateOrder", l=1):
-				mc.setAttr("R_hand_guide.rotateOrder", 0)
-
-			mc.xform("R_hand_guide", a=1, t=[-28.859733261823084, 50.74115888405891, -5.190266608043957])
-			mc.xform("R_hand_guide", a=1, ro=[-180.0, 0.0, 0.0])
-			mc.xform("R_hand_guide", r=1, s=[5.0, 5.0, 5.0])
-
-		if mc.objExists("R_foot_guide"):
-			if not mc.getAttr("R_foot_guide.rotateOrder", l=1):
-				mc.setAttr("R_foot_guide.rotateOrder", 0)
-
-			mc.xform("R_foot_guide", a=1, t=[-4.917319808751925, 3.6814505266971764, -2.8441600526935944])
-			mc.xform("R_foot_guide", a=1, ro=[-180.0, 0.0, 0.0])
-			mc.xform("R_foot_guide", r=1, s=[5.0, 5.0, 5.0])
-
-		if mc.objExists("R_bipedLeg_guide"):
-			if not mc.getAttr("R_bipedLeg_guide.rotateOrder", l=1):
-				mc.setAttr("R_bipedLeg_guide.rotateOrder", 0)
-
-			mc.xform("R_bipedLeg_guide", a=1, t=[-4.917319808751925, 44.851819680009186, -2.6148695633410473])
-			mc.xform("R_bipedLeg_guide", a=1, ro=[-180.0, 0.0, 0.0])
-			mc.xform("R_bipedLeg_guide", r=1, s=[5.0, 5.0, 5.0])
-
-		if mc.objExists("R_bipedArm_guide"):
-			if not mc.getAttr("R_bipedArm_guide.rotateOrder", l=1):
-				mc.setAttr("R_bipedArm_guide.rotateOrder", 0)
-
-			mc.xform("R_bipedArm_guide", a=1, t=[-2.07712179163699, 72.20563446859525, -0.6081527497044402])
-			mc.xform("R_bipedArm_guide", a=1, ro=[-180.0, 0.0, 0.0])
-			mc.xform("R_bipedArm_guide", r=1, s=[5.0, 5.0, 5.0])
-
 		if mc.objExists("L_hand_guide"):
 			if not mc.getAttr("L_hand_guide.rotateOrder", l=1):
 				mc.setAttr("L_hand_guide.rotateOrder", 0)
 
-			mc.xform("L_hand_guide", a=1, t=[28.859708820810138, 50.74101742936547, -5.1902765419050825])
+			mc.xform("L_hand_guide", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_hand_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_hand_guide", r=1, s=[5.0, 5.0, 5.0])
+			mc.xform("L_hand_guide", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("L_foot_guide"):
 			if not mc.getAttr("L_foot_guide.rotateOrder", l=1):
 				mc.setAttr("L_foot_guide.rotateOrder", 0)
 
-			mc.xform("L_foot_guide", a=1, t=[4.917318122755149, 3.6814524830910815, -2.844158254131606])
+			mc.xform("L_foot_guide", a=1, t=[9.978516578674316, 7.470623970031738, -5.771536350250244])
 			mc.xform("L_foot_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_foot_guide", r=1, s=[5.0, 5.0, 5.0])
+			mc.xform("L_foot_guide", r=1, s=[10.0, 10.0, 10.0])
 
 		if mc.objExists("L_bipedLeg_guide"):
 			if not mc.getAttr("L_bipedLeg_guide.rotateOrder", l=1):
 				mc.setAttr("L_bipedLeg_guide.rotateOrder", 0)
 
-			mc.xform("L_bipedLeg_guide", a=1, t=[4.917318122755149, 44.851819108535835, -2.6148710202221257])
+			mc.xform("L_bipedLeg_guide", a=1, t=[9.978516578674316, 91.01599884033203, -5.306252956390381])
 			mc.xform("L_bipedLeg_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_bipedLeg_guide", r=1, s=[5.0, 5.0, 5.0])
+			mc.xform("L_bipedLeg_guide", r=1, s=[10.0, 10.0, 10.0])
 
 		if mc.objExists("L_bipedArm_guide"):
 			if not mc.getAttr("L_bipedArm_guide.rotateOrder", l=1):
 				mc.setAttr("L_bipedArm_guide.rotateOrder", 0)
 
-			mc.xform("L_bipedArm_guide", a=1, t=[2.077120470330445, 72.20574828202497, -0.6081513907633669])
-			mc.xform("L_bipedArm_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_bipedArm_guide", r=1, s=[5.0, 5.0, 5.0])
+			mc.xform("L_bipedArm_guide", a=1, t=[4.215017318725586, 146.52423095703125, -1.2340972423553467])
+			mc.xform("L_bipedArm_guide", a=1, ro=[0.0, 0.0, -47.95283676159287])
+			mc.xform("L_bipedArm_guide", r=1, s=[8.0, 8.0, 8.0])
 
 		if mc.objExists("C_worldRoot_guide"):
 			if not mc.getAttr("C_worldRoot_guide.rotateOrder", l=1):
@@ -95,23 +60,31 @@ class GenericBiped():
 
 			mc.xform("C_worldRoot_guide", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_worldRoot_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_worldRoot_guide", r=1, s=[0.49279049485814785, 0.49279049485814785, 0.49279049485814785])
+			mc.xform("C_worldRoot_guide", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("C_torso_guide"):
 			if not mc.getAttr("C_torso_guide.rotateOrder", l=1):
 				mc.setAttr("C_torso_guide.rotateOrder", 0)
 
-			mc.xform("C_torso_guide", a=1, t=[-7.1008912627598195e-16, 49.862264359577914, -4.254736127513328])
+			mc.xform("C_torso_guide", a=1, t=[-1.4409554511037857e-15, 101.1834974909765, -8.633965683161994])
 			mc.xform("C_torso_guide", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_torso_guide", r=1, s=[3.0, 3.0, 3.0])
+			mc.xform("C_torso_guide", r=1, s=[5.0, 5.0, 5.0])
 
 		if mc.objExists("C_neck_guide"):
 			if not mc.getAttr("C_neck_guide.rotateOrder", l=1):
 				mc.setAttr("C_neck_guide.rotateOrder", 0)
 
-			mc.xform("C_neck_guide", a=1, t=[6.482678256488929e-15, 74.68460417978997, -4.047577507305563])
+			mc.xform("C_neck_guide", a=1, t=[1.3155039101177777e-14, 151.5544678363174, -8.213586532159582])
 			mc.xform("C_neck_guide", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_neck_guide", r=1, s=[5.0, 5.0, 5.0])
+
+		if mc.objExists("C_eyeLookAt_guide"):
+			if not mc.getAttr("C_eyeLookAt_guide.rotateOrder", l=1):
+				mc.setAttr("C_eyeLookAt_guide.rotateOrder", 0)
+
+			mc.xform("C_eyeLookAt_guide", a=1, t=[0.0, 168.9251316618315, 70.92878317499147])
+			mc.xform("C_eyeLookAt_guide", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_eyeLookAt_guide", r=1, s=[10.0, 10.0, 10.0])
 
 		if mc.objExists("C_root_JNT_PLC"):
 			mc.xform("C_root_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
@@ -182,456 +155,9 @@ class GenericBiped():
 			if not mc.getAttr("C_chest_JNT_PLC.rotateOrder", l=1):
 				mc.setAttr("C_chest_JNT_PLC.rotateOrder", 0)
 
-			mc.xform("C_chest_JNT_PLC", a=1, t=[-0.6596849547266039, -9.880514504974936e-16, 2.220446049250313e-16])
+			mc.xform("C_chest_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_chest_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_chest_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_shoulder_JNT_PLC"):
-			if not mc.getAttr("L_shoulder_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_shoulder_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_shoulder_JNT_PLC", a=1, t=[-0.5000000000000002, -1.7763568394002505e-15, -1.3877787807814457e-17])
-			mc.xform("L_shoulder_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_shoulder_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upArm_JNT_PLC"):
-			if not mc.getAttr("L_upArm_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upArm_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upArm_JNT_PLC", a=1, t=[-0.48585710334820176, -0.12598731599957702, -0.8688021255559516])
-			mc.xform("L_upArm_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_upArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loArm_JNT_PLC"):
-			if not mc.getAttr("L_loArm_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loArm_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loArm_JNT_PLC", a=1, t=[-0.5903273662622861, -2.1609994115216242, -1.0164574812185836])
-			mc.xform("L_loArm_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_loArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_wrist_JNT_PLC"):
-			if not mc.getAttr("L_wrist_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_wrist_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_wrist_JNT_PLC", a=1, t=[-0.643482329904062, -4.292946170531902, -0.9164250302283431])
-			mc.xform("L_wrist_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_wrist_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_wrist_end_JNT_PLC"):
-			if not mc.getAttr("L_wrist_end_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_wrist_end_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_wrist_end_JNT_PLC", a=1, t=[-0.7867325704123322, -4.6574010450761385, -0.7698881716317896])
-			mc.xform("L_wrist_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_wrist_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_arm_IK_handle_driver_JNT_PLC"):
-			mc.xform("L_arm_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upArm_twist_A_JNT_PLC"):
-			if not mc.getAttr("L_upArm_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upArm_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upArm_twist_A_JNT_PLC", a=1, t=[1.8932488440689814, -0.5329897351039872, -0.9983331966884782])
-			mc.xform("L_upArm_twist_A_JNT_PLC", a=1, ro=[1.3184189669993067, 13.109417753283854, -47.03239111102201])
-			mc.xform("L_upArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loArm_twist_A_JNT_PLC"):
-			if not mc.getAttr("L_loArm_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loArm_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loArm_twist_A_JNT_PLC", a=1, t=[3.7990416410093593, -2.5873887633236805, -1.3964509910205354])
-			mc.xform("L_loArm_twist_A_JNT_PLC", a=1, ro=[1.311496672220622, -11.740731295960698, -47.59838608135104])
-			mc.xform("L_loArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upArm_twist_B_JNT_PLC"):
-			if not mc.getAttr("L_upArm_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upArm_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upArm_twist_B_JNT_PLC", a=1, t=[2.2723547914861646, -0.9399921542083973, -1.1278642678210045])
-			mc.xform("L_upArm_twist_B_JNT_PLC", a=1, ro=[1.3184189669993067, 13.109417753283854, -47.03239111102201])
-			mc.xform("L_upArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loArm_twist_B_JNT_PLC"):
-			if not mc.getAttr("L_loArm_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loArm_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loArm_twist_B_JNT_PLC", a=1, t=[4.188410648281004, -3.013778115125737, -1.2764445008224874])
-			mc.xform("L_loArm_twist_B_JNT_PLC", a=1, ro=[1.311496672220622, -11.740731295960698, -47.59838608135104])
-			mc.xform("L_loArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upArm_twist_C_JNT_PLC"):
-			if not mc.getAttr("L_upArm_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upArm_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upArm_twist_C_JNT_PLC", a=1, t=[2.651460738903348, -1.3469945733128075, -1.2573953389535308])
-			mc.xform("L_upArm_twist_C_JNT_PLC", a=1, ro=[1.3184189669993067, 13.109417753283854, -47.03239111102201])
-			mc.xform("L_upArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loArm_twist_C_JNT_PLC"):
-			if not mc.getAttr("L_loArm_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loArm_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loArm_twist_C_JNT_PLC", a=1, t=[4.577779655552649, -3.440167466927793, -1.1564380106244392])
-			mc.xform("L_loArm_twist_C_JNT_PLC", a=1, ro=[1.311496672220622, -11.740731295960698, -47.59838608135104])
-			mc.xform("L_loArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upArm_twist_D_JNT_PLC"):
-			if not mc.getAttr("L_upArm_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upArm_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upArm_twist_D_JNT_PLC", a=1, t=[3.0305666863205314, -1.7539969924172158, -1.3869264100860572])
-			mc.xform("L_upArm_twist_D_JNT_PLC", a=1, ro=[1.3184189669993067, 13.109417753283854, -47.03239111102201])
-			mc.xform("L_upArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loArm_twist_D_JNT_PLC"):
-			if not mc.getAttr("L_loArm_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loArm_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loArm_twist_D_JNT_PLC", a=1, t=[4.967148662824294, -3.8665568187298494, -1.0364315204263912])
-			mc.xform("L_loArm_twist_D_JNT_PLC", a=1, ro=[1.311496672220622, -11.740731295960698, -47.59838608135104])
-			mc.xform("L_loArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_JNT_PLC"):
-			if not mc.getAttr("L_upLeg_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upLeg_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_JNT_PLC"):
-			if not mc.getAttr("L_loLeg_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loLeg_JNT_PLC", a=1, t=[0.0, 0.13264695346405464, 0.13176933639498625])
-			mc.xform("L_loLeg_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_loLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_end_JNT_PLC"):
-			if not mc.getAttr("L_leg_end_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_leg_end_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_leg_end_JNT_PLC", a=1, t=[0.0, -0.23407332508895062, -0.04585744678189607])
-			mc.xform("L_leg_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_handle_driver_JNT_PLC"):
-			mc.xform("L_leg_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_twist_A_JNT_PLC"):
-			if not mc.getAttr("L_upLeg_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upLeg_twist_A_JNT_PLC", a=1, t=[3.3306690738754696e-16, -0.773470609307191, 0.12635386727899728])
-			mc.xform("L_upLeg_twist_A_JNT_PLC", a=1, ro=[179.99999999999994, -9.277865361801467, -89.99999999999997])
-			mc.xform("L_upLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_twist_A_JNT_PLC"):
-			if not mc.getAttr("L_loLeg_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loLeg_twist_A_JNT_PLC", a=1, t=[3.3306690738754696e-16, -4.740697102246548, 0.4962439797596099])
-			mc.xform("L_loLeg_twist_A_JNT_PLC", a=1, ro=[-5.088887490341627e-14, 171.1792071530017, 90.00000000000001])
-			mc.xform("L_loLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_twist_B_JNT_PLC"):
-			if not mc.getAttr("L_upLeg_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upLeg_twist_B_JNT_PLC", a=1, t=[1.1102230246251565e-16, -1.5469412186143794, 0.2527077345579946])
-			mc.xform("L_upLeg_twist_B_JNT_PLC", a=1, ro=[179.99999999999994, -9.277865361801467, -89.99999999999997])
-			mc.xform("L_upLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_twist_B_JNT_PLC"):
-			if not mc.getAttr("L_loLeg_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loLeg_twist_B_JNT_PLC", a=1, t=[1.1102230246251565e-16, -5.614041157957149, 0.36071862312423336])
-			mc.xform("L_loLeg_twist_B_JNT_PLC", a=1, ro=[-5.088887490341627e-14, 171.1792071530017, 90.00000000000001])
-			mc.xform("L_loLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_twist_C_JNT_PLC"):
-			if not mc.getAttr("L_upLeg_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upLeg_twist_C_JNT_PLC", a=1, t=[1.1102230246251565e-16, -2.3204118279215686, 0.3790616018369919])
-			mc.xform("L_upLeg_twist_C_JNT_PLC", a=1, ro=[179.99999999999994, -9.277865361801467, -89.99999999999997])
-			mc.xform("L_upLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_twist_C_JNT_PLC"):
-			if not mc.getAttr("L_loLeg_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loLeg_twist_C_JNT_PLC", a=1, t=[1.1102230246251565e-16, -6.487385213667751, 0.22519326648885685])
-			mc.xform("L_loLeg_twist_C_JNT_PLC", a=1, ro=[-5.088887490341627e-14, 171.1792071530017, 90.00000000000001])
-			mc.xform("L_loLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_twist_D_JNT_PLC"):
-			if not mc.getAttr("L_upLeg_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_upLeg_twist_D_JNT_PLC", a=1, t=[1.1102230246251565e-16, -3.093882437228758, 0.5054154691159891])
-			mc.xform("L_upLeg_twist_D_JNT_PLC", a=1, ro=[179.99999999999994, -9.277865361801467, -89.99999999999997])
-			mc.xform("L_upLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_twist_D_JNT_PLC"):
-			if not mc.getAttr("L_loLeg_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_loLeg_twist_D_JNT_PLC", a=1, t=[1.1102230246251565e-16, -7.360729269378352, 0.08966790985348039])
-			mc.xform("L_loLeg_twist_D_JNT_PLC", a=1, ro=[-5.088887490341627e-14, 171.1792071530017, 90.00000000000001])
-			mc.xform("L_loLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_heel_JNT_PLC"):
-			if not mc.getAttr("L_heel_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_heel_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_heel_JNT_PLC", a=1, t=[-0.015697564650681395, -0.13868500988745192, -0.23252253800341505])
-			mc.xform("L_heel_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_heel_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_innerBall_JNT_PLC"):
-			if not mc.getAttr("L_innerBall_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_innerBall_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_innerBall_JNT_PLC", a=1, t=[0.04480497932600061, -0.04704048132995648, 0.3097796082687339])
-			mc.xform("L_innerBall_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_innerBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_outterBall_JNT_PLC"):
-			if not mc.getAttr("L_outterBall_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_outterBall_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_outterBall_JNT_PLC", a=1, t=[0.02271238841571943, -0.09504164637598703, -0.001935983239099992])
-			mc.xform("L_outterBall_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_outterBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_foot_IK_handle_driver_JNT_PLC"):
-			mc.xform("L_foot_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_foot_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_foot_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ankle_JNT_PLC"):
-			if not mc.getAttr("L_ankle_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ankle_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ankle_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ankle_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ankle_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ball_JNT_PLC"):
-			if not mc.getAttr("L_ball_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ball_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ball_JNT_PLC", a=1, t=[0.3035925163041486, 1.7763568394002505e-15, 0.07194024733008099])
-			mc.xform("L_ball_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ball_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_JNT_PLC"):
-			if not mc.getAttr("L_toe_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_toe_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_toe_JNT_PLC", a=1, t=[-0.020213801538847692, 0.0024838412508245947, 0.08820502043108616])
-			mc.xform("L_toe_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_thumb_B_JNT_PLC"):
-			if not mc.getAttr("L_thumb_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_thumb_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_thumb_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_thumb_C_JNT_PLC"):
-			if not mc.getAttr("L_thumb_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_thumb_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_thumb_C_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_thumb_D_JNT_PLC"):
-			if not mc.getAttr("L_thumb_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_thumb_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_thumb_D_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_thumb_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_thumb_A_JNT_PLC"):
-			if not mc.getAttr("L_thumb_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_thumb_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_thumb_A_JNT_PLC", a=1, t=[-0.41403273538914576, -0.13288117519071174, 0.10777281553806972])
-			mc.xform("L_thumb_A_JNT_PLC", a=1, ro=[-41.9565908023595, -58.80108123374745, 35.139903061139876])
-			mc.xform("L_thumb_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_index_B_JNT_PLC"):
-			if not mc.getAttr("L_index_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_index_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_index_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_index_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_index_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_index_C_JNT_PLC"):
-			if not mc.getAttr("L_index_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_index_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_index_C_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_index_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_index_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_index_D_JNT_PLC"):
-			if not mc.getAttr("L_index_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_index_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_index_D_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_index_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_index_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_index_E_JNT_PLC"):
-			if not mc.getAttr("L_index_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_index_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_index_E_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_index_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_index_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_index_A_JNT_PLC"):
-			if not mc.getAttr("L_index_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_index_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_index_A_JNT_PLC", a=1, t=[-0.0004704422608465819, -0.1725458861663327, -0.15518767545607526])
-			mc.xform("L_index_A_JNT_PLC", a=1, ro=[5.6583928521657105, -16.21319612232616, -48.07312064095242])
-			mc.xform("L_index_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_middle_B_JNT_PLC"):
-			if not mc.getAttr("L_middle_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_middle_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_middle_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_middle_C_JNT_PLC"):
-			if not mc.getAttr("L_middle_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_middle_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_middle_C_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_middle_D_JNT_PLC"):
-			if not mc.getAttr("L_middle_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_middle_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_middle_D_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_middle_E_JNT_PLC"):
-			if not mc.getAttr("L_middle_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_middle_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_middle_E_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_middle_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_middle_A_JNT_PLC"):
-			if not mc.getAttr("L_middle_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_middle_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_middle_A_JNT_PLC", a=1, t=[-0.038298440798316236, -0.1478509729739912, 0.2027981303090336])
-			mc.xform("L_middle_A_JNT_PLC", a=1, ro=[17.0936718840093, -29.695891256926767, -52.56674322415862])
-			mc.xform("L_middle_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ring_B_JNT_PLC"):
-			if not mc.getAttr("L_ring_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ring_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ring_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ring_C_JNT_PLC"):
-			if not mc.getAttr("L_ring_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ring_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ring_C_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ring_D_JNT_PLC"):
-			if not mc.getAttr("L_ring_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ring_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ring_D_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ring_E_JNT_PLC"):
-			if not mc.getAttr("L_ring_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ring_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ring_E_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ring_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ring_A_JNT_PLC"):
-			if not mc.getAttr("L_ring_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_ring_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_ring_A_JNT_PLC", a=1, t=[0.025670790037010782, -0.19581906763194645, 0.175441035359855])
-			mc.xform("L_ring_A_JNT_PLC", a=1, ro=[1.3110939993576882, -8.988731512360912, -46.91605945953415])
-			mc.xform("L_ring_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_pinky_B_JNT_PLC"):
-			if not mc.getAttr("L_pinky_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_pinky_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_pinky_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_pinky_C_JNT_PLC"):
-			if not mc.getAttr("L_pinky_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_pinky_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_pinky_C_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_pinky_D_JNT_PLC"):
-			if not mc.getAttr("L_pinky_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_pinky_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_pinky_D_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_pinky_E_JNT_PLC"):
-			if not mc.getAttr("L_pinky_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_pinky_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_pinky_E_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_pinky_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_pinky_A_JNT_PLC"):
-			if not mc.getAttr("L_pinky_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("L_pinky_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("L_pinky_A_JNT_PLC", a=1, t=[-2.6645352591003757e-15, -1.7763568394002505e-15, 4.440892098500626e-16])
-			mc.xform("L_pinky_A_JNT_PLC", a=1, ro=[7.951386703658794e-16, 3.1805546814635168e-15, 6.410805529824901e-15])
-			mc.xform("L_pinky_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("C_neck_B_JNT_PLC"):
 			mc.xform("C_neck_B_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
@@ -671,7 +197,7 @@ class GenericBiped():
 			if not mc.getAttr("C_head_end_JNT_PLC.rotateOrder", l=1):
 				mc.setAttr("C_head_end_JNT_PLC.rotateOrder", 0)
 
-			mc.xform("C_head_end_JNT_PLC", a=1, t=[9.48585776191384e-16, -1.2789027284684487, 0.014375139596625841])
+			mc.xform("C_head_end_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_head_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_head_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
@@ -679,7 +205,7 @@ class GenericBiped():
 			if not mc.getAttr("C_jaw_end_JNT_PLC.rotateOrder", l=1):
 				mc.setAttr("C_jaw_end_JNT_PLC.rotateOrder", 0)
 
-			mc.xform("C_jaw_end_JNT_PLC", a=1, t=[4.549876437874272e-16, -0.6379619560773993, -1.2911528541172712])
+			mc.xform("C_jaw_end_JNT_PLC", a=1, t=[-1.7255591543290751e-15, -0.3682339757162083, -1.2457523318479686])
 			mc.xform("C_jaw_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_jaw_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
@@ -687,7 +213,7 @@ class GenericBiped():
 			if not mc.getAttr("C_jaw_JNT_PLC.rotateOrder", l=1):
 				mc.setAttr("C_jaw_JNT_PLC.rotateOrder", 0)
 
-			mc.xform("C_jaw_JNT_PLC", a=1, t=[-1.552469208887478e-15, 0.14675053232398838, -0.3952540457648552])
+			mc.xform("C_jaw_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_jaw_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_jaw_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
@@ -695,7 +221,7 @@ class GenericBiped():
 			if not mc.getAttr("C_head_JNT_PLC.rotateOrder", l=1):
 				mc.setAttr("C_head_JNT_PLC.rotateOrder", 0)
 
-			mc.xform("C_head_JNT_PLC", a=1, t=[-0.7560363573537927, -2.5593355758969324e-16, 0.31983775051818264])
+			mc.xform("C_head_JNT_PLC", a=1, t=[0.5243264924371047, -5.193556190653456e-16, 0.6490339178361595])
 			mc.xform("C_head_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_head_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
@@ -704,452 +230,452 @@ class GenericBiped():
 			mc.xform("C_reverseJaw_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_reverseJaw_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_thumb_B_JNT_PLC"):
-			if not mc.getAttr("R_thumb_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_thumb_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_thumb_B_JNT_PLC", a=1, t=[-2.4139118876220778e-05, 3.278245156224102e-05, -8.184739626493354e-06])
-			mc.xform("R_thumb_B_JNT_PLC", a=1, ro=[7.633331235512438e-14, 3.1805546814635174e-14, -2.862499213317162e-14])
-			mc.xform("R_thumb_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_thumb_C_JNT_PLC"):
-			if not mc.getAttr("R_thumb_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_thumb_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_thumb_C_JNT_PLC", a=1, t=[-2.5591455271367636e-05, 3.240036635343557e-05, -1.2416740671206128e-05])
-			mc.xform("R_thumb_C_JNT_PLC", a=1, ro=[7.633331235512438e-14, 3.1805546814635174e-14, -2.862499213317162e-14])
-			mc.xform("R_thumb_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_thumb_D_JNT_PLC"):
-			if not mc.getAttr("R_thumb_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_thumb_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_thumb_D_JNT_PLC", a=1, t=[-2.5917919188600536e-05, 3.338421064924546e-05, -1.3217015552235978e-05])
-			mc.xform("R_thumb_D_JNT_PLC", a=1, ro=[7.633331235512438e-14, 3.1805546814635174e-14, -2.862499213317162e-14])
-			mc.xform("R_thumb_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_thumb_A_JNT_PLC"):
-			if not mc.getAttr("R_thumb_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_thumb_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_thumb_A_JNT_PLC", a=1, t=[0.518976938662445, 0.4006181768671997, -0.41577506305604395])
-			mc.xform("R_thumb_A_JNT_PLC", a=1, ro=[-41.956590802359585, -58.801081233747446, -144.86009693886007])
-			mc.xform("R_thumb_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_index_B_JNT_PLC"):
-			if not mc.getAttr("R_index_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_index_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_index_B_JNT_PLC", a=1, t=[5.083182377241258e-07, -7.694326704665855e-07, -6.152019300653677e-07])
-			mc.xform("R_index_B_JNT_PLC", a=1, ro=[-1.9878466759146977e-14, 6.361109362927035e-15, 1.2722218725854064e-14])
-			mc.xform("R_index_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_index_C_JNT_PLC"):
-			if not mc.getAttr("R_index_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_index_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_index_C_JNT_PLC", a=1, t=[6.128466750521255e-06, 5.943480550385516e-06, -2.6602977423184626e-06])
-			mc.xform("R_index_C_JNT_PLC", a=1, ro=[-1.9878466759146977e-14, 6.361109362927035e-15, 1.2722218725854064e-14])
-			mc.xform("R_index_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_index_D_JNT_PLC"):
-			if not mc.getAttr("R_index_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_index_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_index_D_JNT_PLC", a=1, t=[9.64293875416189e-07, 6.360777584646371e-06, -1.6093181718357386e-06])
-			mc.xform("R_index_D_JNT_PLC", a=1, ro=[-1.9878466759146977e-14, 6.361109362927035e-15, 1.2722218725854064e-14])
-			mc.xform("R_index_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_index_E_JNT_PLC"):
-			if not mc.getAttr("R_index_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_index_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_index_E_JNT_PLC", a=1, t=[1.6294663720550773e-06, 3.8949090175322e-07, -8.235602770856332e-07])
-			mc.xform("R_index_E_JNT_PLC", a=1, ro=[-1.9878466759146977e-14, 6.361109362927035e-15, 1.2722218725854064e-14])
-			mc.xform("R_index_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_index_A_JNT_PLC"):
-			if not mc.getAttr("R_index_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_index_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_index_A_JNT_PLC", a=1, t=[0.4995293949763724, -0.1725752312993265, -0.3448099344677389])
-			mc.xform("R_index_A_JNT_PLC", a=1, ro=[5.658392852165729, -16.213196122326153, 131.92687935904758])
-			mc.xform("R_index_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_middle_B_JNT_PLC"):
-			if not mc.getAttr("R_middle_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_middle_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_middle_B_JNT_PLC", a=1, t=[-3.053310724965286e-05, 2.3500988822533486e-05, 1.081077309561529e-05])
-			mc.xform("R_middle_B_JNT_PLC", a=1, ro=[-3.657637883683043e-14, -6.361109362927041e-15, -2.5444437451708128e-14])
-			mc.xform("R_middle_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_middle_C_JNT_PLC"):
-			if not mc.getAttr("R_middle_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_middle_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_middle_C_JNT_PLC", a=1, t=[-3.396568940416955e-05, 2.5251084444732896e-05, 1.292596689550507e-05])
-			mc.xform("R_middle_C_JNT_PLC", a=1, ro=[-3.657637883683043e-14, -6.361109362927041e-15, -2.5444437451708128e-14])
-			mc.xform("R_middle_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_middle_D_JNT_PLC"):
-			if not mc.getAttr("R_middle_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_middle_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_middle_D_JNT_PLC", a=1, t=[-3.0748356766086005e-05, 2.3042296394493178e-05, 1.1085359504336978e-05])
-			mc.xform("R_middle_D_JNT_PLC", a=1, ro=[-3.657637883683043e-14, -6.361109362927041e-15, -2.5444437451708128e-14])
-			mc.xform("R_middle_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_middle_E_JNT_PLC"):
-			if not mc.getAttr("R_middle_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_middle_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_middle_E_JNT_PLC", a=1, t=[-2.7672506711873268e-05, 2.65201777835955e-05, 8.246880771167753e-06])
-			mc.xform("R_middle_E_JNT_PLC", a=1, ro=[-3.657637883683043e-14, -6.361109362927041e-15, -2.5444437451708128e-14])
-			mc.xform("R_middle_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_middle_A_JNT_PLC"):
-			if not mc.getAttr("R_middle_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_middle_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_middle_A_JNT_PLC", a=1, t=[0.4616929407811634, -0.14783714845744633, -0.20279610118699432])
-			mc.xform("R_middle_A_JNT_PLC", a=1, ro=[17.093671884009307, -29.695891256926767, 127.43325677584139])
-			mc.xform("R_middle_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ring_B_JNT_PLC"):
-			if not mc.getAttr("R_ring_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ring_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ring_B_JNT_PLC", a=1, t=[-3.011109297901271e-06, 1.018276896935788e-05, 4.013255153534345e-06])
-			mc.xform("R_ring_B_JNT_PLC", a=1, ro=[2.385416011097637e-15, -3.9725156682451414e-31, 1.9083328088781097e-14])
-			mc.xform("R_ring_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ring_C_JNT_PLC"):
-			if not mc.getAttr("R_ring_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ring_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ring_C_JNT_PLC", a=1, t=[-4.6936845721212705e-06, 7.744465579051507e-06, -4.893983951426151e-07])
-			mc.xform("R_ring_C_JNT_PLC", a=1, ro=[2.385416011097637e-15, -3.9725156682451414e-31, 1.9083328088781097e-14])
-			mc.xform("R_ring_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ring_D_JNT_PLC"):
-			if not mc.getAttr("R_ring_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ring_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ring_D_JNT_PLC", a=1, t=[-1.24493392483771e-05, 9.547219740113633e-06, 3.025301531622837e-06])
-			mc.xform("R_ring_D_JNT_PLC", a=1, ro=[2.385416011097637e-15, -3.9725156682451414e-31, 1.9083328088781097e-14])
-			mc.xform("R_ring_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ring_E_JNT_PLC"):
-			if not mc.getAttr("R_ring_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ring_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ring_E_JNT_PLC", a=1, t=[-1.1149026680090657e-05, 6.057096110012594e-06, 3.6203820013014365e-06])
-			mc.xform("R_ring_E_JNT_PLC", a=1, ro=[2.385416011097637e-15, -3.9725156682451414e-31, 1.9083328088781097e-14])
-			mc.xform("R_ring_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ring_A_JNT_PLC"):
-			if not mc.getAttr("R_ring_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ring_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ring_A_JNT_PLC", a=1, t=[0.5256670028236483, -0.1958349426566297, 0.3245592018720377])
-			mc.xform("R_ring_A_JNT_PLC", a=1, ro=[1.3110939993576616, -8.988731512360912, 133.08394054046585])
-			mc.xform("R_ring_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_B_JNT_PLC"):
-			if not mc.getAttr("R_pinky_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_pinky_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_pinky_B_JNT_PLC", a=1, t=[-3.7107771513333887e-06, 3.104382138552353e-05, -2.220446049250313e-16])
-			mc.xform("R_pinky_B_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_C_JNT_PLC"):
-			if not mc.getAttr("R_pinky_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_pinky_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_pinky_C_JNT_PLC", a=1, t=[-7.421554305331313e-06, 6.938173400783398e-05, -2.220446049250313e-16])
-			mc.xform("R_pinky_C_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_D_JNT_PLC"):
-			if not mc.getAttr("R_pinky_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_pinky_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_pinky_D_JNT_PLC", a=1, t=[-1.2765215622323467e-06, 3.104382138552353e-05, -2.220446049250313e-16])
-			mc.xform("R_pinky_D_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_E_JNT_PLC"):
-			if not mc.getAttr("R_pinky_E_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_pinky_E_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_pinky_E_JNT_PLC", a=1, t=[-4.987298715342092e-06, 0.0, -2.220446049250313e-16])
-			mc.xform("R_pinky_E_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_A_JNT_PLC"):
-			if not mc.getAttr("R_pinky_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_pinky_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_pinky_A_JNT_PLC", a=1, t=[0.4999926180415386, -1.7763568394002505e-15, 1.0000049477028714])
-			mc.xform("R_pinky_A_JNT_PLC", a=1, ro=[7.016709298534876e-15, -7.016709298534876e-15, 180.0])
-			mc.xform("R_pinky_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_JNT_PLC"):
-			if not mc.getAttr("R_upLeg_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upLeg_JNT_PLC", a=1, t=[0.0, 0.0, -2.220446049250313e-16])
-			mc.xform("R_upLeg_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_upLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loLeg_JNT_PLC"):
-			if not mc.getAttr("R_loLeg_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loLeg_JNT_PLC", a=1, t=[0.0, 7.867350812977464, -1.1317692413800229])
-			mc.xform("R_loLeg_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_loLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_end_JNT_PLC"):
-			if not mc.getAttr("R_leg_end_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_leg_end_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_leg_end_JNT_PLC", a=1, t=[0.0, 16.234073830662403, 0.04585809787050832])
-			mc.xform("R_leg_end_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_leg_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_handle_driver_JNT_PLC"):
-			mc.xform("R_leg_IK_handle_driver_JNT_PLC", a=1, t=[4.551914400963142e-15, -1.1102230246251565e-16, -8.881784197001252e-16])
-			mc.xform("R_leg_IK_handle_driver_JNT_PLC", a=1, ro=[5.565970498915388e-15, 1.678634365549842e-06, -1.3219180313297687e-14])
-			mc.xform("R_leg_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_twist_A_JNT_PLC"):
-			if not mc.getAttr("R_upLeg_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upLeg_twist_A_JNT_PLC", a=1, t=[0.0, 0.7734741049194529, -0.12635345404360881])
-			mc.xform("R_upLeg_twist_A_JNT_PLC", a=1, ro=[180.0, -9.277865361801464, -89.99999999999997])
-			mc.xform("R_upLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loLeg_twist_A_JNT_PLC"):
-			if not mc.getAttr("R_loLeg_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loLeg_twist_A_JNT_PLC", a=1, t=[0.0, 4.740693839584868, -0.4962436749718176])
-			mc.xform("R_loLeg_twist_A_JNT_PLC", a=1, ro=[0.0, -188.82079452563266, 90.0])
-			mc.xform("R_loLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_twist_B_JNT_PLC"):
-			if not mc.getAttr("R_upLeg_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upLeg_twist_B_JNT_PLC", a=1, t=[0.0, 1.546938354029006, -0.25270789366820723])
-			mc.xform("R_upLeg_twist_B_JNT_PLC", a=1, ro=[180.0, -9.277865361801464, -89.99999999999997])
-			mc.xform("R_upLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loLeg_twist_B_JNT_PLC"):
-			if not mc.getAttr("R_loLeg_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loLeg_twist_B_JNT_PLC", a=1, t=[0.0, 5.614036866192272, -0.36071869991220623])
-			mc.xform("R_loLeg_twist_B_JNT_PLC", a=1, ro=[0.0, -188.82079452563266, 90.0])
-			mc.xform("R_loLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_twist_C_JNT_PLC"):
-			if not mc.getAttr("R_upLeg_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upLeg_twist_C_JNT_PLC", a=1, t=[0.0, 2.320412458948459, -0.3790613477118158])
-			mc.xform("R_upLeg_twist_C_JNT_PLC", a=1, ro=[180.0, -9.277865361801464, -89.99999999999997])
-			mc.xform("R_upLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loLeg_twist_C_JNT_PLC"):
-			if not mc.getAttr("R_loLeg_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loLeg_twist_C_JNT_PLC", a=1, t=[0.0, 6.487389748609573, -0.225193429178298])
-			mc.xform("R_loLeg_twist_C_JNT_PLC", a=1, ro=[0.0, -188.82079452563266, 90.0])
-			mc.xform("R_loLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_twist_D_JNT_PLC"):
-			if not mc.getAttr("R_upLeg_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upLeg_twist_D_JNT_PLC", a=1, t=[0.0, 3.09388656386791, -0.5054151959878204])
-			mc.xform("R_upLeg_twist_D_JNT_PLC", a=1, ro=[180.0, -9.277865361801464, -89.99999999999997])
-			mc.xform("R_upLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loLeg_twist_D_JNT_PLC"):
-			if not mc.getAttr("R_loLeg_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loLeg_twist_D_JNT_PLC", a=1, t=[0.0, 7.360732775216977, -0.08966717286339992])
-			mc.xform("R_loLeg_twist_D_JNT_PLC", a=1, ro=[0.0, -188.82079452563266, 90.0])
-			mc.xform("R_loLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_heel_JNT_PLC"):
-			if not mc.getAttr("R_heel_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_heel_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_heel_JNT_PLC", a=1, t=[0.015698334004201064, 1.1386845703943667, 0.7325266544312423])
-			mc.xform("R_heel_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_heel_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_innerBall_JNT_PLC"):
-			if not mc.getAttr("R_innerBall_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_innerBall_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_innerBall_JNT_PLC", a=1, t=[0.9551955080054197, 1.0470398292751018, -2.3097799716355536])
-			mc.xform("R_innerBall_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_innerBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_outterBall_JNT_PLC"):
-			if not mc.getAttr("R_outterBall_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_outterBall_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_outterBall_JNT_PLC", a=1, t=[-1.022710762543955, 1.0950415657982444, -1.9980643585320426])
-			mc.xform("R_outterBall_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_outterBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_foot_IK_handle_driver_JNT_PLC"):
-			mc.xform("R_foot_IK_handle_driver_JNT_PLC", a=1, t=[-1.1102230246251565e-16, -1.1102230246251565e-16, 1.1102230246251565e-16])
-			mc.xform("R_foot_IK_handle_driver_JNT_PLC", a=1, ro=[-7.31527668529508e-14, -2.5439890632513474e-05, 4.1347227099301365e-14])
-			mc.xform("R_foot_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ankle_JNT_PLC"):
-			if not mc.getAttr("R_ankle_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ankle_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ankle_JNT_PLC", a=1, t=[-1.1102230246251565e-16, 0.0, 0.0])
-			mc.xform("R_ankle_JNT_PLC", a=1, ro=[0.0, 180.0, 0.0])
-			mc.xform("R_ankle_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_ball_JNT_PLC"):
-			if not mc.getAttr("R_ball_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_ball_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_ball_JNT_PLC", a=1, t=[2.303592494182115, 0.0, 1.071939547399294])
-			mc.xform("R_ball_JNT_PLC", a=1, ro=[0.0, 180.0, 0.0])
-			mc.xform("R_ball_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_JNT_PLC"):
-			if not mc.getAttr("R_toe_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_toe_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_toe_JNT_PLC", a=1, t=[3.979789755416568, -0.0024846496750746683, 1.0882045904725823])
-			mc.xform("R_toe_JNT_PLC", a=1, ro=[0.0, 180.0, 0.0])
-			mc.xform("R_toe_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_shoulder_JNT_PLC"):
-			if not mc.getAttr("R_shoulder_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_shoulder_JNT_PLC", a=1, t=[-0.5, 0.0, 0.0])
-			mc.xform("R_shoulder_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_shoulder_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upArm_JNT_PLC"):
-			if not mc.getAttr("R_upArm_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upArm_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upArm_JNT_PLC", a=1, t=[-3.514146103339166, 0.12595725048574202, 0.8687994982448118])
-			mc.xform("R_upArm_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_upArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loArm_JNT_PLC"):
-			if not mc.getAttr("R_loArm_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loArm_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loArm_JNT_PLC", a=1, t=[-7.409674597620929, 2.1609848780519503, 2.016454334017081])
-			mc.xform("R_loArm_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_loArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_JNT_PLC"):
-			if not mc.getAttr("R_wrist_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_wrist_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_wrist_JNT_PLC", a=1, t=[-11.35652229403722, 4.292895116907269, 0.9164227716679028])
-			mc.xform("R_wrist_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_wrist_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_end_JNT_PLC"):
-			if not mc.getAttr("R_wrist_end_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_wrist_end_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_wrist_end_JNT_PLC", a=1, t=[-12.21326318907493, 4.657382678524151, 0.7698875756978735])
-			mc.xform("R_wrist_end_JNT_PLC", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_wrist_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_handle_driver_JNT_PLC"):
-			mc.xform("R_arm_IK_handle_driver_JNT_PLC", a=1, t=[6.217248937900877e-15, -5.329070518200751e-15, -8.881784197001252e-16])
-			mc.xform("R_arm_IK_handle_driver_JNT_PLC", a=1, ro=[-0.00018674258456132816, 0.0001976143667748194, 0.003220103532081711])
-			mc.xform("R_arm_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upArm_twist_A_JNT_PLC"):
-			if not mc.getAttr("R_upArm_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upArm_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upArm_twist_A_JNT_PLC", a=1, t=[-1.8932498310335386, 0.5330021992385721, 0.9983344077232246])
-			mc.xform("R_upArm_twist_A_JNT_PLC", a=1, ro=[1.3184189669993065, 13.109417753283848, -47.032391111022015])
-			mc.xform("R_upArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loArm_twist_A_JNT_PLC"):
-			if not mc.getAttr("R_loArm_twist_A_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loArm_twist_A_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loArm_twist_A_JNT_PLC", a=1, t=[-3.7990382234182483, 2.58734721420322, 1.3964499927092249])
-			mc.xform("R_loArm_twist_A_JNT_PLC", a=1, ro=[1.3097247968060466, 348.25918607785405, -47.59785837487479])
-			mc.xform("R_loArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upArm_twist_B_JNT_PLC"):
-			if not mc.getAttr("R_upArm_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upArm_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upArm_twist_B_JNT_PLC", a=1, t=[-2.272353558727912, 0.9399485898924329, 1.1278594613917399])
-			mc.xform("R_upArm_twist_B_JNT_PLC", a=1, ro=[1.3184189669993065, 13.109417753283848, -47.032391111022015])
-			mc.xform("R_upArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loArm_twist_B_JNT_PLC"):
-			if not mc.getAttr("R_loArm_twist_B_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loArm_twist_B_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loArm_twist_B_JNT_PLC", a=1, t=[-4.188411705025465, 3.0137095503544895, 1.2764456514013682])
-			mc.xform("R_loArm_twist_B_JNT_PLC", a=1, ro=[1.3097247968060466, 348.25918607785405, -47.59785837487479])
-			mc.xform("R_loArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upArm_twist_C_JNT_PLC"):
-			if not mc.getAttr("R_upArm_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upArm_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upArm_twist_C_JNT_PLC", a=1, t=[-2.6514572864222847, 1.346993538645263, 1.2573943708701527])
-			mc.xform("R_upArm_twist_C_JNT_PLC", a=1, ro=[1.3184189669993065, 13.109417753283848, -47.032391111022015])
-			mc.xform("R_upArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loArm_twist_C_JNT_PLC"):
-			if not mc.getAttr("R_loArm_twist_C_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loArm_twist_C_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loArm_twist_C_JNT_PLC", a=1, t=[-4.577775330822785, 3.44017044460473, 1.1564413100935123])
-			mc.xform("R_loArm_twist_C_JNT_PLC", a=1, ro=[1.3097247968060466, 348.25918607785405, -47.59785837487479])
-			mc.xform("R_loArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upArm_twist_D_JNT_PLC"):
-			if not mc.getAttr("R_upArm_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_upArm_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_upArm_twist_D_JNT_PLC", a=1, t=[-3.030570869926555, 1.7539399292991202, 1.3869292803485653])
-			mc.xform("R_upArm_twist_D_JNT_PLC", a=1, ro=[1.3184189669993065, 13.109417753283848, -47.032391111022015])
-			mc.xform("R_upArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_loArm_twist_D_JNT_PLC"):
-			if not mc.getAttr("R_loArm_twist_D_JNT_PLC.rotateOrder", l=1):
-				mc.setAttr("R_loArm_twist_D_JNT_PLC.rotateOrder", 0)
-
-			mc.xform("R_loArm_twist_D_JNT_PLC", a=1, t=[-4.967148812430002, 3.8665327807559997, 1.036427112975759])
-			mc.xform("R_loArm_twist_D_JNT_PLC", a=1, ro=[1.3097247968060466, 348.25918607785405, -47.59785837487479])
-			mc.xform("R_loArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_shoulder_JNT_PLC"):
+			if not mc.getAttr("L_shoulder_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_shoulder_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_shoulder_JNT_PLC", a=1, t=[-0.5, 0.0, 0.0])
+			mc.xform("L_shoulder_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_shoulder_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upArm_JNT_PLC"):
+			if not mc.getAttr("L_upArm_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upArm_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upArm_JNT_PLC", a=1, t=[-0.5951907367698599, 1.3190368074610799, -1.1018908321857452])
+			mc.xform("L_upArm_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_upArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loArm_JNT_PLC"):
+			if not mc.getAttr("L_loArm_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loArm_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loArm_JNT_PLC", a=1, t=[0.9315404713384527, 1.3756979387385915, -1.4233039915561676])
+			mc.xform("L_loArm_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_loArm_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_wrist_JNT_PLC"):
+			if not mc.getAttr("L_wrist_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_wrist_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_wrist_JNT_PLC", a=1, t=[2.5931554375219354, 1.3983501913743623, -1.1622903645038605])
+			mc.xform("L_wrist_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_wrist_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_wrist_end_JNT_PLC"):
+			if not mc.getAttr("L_wrist_end_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_wrist_end_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_wrist_end_JNT_PLC", a=1, t=[2.7394395338559834, 1.424767829228852, -0.976439505815506])
+			mc.xform("L_wrist_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_wrist_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_arm_IK_handle_driver_JNT_PLC"):
+			mc.xform("L_arm_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_arm_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_arm_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upArm_twist_A_JNT_PLC"):
+			if not mc.getAttr("L_upArm_twist_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upArm_twist_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upArm_twist_A_JNT_PLC", a=1, t=[2.1101555048518, 1.3303690337165843, -1.2661734640598297])
+			mc.xform("L_upArm_twist_A_JNT_PLC", a=1, ro=[1.3184189669996418, 13.109417753283822, 0.9204456505709763])
+			mc.xform("L_upArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loArm_twist_A_JNT_PLC"):
+			if not mc.getAttr("L_loArm_twist_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loArm_twist_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loArm_twist_A_JNT_PLC", a=1, t=[5.663863464575146, 1.3802283892657492, -1.7711012661457062])
+			mc.xform("L_loArm_twist_A_JNT_PLC", a=1, ro=[1.311496672220964, -11.740731295960693, 0.3544506802418045])
+			mc.xform("L_loArm_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upArm_twist_B_JNT_PLC"):
+			if not mc.getAttr("L_upArm_twist_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upArm_twist_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upArm_twist_B_JNT_PLC", a=1, t=[2.815501746473462, 1.341701259972087, -1.430456095933914])
+			mc.xform("L_upArm_twist_B_JNT_PLC", a=1, ro=[1.3184189669996418, 13.109417753283822, 0.9204456505709763])
+			mc.xform("L_upArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loArm_twist_B_JNT_PLC"):
+			if not mc.getAttr("L_loArm_twist_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loArm_twist_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loArm_twist_B_JNT_PLC", a=1, t=[6.396186457811842, 1.3847588397929016, -1.6188985407352448])
+			mc.xform("L_loArm_twist_B_JNT_PLC", a=1, ro=[1.311496672220964, -11.740731295960693, 0.3544506802418045])
+			mc.xform("L_loArm_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upArm_twist_C_JNT_PLC"):
+			if not mc.getAttr("L_upArm_twist_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upArm_twist_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upArm_twist_C_JNT_PLC", a=1, t=[3.5208479880951256, 1.353033486227588, -1.5947387278079987])
+			mc.xform("L_upArm_twist_C_JNT_PLC", a=1, ro=[1.3184189669996418, 13.109417753283822, 0.9204456505709763])
+			mc.xform("L_upArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loArm_twist_C_JNT_PLC"):
+			if not mc.getAttr("L_loArm_twist_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loArm_twist_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loArm_twist_C_JNT_PLC", a=1, t=[7.12850945104854, 1.3892892903200558, -1.4666958153247833])
+			mc.xform("L_loArm_twist_C_JNT_PLC", a=1, ro=[1.311496672220964, -11.740731295960693, 0.3544506802418045])
+			mc.xform("L_loArm_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upArm_twist_D_JNT_PLC"):
+			if not mc.getAttr("L_upArm_twist_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upArm_twist_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upArm_twist_D_JNT_PLC", a=1, t=[4.226194229716787, 1.3643657124830888, -1.7590213596820832])
+			mc.xform("L_upArm_twist_D_JNT_PLC", a=1, ro=[1.3184189669996418, 13.109417753283822, 0.9204456505709763])
+			mc.xform("L_upArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loArm_twist_D_JNT_PLC"):
+			if not mc.getAttr("L_loArm_twist_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loArm_twist_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loArm_twist_D_JNT_PLC", a=1, t=[7.860832444285234, 1.39381974084721, -1.314493089914322])
+			mc.xform("L_loArm_twist_D_JNT_PLC", a=1, ro=[1.311496672220964, -11.740731295960693, 0.3544506802418045])
+			mc.xform("L_loArm_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_thumb_B_JNT_PLC"):
+			if not mc.getAttr("L_thumb_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_thumb_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_thumb_B_JNT_PLC", a=1, t=[4.477307001749679, -0.04999999999994742, -1.7053025658242404e-13])
+			mc.xform("L_thumb_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_thumb_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_thumb_C_JNT_PLC"):
+			if not mc.getAttr("L_thumb_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_thumb_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_thumb_C_JNT_PLC", a=1, t=[7.70190323116276, -1.453329119008636, -0.09334876856985375])
+			mc.xform("L_thumb_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_thumb_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_thumb_D_JNT_PLC"):
+			if not mc.getAttr("L_thumb_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_thumb_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_thumb_D_JNT_PLC", a=1, t=[9.988393240501566, -2.5980201926672706, -0.11556171137432614])
+			mc.xform("L_thumb_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_thumb_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_thumb_A_JNT_PLC"):
+			if not mc.getAttr("L_thumb_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_thumb_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_thumb_A_JNT_PLC", a=1, t=[45.51747878658912, 19.31664442045096, -105.87133997049058])
+			mc.xform("L_thumb_A_JNT_PLC", a=1, ro=[-41.95659080235949, -58.80108123374743, 35.13990306113987])
+			mc.xform("L_thumb_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_index_B_JNT_PLC"):
+			if not mc.getAttr("L_index_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_index_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_index_B_JNT_PLC", a=1, t=[6.101062297821059, -0.04999999998288729, -3.6414604664969374e-10])
+			mc.xform("L_index_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_index_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_index_C_JNT_PLC"):
+			if not mc.getAttr("L_index_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_index_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_index_C_JNT_PLC", a=1, t=[10.248632093759262, -0.7858642611868447, -0.08238781392407901])
+			mc.xform("L_index_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_index_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_index_D_JNT_PLC"):
+			if not mc.getAttr("L_index_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_index_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_index_D_JNT_PLC", a=1, t=[12.465946737482298, -1.8145966434796605, -0.15828843929600467])
+			mc.xform("L_index_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_index_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_index_E_JNT_PLC"):
+			if not mc.getAttr("L_index_E_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_index_E_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_index_E_JNT_PLC", a=1, t=[13.67824500008481, -3.154604287950292, -0.2376100753033512])
+			mc.xform("L_index_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_index_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_index_A_JNT_PLC"):
+			if not mc.getAttr("L_index_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_index_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_index_A_JNT_PLC", a=1, t=[60.461837847908704, 101.4665726839735, -8.7247695703061])
+			mc.xform("L_index_A_JNT_PLC", a=1, ro=[17.0936718840093, -29.695891256926767, -52.56674322415862])
+			mc.xform("L_index_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_middle_B_JNT_PLC"):
+			if not mc.getAttr("L_middle_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_middle_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_middle_B_JNT_PLC", a=1, t=[5.910159587860107, -0.04999999977157188, -3.46270567774809e-10])
+			mc.xform("L_middle_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_middle_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_middle_C_JNT_PLC"):
+			if not mc.getAttr("L_middle_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_middle_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_middle_C_JNT_PLC", a=1, t=[9.96160001803397, -0.982033758052637, -0.15042356182737748])
+			mc.xform("L_middle_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_middle_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_middle_D_JNT_PLC"):
+			if not mc.getAttr("L_middle_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_middle_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_middle_D_JNT_PLC", a=1, t=[12.5424120031523, -2.26226709398307, -0.3274348484127749])
+			mc.xform("L_middle_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_middle_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_middle_E_JNT_PLC"):
+			if not mc.getAttr("L_middle_E_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_middle_E_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_middle_E_JNT_PLC", a=1, t=[14.411657730800641, -3.6633109718888477, -0.5110364283043687])
+			mc.xform("L_middle_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_middle_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_middle_A_JNT_PLC"):
+			if not mc.getAttr("L_middle_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_middle_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_middle_A_JNT_PLC", a=1, t=[60.84565205427198, 101.21601069617124, -9.570425907957183])
+			mc.xform("L_middle_A_JNT_PLC", a=1, ro=[5.6583928521657105, -16.213196122326156, -48.07312064095242])
+			mc.xform("L_middle_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ring_B_JNT_PLC"):
+			if not mc.getAttr("L_ring_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ring_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ring_B_JNT_PLC", a=1, t=[5.110830307006832, -0.05000000001813021, -1.9524826200267853e-10])
+			mc.xform("L_ring_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ring_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ring_C_JNT_PLC"):
+			if not mc.getAttr("L_ring_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ring_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ring_C_JNT_PLC", a=1, t=[9.175456823342206, -0.9080347507182154, -0.8835494935346873])
+			mc.xform("L_ring_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ring_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ring_D_JNT_PLC"):
+			if not mc.getAttr("L_ring_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ring_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ring_D_JNT_PLC", a=1, t=[11.572343650021324, -2.057954304010252, -1.4327363519495275])
+			mc.xform("L_ring_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ring_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ring_E_JNT_PLC"):
+			if not mc.getAttr("L_ring_E_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ring_E_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ring_E_JNT_PLC", a=1, t=[13.11680119895582, -3.7332404622696345, -1.8008667319875329])
+			mc.xform("L_ring_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ring_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ring_A_JNT_PLC"):
+			if not mc.getAttr("L_ring_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ring_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ring_A_JNT_PLC", a=1, t=[61.110888829033456, 100.97987402441672, -11.038917751360374])
+			mc.xform("L_ring_A_JNT_PLC", a=1, ro=[1.3110939993576876, -8.988731512360912, -46.91605945953415])
+			mc.xform("L_ring_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_pinky_B_JNT_PLC"):
+			if not mc.getAttr("L_pinky_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_pinky_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_pinky_B_JNT_PLC", a=1, t=[4.261646270751953, -0.04999999999981242, 1.1723955140041653e-13])
+			mc.xform("L_pinky_B_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_pinky_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_pinky_C_JNT_PLC"):
+			if not mc.getAttr("L_pinky_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_pinky_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_pinky_C_JNT_PLC", a=1, t=[7.096459001641577, -0.45485338108461804, -0.9991404737552791])
+			mc.xform("L_pinky_C_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_pinky_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_pinky_D_JNT_PLC"):
+			if not mc.getAttr("L_pinky_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_pinky_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_pinky_D_JNT_PLC", a=1, t=[9.009942430535663, -1.2130825729104942, -1.7293446285479774])
+			mc.xform("L_pinky_D_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_pinky_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_pinky_E_JNT_PLC"):
+			if not mc.getAttr("L_pinky_E_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_pinky_E_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_pinky_E_JNT_PLC", a=1, t=[10.385492462622683, -2.209449728776221, -2.303100909921401])
+			mc.xform("L_pinky_E_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_pinky_E_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_pinky_A_JNT_PLC"):
+			if not mc.getAttr("L_pinky_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_pinky_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_pinky_A_JNT_PLC", a=1, t=[61.2476862114068, 101.03642283406431, -12.229156773938438])
+			mc.xform("L_pinky_A_JNT_PLC", a=1, ro=[3.246079919334916, 0.14040009945875195, -51.84243628604861])
+			mc.xform("L_pinky_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upLeg_JNT_PLC"):
+			if not mc.getAttr("L_upLeg_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upLeg_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_JNT_PLC"):
+			if not mc.getAttr("L_loLeg_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loLeg_JNT_PLC", a=1, t=[0.0, 0.07606773376464826, 0.14101209640502932])
+			mc.xform("L_loLeg_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_loLeg_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_leg_end_JNT_PLC"):
+			if not mc.getAttr("L_leg_end_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_leg_end_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_leg_end_JNT_PLC", a=1, t=[0.0, -0.3545374870300292, -0.04652833938598644])
+			mc.xform("L_leg_end_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_end_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_leg_IK_handle_driver_JNT_PLC"):
+			mc.xform("L_leg_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upLeg_twist_A_JNT_PLC"):
+			if not mc.getAttr("L_upLeg_twist_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_twist_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upLeg_twist_A_JNT_PLC", a=1, t=[0.0, -0.7847864532470705, 0.12820241928100579])
+			mc.xform("L_upLeg_twist_A_JNT_PLC", a=1, ro=[-179.99999999999997, -9.27786536180147, -90.0])
+			mc.xform("L_upLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_twist_A_JNT_PLC"):
+			if not mc.getAttr("L_loLeg_twist_A_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_twist_A_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loLeg_twist_A_JNT_PLC", a=1, t=[0.0, -4.810053310394288, 0.5035040092468261])
+			mc.xform("L_loLeg_twist_A_JNT_PLC", a=1, ro=[2.5444437451708134e-14, 171.1792071530017, 89.99999999999999])
+			mc.xform("L_loLeg_twist_A_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upLeg_twist_B_JNT_PLC"):
+			if not mc.getAttr("L_upLeg_twist_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_twist_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upLeg_twist_B_JNT_PLC", a=1, t=[0.0, -1.5695729064941428, 0.25640483856201174])
+			mc.xform("L_upLeg_twist_B_JNT_PLC", a=1, ro=[-179.99999999999997, -9.27786536180147, -90.0])
+			mc.xform("L_upLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_twist_B_JNT_PLC"):
+			if not mc.getAttr("L_loLeg_twist_B_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_twist_B_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loLeg_twist_B_JNT_PLC", a=1, t=[0.0, -5.696174354553223, 0.36599592208862297])
+			mc.xform("L_loLeg_twist_B_JNT_PLC", a=1, ro=[2.5444437451708134e-14, 171.1792071530017, 89.99999999999999])
+			mc.xform("L_loLeg_twist_B_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upLeg_twist_C_JNT_PLC"):
+			if not mc.getAttr("L_upLeg_twist_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_twist_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upLeg_twist_C_JNT_PLC", a=1, t=[0.0, -2.3543593597412116, 0.38460725784301764])
+			mc.xform("L_upLeg_twist_C_JNT_PLC", a=1, ro=[-179.99999999999997, -9.27786536180147, -90.0])
+			mc.xform("L_upLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_twist_C_JNT_PLC"):
+			if not mc.getAttr("L_loLeg_twist_C_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_twist_C_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loLeg_twist_C_JNT_PLC", a=1, t=[0.0, -6.5822953987121595, 0.22848783493041974])
+			mc.xform("L_loLeg_twist_C_JNT_PLC", a=1, ro=[2.5444437451708134e-14, 171.1792071530017, 89.99999999999999])
+			mc.xform("L_loLeg_twist_C_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_upLeg_twist_D_JNT_PLC"):
+			if not mc.getAttr("L_upLeg_twist_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_twist_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_upLeg_twist_D_JNT_PLC", a=1, t=[0.0, -3.139145812988283, 0.5128096771240235])
+			mc.xform("L_upLeg_twist_D_JNT_PLC", a=1, ro=[-179.99999999999997, -9.27786536180147, -90.0])
+			mc.xform("L_upLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_twist_D_JNT_PLC"):
+			if not mc.getAttr("L_loLeg_twist_D_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_twist_D_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_loLeg_twist_D_JNT_PLC", a=1, t=[0.0, -7.468416442871095, 0.09097974777221673])
+			mc.xform("L_loLeg_twist_D_JNT_PLC", a=1, ro=[2.5444437451708134e-14, 171.1792071530017, 89.99999999999999])
+			mc.xform("L_loLeg_twist_D_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_heel_JNT_PLC"):
+			if not mc.getAttr("L_heel_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_heel_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_heel_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_heel_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_heel_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_innerBall_JNT_PLC"):
+			if not mc.getAttr("L_innerBall_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_innerBall_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_innerBall_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_innerBall_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_innerBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_outterBall_JNT_PLC"):
+			if not mc.getAttr("L_outterBall_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_outterBall_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_outterBall_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_outterBall_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_outterBall_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_foot_IK_handle_driver_JNT_PLC"):
+			mc.xform("L_foot_IK_handle_driver_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_foot_IK_handle_driver_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_foot_IK_handle_driver_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ankle_JNT_PLC"):
+			if not mc.getAttr("L_ankle_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ankle_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ankle_JNT_PLC", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_ankle_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ankle_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ball_JNT_PLC"):
+			if not mc.getAttr("L_ball_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_ball_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_ball_JNT_PLC", a=1, t=[0.3226640347313053, 2.7121371148908224e-08, 0.0803077131705324])
+			mc.xform("L_ball_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ball_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_toe_JNT_PLC"):
+			if not mc.getAttr("L_toe_JNT_PLC.rotateOrder", l=1):
+				mc.setAttr("L_toe_JNT_PLC.rotateOrder", 0)
+
+			mc.xform("L_toe_JNT_PLC", a=1, t=[-0.025947089699422055, 2.7121371148908224e-08, 0.10199925954146746])
+			mc.xform("L_toe_JNT_PLC", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_JNT_PLC", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("C_world_PIV_CTL"):
 			mc.xform("C_world_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
@@ -1223,6 +749,66 @@ class GenericBiped():
 			mc.xform("C_chest_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_chest_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
+		if mc.objExists("C_head_PIV_CTL"):
+			if not mc.getAttr("C_head_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neckBase_PIV_CTL"):
+			if not mc.getAttr("C_neckBase_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_midNeck_PIV_CTL"):
+			if not mc.getAttr("C_midNeck_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neck_FK_A_PIV_CTL"):
+			mc.xform("C_neck_FK_A_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_A_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_A_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neck_FK_B_PIV_CTL"):
+			mc.xform("C_neck_FK_B_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_B_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_B_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neck_FK_C_PIV_CTL"):
+			mc.xform("C_neck_FK_C_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_C_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_C_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_jaw_PIV_CTL"):
+			if not mc.getAttr("C_jaw_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("C_jaw_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("C_jaw_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_jaw_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_jaw_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_reverseJaw_PIV_CTL"):
+			if not mc.getAttr("C_reverseJaw_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("C_reverseJaw_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("C_reverseJaw_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_reverseJaw_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_reverseJaw_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_FK_PIV_CTL"):
+			mc.xform("C_head_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
 		if mc.objExists("L_upArm_FK_PIV_CTL"):
 			if not mc.getAttr("L_upArm_FK_PIV_CTL.rotateOrder", l=1):
 				mc.setAttr("L_upArm_FK_PIV_CTL.rotateOrder", 0)
@@ -1283,99 +869,6 @@ class GenericBiped():
 			mc.xform("L_arm_IK_switch_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_arm_IK_switch_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("L_arm_IK_switch_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_FK_PIV_CTL"):
-			if not mc.getAttr("L_upLeg_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_upLeg_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_FK_PIV_CTL"):
-			if not mc.getAttr("L_loLeg_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_loLeg_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_loLeg_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_loLeg_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_legEnd_FK_PIV_CTL"):
-			if not mc.getAttr("L_legEnd_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legEnd_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_legEnd_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legEnd_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legEnd_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_PIV_CTL"):
-			mc.xform("L_leg_IK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_PV_PIV_CTL"):
-			mc.xform("L_leg_PV_PIV_CTL", a=1, t=[0.0, 0.0, -10.0])
-			mc.xform("L_leg_PV_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_PV_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_legBase_PIV_CTL"):
-			if not mc.getAttr("L_legBase_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_PIV_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_innerBall_PIV_CTL"):
-			mc.xform("L_innerBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_innerBall_PIV_CTL", a=1, ro=[-1.174443956873162, 0.30746888225771474, -1.2423094673232448e-13])
-			mc.xform("L_innerBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_outterBall_PIV_CTL"):
-			mc.xform("L_outterBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_outterBall_PIV_CTL", a=1, ro=[-1.174443956873162, 0.30746888225771474, -1.2423094673232448e-13])
-			mc.xform("L_outterBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_heel_PIV_CTL"):
-			mc.xform("L_heel_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_heel_PIV_CTL", a=1, ro=[-1.174443956873162, 0.30746888225771474, -1.2423094673232448e-13])
-			mc.xform("L_heel_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toeTip_PIV_CTL"):
-			mc.xform("L_toeTip_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toeTip_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toeTip_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_reverseBall_PIV_CTL"):
-			mc.xform("L_reverseBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_reverseBall_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_reverseBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ankleOffset_PIV_CTL"):
-			mc.xform("L_ankleOffset_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ankleOffset_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ankleOffset_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_PIV_CTL"):
-			mc.xform("L_toe_IK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_FK_PIV_CTL"):
-			if not mc.getAttr("L_toe_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("L_thumb_A_PIV_CTL"):
 			if not mc.getAttr("L_thumb_A_PIV_CTL.rotateOrder", l=1):
@@ -1534,376 +1027,103 @@ class GenericBiped():
 			mc.xform("L_hand_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("L_hand_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("C_head_PIV_CTL"):
-			if not mc.getAttr("C_head_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("C_head_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_neckBase_PIV_CTL"):
-			if not mc.getAttr("C_neckBase_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("C_neckBase_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_midNeck_PIV_CTL"):
-			if not mc.getAttr("C_midNeck_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("C_midNeck_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_neck_FK_A_PIV_CTL"):
-			mc.xform("C_neck_FK_A_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_A_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_A_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_neck_FK_B_PIV_CTL"):
-			mc.xform("C_neck_FK_B_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_B_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_B_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_neck_FK_C_PIV_CTL"):
-			mc.xform("C_neck_FK_C_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_C_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_C_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_jaw_PIV_CTL"):
-			if not mc.getAttr("C_jaw_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("C_jaw_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("C_jaw_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_jaw_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_jaw_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_reverseJaw_PIV_CTL"):
-			if not mc.getAttr("C_reverseJaw_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("C_reverseJaw_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("C_reverseJaw_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_reverseJaw_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_reverseJaw_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("C_head_FK_PIV_CTL"):
-			mc.xform("C_head_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_thumb_A_PIV_CTL"):
-			if not mc.getAttr("R_thumb_A_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_A_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_thumb_A_PIV_CTL", a=1, t=[-2.6645352591003757e-15, 3.552713678800501e-15, -1.7763568394002505e-15])
-			mc.xform("R_thumb_A_PIV_CTL", a=1, ro=[-0.0002086781158524233, -0.00139118743820912, -179.9938807609068])
-			mc.xform("R_thumb_A_PIV_CTL", r=1, s=[0.9999999999999999, 1.0, -0.9999999999999999])
-
-		if mc.objExists("R_thumb_B_PIV_CTL"):
-			if not mc.getAttr("R_thumb_B_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_B_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_thumb_B_PIV_CTL", a=1, t=[0.0, -8.881784197001252e-16, 8.881784197001252e-16])
-			mc.xform("R_thumb_B_PIV_CTL", a=1, ro=[-5.0630023479762766e-05, -0.000727424284749828, 179.99993432531917])
-			mc.xform("R_thumb_B_PIV_CTL", r=1, s=[1.0, 0.9999999999999999, -1.0])
-
-		if mc.objExists("R_thumb_C_PIV_CTL"):
-			if not mc.getAttr("R_thumb_C_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_C_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_thumb_C_PIV_CTL", a=1, t=[1.7763568394002505e-15, -2.6645352591003757e-15, 0.0])
-			mc.xform("R_thumb_C_PIV_CTL", a=1, ro=[1.3769672919921032e-05, -0.00013603508450974386, -179.99984284316048])
-			mc.xform("R_thumb_C_PIV_CTL", r=1, s=[1.0, 1.0000000000000002, -1.0])
-
-		if mc.objExists("R_index_A_PIV_CTL"):
-			if not mc.getAttr("R_index_A_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_A_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_index_A_PIV_CTL", a=1, t=[1.3322676295501878e-15, -1.7763568394002505e-15, -2.220446049250313e-16])
-			mc.xform("R_index_A_PIV_CTL", a=1, ro=[-1.2422868701846574e-05, -9.317151583703996e-05, 179.99987431820134])
-			mc.xform("R_index_A_PIV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999999, -1.0])
-
-		if mc.objExists("R_index_B_PIV_CTL"):
-			if not mc.getAttr("R_index_B_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_B_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_index_B_PIV_CTL", a=1, t=[-4.440892098500626e-16, -1.7763568394002505e-15, 0.0])
-			mc.xform("R_index_B_PIV_CTL", a=1, ro=[-1.7551042632519297e-06, -0.00031147755356184995, -179.9990491081323])
-			mc.xform("R_index_B_PIV_CTL", r=1, s=[1.0, 1.0, -1.0])
-
-		if mc.objExists("R_index_C_PIV_CTL"):
-			if not mc.getAttr("R_index_C_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_C_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_index_C_PIV_CTL", a=1, t=[4.884981308350689e-15, 0.0, -4.440892098500626e-16])
-			mc.xform("R_index_C_PIV_CTL", a=1, ro=[1.03618698383276e-05, 0.00016006424973296517, -179.9999993679342])
-			mc.xform("R_index_C_PIV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999997, -0.9999999999999998])
-
-		if mc.objExists("R_index_D_PIV_CTL"):
-			if not mc.getAttr("R_index_D_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_D_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_index_D_PIV_CTL", a=1, t=[-2.220446049250313e-15, -1.7763568394002505e-15, 6.661338147750939e-16])
-			mc.xform("R_index_D_PIV_CTL", a=1, ro=[1.9131843358297346e-06, 0.00011900231401797998, 179.99911690147445])
-			mc.xform("R_index_D_PIV_CTL", r=1, s=[0.9999999999999997, 0.9999999999999998, -1.0])
-
-		if mc.objExists("R_middle_A_PIV_CTL"):
-			if not mc.getAttr("R_middle_A_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_A_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_middle_A_PIV_CTL", a=1, t=[4.440892098500626e-16, -1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_middle_A_PIV_CTL", a=1, ro=[0.00021828556416431298, 0.0016371417176069972, -179.99586117325856])
-			mc.xform("R_middle_A_PIV_CTL", r=1, s=[1.0, 1.0, -1.0])
-
-		if mc.objExists("R_middle_B_PIV_CTL"):
-			if not mc.getAttr("R_middle_B_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_B_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_middle_B_PIV_CTL", a=1, t=[-8.881784197001252e-16, -1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_middle_B_PIV_CTL", a=1, ro=[0.00016657387166738345, 0.00032214487163743395, -179.99969261729754])
-			mc.xform("R_middle_B_PIV_CTL", r=1, s=[0.9999999999999999, 1.0000000000000002, -1.0])
-
-		if mc.objExists("R_middle_C_PIV_CTL"):
-			if not mc.getAttr("R_middle_C_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_C_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_middle_C_PIV_CTL", a=1, t=[-8.881784197001252e-16, 3.552713678800501e-15, 2.220446049250313e-16])
-			mc.xform("R_middle_C_PIV_CTL", a=1, ro=[0.00016322863292735513, -0.00028033015008129084, 179.99970374039896])
-			mc.xform("R_middle_C_PIV_CTL", r=1, s=[1.0000000000000002, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_middle_D_PIV_CTL"):
-			if not mc.getAttr("R_middle_D_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_D_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_middle_D_PIV_CTL", a=1, t=[-8.881784197001252e-16, 1.7763568394002505e-15, 4.440892098500626e-16])
-			mc.xform("R_middle_D_PIV_CTL", a=1, ro=[0.0001819544736650799, -0.000429888048994416, -179.9994163318104])
-			mc.xform("R_middle_D_PIV_CTL", r=1, s=[0.9999999999999997, 0.9999999999999999, -0.9999999999999998])
-
-		if mc.objExists("R_ring_A_PIV_CTL"):
-			if not mc.getAttr("R_ring_A_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_A_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_A_PIV_CTL", a=1, t=[1.3322676295501878e-15, 0.0, -5.551115123125783e-16])
-			mc.xform("R_ring_A_PIV_CTL", a=1, ro=[8.10395282320176e-05, 0.000607796461758207, -179.9984110989508])
-			mc.xform("R_ring_A_PIV_CTL", r=1, s=[1.0, 0.9999999999999998, -0.9999999999999998])
-
-		if mc.objExists("R_ring_B_PIV_CTL"):
-			if not mc.getAttr("R_ring_B_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_B_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_B_PIV_CTL", a=1, t=[8.881784197001252e-16, 0.0, -1.1102230246251565e-16])
-			mc.xform("R_ring_B_PIV_CTL", a=1, ro=[8.308114660715006e-05, -0.000685759923237676, 179.99965026005566])
-			mc.xform("R_ring_B_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_ring_C_PIV_CTL"):
-			if not mc.getAttr("R_ring_C_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_C_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_C_PIV_CTL", a=1, t=[0.0, 0.0, -6.661338147750939e-16])
-			mc.xform("R_ring_C_PIV_CTL", a=1, ro=[9.511735770646844e-05, 0.0005352848728788473, -179.9998205092209])
-			mc.xform("R_ring_C_PIV_CTL", r=1, s=[0.9999999999999999, 1.0, -1.0])
-
-		if mc.objExists("R_ring_D_PIV_CTL"):
-			if not mc.getAttr("R_ring_D_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_D_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_D_PIV_CTL", a=1, t=[0.0, -5.329070518200751e-15, 2.220446049250313e-16])
-			mc.xform("R_ring_D_PIV_CTL", a=1, ro=[7.862849646554276e-05, 9.012512521648621e-05, 179.99950208769513])
-			mc.xform("R_ring_D_PIV_CTL", r=1, s=[1.0000000000000002, 1.0, -1.0])
-
-		if mc.objExists("R_pinky_A_PIV_CTL"):
-			if not mc.getAttr("R_pinky_A_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_A_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_A_PIV_CTL", a=1, t=[0.0, -1.7763568394002505e-15, 0.0])
-			mc.xform("R_pinky_A_PIV_CTL", a=1, ro=[1.4033418573113405e-14, -5.798184552627175e-19, -179.99526542300745])
-			mc.xform("R_pinky_A_PIV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999999, -1.0])
-
-		if mc.objExists("R_pinky_B_PIV_CTL"):
-			if not mc.getAttr("R_pinky_B_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_B_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_B_PIV_CTL", a=1, t=[0.0, 0.0, -4.440892098500626e-16])
-			mc.xform("R_pinky_B_PIV_CTL", a=1, ro=[1.403341856030302e-14, -7.183055636819874e-19, -179.99413458994513])
-			mc.xform("R_pinky_B_PIV_CTL", r=1, s=[1.0, 1.0, -1.0])
-
-		if mc.objExists("R_pinky_C_PIV_CTL"):
-			if not mc.getAttr("R_pinky_C_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_C_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_C_PIV_CTL", a=1, t=[0.0, -1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_pinky_C_PIV_CTL", a=1, ro=[1.4033418561786553e-14, 7.036646428010654e-19, 179.99425414213738])
-			mc.xform("R_pinky_C_PIV_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, -1.0])
-
-		if mc.objExists("R_pinky_D_PIV_CTL"):
-			if not mc.getAttr("R_pinky_D_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_D_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_D_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("R_pinky_D_PIV_CTL", a=1, ro=[1.4033418573113408e-14, 5.798184552320349e-19, 179.9952654230077])
-			mc.xform("R_pinky_D_PIV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999999, -1.0])
-
-		if mc.objExists("R_hand_PIV_CTL"):
-			mc.xform("R_hand_PIV_CTL", a=1, t=[-0.4999926180415386, -1.9999704721661509, 0.0])
-			mc.xform("R_hand_PIV_CTL", a=1, ro=[1.4033418597069752e-14, -8.592990582998206e-31, -180.0])
-			mc.xform("R_hand_PIV_CTL", r=1, s=[1.0, 1.0, -1.0])
-
-		if mc.objExists("R_upLeg_FK_PIV_CTL"):
-			if not mc.getAttr("R_upLeg_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_upLeg_FK_PIV_CTL", a=1, t=[-6.58230341343824e-08, -3.3719935477183327e-07, -3.0599133793440814e-07])
-			mc.xform("R_upLeg_FK_PIV_CTL", a=1, ro=[-1.590277556897713e-15, 3.89409960002066e-06, 180.0])
-			mc.xform("R_upLeg_FK_PIV_CTL", r=1, s=[1.0000000000000004, 1.0000000000000004, -1.0000000000000007])
-
-		if mc.objExists("R_loLeg_FK_PIV_CTL"):
-			if not mc.getAttr("R_loLeg_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_loLeg_FK_PIV_CTL", a=1, t=[-2.350195521749754e-06, -3.3719935443876636e-07, 1.6599149010865233e-07])
-			mc.xform("R_loLeg_FK_PIV_CTL", a=1, ro=[2.3854161974634906e-15, -1.678634363164426e-06, 180.0])
-			mc.xform("R_loLeg_FK_PIV_CTL", r=1, s=[0.9999999999999998, 1.0, -1.0])
-
-		if mc.objExists("R_legEnd_FK_PIV_CTL"):
-			if not mc.getAttr("R_legEnd_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legEnd_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_legEnd_FK_PIV_CTL", a=1, t=[4.418109605941467e-07, -3.371993551049002e-07, 2.9545756030646686e-07])
-			mc.xform("R_legEnd_FK_PIV_CTL", a=1, ro=[2.3854161974634922e-15, -1.6786343758866448e-06, 180.0])
-			mc.xform("R_legEnd_FK_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_leg_IK_PIV_CTL"):
-			mc.xform("R_leg_IK_PIV_CTL", a=1, t=[4.551914400963142e-15, -1.1102230246251565e-16, -2.220446049250313e-16])
-			mc.xform("R_leg_IK_PIV_CTL", a=1, ro=[180.0, -0.0, 0.0])
-			mc.xform("R_leg_IK_PIV_CTL", r=1, s=[1.0000000000000004, 1.0000000000000004, -1.0])
-
-		if mc.objExists("R_leg_PV_PIV_CTL"):
-			mc.xform("R_leg_PV_PIV_CTL", a=1, t=[-3.120317029647879e-06, 0.0, 9.999971191625884])
-			mc.xform("R_leg_PV_PIV_CTL", a=1, ro=[-1.987864203842872e-16, -4.5107869014219485e-06, -179.99999999999997])
-			mc.xform("R_leg_PV_PIV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999999, -0.9999999999999994])
-
-		if mc.objExists("R_legBase_PIV_CTL"):
-			if not mc.getAttr("R_legBase_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_PIV_CTL", a=1, t=[-6.58230341343824e-08, -3.3719935477183327e-07, -3.0599133793440814e-07])
-			mc.xform("R_legBase_PIV_CTL", a=1, ro=[-1.590277556897713e-15, 3.89409960002066e-06, 180.0])
-			mc.xform("R_legBase_PIV_CTL", r=1, s=[1.0000000000000004, 1.0000000000000004, -1.0000000000000007])
-
-		if mc.objExists("R_leg_IK_switch_PIV_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_PIV_CTL", a=1, t=[4.418109605941467e-07, -3.371993551049002e-07, 2.9545756030646686e-07])
-			mc.xform("R_leg_IK_switch_PIV_CTL", a=1, ro=[2.3854161974634922e-15, -1.6786343758866448e-06, 180.0])
-			mc.xform("R_leg_IK_switch_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_innerBall_PIV_CTL"):
-			mc.xform("R_innerBall_PIV_CTL", a=1, t=[1.1102230246251565e-16, -2.7755575615628914e-16, 8.881784197001252e-16])
-			mc.xform("R_innerBall_PIV_CTL", a=1, ro=[1.1744439568731615, -0.30746888225771457, -180.0])
-			mc.xform("R_innerBall_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_outterBall_PIV_CTL"):
-			mc.xform("R_outterBall_PIV_CTL", a=1, t=[0.0, -1.3877787807814457e-16, 4.440892098500626e-16])
-			mc.xform("R_outterBall_PIV_CTL", a=1, ro=[1.1744439568731615, -0.30746888225771457, -180.0])
-			mc.xform("R_outterBall_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_heel_PIV_CTL"):
-			mc.xform("R_heel_PIV_CTL", a=1, t=[1.1102230246251565e-16, 0.0, -2.220446049250313e-16])
-			mc.xform("R_heel_PIV_CTL", a=1, ro=[1.1744439568731615, -0.30746888225771457, -180.0])
-			mc.xform("R_heel_PIV_CTL", r=1, s=[1.0, 1.0, -1.0000000000000002])
-
-		if mc.objExists("R_toeTip_PIV_CTL"):
-			mc.xform("R_toeTip_PIV_CTL", a=1, t=[1.1102230246251565e-16, -3.608224830031759e-16, 1.1102230246251565e-15])
-			mc.xform("R_toeTip_PIV_CTL", a=1, ro=[3.880485315590931e-06, -1.8668757841545487e-06, -179.99999996172772])
-			mc.xform("R_toeTip_PIV_CTL", r=1, s=[0.9999999999999999, 1.0000000000000002, -1.0])
-
-		if mc.objExists("R_reverseBall_PIV_CTL"):
-			mc.xform("R_reverseBall_PIV_CTL", a=1, t=[2.220446049250313e-16, -5.551115123125783e-17, -7.771561172376096e-16])
-			mc.xform("R_reverseBall_PIV_CTL", a=1, ro=[-179.99999611951463, 1.8668757933051276e-06, -8.823568946316488e-15])
-			mc.xform("R_reverseBall_PIV_CTL", r=1, s=[1.0000000000000002, 0.9999999999999999, -1.0])
-
-		if mc.objExists("R_ankleOffset_PIV_CTL"):
-			mc.xform("R_ankleOffset_PIV_CTL", a=1, t=[2.220446049250313e-16, 0.0, 2.220446049250313e-16])
-			mc.xform("R_ankleOffset_PIV_CTL", a=1, ro=[179.99997456010934, -3.5206263484859256e-16, 180.0])
-			mc.xform("R_ankleOffset_PIV_CTL", r=1, s=[1.0, 1.0, -1.0])
-
-		if mc.objExists("R_toe_IK_PIV_CTL"):
-			mc.xform("R_toe_IK_PIV_CTL", a=1, t=[5.551115123125783e-16, 2.220446049250313e-16, 0.0])
-			mc.xform("R_toe_IK_PIV_CTL", a=1, ro=[-2.1270910011111945e-13, -1.5571741667281952e-05, 179.99993263605614])
-			mc.xform("R_toe_IK_PIV_CTL", r=1, s=[0.9999999999999999, 1.0000000000000002, -0.9999999999999998])
-
-		if mc.objExists("R_toe_FK_PIV_CTL"):
-			if not mc.getAttr("R_toe_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_FK_PIV_CTL", a=1, t=[-3.9038212151787377e-07, -3.357676086057637e-07, -2.9938088103032e-07])
-			mc.xform("R_toe_FK_PIV_CTL", a=1, ro=[-2.1270910011111945e-13, -1.5571741667281952e-05, 179.99993263605614])
-			mc.xform("R_toe_FK_PIV_CTL", r=1, s=[0.9999999999999999, 1.0000000000000002, -0.9999999999999998])
-
-		if mc.objExists("R_upArm_FK_PIV_CTL"):
-			if not mc.getAttr("R_upArm_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_upArm_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_upArm_FK_PIV_CTL", a=1, t=[-3.43469618258041e-06, 7.5525218896643764e-06, 1.445525280807658e-06])
-			mc.xform("R_upArm_FK_PIV_CTL", a=1, ro=[-0.001728219089948796, -6.331375130207883e-05, -179.99977072931378])
-			mc.xform("R_upArm_FK_PIV_CTL", r=1, s=[1.0, 1.0000000000000002, -1.0])
-
-		if mc.objExists("R_loArm_FK_PIV_CTL"):
-			if not mc.getAttr("R_loArm_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_loArm_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_loArm_FK_PIV_CTL", a=1, t=[8.005737486271869e-06, -3.873761331263381e-06, 1.3618995823305724e-06])
-			mc.xform("R_loArm_FK_PIV_CTL", a=1, ro=[-0.0016644952301748612, -7.079466959552661e-05, 179.9994815803909])
-			mc.xform("R_loArm_FK_PIV_CTL", r=1, s=[1.0000000000000002, 0.9999999999999998, -1.0])
-
-		if mc.objExists("R_wrist_FK_PIV_CTL"):
-			if not mc.getAttr("R_wrist_FK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_FK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_FK_PIV_CTL", a=1, t=[-1.5597409016798736e-05, 2.4185521501962626e-05, -1.952690631412679e-08])
-			mc.xform("R_wrist_FK_PIV_CTL", a=1, ro=[0.00018674258458359282, -0.00019761436674937553, -179.99677989646796])
-			mc.xform("R_wrist_FK_PIV_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, -1.0000000000000002])
-
-		if mc.objExists("R_arm_IK_PIV_CTL"):
-			if not mc.getAttr("R_arm_IK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_PIV_CTL", a=1, t=[-1.5597409016798736e-05, 2.4185521501962626e-05, -1.952690631412679e-08])
-			mc.xform("R_arm_IK_PIV_CTL", a=1, ro=[0.00018674258458359282, -0.00019761436674937553, -179.99677989646796])
-			mc.xform("R_arm_IK_PIV_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, -1.0000000000000002])
-
-		if mc.objExists("R_wrist_IK_PIV_CTL"):
-			if not mc.getAttr("R_wrist_IK_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_PIV_CTL", a=1, t=[-1.5597409016798736e-05, 2.4185521501962626e-05, -1.952690631412679e-08])
-			mc.xform("R_wrist_IK_PIV_CTL", a=1, ro=[0.00018674258458359282, -0.00019761436674937553, -179.99677989646796])
-			mc.xform("R_wrist_IK_PIV_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, -1.0000000000000002])
-
-		if mc.objExists("R_arm_PV_PIV_CTL"):
-			mc.xform("R_arm_PV_PIV_CTL", a=1, t=[9.30085606398734e-06, -0.00030592594376344096, 9.999957250553228])
-			mc.xform("R_arm_PV_PIV_CTL", a=1, ro=[-0.0017365277191742695, 8.40899601252937e-06, 179.99984580222394])
-			mc.xform("R_arm_PV_PIV_CTL", r=1, s=[1.0, 1.0000000000000002, -1.0000000000000002])
-
-		if mc.objExists("R_shoulder_PIV_CTL"):
-			if not mc.getAttr("R_shoulder_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_PIV_CTL", a=1, t=[2.001667578022115e-06, -2.267743458084226e-05, -1.042203674750386e-07])
-			mc.xform("R_shoulder_PIV_CTL", a=1, ro=[9.154342484223836e-06, -0.00012684351930885592, 179.99901485316326])
-			mc.xform("R_shoulder_PIV_CTL", r=1, s=[1.0, 0.9999999999999999, -0.9999999999999998])
-
-		if mc.objExists("R_arm_IK_switch_PIV_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_PIV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_PIV_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_PIV_CTL", a=1, t=[-1.5597409016798736e-05, 2.4185521501962626e-05, -1.952690631412679e-08])
-			mc.xform("R_arm_IK_switch_PIV_CTL", a=1, ro=[0.00018674258458359282, -0.00019761436674937553, -179.99677989646796])
-			mc.xform("R_arm_IK_switch_PIV_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, -1.0000000000000002])
+		if mc.objExists("L_upLeg_FK_PIV_CTL"):
+			if not mc.getAttr("L_upLeg_FK_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_FK_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_upLeg_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_loLeg_FK_PIV_CTL"):
+			if not mc.getAttr("L_loLeg_FK_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_FK_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_loLeg_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_loLeg_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_loLeg_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_legEnd_FK_PIV_CTL"):
+			if not mc.getAttr("L_legEnd_FK_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legEnd_FK_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_legEnd_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legEnd_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legEnd_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_leg_IK_PIV_CTL"):
+			mc.xform("L_leg_IK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_leg_PV_PIV_CTL"):
+			mc.xform("L_leg_PV_PIV_CTL", a=1, t=[0.0, 0.0, -10.0])
+			mc.xform("L_leg_PV_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_PV_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_legBase_PIV_CTL"):
+			if not mc.getAttr("L_legBase_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_legBase_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_leg_IK_switch_PIV_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_leg_IK_switch_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_innerBall_PIV_CTL"):
+			mc.xform("L_innerBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_innerBall_PIV_CTL", a=1, ro=[2.625852505250962, -6.846365605409033e-07, -4.222434064431299e-07])
+			mc.xform("L_innerBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_outterBall_PIV_CTL"):
+			mc.xform("L_outterBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_outterBall_PIV_CTL", a=1, ro=[2.625852505250962, -6.846365605409033e-07, -4.222434064431299e-07])
+			mc.xform("L_outterBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_heel_PIV_CTL"):
+			mc.xform("L_heel_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_heel_PIV_CTL", a=1, ro=[2.625852505250962, -6.846365605409033e-07, -4.222434064431299e-07])
+			mc.xform("L_heel_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_toeTip_PIV_CTL"):
+			mc.xform("L_toeTip_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toeTip_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toeTip_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_reverseBall_PIV_CTL"):
+			mc.xform("L_reverseBall_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_reverseBall_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_reverseBall_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_ankleOffset_PIV_CTL"):
+			mc.xform("L_ankleOffset_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_ankleOffset_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ankleOffset_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_toe_IK_PIV_CTL"):
+			mc.xform("L_toe_IK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("L_toe_FK_PIV_CTL"):
+			if not mc.getAttr("L_toe_FK_PIV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_FK_PIV_CTL.rotateOrder", 0)
+
+			mc.xform("L_toe_FK_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_FK_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_FK_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_lookAt_PIV_CTL"):
+			mc.xform("C_lookAt_PIV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_PIV_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_PIV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("world_D_OFF_CTL"):
 			if not mc.getAttr("world_D_OFF_CTL.rotateOrder", l=1):
@@ -1949,7 +1169,7 @@ class GenericBiped():
 
 			mc.xform("world_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("world_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("world_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("world_CTL", r=1, s=[9.915726840055477, 9.915726840055477, 9.915726840055477])
 
 		if mc.objExists("visibility_CTL"):
 			if not mc.getAttr("visibility_CTL.mirrorMode", l=1):
@@ -1958,9 +1178,9 @@ class GenericBiped():
 			if not mc.getAttr("visibility_CTL.rotateOrder", l=1):
 				mc.setAttr("visibility_CTL.rotateOrder", 0)
 
-			mc.xform("visibility_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("visibility_CTL", a=1, t=[1.143847136726802e-12, 21.764305266882022, -16.70461776250204])
 			mc.xform("visibility_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("visibility_CTL", r=1, s=[3.5402399476867825, 3.5402399476867825, 3.5402399476867825])
+			mc.xform("visibility_CTL", r=1, s=[20.12277163567045, 20.12277163567045, 20.12277163567045])
 
 		if mc.objExists("C_cog_D_OFF_CTL"):
 			if not mc.getAttr("C_cog_D_OFF_CTL.rotateOrder", l=1):
@@ -2005,7 +1225,7 @@ class GenericBiped():
 				mc.setAttr("C_cog_CTL.rotateOrder", 0)
 
 			mc.xform("C_cog_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_cog_CTL", a=1, ro=[0.0, 0.0, -90.0])
+			mc.xform("C_cog_CTL", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_cog_CTL", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("C_chest_D_OFF_CTL"):
@@ -2052,7 +1272,7 @@ class GenericBiped():
 
 			mc.xform("C_chest_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_chest_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_chest_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("C_chest_CTL", r=1, s=[3.0, 3.0, 3.0])
 
 		if mc.objExists("C_hip_D_OFF_CTL"):
 			if not mc.getAttr("C_hip_D_OFF_CTL.rotateOrder", l=1):
@@ -2098,7 +1318,7 @@ class GenericBiped():
 
 			mc.xform("C_hip_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_hip_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_hip_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("C_hip_CTL", r=1, s=[3.0, 3.0, 3.0])
 
 		if mc.objExists("C_midTorso_D_OFF_CTL"):
 			if not mc.getAttr("C_midTorso_D_OFF_CTL.rotateOrder", l=1):
@@ -2144,7 +1364,7 @@ class GenericBiped():
 
 			mc.xform("C_midTorso_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("C_midTorso_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midTorso_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("C_midTorso_CTL", r=1, s=[3.1465163235035054, 3.1465163235035054, 3.1465163235035054])
 
 		if mc.objExists("C_torso_FK_A_CTL"):
 			if not mc.getAttr("C_torso_FK_A_CTL.mirrorMode", l=1):
@@ -2212,6 +1432,210 @@ class GenericBiped():
 			mc.xform("C_chest_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
 			mc.xform("C_chest_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
 
+		if mc.objExists("C_head_D_OFF_CTL"):
+			if not mc.getAttr("C_head_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_D_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_C_OFF_CTL"):
+			if not mc.getAttr("C_head_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_C_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_B_OFF_CTL"):
+			if not mc.getAttr("C_head_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_B_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_A_OFF_CTL"):
+			if not mc.getAttr("C_head_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_A_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_CTL"):
+			if not mc.getAttr("C_head_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("C_head_CTL.numOffsetCtrls", 1)
+
+			if not mc.getAttr("C_head_CTL.mirrorMode", l=1):
+				mc.setAttr("C_head_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_head_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_CTL", a=1, t=[0.0, 1.4745663873675312, 0.0])
+			mc.xform("C_head_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_CTL", r=1, s=[2.5267660813489603, 2.375562143567343, 2.375562143567343])
+
+		if mc.objExists("C_neckBase_D_OFF_CTL"):
+			if not mc.getAttr("C_neckBase_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_D_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neckBase_C_OFF_CTL"):
+			if not mc.getAttr("C_neckBase_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_C_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neckBase_B_OFF_CTL"):
+			if not mc.getAttr("C_neckBase_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_B_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neckBase_A_OFF_CTL"):
+			if not mc.getAttr("C_neckBase_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_A_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neckBase_CTL"):
+			if not mc.getAttr("C_neckBase_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("C_neckBase_CTL.numOffsetCtrls", 1)
+
+			if not mc.getAttr("C_neckBase_CTL.mirrorMode", l=1):
+				mc.setAttr("C_neckBase_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_neckBase_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neckBase_CTL.rotateOrder", 0)
+
+			mc.xform("C_neckBase_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neckBase_CTL", r=1, s=[2.862762507143083, 2.862762507143083, 2.862762507143083])
+
+		if mc.objExists("C_midNeck_D_OFF_CTL"):
+			if not mc.getAttr("C_midNeck_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_D_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_midNeck_C_OFF_CTL"):
+			if not mc.getAttr("C_midNeck_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_C_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_midNeck_B_OFF_CTL"):
+			if not mc.getAttr("C_midNeck_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_B_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_midNeck_A_OFF_CTL"):
+			if not mc.getAttr("C_midNeck_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_A_OFF_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_midNeck_CTL"):
+			if not mc.getAttr("C_midNeck_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("C_midNeck_CTL.numOffsetCtrls", 0)
+
+			if not mc.getAttr("C_midNeck_CTL.mirrorMode", l=1):
+				mc.setAttr("C_midNeck_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_midNeck_CTL.rotateOrder", l=1):
+				mc.setAttr("C_midNeck_CTL.rotateOrder", 0)
+
+			mc.xform("C_midNeck_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_midNeck_CTL", r=1, s=[2.081056679465288, 2.081056679465288, 2.081056679465288])
+
+		if mc.objExists("C_neck_FK_A_CTL"):
+			if not mc.getAttr("C_neck_FK_A_CTL.mirrorMode", l=1):
+				mc.setAttr("C_neck_FK_A_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_neck_FK_A_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neck_FK_A_CTL.rotateOrder", 0)
+
+			mc.xform("C_neck_FK_A_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_A_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_A_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neck_FK_B_CTL"):
+			if not mc.getAttr("C_neck_FK_B_CTL.mirrorMode", l=1):
+				mc.setAttr("C_neck_FK_B_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_neck_FK_B_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neck_FK_B_CTL.rotateOrder", 0)
+
+			mc.xform("C_neck_FK_B_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_B_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_B_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_neck_FK_C_CTL"):
+			if not mc.getAttr("C_neck_FK_C_CTL.mirrorMode", l=1):
+				mc.setAttr("C_neck_FK_C_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_neck_FK_C_CTL.rotateOrder", l=1):
+				mc.setAttr("C_neck_FK_C_CTL.rotateOrder", 0)
+
+			mc.xform("C_neck_FK_C_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_C_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_neck_FK_C_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_jaw_CTL"):
+			if not mc.getAttr("C_jaw_CTL.mirrorMode", l=1):
+				mc.setAttr("C_jaw_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_jaw_CTL.rotateOrder", l=1):
+				mc.setAttr("C_jaw_CTL.rotateOrder", 0)
+
+			mc.xform("C_jaw_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_jaw_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_jaw_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_reverseJaw_CTL"):
+			if not mc.getAttr("C_reverseJaw_CTL.mirrorMode", l=1):
+				mc.setAttr("C_reverseJaw_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_reverseJaw_CTL.rotateOrder", l=1):
+				mc.setAttr("C_reverseJaw_CTL.rotateOrder", 0)
+
+			mc.xform("C_reverseJaw_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_reverseJaw_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_reverseJaw_CTL", r=1, s=[1.0, 1.0, 1.0])
+
+		if mc.objExists("C_head_FK_CTL"):
+			if not mc.getAttr("C_head_FK_CTL.mirrorMode", l=1):
+				mc.setAttr("C_head_FK_CTL.mirrorMode", 0)
+
+			if not mc.getAttr("C_head_FK_CTL.rotateOrder", l=1):
+				mc.setAttr("C_head_FK_CTL.rotateOrder", 0)
+
+			mc.xform("C_head_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_head_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_head_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
+
 		if mc.objExists("L_upArm_FK_CTL"):
 			if not mc.getAttr("L_upArm_FK_CTL.mirrorMode", l=1):
 				mc.setAttr("L_upArm_FK_CTL.mirrorMode", 0)
@@ -2232,7 +1656,7 @@ class GenericBiped():
 
 			mc.xform("L_loArm_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_loArm_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_loArm_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_loArm_FK_CTL", r=1, s=[2.895992431831707, 2.895992431831707, 2.895992431831707])
 
 		if mc.objExists("L_wrist_FK_CTL"):
 			if not mc.getAttr("L_wrist_FK_CTL.mirrorMode", l=1):
@@ -2243,7 +1667,7 @@ class GenericBiped():
 
 			mc.xform("L_wrist_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_wrist_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_wrist_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_wrist_FK_CTL", r=1, s=[1.637233025949941, 1.637233025949941, 1.637233025949941])
 
 		if mc.objExists("L_arm_IK_D_OFF_CTL"):
 			if not mc.getAttr("L_arm_IK_D_OFF_CTL.rotateOrder", l=1):
@@ -2275,7 +1699,7 @@ class GenericBiped():
 
 			mc.xform("L_arm_IK_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_arm_IK_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_arm_IK_A_OFF_CTL", r=1, s=[1.637233025949941, 1.637233025949941, 1.637233025949941])
 
 		if mc.objExists("L_arm_IK_CTL"):
 			if not mc.getAttr("L_arm_IK_CTL.numOffsetCtrls", l=1):
@@ -2289,7 +1713,7 @@ class GenericBiped():
 
 			mc.xform("L_arm_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_arm_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_arm_IK_CTL", r=1, s=[0.13102474154967886, 1.637233025949941, 1.637233025949941])
 
 		if mc.objExists("L_wrist_IK_D_OFF_CTL"):
 			if not mc.getAttr("L_wrist_IK_D_OFF_CTL.rotateOrder", l=1):
@@ -2335,7 +1759,7 @@ class GenericBiped():
 
 			mc.xform("L_wrist_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_wrist_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_wrist_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_wrist_IK_CTL", r=1, s=[1.637233025949941, 1.637233025949941, 1.637233025949941])
 
 		if mc.objExists("L_arm_PV_CTL"):
 			if not mc.getAttr("L_arm_PV_CTL.mirrorMode", l=1):
@@ -2345,7 +1769,7 @@ class GenericBiped():
 				mc.setAttr("L_arm_PV_CTL.rotateOrder", 0)
 
 			mc.xform("L_arm_PV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_PV_CTL", a=1, ro=[-1.224374757658996, 0.6177092716231289, 47.319477550689584])
+			mc.xform("L_arm_PV_CTL", a=1, ro=[-1.2243747576593071, 0.6177092716240801, 47.3194775506901])
 			mc.xform("L_arm_PV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
 		if mc.objExists("L_shoulder_D_OFF_CTL"):
@@ -2392,7 +1816,7 @@ class GenericBiped():
 
 			mc.xform("L_shoulder_CTL", a=1, t=[0.0, 0.0, 0.0])
 			mc.xform("L_shoulder_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_shoulder_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_shoulder_CTL", r=1, s=[2.8420583821791507, 2.8420583821791507, 1.8315415047775745])
 
 		if mc.objExists("L_arm_IK_switch_D_OFF_CTL"):
 			if not mc.getAttr("L_arm_IK_switch_D_OFF_CTL.rotateOrder", l=1):
@@ -2437,313 +1861,8 @@ class GenericBiped():
 				mc.setAttr("L_arm_IK_switch_CTL.rotateOrder", 0)
 
 			mc.xform("L_arm_IK_switch_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_switch_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_arm_IK_switch_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_upLeg_FK_CTL"):
-			if not mc.getAttr("L_upLeg_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_upLeg_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_upLeg_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_upLeg_FK_CTL.rotateOrder", 0)
-
-			mc.xform("L_upLeg_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_upLeg_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_loLeg_FK_CTL"):
-			if not mc.getAttr("L_loLeg_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_loLeg_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_loLeg_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_loLeg_FK_CTL.rotateOrder", 0)
-
-			mc.xform("L_loLeg_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_loLeg_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_loLeg_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_legEnd_FK_CTL"):
-			if not mc.getAttr("L_legEnd_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_legEnd_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_legEnd_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legEnd_FK_CTL.rotateOrder", 0)
-
-			mc.xform("L_legEnd_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legEnd_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legEnd_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_D_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_C_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_B_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_A_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_CTL"):
-			if not mc.getAttr("L_leg_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("L_leg_IK_CTL.numOffsetCtrls", 1)
-
-			if not mc.getAttr("L_leg_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_leg_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_leg_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_PV_CTL"):
-			if not mc.getAttr("L_leg_PV_CTL.mirrorMode", l=1):
-				mc.setAttr("L_leg_PV_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_leg_PV_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_PV_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_PV_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_PV_CTL", a=1, ro=[179.68090993459336, -2.4848083448933725e-17, -90.00000000000003])
-			mc.xform("L_leg_PV_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_legBase_D_OFF_CTL"):
-			if not mc.getAttr("L_legBase_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_D_OFF_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0000000000000002])
-
-		if mc.objExists("L_legBase_C_OFF_CTL"):
-			if not mc.getAttr("L_legBase_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_C_OFF_CTL", r=1, s=[0.9999999999999998, 1.0, 0.9999999999999998])
-
-		if mc.objExists("L_legBase_B_OFF_CTL"):
-			if not mc.getAttr("L_legBase_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_B_OFF_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0000000000000002])
-
-		if mc.objExists("L_legBase_A_OFF_CTL"):
-			if not mc.getAttr("L_legBase_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_A_OFF_CTL", r=1, s=[0.9999999999999999, 1.0, 0.9999999999999999])
-
-		if mc.objExists("L_legBase_CTL"):
-			if not mc.getAttr("L_legBase_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("L_legBase_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("L_legBase_CTL.mirrorMode", l=1):
-				mc.setAttr("L_legBase_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_legBase_CTL.rotateOrder", l=1):
-				mc.setAttr("L_legBase_CTL.rotateOrder", 0)
-
-			mc.xform("L_legBase_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_legBase_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_D_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_C_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_B_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_A_OFF_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_leg_IK_switch_CTL"):
-			if not mc.getAttr("L_leg_IK_switch_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("L_leg_IK_switch_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("L_leg_IK_switch_CTL.mirrorMode", l=1):
-				mc.setAttr("L_leg_IK_switch_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_leg_IK_switch_CTL.rotateOrder", l=1):
-				mc.setAttr("L_leg_IK_switch_CTL.rotateOrder", 0)
-
-			mc.xform("L_leg_IK_switch_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_leg_IK_switch_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_innerBall_CTL"):
-			if not mc.getAttr("L_innerBall_CTL.mirrorMode", l=1):
-				mc.setAttr("L_innerBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_innerBall_CTL.rotateOrder", l=1):
-				mc.setAttr("L_innerBall_CTL.rotateOrder", 0)
-
-			mc.xform("L_innerBall_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_innerBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_innerBall_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_outterBall_CTL"):
-			if not mc.getAttr("L_outterBall_CTL.mirrorMode", l=1):
-				mc.setAttr("L_outterBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_outterBall_CTL.rotateOrder", l=1):
-				mc.setAttr("L_outterBall_CTL.rotateOrder", 0)
-
-			mc.xform("L_outterBall_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_outterBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_outterBall_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_heel_CTL"):
-			if not mc.getAttr("L_heel_CTL.mirrorMode", l=1):
-				mc.setAttr("L_heel_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_heel_CTL.rotateOrder", l=1):
-				mc.setAttr("L_heel_CTL.rotateOrder", 0)
-
-			mc.xform("L_heel_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_heel_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_heel_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toeTip_CTL"):
-			if not mc.getAttr("L_toeTip_CTL.mirrorMode", l=1):
-				mc.setAttr("L_toeTip_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_toeTip_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toeTip_CTL.rotateOrder", 0)
-
-			mc.xform("L_toeTip_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toeTip_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toeTip_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_reverseBall_CTL"):
-			if not mc.getAttr("L_reverseBall_CTL.mirrorMode", l=1):
-				mc.setAttr("L_reverseBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_reverseBall_CTL.rotateOrder", l=1):
-				mc.setAttr("L_reverseBall_CTL.rotateOrder", 0)
-
-			mc.xform("L_reverseBall_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_reverseBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_reverseBall_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_ankleOffset_CTL"):
-			if not mc.getAttr("L_ankleOffset_CTL.mirrorMode", l=1):
-				mc.setAttr("L_ankleOffset_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_ankleOffset_CTL.rotateOrder", l=1):
-				mc.setAttr("L_ankleOffset_CTL.rotateOrder", 0)
-
-			mc.xform("L_ankleOffset_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_ankleOffset_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_ankleOffset_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_D_OFF_CTL"):
-			if not mc.getAttr("L_toe_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_IK_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_C_OFF_CTL"):
-			if not mc.getAttr("L_toe_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_IK_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_B_OFF_CTL"):
-			if not mc.getAttr("L_toe_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_IK_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_A_OFF_CTL"):
-			if not mc.getAttr("L_toe_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_IK_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_IK_CTL"):
-			if not mc.getAttr("L_toe_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("L_toe_IK_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("L_toe_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_toe_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_toe_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_IK_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("L_toe_FK_CTL"):
-			if not mc.getAttr("L_toe_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("L_toe_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("L_toe_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("L_toe_FK_CTL.rotateOrder", 0)
-
-			mc.xform("L_toe_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_toe_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_arm_IK_switch_CTL", a=1, ro=[0.0, 0.0, 27.335281570891485])
+			mc.xform("L_arm_IK_switch_CTL", r=1, s=[3.1643279129525945, 3.1643279129525945, 3.1643279129525945])
 
 		if mc.objExists("L_thumb_A_CTL"):
 			if not mc.getAttr("L_thumb_A_CTL.mirrorMode", l=1):
@@ -2961,1279 +2080,561 @@ class GenericBiped():
 			if not mc.getAttr("L_hand_CTL.rotateOrder", l=1):
 				mc.setAttr("L_hand_CTL.rotateOrder", 0)
 
-			mc.xform("L_hand_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_hand_CTL", a=1, t=[71.12251072381608, 111.33201316933635, 0.0])
 			mc.xform("L_hand_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("L_hand_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_hand_CTL", r=1, s=[15.0, 15.0, 15.0])
 
-		if mc.objExists("C_head_D_OFF_CTL"):
-			if not mc.getAttr("C_head_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_D_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_upLeg_FK_CTL"):
+			if not mc.getAttr("L_upLeg_FK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_upLeg_FK_CTL.mirrorMode", 0)
 
-			mc.xform("C_head_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			if not mc.getAttr("L_upLeg_FK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_upLeg_FK_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_head_C_OFF_CTL"):
-			if not mc.getAttr("C_head_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_C_OFF_CTL.rotateOrder", 0)
+			mc.xform("L_upLeg_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_upLeg_FK_CTL", r=1, s=[2.6515592796098764, 2.6515592796098764, 2.6515592796098764])
 
-			mc.xform("C_head_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_loLeg_FK_CTL"):
+			if not mc.getAttr("L_loLeg_FK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_loLeg_FK_CTL.mirrorMode", 0)
 
-		if mc.objExists("C_head_B_OFF_CTL"):
-			if not mc.getAttr("C_head_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_B_OFF_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_loLeg_FK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_loLeg_FK_CTL.rotateOrder", 0)
 
-			mc.xform("C_head_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_loLeg_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_loLeg_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_loLeg_FK_CTL", r=1, s=[1.9101154353046517, 1.9101154353046517, 1.9101154353046517])
 
-		if mc.objExists("C_head_A_OFF_CTL"):
-			if not mc.getAttr("C_head_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_A_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_legEnd_FK_CTL"):
+			if not mc.getAttr("L_legEnd_FK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_legEnd_FK_CTL.mirrorMode", 0)
 
-			mc.xform("C_head_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			if not mc.getAttr("L_legEnd_FK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legEnd_FK_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_head_CTL"):
-			if not mc.getAttr("C_head_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("C_head_CTL.numOffsetCtrls", 1)
+			mc.xform("L_legEnd_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legEnd_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legEnd_FK_CTL", r=1, s=[2.1345102888423235, 2.1345102888423235, 2.1345102888423235])
 
-			if not mc.getAttr("C_head_CTL.mirrorMode", l=1):
-				mc.setAttr("C_head_CTL.mirrorMode", 0)
+		if mc.objExists("L_leg_IK_D_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_D_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("C_head_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_head_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_C_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_C_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_neckBase_D_OFF_CTL"):
-			if not mc.getAttr("C_neckBase_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_D_OFF_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_neckBase_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_B_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_B_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_neckBase_C_OFF_CTL"):
-			if not mc.getAttr("C_neckBase_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_C_OFF_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_neckBase_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_A_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_A_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_neckBase_B_OFF_CTL"):
-			if not mc.getAttr("C_neckBase_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_B_OFF_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_neckBase_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_CTL"):
+			if not mc.getAttr("L_leg_IK_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("L_leg_IK_CTL.numOffsetCtrls", 1)
 
-		if mc.objExists("C_neckBase_A_OFF_CTL"):
-			if not mc.getAttr("C_neckBase_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_A_OFF_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_leg_IK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_leg_IK_CTL.mirrorMode", 0)
 
-			mc.xform("C_neckBase_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			if not mc.getAttr("L_leg_IK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_neckBase_CTL"):
-			if not mc.getAttr("C_neckBase_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("C_neckBase_CTL.numOffsetCtrls", 1)
+			mc.xform("L_leg_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			if not mc.getAttr("C_neckBase_CTL.mirrorMode", l=1):
-				mc.setAttr("C_neckBase_CTL.mirrorMode", 0)
+		if mc.objExists("L_leg_PV_CTL"):
+			if not mc.getAttr("L_leg_PV_CTL.mirrorMode", l=1):
+				mc.setAttr("L_leg_PV_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("C_neckBase_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neckBase_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_leg_PV_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_PV_CTL.rotateOrder", 0)
 
-			mc.xform("C_neckBase_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neckBase_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_leg_PV_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_PV_CTL", a=1, ro=[179.68090993459336, -2.4848083448933725e-17, -90.00000000000003])
+			mc.xform("L_leg_PV_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("C_midNeck_D_OFF_CTL"):
-			if not mc.getAttr("C_midNeck_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_D_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_legBase_D_OFF_CTL"):
+			if not mc.getAttr("L_legBase_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_D_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("C_midNeck_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_legBase_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_D_OFF_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0000000000000002])
 
-		if mc.objExists("C_midNeck_C_OFF_CTL"):
-			if not mc.getAttr("C_midNeck_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_C_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_legBase_C_OFF_CTL"):
+			if not mc.getAttr("L_legBase_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_C_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("C_midNeck_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_legBase_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_C_OFF_CTL", r=1, s=[0.9999999999999998, 1.0, 0.9999999999999998])
 
-		if mc.objExists("C_midNeck_B_OFF_CTL"):
-			if not mc.getAttr("C_midNeck_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_B_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_legBase_B_OFF_CTL"):
+			if not mc.getAttr("L_legBase_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_B_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("C_midNeck_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_legBase_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_B_OFF_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0000000000000002])
 
-		if mc.objExists("C_midNeck_A_OFF_CTL"):
-			if not mc.getAttr("C_midNeck_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_A_OFF_CTL.rotateOrder", 0)
+		if mc.objExists("L_legBase_A_OFF_CTL"):
+			if not mc.getAttr("L_legBase_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_A_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("C_midNeck_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_legBase_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_A_OFF_CTL", r=1, s=[0.9999999999999999, 1.0, 0.9999999999999999])
 
-		if mc.objExists("C_midNeck_CTL"):
-			if not mc.getAttr("C_midNeck_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("C_midNeck_CTL.numOffsetCtrls", 0)
+		if mc.objExists("L_legBase_CTL"):
+			if not mc.getAttr("L_legBase_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("L_legBase_CTL.numOffsetCtrls", 0)
 
-			if not mc.getAttr("C_midNeck_CTL.mirrorMode", l=1):
-				mc.setAttr("C_midNeck_CTL.mirrorMode", 0)
+			if not mc.getAttr("L_legBase_CTL.mirrorMode", l=1):
+				mc.setAttr("L_legBase_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("C_midNeck_CTL.rotateOrder", l=1):
-				mc.setAttr("C_midNeck_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_legBase_CTL.rotateOrder", l=1):
+				mc.setAttr("L_legBase_CTL.rotateOrder", 0)
 
-			mc.xform("C_midNeck_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_midNeck_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_legBase_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_legBase_CTL", r=1, s=[2.4518717816262168, 2.4518717816262168, 2.4518717816262168])
 
-		if mc.objExists("C_neck_FK_A_CTL"):
-			if not mc.getAttr("C_neck_FK_A_CTL.mirrorMode", l=1):
-				mc.setAttr("C_neck_FK_A_CTL.mirrorMode", 0)
+		if mc.objExists("L_leg_IK_switch_D_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_D_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("C_neck_FK_A_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neck_FK_A_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_switch_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_neck_FK_A_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_A_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_A_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_switch_C_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_C_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("C_neck_FK_B_CTL"):
-			if not mc.getAttr("C_neck_FK_B_CTL.mirrorMode", l=1):
-				mc.setAttr("C_neck_FK_B_CTL.mirrorMode", 0)
+			mc.xform("L_leg_IK_switch_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			if not mc.getAttr("C_neck_FK_B_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neck_FK_B_CTL.rotateOrder", 0)
+		if mc.objExists("L_leg_IK_switch_B_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_B_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("C_neck_FK_B_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_B_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_B_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_leg_IK_switch_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("C_neck_FK_C_CTL"):
-			if not mc.getAttr("C_neck_FK_C_CTL.mirrorMode", l=1):
-				mc.setAttr("C_neck_FK_C_CTL.mirrorMode", 0)
+		if mc.objExists("L_leg_IK_switch_A_OFF_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_A_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("C_neck_FK_C_CTL.rotateOrder", l=1):
-				mc.setAttr("C_neck_FK_C_CTL.rotateOrder", 0)
+			mc.xform("L_leg_IK_switch_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("C_neck_FK_C_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_C_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_neck_FK_C_CTL", r=1, s=[1.0, 1.0, 1.0])
+		if mc.objExists("L_leg_IK_switch_CTL"):
+			if not mc.getAttr("L_leg_IK_switch_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("L_leg_IK_switch_CTL.numOffsetCtrls", 0)
 
-		if mc.objExists("C_jaw_CTL"):
-			if not mc.getAttr("C_jaw_CTL.mirrorMode", l=1):
-				mc.setAttr("C_jaw_CTL.mirrorMode", 0)
+			if not mc.getAttr("L_leg_IK_switch_CTL.mirrorMode", l=1):
+				mc.setAttr("L_leg_IK_switch_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("C_jaw_CTL.rotateOrder", l=1):
-				mc.setAttr("C_jaw_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_leg_IK_switch_CTL.rotateOrder", l=1):
+				mc.setAttr("L_leg_IK_switch_CTL.rotateOrder", 0)
 
-			mc.xform("C_jaw_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_jaw_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_jaw_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_leg_IK_switch_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_leg_IK_switch_CTL", r=1, s=[3.1826839668621654, 3.1826839668621654, 3.1826839668621654])
 
-		if mc.objExists("C_reverseJaw_CTL"):
-			if not mc.getAttr("C_reverseJaw_CTL.mirrorMode", l=1):
-				mc.setAttr("C_reverseJaw_CTL.mirrorMode", 0)
+		if mc.objExists("L_innerBall_CTL"):
+			if not mc.getAttr("L_innerBall_CTL.mirrorMode", l=1):
+				mc.setAttr("L_innerBall_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("C_reverseJaw_CTL.rotateOrder", l=1):
-				mc.setAttr("C_reverseJaw_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_innerBall_CTL.rotateOrder", l=1):
+				mc.setAttr("L_innerBall_CTL.rotateOrder", 0)
 
-			mc.xform("C_reverseJaw_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_reverseJaw_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_reverseJaw_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_innerBall_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_innerBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_innerBall_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("C_head_FK_CTL"):
-			if not mc.getAttr("C_head_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("C_head_FK_CTL.mirrorMode", 0)
+		if mc.objExists("L_outterBall_CTL"):
+			if not mc.getAttr("L_outterBall_CTL.mirrorMode", l=1):
+				mc.setAttr("L_outterBall_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("C_head_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("C_head_FK_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_outterBall_CTL.rotateOrder", l=1):
+				mc.setAttr("L_outterBall_CTL.rotateOrder", 0)
 
-			mc.xform("C_head_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
-			mc.xform("C_head_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
-			mc.xform("C_head_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_outterBall_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_outterBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_outterBall_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_thumb_A_CTL"):
-			if not mc.getAttr("R_thumb_A_CTL.mirrorMode", l=1):
-				mc.setAttr("R_thumb_A_CTL.mirrorMode", 0)
+		if mc.objExists("L_heel_CTL"):
+			if not mc.getAttr("L_heel_CTL.mirrorMode", l=1):
+				mc.setAttr("L_heel_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_thumb_A_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_A_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_heel_CTL.rotateOrder", l=1):
+				mc.setAttr("L_heel_CTL.rotateOrder", 0)
 
-			mc.xform("R_thumb_A_CTL", a=1, t=[1.878620507067552e-05, -3.3491768056670423e-05, 1.2123225654470104e-05])
-			mc.xform("R_thumb_A_CTL", a=1, ro=[6.3611093629270335e-15, 2.3854160110976376e-15, -7.95138670365879e-16])
-			mc.xform("R_thumb_A_CTL", r=1, s=[0.9999999999999996, 0.9999999999999996, 1.0])
+			mc.xform("L_heel_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_heel_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_heel_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_thumb_B_CTL"):
-			if not mc.getAttr("R_thumb_B_CTL.mirrorMode", l=1):
-				mc.setAttr("R_thumb_B_CTL.mirrorMode", 0)
+		if mc.objExists("L_toeTip_CTL"):
+			if not mc.getAttr("L_toeTip_CTL.mirrorMode", l=1):
+				mc.setAttr("L_toeTip_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_thumb_B_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_B_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_toeTip_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toeTip_CTL.rotateOrder", 0)
 
-			mc.xform("R_thumb_B_CTL", a=1, t=[-5.925737038836587e-07, 2.4479787770204098e-06, 3.938486032417643e-06])
-			mc.xform("R_thumb_B_CTL", a=1, ro=[-1.2722218725854067e-14, -2.4649298781342254e-14, -1.5902773407317556e-15])
-			mc.xform("R_thumb_B_CTL", r=1, s=[1.0, 1.0, 1.0])
+			mc.xform("L_toeTip_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toeTip_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toeTip_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_thumb_C_CTL"):
-			if not mc.getAttr("R_thumb_C_CTL.mirrorMode", l=1):
-				mc.setAttr("R_thumb_C_CTL.mirrorMode", 0)
+		if mc.objExists("L_reverseBall_CTL"):
+			if not mc.getAttr("L_reverseBall_CTL.mirrorMode", l=1):
+				mc.setAttr("L_reverseBall_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_thumb_C_CTL.rotateOrder", l=1):
-				mc.setAttr("R_thumb_C_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_reverseBall_CTL.rotateOrder", l=1):
+				mc.setAttr("L_reverseBall_CTL.rotateOrder", 0)
 
-			mc.xform("R_thumb_C_CTL", a=1, t=[-2.328741522283906e-06, 1.7396943583491975e-06, -2.935150149596666e-07])
-			mc.xform("R_thumb_C_CTL", a=1, ro=[6.361109362927032e-15, -6.361109362927032e-15, 1.5902773407317576e-15])
-			mc.xform("R_thumb_C_CTL", r=1, s=[0.9999999999999998, 0.9999999999999998, 0.9999999999999999])
+			mc.xform("L_reverseBall_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_reverseBall_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_reverseBall_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_index_A_CTL"):
-			if not mc.getAttr("R_index_A_CTL.mirrorMode", l=1):
-				mc.setAttr("R_index_A_CTL.mirrorMode", 0)
+		if mc.objExists("L_ankleOffset_CTL"):
+			if not mc.getAttr("L_ankleOffset_CTL.mirrorMode", l=1):
+				mc.setAttr("L_ankleOffset_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_index_A_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_A_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_ankleOffset_CTL.rotateOrder", l=1):
+				mc.setAttr("L_ankleOffset_CTL.rotateOrder", 0)
 
-			mc.xform("R_index_A_CTL", a=1, t=[-3.990538821607714e-06, -2.1423167630985063e-06, 1.7577940376600765e-06])
-			mc.xform("R_index_A_CTL", a=1, ro=[7.951386703658792e-16, -3.4787316828507214e-15, -2.4138550067461804e-32])
-			mc.xform("R_index_A_CTL", r=1, s=[1.0, 0.9999999999999999, 1.0000000000000002])
+			mc.xform("L_ankleOffset_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_ankleOffset_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_ankleOffset_CTL", r=1, s=[1.496047991514163, 1.496047991514163, 1.496047991514163])
 
-		if mc.objExists("R_index_B_CTL"):
-			if not mc.getAttr("R_index_B_CTL.mirrorMode", l=1):
-				mc.setAttr("R_index_B_CTL.mirrorMode", 0)
+		if mc.objExists("L_toe_IK_D_OFF_CTL"):
+			if not mc.getAttr("L_toe_IK_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_IK_D_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("R_index_B_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_B_CTL.rotateOrder", 0)
+			mc.xform("L_toe_IK_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("R_index_B_CTL", a=1, t=[-3.426759385138922e-06, -3.1571482210779322e-06, 1.1425921075947088e-06])
-			mc.xform("R_index_B_CTL", a=1, ro=[1.6697912077683458e-14, -2.882377680076314e-15, 1.9083328088781097e-14])
-			mc.xform("R_index_B_CTL", r=1, s=[0.9999999999999997, 1.0, 0.9999999999999997])
+		if mc.objExists("L_toe_IK_C_OFF_CTL"):
+			if not mc.getAttr("L_toe_IK_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_IK_C_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("R_index_C_CTL"):
-			if not mc.getAttr("R_index_C_CTL.mirrorMode", l=1):
-				mc.setAttr("R_index_C_CTL.mirrorMode", 0)
+			mc.xform("L_toe_IK_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			if not mc.getAttr("R_index_C_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_C_CTL.rotateOrder", 0)
+		if mc.objExists("L_toe_IK_B_OFF_CTL"):
+			if not mc.getAttr("L_toe_IK_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_IK_B_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("R_index_C_CTL", a=1, t=[2.185682702826597e-06, 3.477925920591929e-06, -9.025037044363415e-07])
-			mc.xform("R_index_C_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_index_C_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, 1.0000000000000002])
+			mc.xform("L_toe_IK_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_index_D_CTL"):
-			if not mc.getAttr("R_index_D_CTL.mirrorMode", l=1):
-				mc.setAttr("R_index_D_CTL.mirrorMode", 0)
+		if mc.objExists("L_toe_IK_A_OFF_CTL"):
+			if not mc.getAttr("L_toe_IK_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_IK_A_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("R_index_D_CTL.rotateOrder", l=1):
-				mc.setAttr("R_index_D_CTL.rotateOrder", 0)
+			mc.xform("L_toe_IK_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("R_index_D_CTL", a=1, t=[-3.1746546831357136e-06, 3.319392849476799e-06, 1.4847586715660555e-07])
-			mc.xform("R_index_D_CTL", a=1, ro=[2.484808344893372e-16, -7.205944200190778e-16, -6.361109362927032e-15])
-			mc.xform("R_index_D_CTL", r=1, s=[0.9999999999999998, 1.0000000000000004, 1.0000000000000002])
+		if mc.objExists("L_toe_IK_CTL"):
+			if not mc.getAttr("L_toe_IK_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("L_toe_IK_CTL.numOffsetCtrls", 0)
 
-		if mc.objExists("R_middle_A_CTL"):
-			if not mc.getAttr("R_middle_A_CTL.mirrorMode", l=1):
-				mc.setAttr("R_middle_A_CTL.mirrorMode", 0)
+			if not mc.getAttr("L_toe_IK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_toe_IK_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_middle_A_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_A_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_toe_IK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_IK_CTL.rotateOrder", 0)
 
-			mc.xform("R_middle_A_CTL", a=1, t=[2.7223010764743094e-05, -3.06934687035465e-05, -1.0219909623909729e-05])
-			mc.xform("R_middle_A_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_middle_A_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, 1.0000000000000004])
+			mc.xform("L_toe_IK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_IK_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_middle_B_CTL"):
-			if not mc.getAttr("R_middle_B_CTL.mirrorMode", l=1):
-				mc.setAttr("R_middle_B_CTL.mirrorMode", 0)
+		if mc.objExists("L_toe_FK_CTL"):
+			if not mc.getAttr("L_toe_FK_CTL.mirrorMode", l=1):
+				mc.setAttr("L_toe_FK_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_middle_B_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_B_CTL.rotateOrder", 0)
+			if not mc.getAttr("L_toe_FK_CTL.rotateOrder", l=1):
+				mc.setAttr("L_toe_FK_CTL.rotateOrder", 0)
 
-			mc.xform("R_middle_B_CTL", a=1, t=[2.408668793307811e-07, -3.3552328186914337e-06, 5.908634710394267e-07])
-			mc.xform("R_middle_B_CTL", a=1, ro=[2.79292457966015e-14, -5.342337941520749e-15, -6.3611093629270335e-15])
-			mc.xform("R_middle_B_CTL", r=1, s=[1.0000000000000002, 0.9999999999999999, 1.0])
+			mc.xform("L_toe_FK_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_FK_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("L_toe_FK_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_middle_C_CTL"):
-			if not mc.getAttr("R_middle_C_CTL.mirrorMode", l=1):
-				mc.setAttr("R_middle_C_CTL.mirrorMode", 0)
+		if mc.objExists("C_lookAt_D_OFF_CTL"):
+			if not mc.getAttr("C_lookAt_D_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_lookAt_D_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("R_middle_C_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_C_CTL.rotateOrder", 0)
+			mc.xform("C_lookAt_D_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_D_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("R_middle_C_CTL", a=1, t=[-2.789985370732495e-06, -1.803475296213719e-06, 2.7060572735937427e-06])
-			mc.xform("R_middle_C_CTL", a=1, ro=[3.02152694739034e-14, -2.186631343506167e-15, -5.7656651018280175e-31])
-			mc.xform("R_middle_C_CTL", r=1, s=[0.9999999999999998, 0.9999999999999997, 0.9999999999999998])
+		if mc.objExists("C_lookAt_C_OFF_CTL"):
+			if not mc.getAttr("C_lookAt_C_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_lookAt_C_OFF_CTL.rotateOrder", 0)
 
-		if mc.objExists("R_middle_D_CTL"):
-			if not mc.getAttr("R_middle_D_CTL.mirrorMode", l=1):
-				mc.setAttr("R_middle_D_CTL.mirrorMode", 0)
+			mc.xform("C_lookAt_C_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_C_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			if not mc.getAttr("R_middle_D_CTL.rotateOrder", l=1):
-				mc.setAttr("R_middle_D_CTL.rotateOrder", 0)
+		if mc.objExists("C_lookAt_B_OFF_CTL"):
+			if not mc.getAttr("C_lookAt_B_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_lookAt_B_OFF_CTL.rotateOrder", 0)
 
-			mc.xform("R_middle_D_CTL", a=1, t=[7.899606808692283e-07, -3.7121913436521936e-06, 8.654498830917845e-07])
-			mc.xform("R_middle_D_CTL", a=1, ro=[2.266145210542756e-14, -7.951386703658792e-16, -1.5724541186803695e-31])
-			mc.xform("R_middle_D_CTL", r=1, s=[0.9999999999999999, 1.0, 1.0000000000000002])
+			mc.xform("C_lookAt_B_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_B_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-		if mc.objExists("R_ring_A_CTL"):
-			if not mc.getAttr("R_ring_A_CTL.mirrorMode", l=1):
-				mc.setAttr("R_ring_A_CTL.mirrorMode", 0)
+		if mc.objExists("C_lookAt_A_OFF_CTL"):
+			if not mc.getAttr("C_lookAt_A_OFF_CTL.rotateOrder", l=1):
+				mc.setAttr("C_lookAt_A_OFF_CTL.rotateOrder", 0)
 
-			if not mc.getAttr("R_ring_A_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_A_CTL.rotateOrder", 0)
+			mc.xform("C_lookAt_A_OFF_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_A_OFF_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
 
-			mc.xform("R_ring_A_CTL", a=1, t=[6.634848269682081e-06, -1.0319284191595557e-05, -2.814098685632871e-06])
-			mc.xform("R_ring_A_CTL", a=1, ro=[0.0, -1.3914926731402888e-15, 0.0])
-			mc.xform("R_ring_A_CTL", r=1, s=[0.9999999999999999, 1.0, 1.0])
+		if mc.objExists("C_lookAt_CTL"):
+			if not mc.getAttr("C_lookAt_CTL.numOffsetCtrls", l=1):
+				mc.setAttr("C_lookAt_CTL.numOffsetCtrls", 0)
 
-		if mc.objExists("R_ring_B_CTL"):
-			if not mc.getAttr("R_ring_B_CTL.mirrorMode", l=1):
-				mc.setAttr("R_ring_B_CTL.mirrorMode", 0)
+			if not mc.getAttr("C_lookAt_CTL.mirrorMode", l=1):
+				mc.setAttr("C_lookAt_CTL.mirrorMode", 0)
 
-			if not mc.getAttr("R_ring_B_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_B_CTL.rotateOrder", 0)
+			if not mc.getAttr("C_lookAt_CTL.rotateOrder", l=1):
+				mc.setAttr("C_lookAt_CTL.rotateOrder", 0)
 
-			mc.xform("R_ring_B_CTL", a=1, t=[4.979933460935726e-06, 4.3515273162597623e-07, 1.1991564690116974e-06])
-			mc.xform("R_ring_B_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_ring_B_CTL", r=1, s=[0.9999999999999998, 0.9999999999999997, 0.9999999999999998])
-
-		if mc.objExists("R_ring_C_CTL"):
-			if not mc.getAttr("R_ring_C_CTL.mirrorMode", l=1):
-				mc.setAttr("R_ring_C_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_ring_C_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_C_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_C_CTL", a=1, t=[3.364640305925093e-06, -1.343374885109938e-06, -3.3034970806644637e-06])
-			mc.xform("R_ring_C_CTL", a=1, ro=[-7.951386703658792e-16, 1.6896696745274934e-15, -1.1724438604195736e-32])
-			mc.xform("R_ring_C_CTL", r=1, s=[1.0, 0.9999999999999998, 1.0])
-
-		if mc.objExists("R_ring_D_CTL"):
-			if not mc.getAttr("R_ring_D_CTL.mirrorMode", l=1):
-				mc.setAttr("R_ring_D_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_ring_D_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ring_D_CTL.rotateOrder", 0)
-
-			mc.xform("R_ring_D_CTL", a=1, t=[-4.4951227273770655e-06, -4.0227740072396045e-07, 2.1120284754427843e-07])
-			mc.xform("R_ring_D_CTL", a=1, ro=[2.6438360789665484e-14, -8.945310041616126e-16, -6.3611093629270335e-15])
-			mc.xform("R_ring_D_CTL", r=1, s=[0.9999999999999999, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_A_CTL"):
-			if not mc.getAttr("R_pinky_A_CTL.mirrorMode", l=1):
-				mc.setAttr("R_pinky_A_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_pinky_A_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_A_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_A_CTL", a=1, t=[-1.26715530424093e-06, -2.8372351813743535e-05, 2.9609306468891816e-06])
-			mc.xform("R_pinky_A_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_A_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_pinky_B_CTL"):
-			if not mc.getAttr("R_pinky_B_CTL.mirrorMode", l=1):
-				mc.setAttr("R_pinky_B_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_pinky_B_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_B_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_B_CTL", a=1, t=[-9.93616166233835e-07, 2.84116716642302e-06, 2.9609306464450924e-06])
-			mc.xform("R_pinky_B_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_B_CTL", r=1, s=[1.0000000000000002, 1.0000000000000002, 1.0])
-
-		if mc.objExists("R_pinky_C_CTL"):
-			if not mc.getAttr("R_pinky_C_CTL.mirrorMode", l=1):
-				mc.setAttr("R_pinky_C_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_pinky_C_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_C_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_C_CTL", a=1, t=[-8.188899379035774e-06, 4.056696420029482e-05, 2.9609306468891816e-06])
-			mc.xform("R_pinky_C_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_C_CTL", r=1, s=[0.9999999999999998, 0.9999999999999998, 1.0])
-
-		if mc.objExists("R_pinky_D_CTL"):
-			if not mc.getAttr("R_pinky_D_CTL.mirrorMode", l=1):
-				mc.setAttr("R_pinky_D_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_pinky_D_CTL.rotateOrder", l=1):
-				mc.setAttr("R_pinky_D_CTL.rotateOrder", 0)
-
-			mc.xform("R_pinky_D_CTL", a=1, t=[8.427253881393426e-07, 2.8896083552609753e-06, 2.960930646667137e-06])
-			mc.xform("R_pinky_D_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_pinky_D_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_hand_CTL"):
-			if not mc.getAttr("R_hand_CTL.mirrorMode", l=1):
-				mc.setAttr("R_hand_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_hand_CTL.rotateOrder", l=1):
-				mc.setAttr("R_hand_CTL.rotateOrder", 0)
-
-			mc.xform("R_hand_CTL", a=1, t=[2.4937558738002963e-06, 1.2368951605168377e-06, -1.9867722249600206e-06])
-			mc.xform("R_hand_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_hand_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_upLeg_FK_CTL"):
-			if not mc.getAttr("R_upLeg_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_upLeg_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_upLeg_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_upLeg_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_upLeg_FK_CTL", a=1, t=[0.0, 0.0, 5.551115123125783e-16])
-			mc.xform("R_upLeg_FK_CTL", a=1, ro=[-6.896728590703373e-34, 1.5902773407317584e-15, -4.969616689786745e-17])
-			mc.xform("R_upLeg_FK_CTL", r=1, s=[1.0, 0.9999999999999999, 0.9999999999999999])
-
-		if mc.objExists("R_loLeg_FK_CTL"):
-			if not mc.getAttr("R_loLeg_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_loLeg_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_loLeg_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_loLeg_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_loLeg_FK_CTL", a=1, t=[-1.7763568394002505e-15, 0.0, 0.0])
-			mc.xform("R_loLeg_FK_CTL", a=1, ro=[7.951386703658792e-16, 7.951386703658792e-16, 4.969616689786745e-17])
-			mc.xform("R_loLeg_FK_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0000000000000002])
-
-		if mc.objExists("R_legEnd_FK_CTL"):
-			if not mc.getAttr("R_legEnd_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_legEnd_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_legEnd_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legEnd_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_legEnd_FK_CTL", a=1, t=[2.220446049250313e-16, -3.3306690738754696e-16, -2.220446049250313e-16])
-			mc.xform("R_legEnd_FK_CTL", a=1, ro=[7.951386703658792e-16, -7.951386703658792e-16, -5.517382872562698e-33])
-			mc.xform("R_legEnd_FK_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_D_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_D_OFF_CTL", a=1, t=[0.0, 1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_D_OFF_CTL", a=1, ro=[1.403341859706975e-14, 1.3949415782257268e-29, -1.0813885916975958e-13])
-			mc.xform("R_leg_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_C_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_C_OFF_CTL", a=1, t=[0.0, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_C_OFF_CTL", a=1, ro=[1.403341859706975e-14, 1.3949415782257268e-29, -1.0813885916975958e-13])
-			mc.xform("R_leg_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_B_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_B_OFF_CTL", a=1, t=[0.0, 1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_B_OFF_CTL", a=1, ro=[1.403341859706975e-14, 1.3949415782257268e-29, -1.0813885916975958e-13])
-			mc.xform("R_leg_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_A_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_A_OFF_CTL", a=1, t=[0.0, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_A_OFF_CTL", a=1, ro=[1.403341859706975e-14, 1.3949415782257268e-29, -1.0813885916975958e-13])
-			mc.xform("R_leg_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_CTL"):
-			if not mc.getAttr("R_leg_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_leg_IK_CTL.numOffsetCtrls", 1)
-
-			if not mc.getAttr("R_leg_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_leg_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_leg_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_CTL", a=1, t=[3.9127877815570145e-07, 3.3719935466081097e-07, 3.597123979792727e-07])
-			mc.xform("R_leg_IK_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_leg_IK_CTL", r=1, s=[0.9999999999999999, 0.9999999999999999, 1.0])
-
-		if mc.objExists("R_leg_PV_CTL"):
-			if not mc.getAttr("R_leg_PV_CTL.mirrorMode", l=1):
-				mc.setAttr("R_leg_PV_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_leg_PV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_PV_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_PV_CTL", a=1, t=[-1.5586852910587368e-06, -1.1102230246251565e-16, -2.8625091708534e-05])
-			mc.xform("R_leg_PV_CTL", a=1, ro=[-0.31909006540663704, 0.0, -90.00000000000004])
-			mc.xform("R_leg_PV_CTL", r=1, s=[0.9999999999999999, 0.9999999999999998, 0.9999999999999997])
-
-		if mc.objExists("R_legBase_D_OFF_CTL"):
-			if not mc.getAttr("R_legBase_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_D_OFF_CTL", a=1, t=[1.7763568394002505e-15, 2.220446049250313e-16, -1.1102230246251565e-16])
-			mc.xform("R_legBase_D_OFF_CTL", a=1, ro=[7.951386703658793e-15, 1.5902773407317592e-15, -5.764755360152626e-15])
-			mc.xform("R_legBase_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_legBase_C_OFF_CTL"):
-			if not mc.getAttr("R_legBase_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_C_OFF_CTL", a=1, t=[-1.7763568394002505e-15, -2.220446049250313e-16, 1.1102230246251565e-16])
-			mc.xform("R_legBase_C_OFF_CTL", a=1, ro=[7.951386703658793e-15, 1.5902773407317592e-15, -5.764755360152626e-15])
-			mc.xform("R_legBase_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_legBase_B_OFF_CTL"):
-			if not mc.getAttr("R_legBase_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_B_OFF_CTL", a=1, t=[1.7763568394002505e-15, 2.220446049250313e-16, -1.1102230246251565e-16])
-			mc.xform("R_legBase_B_OFF_CTL", a=1, ro=[7.951386703658793e-15, 1.5902773407317592e-15, -5.764755360152626e-15])
-			mc.xform("R_legBase_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_legBase_A_OFF_CTL"):
-			if not mc.getAttr("R_legBase_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_A_OFF_CTL", a=1, t=[-1.7763568394002505e-15, -2.220446049250313e-16, 1.1102230246251565e-16])
-			mc.xform("R_legBase_A_OFF_CTL", a=1, ro=[7.951386703658793e-15, 1.5902773407317592e-15, -5.764755360152626e-15])
-			mc.xform("R_legBase_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_legBase_CTL"):
-			if not mc.getAttr("R_legBase_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_legBase_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_legBase_CTL.mirrorMode", l=1):
-				mc.setAttr("R_legBase_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_legBase_CTL.rotateOrder", l=1):
-				mc.setAttr("R_legBase_CTL.rotateOrder", 0)
-
-			mc.xform("R_legBase_CTL", a=1, t=[0.0, 0.0, 5.551115123125783e-16])
-			mc.xform("R_legBase_CTL", a=1, ro=[-6.896728590703373e-34, 1.5902773407317584e-15, -4.969616689786745e-17])
-			mc.xform("R_legBase_CTL", r=1, s=[1.0, 0.9999999999999999, 0.9999999999999999])
-
-		if mc.objExists("R_leg_IK_switch_D_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_D_OFF_CTL", a=1, t=[0.0, 1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_switch_D_OFF_CTL", a=1, ro=[5.565970692561154e-15, 2.385416011097638e-15, -6.858071031905708e-15])
-			mc.xform("R_leg_IK_switch_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_switch_C_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_C_OFF_CTL", a=1, t=[0.0, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_switch_C_OFF_CTL", a=1, ro=[5.565970692561154e-15, 2.385416011097638e-15, -6.858071031905708e-15])
-			mc.xform("R_leg_IK_switch_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_switch_B_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_B_OFF_CTL", a=1, t=[1.1102230246251565e-16, 1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_switch_B_OFF_CTL", a=1, ro=[5.565970692561154e-15, 2.385416011097638e-15, -6.858071031905708e-15])
-			mc.xform("R_leg_IK_switch_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_switch_A_OFF_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_A_OFF_CTL", a=1, t=[1.1102230246251565e-16, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_leg_IK_switch_A_OFF_CTL", a=1, ro=[5.565970692561154e-15, 2.385416011097638e-15, -6.858071031905708e-15])
-			mc.xform("R_leg_IK_switch_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_leg_IK_switch_CTL"):
-			if not mc.getAttr("R_leg_IK_switch_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_leg_IK_switch_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_leg_IK_switch_CTL.mirrorMode", l=1):
-				mc.setAttr("R_leg_IK_switch_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_leg_IK_switch_CTL.rotateOrder", l=1):
-				mc.setAttr("R_leg_IK_switch_CTL.rotateOrder", 0)
-
-			mc.xform("R_leg_IK_switch_CTL", a=1, t=[2.220446049250313e-16, -3.3306690738754696e-16, -2.220446049250313e-16])
-			mc.xform("R_leg_IK_switch_CTL", a=1, ro=[7.951386703658792e-16, -7.951386703658792e-16, -5.517382872562698e-33])
-			mc.xform("R_leg_IK_switch_CTL", r=1, s=[1.0000000000000002, 1.0, 1.0])
-
-		if mc.objExists("R_innerBall_CTL"):
-			if not mc.getAttr("R_innerBall_CTL.mirrorMode", l=1):
-				mc.setAttr("R_innerBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_innerBall_CTL.rotateOrder", l=1):
-				mc.setAttr("R_innerBall_CTL.rotateOrder", 0)
-
-			mc.xform("R_innerBall_CTL", a=1, t=[1.5014951448844016e-07, -2.606629026236096e-07, -8.193105083265095e-09])
-			mc.xform("R_innerBall_CTL", a=1, ro=[-1.987846675914698e-16, 6.735086514358764e-37, 3.8825130388958945e-19])
-			mc.xform("R_innerBall_CTL", r=1, s=[0.9999999999999998, 0.9999999999999997, 0.9999999999999998])
-
-		if mc.objExists("R_outterBall_CTL"):
-			if not mc.getAttr("R_outterBall_CTL.mirrorMode", l=1):
-				mc.setAttr("R_outterBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_outterBall_CTL.rotateOrder", l=1):
-				mc.setAttr("R_outterBall_CTL.rotateOrder", 0)
-
-			mc.xform("R_outterBall_CTL", a=1, t=[1.2885575753074363e-06, 3.1012629866933317e-07, 3.1219479279531726e-08])
-			mc.xform("R_outterBall_CTL", a=1, ro=[-1.987846675914698e-16, 6.735086514358764e-37, 3.8825130388958945e-19])
-			mc.xform("R_outterBall_CTL", r=1, s=[0.9999999999999998, 0.9999999999999999, 0.9999999999999996])
-
-		if mc.objExists("R_heel_CTL"):
-			if not mc.getAttr("R_heel_CTL.mirrorMode", l=1):
-				mc.setAttr("R_heel_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_heel_CTL.rotateOrder", l=1):
-				mc.setAttr("R_heel_CTL.rotateOrder", 0)
-
-			mc.xform("R_heel_CTL", a=1, t=[4.081275479794755e-07, -1.3999549978993553e-07, 4.476465829350573e-06])
-			mc.xform("R_heel_CTL", a=1, ro=[-1.987846675914698e-16, 6.735086514358764e-37, 3.8825130388958945e-19])
-			mc.xform("R_heel_CTL", r=1, s=[0.9999999999999998, 0.9999999999999997, 0.9999999999999999])
-
-		if mc.objExists("R_toeTip_CTL"):
-			if not mc.getAttr("R_toeTip_CTL.mirrorMode", l=1):
-				mc.setAttr("R_toeTip_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_toeTip_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toeTip_CTL.rotateOrder", 0)
-
-			mc.xform("R_toeTip_CTL", a=1, t=[4.883755351237085e-07, 2.6807851799537374e-08, -3.194789916838303e-06])
-			mc.xform("R_toeTip_CTL", a=1, ro=[-1.987846675914698e-16, 6.735086514358764e-37, 3.8825130388958945e-19])
-			mc.xform("R_toeTip_CTL", r=1, s=[1.0, 0.9999999999999997, 1.0])
-
-		if mc.objExists("R_reverseBall_CTL"):
-			if not mc.getAttr("R_reverseBall_CTL.mirrorMode", l=1):
-				mc.setAttr("R_reverseBall_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_reverseBall_CTL.rotateOrder", l=1):
-				mc.setAttr("R_reverseBall_CTL.rotateOrder", 0)
-
-			mc.xform("R_reverseBall_CTL", a=1, t=[-3.392435462545862e-07, -3.163762255509184e-07, 3.736133032949951e-07])
-			mc.xform("R_reverseBall_CTL", a=1, ro=[1.987846675914698e-16, -0.0, 0.0])
-			mc.xform("R_reverseBall_CTL", r=1, s=[1.0000000000000002, 1.0, 0.9999999999999999])
-
-		if mc.objExists("R_ankleOffset_CTL"):
-			if not mc.getAttr("R_ankleOffset_CTL.mirrorMode", l=1):
-				mc.setAttr("R_ankleOffset_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_ankleOffset_CTL.rotateOrder", l=1):
-				mc.setAttr("R_ankleOffset_CTL.rotateOrder", 0)
-
-			mc.xform("R_ankleOffset_CTL", a=1, t=[-3.3719935466081097e-07, 3.727375822437651e-07, 3.788915260427572e-07])
-			mc.xform("R_ankleOffset_CTL", a=1, ro=[0.0, -0.0, 0.0])
-			mc.xform("R_ankleOffset_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_IK_D_OFF_CTL"):
-			if not mc.getAttr("R_toe_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_IK_D_OFF_CTL", a=1, t=[-1.1102230246251565e-16, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_toe_IK_D_OFF_CTL", a=1, ro=[5.7177620286230646e-08, 1.272221872426707e-14, 3.1805546878115077e-15])
-			mc.xform("R_toe_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_IK_C_OFF_CTL"):
-			if not mc.getAttr("R_toe_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_IK_C_OFF_CTL", a=1, t=[1.1102230246251565e-16, -1.1102230246251565e-16, 0.0])
-			mc.xform("R_toe_IK_C_OFF_CTL", a=1, ro=[5.7177620286230646e-08, 1.272221872426707e-14, 3.1805546878115077e-15])
-			mc.xform("R_toe_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_IK_B_OFF_CTL"):
-			if not mc.getAttr("R_toe_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_IK_B_OFF_CTL", a=1, t=[-1.1102230246251565e-16, 3.3306690738754696e-16, -2.7755575615628914e-17])
-			mc.xform("R_toe_IK_B_OFF_CTL", a=1, ro=[5.7177620286230646e-08, 1.272221872426707e-14, 3.1805546878115077e-15])
-			mc.xform("R_toe_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_IK_A_OFF_CTL"):
-			if not mc.getAttr("R_toe_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_IK_A_OFF_CTL", a=1, t=[-1.1102230246251565e-16, -1.1102230246251565e-16, 2.7755575615628914e-17])
-			mc.xform("R_toe_IK_A_OFF_CTL", a=1, ro=[5.7177620286230646e-08, 1.272221872426707e-14, 3.1805546878115077e-15])
-			mc.xform("R_toe_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_toe_IK_CTL"):
-			if not mc.getAttr("R_toe_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_toe_IK_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_toe_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_toe_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_toe_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_IK_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_IK_CTL", a=1, t=[3.903816456762854e-07, 3.357680680160513e-07, 2.9938098708437444e-07])
-			mc.xform("R_toe_IK_CTL", a=1, ro=[-4.134721085902572e-14, 2.2952312749860827e-30, 6.3611093629270335e-15])
-			mc.xform("R_toe_IK_CTL", r=1, s=[1.0000000000000004, 1.0000000000000004, 1.0000000000000002])
-
-		if mc.objExists("R_toe_FK_CTL"):
-			if not mc.getAttr("R_toe_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_toe_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_toe_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_toe_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_toe_FK_CTL", a=1, t=[0.0, 5.551115123125783e-16, -1.3877787807814457e-16])
-			mc.xform("R_toe_FK_CTL", a=1, ro=[-4.134721085902572e-14, 2.2952312749860827e-30, 6.3611093629270335e-15])
-			mc.xform("R_toe_FK_CTL", r=1, s=[1.0000000000000004, 1.0000000000000004, 1.0000000000000002])
-
-		if mc.objExists("R_upArm_FK_CTL"):
-			if not mc.getAttr("R_upArm_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_upArm_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_upArm_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_upArm_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_upArm_FK_CTL", a=1, t=[-3.552713678800501e-15, -3.552713678800501e-15, 8.881784197001252e-16])
-			mc.xform("R_upArm_FK_CTL", a=1, ro=[4.770832022195274e-15, -1.5902773407317588e-15, 1.9083328088781097e-14])
-			mc.xform("R_upArm_FK_CTL", r=1, s=[1.0, 0.9999999999999994, 0.9999999999999999])
-
-		if mc.objExists("R_loArm_FK_CTL"):
-			if not mc.getAttr("R_loArm_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_loArm_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_loArm_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_loArm_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_loArm_FK_CTL", a=1, t=[3.552713678800501e-15, 0.0, 1.1102230246251565e-16])
-			mc.xform("R_loArm_FK_CTL", a=1, ro=[0.0, 3.578124016646456e-15, 0.0])
-			mc.xform("R_loArm_FK_CTL", r=1, s=[0.9999999999999998, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_FK_CTL"):
-			if not mc.getAttr("R_wrist_FK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_wrist_FK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_wrist_FK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_FK_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_FK_CTL", a=1, t=[2.6645352591003757e-15, -1.0658141036401503e-14, 1.3322676295501878e-15])
-			mc.xform("R_wrist_FK_CTL", a=1, ro=[0.0, -3.975693351829396e-16, 0.0])
-			mc.xform("R_wrist_FK_CTL", r=1, s=[1.0, 1.0, 0.9999999999999998])
-
-		if mc.objExists("R_arm_IK_D_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_D_OFF_CTL", a=1, t=[0.0, -1.7763568394002505e-15, 4.440892098500626e-16])
-			mc.xform("R_arm_IK_D_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_C_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_C_OFF_CTL", a=1, t=[0.0, 1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_arm_IK_C_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_B_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_B_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 4.440892098500626e-16])
-			mc.xform("R_arm_IK_B_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_A_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_A_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 0.0])
-			mc.xform("R_arm_IK_A_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_CTL"):
-			if not mc.getAttr("R_arm_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_arm_IK_CTL.numOffsetCtrls", 1)
-
-			if not mc.getAttr("R_arm_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_arm_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_arm_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_CTL", a=1, t=[2.6645352591003757e-15, -1.0658141036401503e-14, 1.3322676295501878e-15])
-			mc.xform("R_arm_IK_CTL", a=1, ro=[0.0, -3.975693351829396e-16, 0.0])
-			mc.xform("R_arm_IK_CTL", r=1, s=[1.0, 1.0, 0.9999999999999998])
-
-		if mc.objExists("R_wrist_IK_D_OFF_CTL"):
-			if not mc.getAttr("R_wrist_IK_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_D_OFF_CTL", a=1, t=[0.0, -1.7763568394002505e-15, 4.440892098500626e-16])
-			mc.xform("R_wrist_IK_D_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_wrist_IK_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_IK_C_OFF_CTL"):
-			if not mc.getAttr("R_wrist_IK_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_C_OFF_CTL", a=1, t=[0.0, 1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_wrist_IK_C_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_wrist_IK_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_IK_B_OFF_CTL"):
-			if not mc.getAttr("R_wrist_IK_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_B_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 4.440892098500626e-16])
-			mc.xform("R_wrist_IK_B_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_wrist_IK_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_IK_A_OFF_CTL"):
-			if not mc.getAttr("R_wrist_IK_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_A_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 0.0])
-			mc.xform("R_wrist_IK_A_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_wrist_IK_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_wrist_IK_CTL"):
-			if not mc.getAttr("R_wrist_IK_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_wrist_IK_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_wrist_IK_CTL.mirrorMode", l=1):
-				mc.setAttr("R_wrist_IK_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_wrist_IK_CTL.rotateOrder", l=1):
-				mc.setAttr("R_wrist_IK_CTL.rotateOrder", 0)
-
-			mc.xform("R_wrist_IK_CTL", a=1, t=[2.6645352591003757e-15, -1.0658141036401503e-14, 1.3322676295501878e-15])
-			mc.xform("R_wrist_IK_CTL", a=1, ro=[0.0, -3.975693351829396e-16, 0.0])
-			mc.xform("R_wrist_IK_CTL", r=1, s=[1.0, 1.0, 0.9999999999999998])
-
-		if mc.objExists("R_arm_PV_CTL"):
-			if not mc.getAttr("R_arm_PV_CTL.mirrorMode", l=1):
-				mc.setAttr("R_arm_PV_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_arm_PV_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_PV_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_PV_CTL", a=1, t=[3.2335128565819105e-06, -1.7763568394002505e-15, -4.577116709114648e-05])
-			mc.xform("R_arm_PV_CTL", a=1, ro=[178.77562524234102, 0.6177092716231222, 47.31947755068954])
-			mc.xform("R_arm_PV_CTL", r=1, s=[0.9999999999999998, 0.9999999999999994, 0.9999999999999998])
-
-		if mc.objExists("R_shoulder_D_OFF_CTL"):
-			if not mc.getAttr("R_shoulder_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_D_OFF_CTL", a=1, t=[-1.1102230246251565e-16, 0.0, 0.0])
-			mc.xform("R_shoulder_D_OFF_CTL", a=1, ro=[-1.172829538789672e-14, -3.1805546814635168e-15, 7.951386703658796e-16])
-			mc.xform("R_shoulder_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_shoulder_C_OFF_CTL"):
-			if not mc.getAttr("R_shoulder_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_C_OFF_CTL", a=1, t=[1.1102230246251565e-16, 0.0, -2.7755575615628914e-17])
-			mc.xform("R_shoulder_C_OFF_CTL", a=1, ro=[-1.172829538789672e-14, -3.1805546814635168e-15, 7.951386703658796e-16])
-			mc.xform("R_shoulder_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_shoulder_B_OFF_CTL"):
-			if not mc.getAttr("R_shoulder_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_B_OFF_CTL", a=1, t=[-1.1102230246251565e-16, 0.0, 0.0])
-			mc.xform("R_shoulder_B_OFF_CTL", a=1, ro=[-1.172829538789672e-14, -3.1805546814635168e-15, 7.951386703658796e-16])
-			mc.xform("R_shoulder_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_shoulder_A_OFF_CTL"):
-			if not mc.getAttr("R_shoulder_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_A_OFF_CTL", a=1, t=[-1.1102230246251565e-16, 0.0, -5.551115123125783e-17])
-			mc.xform("R_shoulder_A_OFF_CTL", a=1, ro=[-1.172829538789672e-14, -3.1805546814635168e-15, 7.951386703658796e-16])
-			mc.xform("R_shoulder_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_shoulder_CTL"):
-			if not mc.getAttr("R_shoulder_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_shoulder_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_shoulder_CTL.mirrorMode", l=1):
-				mc.setAttr("R_shoulder_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_shoulder_CTL.rotateOrder", l=1):
-				mc.setAttr("R_shoulder_CTL.rotateOrder", 0)
-
-			mc.xform("R_shoulder_CTL", a=1, t=[-3.3306690738754696e-16, 0.0, 5.551115123125783e-17])
-			mc.xform("R_shoulder_CTL", a=1, ro=[0.0, 3.1805546814635168e-15, 0.0])
-			mc.xform("R_shoulder_CTL", r=1, s=[1.0, 1.0, 1.0000000000000002])
-
-		if mc.objExists("R_arm_IK_switch_D_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_D_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_D_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_D_OFF_CTL", a=1, t=[0.0, -1.7763568394002505e-15, 4.440892098500626e-16])
-			mc.xform("R_arm_IK_switch_D_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_switch_D_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_switch_C_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_C_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_C_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_C_OFF_CTL", a=1, t=[0.0, 1.7763568394002505e-15, -4.440892098500626e-16])
-			mc.xform("R_arm_IK_switch_C_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_switch_C_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_switch_B_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_B_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_B_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_B_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 4.440892098500626e-16])
-			mc.xform("R_arm_IK_switch_B_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_switch_B_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_switch_A_OFF_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_A_OFF_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_A_OFF_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_A_OFF_CTL", a=1, t=[-4.440892098500626e-16, 0.0, 0.0])
-			mc.xform("R_arm_IK_switch_A_OFF_CTL", a=1, ro=[-1.5902773407317588e-15, 3.1805546814635176e-15, -4.413906298050161e-32])
-			mc.xform("R_arm_IK_switch_A_OFF_CTL", r=1, s=[1.0, 1.0, 1.0])
-
-		if mc.objExists("R_arm_IK_switch_CTL"):
-			if not mc.getAttr("R_arm_IK_switch_CTL.numOffsetCtrls", l=1):
-				mc.setAttr("R_arm_IK_switch_CTL.numOffsetCtrls", 0)
-
-			if not mc.getAttr("R_arm_IK_switch_CTL.mirrorMode", l=1):
-				mc.setAttr("R_arm_IK_switch_CTL.mirrorMode", 0)
-
-			if not mc.getAttr("R_arm_IK_switch_CTL.rotateOrder", l=1):
-				mc.setAttr("R_arm_IK_switch_CTL.rotateOrder", 0)
-
-			mc.xform("R_arm_IK_switch_CTL", a=1, t=[2.6645352591003757e-15, -1.0658141036401503e-14, 1.3322676295501878e-15])
-			mc.xform("R_arm_IK_switch_CTL", a=1, ro=[0.0, -3.975693351829396e-16, 0.0])
-			mc.xform("R_arm_IK_switch_CTL", r=1, s=[1.0, 1.0, 0.9999999999999998])
+			mc.xform("C_lookAt_CTL", a=1, t=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_CTL", a=1, ro=[0.0, 0.0, 0.0])
+			mc.xform("C_lookAt_CTL", r=1, s=[1.0, 1.0, 1.0])
 
 		# Apply contro shapes data
 		data = {
-			"C_cog_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_CTLShape", "degree": 1, "form": 0, "points": [[36.500891, 98.139605, -6.007186], [36.462392, 98.139605, -11.749509], [26.553836, 98.139605, -15.197408], [25.199756, 98.139605, -19.272178], [31.073793, 98.139605, -27.963555], [27.667425, 98.139605, -32.586554], [17.6231, 98.139605, -29.557981], [14.133523, 98.139605, -32.05878], [13.777607, 98.139605, -42.536641], [8.304413, 98.139605, -44.274543], [1.960935, 98.139605, -35.926261], [-2.331242, 98.139605, -35.89788], [-8.781196, 98.139605, -44.160069], [-14.230575, 98.139605, -42.349003], [-14.450246, 98.139605, -31.869828], [-17.90556, 98.139605, -29.323115], [-27.985864, 98.139605, -32.213726], [-31.329991, 98.139605, -27.545471], [-25.341917, 98.139605, -18.938068], [-26.64055, 98.139605, -14.845802], [-36.500891, 98.139605, -11.260745], [-36.462392, 98.139605, -5.518422], [-26.553836, 98.139605, -2.070523], [-25.199756, 98.139605, 2.004247], [-31.073793, 98.139605, 10.695624], [-27.667425, 98.139605, 15.318623], [-17.6231, 98.139605, 12.29005], [-14.133523, 98.139605, 14.790849], [-13.777607, 98.139605, 25.26871], [-8.304413, 98.139605, 27.006612], [-1.960935, 98.139605, 18.65833], [2.331242, 98.139605, 18.629949], [8.781196, 98.139605, 26.892138], [14.230575, 98.139605, 25.081072], [14.450246, 98.139605, 14.601897], [17.90556, 98.139605, 12.055184], [27.985864, 98.139605, 14.945795], [31.329991, 98.139605, 10.27754], [25.341917, 98.139605, 1.670137], [26.64055, 98.139605, -2.422129], [36.500891, 98.139605, -6.007186]]}]},
-			"L_wrist_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[57.75169, 100.655213, -14.304163], [60.27273, 102.966713, -14.692755], [61.792733, 105.278213, -12.644283], [61.421298, 106.235665, -9.358709], [59.376011, 105.278213, -6.760678], [56.854971, 102.966713, -6.372086], [55.334968, 100.655213, -8.420558], [55.706403, 99.697761, -11.706132]]}]},
-			"L_leg_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_CTLShape", "degree": 3, "form": 2, "points": [[15.941588, 7.470624, -15.709989], [9.978517, 7.470624, -19.826622], [4.015445, 7.470624, -15.709989], [1.545465, 7.470624, -5.771536], [4.015445, 7.470624, 4.166916], [9.978517, 7.470624, 8.283549], [15.941588, 7.470624, 4.166916], [18.411568, 7.470624, -5.771536]]}]},
-			"L_outterBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_outterBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[25.667845, 1.430897, 4.18931], [25.668424, 1.543228, 4.297126], [25.669027, 1.43541, 4.409456], [25.668448, 1.323079, 4.30164], [25.667845, 1.430897, 4.18931], [25.778522, 1.433153, 4.298792], [25.669027, 1.43541, 4.409456], [25.55834, 1.433153, 4.299974], [25.668424, 1.543228, 4.297126], [25.778522, 1.433153, 4.298792], [25.668448, 1.323079, 4.30164], [25.55834, 1.433153, 4.299974], [25.667845, 1.430897, 4.18931], [25.778522, 1.433153, 4.298792], [15.282113, 1.433153, 4.35512]]}, {"shapeName": "L_outterBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[15.28038, 11.815187, 4.032164], [15.170875, 11.817444, 4.142828], [15.281561, 11.8197, 4.25231], [15.391067, 11.817444, 4.141646], [15.28038, 11.815187, 4.032164], [15.280959, 11.927508, 4.139981], [15.281561, 11.8197, 4.25231], [15.280983, 11.70737, 4.144494], [15.170875, 11.817444, 4.142828], [15.280959, 11.927508, 4.139981], [15.391067, 11.817444, 4.141646], [15.280983, 11.70737, 4.144494], [15.28038, 11.815187, 4.032164], [15.280959, 11.927508, 4.139981], [15.282113, 1.433153, 4.35512]]}, {"shapeName": "L_outterBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[15.337826, 1.756114, 14.737005], [15.227743, 1.646039, 14.739852], [15.337851, 1.535965, 14.741518], [15.447934, 1.646039, 14.738671], [15.337826, 1.756114, 14.737005], [15.338429, 1.648296, 14.849324], [15.337851, 1.535965, 14.741518], [15.337248, 1.643783, 14.629189], [15.227743, 1.646039, 14.739852], [15.338429, 1.648296, 14.849324], [15.447934, 1.646039, 14.738671], [15.337248, 1.643783, 14.629189], [15.337826, 1.756114, 14.737005], [15.338429, 1.648296, 14.849324], [15.282113, 1.433153, 4.35512]]}]},
-			"C_torso_FK_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 107.429657, -8.700024], [-0.066058, 107.429657, -8.633965], [-0.0, 107.429657, -8.567907], [0.066058, 107.429657, -8.633965], [-0.0, 107.429657, -8.700024], [-0.0, 107.495709, -8.633965], [-0.0, 107.429657, -8.567907], [-0.0, 107.363598, -8.633965], [-0.066058, 107.429657, -8.633965], [-0.0, 107.495709, -8.633965], [0.066058, 107.429657, -8.633965], [-0.0, 107.363598, -8.633965], [-0.0, 107.429657, -8.700024], [-0.0, 107.495709, -8.633965], [-0.0, 101.197773, -8.633965]]}, {"shapeName": "C_torso_FK_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 101.197773, -8.700024], [-6.231884, 101.131714, -8.633965], [-6.231884, 101.197773, -8.567907], [-6.231884, 101.263831, -8.633965], [-6.231884, 101.197773, -8.700024], [-6.297936, 101.197773, -8.633965], [-6.231884, 101.197773, -8.567907], [-6.165825, 101.197773, -8.633965], [-6.231884, 101.131714, -8.633965], [-6.297936, 101.197773, -8.633965], [-6.231884, 101.263831, -8.633965], [-6.165825, 101.197773, -8.633965], [-6.231884, 101.197773, -8.700024], [-6.297936, 101.197773, -8.633965], [-0.0, 101.197773, -8.633965]]}, {"shapeName": "C_torso_FK_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 101.197773, -2.402082], [-0.0, 101.131714, -2.402082], [0.066058, 101.197773, -2.402082], [-0.0, 101.263831, -2.402082], [-0.066058, 101.197773, -2.402082], [-0.0, 101.197773, -2.336029], [0.066058, 101.197773, -2.402082], [-0.0, 101.197773, -2.46814], [-0.0, 101.131714, -2.402082], [-0.0, 101.197773, -2.336029], [-0.0, 101.263831, -2.402082], [-0.0, 101.197773, -2.46814], [-0.066058, 101.197773, -2.402082], [-0.0, 101.197773, -2.336029], [-0.0, 101.197773, -8.633965]]}]},
-			"L_index_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_A_CTLShape", "degree": 3, "form": 2, "points": [[60.652195, 100.12518, -10.777941], [61.532504, 100.978468, -11.182067], [62.156911, 101.970904, -10.642117], [62.159646, 102.521134, -9.474384], [61.539109, 102.306841, -8.362911], [60.658801, 101.453554, -7.958784], [60.034393, 100.461117, -8.498734], [60.031658, 99.910888, -9.666468]]}]},
-			"L_toe_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toe_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.940376, 1.527856, 17.841151], [9.830279, 1.4178, 17.838099], [9.940376, 1.307725, 17.835856], [10.050472, 1.417781, 17.838907], [9.940376, 1.527856, 17.841151], [9.939971, 1.415143, 17.948558], [9.940376, 1.307725, 17.835856], [9.94078, 1.420438, 17.728438], [9.830279, 1.4178, 17.838099], [9.939971, 1.415143, 17.948558], [10.050472, 1.417781, 17.838907], [9.94078, 1.420438, 17.728438], [9.940376, 1.527856, 17.841151], [9.939971, 1.415143, 17.948558], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_toe_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407886, 1.77853, 7.419621], [-0.407482, 1.671111, 7.306909], [-0.407886, 1.558398, 7.414326], [-0.40829, 1.665817, 7.527039], [-0.407886, 1.77853, 7.419621], [-0.517973, 1.668474, 7.41657], [-0.407886, 1.558398, 7.414326], [-0.297789, 1.668454, 7.417378], [-0.407482, 1.671111, 7.306909], [-0.517973, 1.668474, 7.41657], [-0.40829, 1.665817, 7.527039], [-0.297789, 1.668454, 7.417378], [-0.407886, 1.77853, 7.419621], [-0.517973, 1.668474, 7.41657], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_toe_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.86842, -8.715913, 7.204942], [9.978921, -8.713275, 7.095281], [10.088613, -8.715932, 7.20575], [9.978112, -8.71857, 7.315411], [9.86842, -8.715913, 7.204942], [9.978517, -8.825978, 7.202699], [10.088613, -8.715932, 7.20575], [9.978517, -8.605857, 7.207993], [9.978921, -8.713275, 7.095281], [9.978517, -8.825978, 7.202699], [9.978112, -8.71857, 7.315411], [9.978517, -8.605857, 7.207993], [9.86842, -8.715913, 7.204942], [9.978517, -8.825978, 7.202699], [9.978517, 1.667547, 7.455104]]}]},
-			"L_leg_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[15.345281, 7.470624, -14.716144], [9.978517, 7.470624, -18.421113], [4.611752, 7.470624, -14.716144], [2.38877, 7.470624, -5.771536], [4.611752, 7.470624, 3.173071], [9.978517, 7.470624, 6.878041], [15.345281, 7.470624, 3.173071], [17.568263, 7.470624, -5.771536]]}]},
-			"L_pinky_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[79.063545, 102.950145, -15.715667], [79.072324, 103.059892, -15.60557], [79.063545, 102.950145, -15.495472], [79.054765, 102.840398, -15.60557], [79.063545, 102.950145, -15.715667], [79.173281, 102.941366, -15.60557], [79.063545, 102.950145, -15.495472], [78.953798, 102.958925, -15.60557], [79.072324, 103.059892, -15.60557], [79.173281, 102.941366, -15.60557], [79.054765, 102.840398, -15.60557], [78.953798, 102.958925, -15.60557], [79.063545, 102.950145, -15.715667], [79.173281, 102.941366, -15.60557], [68.71015, 103.778417, -15.60557]]}, {"shapeName": "L_pinky_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[69.538422, 114.131812, -15.715667], [69.428675, 114.140591, -15.60557], [69.538422, 114.131812, -15.495472], [69.648168, 114.123032, -15.60557], [69.538422, 114.131812, -15.715667], [69.547201, 114.241548, -15.60557], [69.538422, 114.131812, -15.495472], [69.529642, 114.022065, -15.60557], [69.428675, 114.140591, -15.60557], [69.547201, 114.241548, -15.60557], [69.648168, 114.123032, -15.60557], [69.529642, 114.022065, -15.60557], [69.538422, 114.131812, -15.715667], [69.547201, 114.241548, -15.60557], [68.71015, 103.778417, -15.60557]]}, {"shapeName": "L_pinky_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[68.71893, 103.888164, -5.219097], [68.600403, 103.787197, -5.219097], [68.70137, 103.66867, -5.219097], [68.819897, 103.769637, -5.219097], [68.71893, 103.888164, -5.219097], [68.71015, 103.778417, -5.10901], [68.70137, 103.66867, -5.219097], [68.71015, 103.778417, -5.329195], [68.600403, 103.787197, -5.219097], [68.71015, 103.778417, -5.10901], [68.819897, 103.769637, -5.219097], [68.71015, 103.778417, -5.329195], [68.71893, 103.888164, -5.219097], [68.71015, 103.778417, -5.10901], [68.71015, 103.778417, -15.60557]]}]},
-			"C_head_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_CTLShape", "degree": 3, "form": 2, "points": [[11.926143, 176.101829, -4.86881], [0.0, 181.041616, -4.827551], [-11.926143, 176.101829, -4.86881], [-16.866103, 164.176102, -4.968417], [-11.926143, 152.250374, -5.068025], [0.0, 147.310587, -5.109283], [11.926143, 152.250374, -5.068025], [16.866103, 164.176102, -4.968417]]}]},
-			"world_A_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 0.0, -519.93], [230.985, 0.0, -288.72], [173.16, 0.0, -288.72], [173.16, 0.0, -173.115], [288.765, 0.0, -173.115], [288.765, 0.0, -230.94], [519.93, 0.0, 0.0], [288.72, 0.0, 230.985], [288.72, 0.0, 173.16], [173.115, 0.0, 173.16], [173.115, 0.0, 288.765], [230.94, 0.0, 288.765], [0.0, 0.0, 519.93], [-230.985, 0.0, 288.72], [-173.16, 0.0, 288.72], [-173.16, 0.0, 173.115], [-288.765, 0.0, 173.115], [-288.765, 0.0, 230.94], [-519.93, 0.0, 0.0], [-288.72, 0.0, -230.985], [-288.72, 0.0, -173.16], [-173.115, 0.0, -173.16], [-173.115, 0.0, -288.765], [-230.94, 0.0, -288.765], [0.0, 0.0, -519.93], [45.27, 0.63, -475.47], [41.31, 0.0, -471.24], [41.31, 0.0, -453.96], [37.71, 0.0, -453.96], [37.935, 0.0, -471.375], [35.37, 0.0, -470.07], [35.46, 0.0, -462.51], [31.815, 0.0, -462.51], [31.815, 0.0, -470.07], [29.565, 0.0, -471.375], [29.565, 0.0, -453.69], [25.92, 0.0, -453.69], [25.92, 0.0, -471.825], [28.845, 0.0, -474.75], [33.345, 0.0, -472.5], [38.295, 0.0, -474.75], [41.31, 0.0, -471.33], [38.295, 0.0, -474.75], [33.39, 0.0, -472.545], [28.845, 0.0, -474.705], [20.07, 0.0, -474.75], [23.04, 0.0, -471.825], [23.04, 0.0, -456.66], [20.07, 0.0, -453.69], [10.575, 0.0, -453.69], [7.65, 0.0, -456.66], [7.65, 0.0, -471.825], [10.575, 0.0, -474.75], [20.07, 0.0, -474.75], [18.945, 0.0, -471.375], [19.395, 0.0, -457.425], [11.25, 0.0, -457.515], [11.295, 0.0, -471.375], [18.99, 0.0, -471.465], [20.07, 0.0, -474.75], [10.575, 0.0, -474.75], [4.5, 0.0, -474.75], [4.725, 0.0, -453.69], [-5.535, 0.0, -453.69], [-8.505, 0.0, -456.66], [-8.505, 0.0, -463.005], [-5.49, 0.0, -465.93], [-5.31, 0.0, -466.155], [-11.205, 0.0, -474.66], [-11.205, 0.0, -474.75], [-6.975, 0.0, -474.75], [-1.08, 0.0, -466.2], [1.125, 0.0, -466.2], [1.125, 0.0, -457.2], [-4.545, 0.0, -457.2], [-4.59, 0.0, -462.555], [1.125, 0.0, -462.555], [1.125, 0.0, -474.75], [4.5, 0.0, -474.75], [-28.935, 0.0, -474.75], [-28.935, 0.0, -471.375], [-17.145, 0.0, -471.33], [-17.145, 0.0, -453.69], [-13.5, 0.0, -453.69], [-13.5, 0.0, -474.75], [-44.28, 0.0, -474.75], [-46.98, 0.0, -471.825], [-47.205, 0.0, -456.66], [-44.28, 0.0, -453.69], [-31.815, 0.0, -453.69], [-31.815, 0.0, -474.75], [-35.505, 0.0, -471.375], [-35.415, 0.0, -457.11], [-43.11, 0.0, -457.11], [-43.02, 0.0, -471.285], [-35.37, 0.0, -471.465], [-31.725, 0.0, -474.75]]}]},
-			"C_cog_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_cog_PIV_CTLShape", "degree": 1, "form": 0, "points": [[6.231884, 98.139605, -8.700024], [6.231884, 98.205663, -8.633965], [6.231884, 98.139605, -8.567907], [6.231884, 98.073546, -8.633965], [6.231884, 98.139605, -8.700024], [6.297936, 98.139605, -8.633965], [6.231884, 98.139605, -8.567907], [6.165825, 98.139605, -8.633965], [6.231884, 98.205663, -8.633965], [6.297936, 98.139605, -8.633965], [6.231884, 98.073546, -8.633965], [6.165825, 98.139605, -8.633965], [6.231884, 98.139605, -8.700024], [6.297936, 98.139605, -8.633965], [-0.0, 98.139605, -8.633965]]}, {"shapeName": "C_cog_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 104.371488, -8.700024], [-0.066058, 104.371488, -8.633965], [-0.0, 104.371488, -8.567907], [0.066058, 104.371488, -8.633965], [-0.0, 104.371488, -8.700024], [-0.0, 104.437541, -8.633965], [-0.0, 104.371488, -8.567907], [-0.0, 104.30543, -8.633965], [-0.066058, 104.371488, -8.633965], [-0.0, 104.437541, -8.633965], [0.066058, 104.371488, -8.633965], [-0.0, 104.30543, -8.633965], [-0.0, 104.371488, -8.700024], [-0.0, 104.437541, -8.633965], [-0.0, 98.139605, -8.633965]]}, {"shapeName": "C_cog_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 98.205663, -2.402082], [-0.066058, 98.139605, -2.402082], [-0.0, 98.073546, -2.402082], [0.066058, 98.139605, -2.402082], [-0.0, 98.205663, -2.402082], [-0.0, 98.139605, -2.336029], [-0.0, 98.073546, -2.402082], [-0.0, 98.139605, -2.46814], [-0.066058, 98.139605, -2.402082], [-0.0, 98.139605, -2.336029], [0.066058, 98.139605, -2.402082], [-0.0, 98.139605, -2.46814], [-0.0, 98.205663, -2.402082], [-0.0, 98.139605, -2.336029], [-0.0, 98.139605, -8.633965]]}]},
-			"L_ring_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_C_CTLShape", "degree": 3, "form": 2, "points": [[66.303599, 95.18302, -11.301014], [67.293852, 95.880712, -11.747089], [68.162182, 96.675675, -11.217561], [68.399931, 97.102227, -10.022618], [67.86783, 96.910504, -8.862242], [66.877577, 96.212811, -8.416167], [66.009247, 95.417849, -8.945695], [65.771498, 94.991296, -10.140638]]}]},
-			"L_index_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[74.428638, 85.097572, -3.695878], [74.488249, 85.177483, -3.576279], [74.371605, 85.128584, -3.485471], [74.311995, 85.048674, -3.605069], [74.428638, 85.097572, -3.695878], [74.459631, 85.025148, -3.561584], [74.371605, 85.128584, -3.485471], [74.340608, 85.201016, -3.619768], [74.488249, 85.177483, -3.576279], [74.459631, 85.025148, -3.561584], [74.311995, 85.048674, -3.605069], [74.340608, 85.201016, -3.619768], [74.428638, 85.097572, -3.695878], [74.459631, 85.025148, -3.561584], [68.785609, 93.409046, -6.335303]]}, {"shapeName": "L_index_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[77.127897, 99.469381, -5.082505], [77.039866, 99.572825, -5.006395], [77.070864, 99.500393, -4.872098], [77.158895, 99.396949, -4.948208], [77.127897, 99.469381, -5.082505], [77.187499, 99.549286, -4.962908], [77.070864, 99.500393, -4.872098], [77.011254, 99.420483, -4.991697], [77.039866, 99.572825, -5.006395], [77.187499, 99.549286, -4.962908], [77.158895, 99.396949, -4.948208], [77.011254, 99.420483, -4.991697], [77.127897, 99.469381, -5.082505], [77.187499, 99.549286, -4.962908], [68.785609, 93.409046, -6.335303]]}, {"shapeName": "L_index_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[66.183519, 94.936285, 3.603893], [66.035878, 94.959819, 3.560404], [66.007266, 94.807476, 3.575103], [66.154907, 94.783943, 3.618591], [66.183519, 94.936285, 3.603893], [66.066879, 94.887386, 3.694692], [66.007266, 94.807476, 3.575103], [66.123909, 94.856375, 3.484294], [66.035878, 94.959819, 3.560404], [66.066879, 94.887386, 3.694692], [66.154907, 94.783943, 3.618591], [66.123909, 94.856375, 3.484294], [66.183519, 94.936285, 3.603893], [66.066879, 94.887386, 3.694692], [68.785609, 93.409046, -6.335303]]}]},
-			"R_index_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_index_D_CTLShape", "degree": 3, "form": 2, "points": [[-68.139891, 92.543426, -7.630837], [-69.222461, 93.171503, -7.946944], [-70.049129, 93.938729, -7.318975], [-70.135643, 94.395673, -6.114783], [-69.431327, 94.274665, -5.039768], [-68.348758, 93.646589, -4.723661], [-67.522089, 92.879363, -5.35163], [-67.435575, 92.422418, -6.555822]]}]},
-			"R_arm_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-30.674815, 130.063272, 85.011199], [-30.756935, 130.140225, 84.9036], [-30.677189, 130.067976, 84.791068], [-30.595069, 129.991023, 84.898667], [-30.674815, 130.063272, 85.011199], [-30.601378, 130.146553, 84.902058], [-30.677189, 130.067976, 84.791068], [-30.750634, 129.984688, 84.900208], [-30.756935, 130.140225, 84.9036], [-30.601378, 130.146553, 84.902058], [-30.595069, 129.991023, 84.898667], [-30.750634, 129.984688, 84.900208], [-30.674815, 130.063272, 85.011199], [-30.601378, 130.146553, 84.902058], [-37.716685, 122.430181, 84.81387]]}, {"shapeName": "R_arm_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-45.350618, 129.465554, 85.156688], [-45.426437, 129.38697, 85.045697], [-45.352993, 129.470259, 84.936556], [-45.277174, 129.548842, 85.047547], [-45.350618, 129.465554, 85.156688], [-45.432732, 129.5425, 85.049089], [-45.352993, 129.470259, 84.936556], [-45.270872, 129.393306, 85.044154], [-45.426437, 129.38697, 85.045697], [-45.432732, 129.5425, 85.049089], [-45.277174, 129.548842, 85.047547], [-45.270872, 129.393306, 85.044154], [-45.350618, 129.465554, 85.156688], [-45.432732, 129.5425, 85.049089], [-37.716685, 122.430181, 84.81387]]}, {"shapeName": "R_arm_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-37.909593, 122.726705, 74.432839], [-37.903292, 122.571167, 74.429448], [-37.747727, 122.577503, 74.427906], [-37.754028, 122.73304, 74.431298], [-37.909593, 122.726705, 74.432839], [-37.829847, 122.654456, 74.320317], [-37.747727, 122.577503, 74.427906], [-37.827473, 122.649752, 74.540438], [-37.903292, 122.571167, 74.429448], [-37.829847, 122.654456, 74.320317], [-37.754028, 122.73304, 74.431298], [-37.827473, 122.649752, 74.540438], [-37.909593, 122.726705, 74.432839], [-37.829847, 122.654456, 74.320317], [-37.716685, 122.430181, 84.81387]]}]},
-			"R_arm_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-65.588617, 95.83296, -7.765984], [-65.616732, 95.912981, -7.635411], [-65.504953, 95.83296, -7.562302], [-65.476837, 95.75294, -7.692874], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-65.504953, 95.83296, -7.562302], [-65.472765, 95.908579, -7.694547], [-65.616732, 95.912981, -7.635411], [-65.620798, 95.757349, -7.633742], [-65.476837, 95.75294, -7.692874], [-65.472765, 95.908579, -7.694547], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_arm_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-65.204449, 110.515778, -7.923782], [-65.088598, 110.591397, -7.852345], [-65.120786, 110.515778, -7.720101], [-65.236637, 110.44016, -7.791537], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-65.120786, 110.515778, -7.720101], [-65.09267, 110.435758, -7.850673], [-65.088598, 110.591397, -7.852345], [-65.232559, 110.595792, -7.793213], [-65.236637, 110.44016, -7.791537], [-65.09267, 110.435758, -7.850673], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_arm_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-54.687444, 103.046734, -0.896134], [-54.543477, 103.042331, -0.95527], [-54.547549, 102.886692, -0.953597], [-54.691516, 102.891095, -0.894462], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-54.547549, 102.886692, -0.953597], [-54.659328, 102.966713, -1.026707], [-54.543477, 103.042331, -0.95527], [-54.575669, 102.966713, -0.823034], [-54.691516, 102.891095, -0.894462], [-54.659328, 102.966713, -1.026707], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-58.56385, 102.966713, -10.53242]]}]},
-			"R_ankleOffset_CTL": {"color": 20, "shapes": [{"shapeName": "R_ankleOffset_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, 4.867005, -6.774814], [-9.978517, 10.697845, -2.541692], [-9.978517, 12.132748, -2.541109], [-10.993147, 11.415005, -1.823949], [-9.978517, 12.132165, -1.106206], [-9.978517, 12.132748, -2.541109], [-8.963887, 11.415005, -1.823949], [-9.978517, 10.697845, -2.541692], [-9.978517, 10.697262, -1.106789], [-8.963887, 11.415005, -1.823949], [-9.978517, 12.132165, -1.106206], [-9.978517, 10.697262, -1.106789], [-10.993147, 11.415005, -1.823949], [-9.978517, 10.697845, -2.541692]]}]},
-			"L_toeTip_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toeTip_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.339047, 1.500263, 14.150158], [20.339626, 1.612594, 14.257974], [20.340229, 1.504776, 14.370303], [20.33965, 1.392445, 14.262487], [20.339047, 1.500263, 14.150158], [20.449724, 1.50252, 14.25964], [20.340229, 1.504776, 14.370303], [20.229542, 1.50252, 14.260821], [20.339626, 1.612594, 14.257974], [20.449724, 1.50252, 14.25964], [20.33965, 1.392445, 14.262487], [20.229542, 1.50252, 14.260821], [20.339047, 1.500263, 14.150158], [20.449724, 1.50252, 14.25964], [9.953315, 1.50252, 14.315968]]}, {"shapeName": "L_toeTip_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.951582, 11.884554, 13.993012], [9.842076, 11.88681, 14.103675], [9.952763, 11.889067, 14.213157], [10.062268, 11.88681, 14.102494], [9.951582, 11.884554, 13.993012], [9.95216, 11.996875, 14.100828], [9.952763, 11.889067, 14.213157], [9.952184, 11.776736, 14.105341], [9.842076, 11.88681, 14.103675], [9.95216, 11.996875, 14.100828], [10.062268, 11.88681, 14.102494], [9.952184, 11.776736, 14.105341], [9.951582, 11.884554, 13.993012], [9.95216, 11.996875, 14.100828], [9.953315, 1.50252, 14.315968]]}, {"shapeName": "L_toeTip_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[10.009028, 1.82548, 24.697852], [9.898944, 1.715406, 24.7007], [10.009052, 1.605331, 24.702365], [10.119136, 1.715406, 24.699518], [10.009028, 1.82548, 24.697852], [10.009631, 1.717662, 24.810171], [10.009052, 1.605331, 24.702365], [10.008449, 1.713149, 24.590036], [9.898944, 1.715406, 24.7007], [10.009631, 1.717662, 24.810171], [10.119136, 1.715406, 24.699518], [10.008449, 1.713149, 24.590036], [10.009028, 1.82548, 24.697852], [10.009631, 1.717662, 24.810171], [9.953315, 1.50252, 14.315968]]}]},
-			"L_middle_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[71.652017, 85.867009, 1.967883], [71.675485, 85.954721, 2.09437], [71.537247, 85.910461, 2.15071], [71.513779, 85.822749, 2.024223], [71.652017, 85.867009, 1.967883], [71.642494, 85.80333, 2.10964], [71.537247, 85.910461, 2.15071], [71.546765, 85.974148, 2.008948], [71.675485, 85.954721, 2.09437], [71.642494, 85.80333, 2.10964], [71.513779, 85.822749, 2.024223], [71.546765, 85.974148, 2.008948], [71.652017, 85.867009, 1.967883], [71.642494, 85.80333, 2.10964], [67.078971, 93.946473, -2.690491]]}, {"shapeName": "L_middle_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[74.763943, 100.149761, 0.526863], [74.658691, 100.2569, 0.567928], [74.649172, 100.193213, 0.70969], [74.754424, 100.086074, 0.668625], [74.763943, 100.149761, 0.526863], [74.787403, 100.237467, 0.653346], [74.649172, 100.193213, 0.70969], [74.625704, 100.105501, 0.583203], [74.658691, 100.2569, 0.567928], [74.787403, 100.237467, 0.653346], [74.754424, 100.086074, 0.668625], [74.625704, 100.105501, 0.583203], [74.763943, 100.149761, 0.526863], [74.787403, 100.237467, 0.653346], [67.078971, 93.946473, -2.690491]]}, {"shapeName": "L_middle_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.746179, 96.062061, 5.968409], [61.61746, 96.081488, 5.882988], [61.584473, 95.93009, 5.898263], [61.713193, 95.910663, 5.983684], [61.746179, 96.062061, 5.968409], [61.607946, 96.0178, 6.024741], [61.584473, 95.93009, 5.898263], [61.722711, 95.97435, 5.841923], [61.61746, 96.081488, 5.882988], [61.607946, 96.0178, 6.024741], [61.713193, 95.910663, 5.983684], [61.722711, 95.97435, 5.841923], [61.746179, 96.062061, 5.968409], [61.607946, 96.0178, 6.024741], [67.078971, 93.946473, -2.690491]]}]},
-			"C_midNeck_C_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[10.01796, 159.944122, -14.676332], [0.0, 160.805201, -18.025378], [-10.01796, 159.944122, -14.676332], [-14.167526, 157.865288, -6.591002], [-10.01796, 155.786454, 1.494328], [0.0, 154.925375, 4.843374], [10.01796, 155.786454, 1.494328], [14.167526, 157.865288, -6.591002]]}]},
-			"R_middle_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_middle_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-69.140394, 92.609241, -1.211215], [-69.151956, 92.713474, -1.09613], [-69.025624, 92.652693, -1.028389], [-69.014062, 92.54846, -1.143474], [-69.140394, 92.609241, -1.211215], [-69.146837, 92.561389, -1.063197], [-69.025624, 92.652693, -1.028389], [-69.019175, 92.700552, -1.176412], [-69.151956, 92.713474, -1.09613], [-69.146837, 92.561389, -1.063197], [-69.014062, 92.54846, -1.143474], [-69.019175, 92.700552, -1.176412], [-69.140394, 92.609241, -1.211215], [-69.146837, 92.561389, -1.063197], [-63.061, 99.1955, -6.46032]]}, {"shapeName": "R_middle_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-69.622743, 106.957401, -4.318509], [-69.501524, 107.048712, -4.283706], [-69.507973, 107.000853, -4.135682], [-69.629192, 106.909543, -4.170486], [-69.622743, 106.957401, -4.318509], [-69.634298, 107.061627, -4.203425], [-69.507973, 107.000853, -4.135682], [-69.496411, 106.89662, -4.250768], [-69.501524, 107.048712, -4.283706], [-69.634298, 107.061627, -4.203425], [-69.629192, 106.909543, -4.170486], [-69.496411, 106.89662, -4.250768], [-69.622743, 106.957401, -4.318509], [-69.634298, 107.061627, -4.203425], [-63.061, 99.1955, -6.46032]]}, {"shapeName": "R_middle_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-57.716302, 101.32761, 2.187179], [-57.583521, 101.314688, 2.106897], [-57.578408, 101.162596, 2.139834], [-57.711189, 101.175518, 2.220117], [-57.716302, 101.32761, 2.187179], [-57.589975, 101.266827, 2.254912], [-57.578408, 101.162596, 2.139834], [-57.70474, 101.223377, 2.072094], [-57.583521, 101.314688, 2.106897], [-57.589975, 101.266827, 2.254912], [-57.711189, 101.175518, 2.220117], [-57.70474, 101.223377, 2.072094], [-57.716302, 101.32761, 2.187179], [-57.589975, 101.266827, 2.254912], [-63.061, 99.1955, -6.46032]]}]},
-			"R_leg_IK_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-14.748974, 7.470624, -13.722298], [-9.978517, 7.470624, -17.015605], [-5.208059, 7.470624, -13.722298], [-3.232076, 7.470624, -5.771536], [-5.208059, 7.470624, 2.179226], [-9.978517, 7.470624, 5.472532], [-14.748974, 7.470624, 2.179226], [-16.724958, 7.470624, -5.771536]]}]},
-			"R_upLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_upLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, 80.783151, -3.523062], [-9.868419, 80.765401, -3.631719], [-9.978517, 80.747651, -3.740376], [-10.088614, 80.765401, -3.631719], [-9.978517, 80.783151, -3.523062], [-9.978517, 80.656754, -3.613971], [-9.978517, 80.747651, -3.740376], [-9.978517, 80.874058, -3.649469], [-9.868419, 80.765401, -3.631719], [-9.978517, 80.656754, -3.613971], [-10.088614, 80.765401, -3.631719], [-9.978517, 80.874058, -3.649469], [-9.978517, 80.783151, -3.523062], [-9.978517, 80.656754, -3.613971], [-9.978517, 91.015999, -5.306253]]}, {"shapeName": "R_upLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407956, 91.033749, -5.197596], [0.407956, 91.124656, -5.324003], [0.407956, 90.998249, -5.41491], [0.407956, 90.907342, -5.288503], [0.407956, 91.033749, -5.197596], [0.518043, 91.015999, -5.306253], [0.407956, 90.998249, -5.41491], [0.297859, 91.015999, -5.306253], [0.407956, 91.124656, -5.324003], [0.518043, 91.015999, -5.306253], [0.407956, 90.907342, -5.288503], [0.297859, 91.015999, -5.306253], [0.407956, 91.033749, -5.197596], [0.518043, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}, {"shapeName": "R_upLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868419, 89.341465, -15.556851], [-9.978517, 89.450122, -15.574601], [-10.088614, 89.341465, -15.556851], [-9.978517, 89.232808, -15.5391], [-9.868419, 89.341465, -15.556851], [-9.978517, 89.323717, -15.665498], [-10.088614, 89.341465, -15.556851], [-9.978517, 89.359215, -15.448193], [-9.978517, 89.450122, -15.574601], [-9.978517, 89.323717, -15.665498], [-9.978517, 89.232808, -15.5391], [-9.978517, 89.359215, -15.448193], [-9.868419, 89.341465, -15.556851], [-9.978517, 89.323717, -15.665498], [-9.978517, 91.015999, -5.306253]]}]},
-			"C_neckBase_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neckBase_PIV_CTLShape", "degree": 1, "form": 0, "points": [[10.386473, 151.589011, -8.318385], [10.386473, 151.668225, -8.18434], [10.386473, 151.534179, -8.105126], [10.386473, 151.454966, -8.239172], [10.386473, 151.589011, -8.318385], [10.49656, 151.561595, -8.211756], [10.386473, 151.534179, -8.105126], [10.276375, 151.561595, -8.211756], [10.386473, 151.668225, -8.18434], [10.49656, 151.561595, -8.211756], [10.386473, 151.454966, -8.239172], [10.276375, 151.561595, -8.211756], [10.386473, 151.589011, -8.318385], [10.49656, 151.561595, -8.211756], [0.0, 151.561595, -8.211756]]}, {"shapeName": "C_neckBase_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 161.648312, -5.73202], [-0.110097, 161.620896, -5.625391], [0.0, 161.59348, -5.518761], [0.110097, 161.620896, -5.625391], [0.0, 161.648312, -5.73202], [0.0, 161.727515, -5.597978], [0.0, 161.59348, -5.518761], [0.0, 161.514266, -5.652806], [-0.110097, 161.620896, -5.625391], [0.0, 161.727515, -5.597978], [0.110097, 161.620896, -5.625391], [0.0, 161.514266, -5.652806], [0.0, 161.648312, -5.73202], [0.0, 161.727515, -5.597978], [0.0, 151.561595, -8.211756]]}, {"shapeName": "C_neckBase_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 149.08186, 1.874961], [-0.110097, 148.97523, 1.847545], [0.0, 148.868601, 1.820129], [0.110097, 148.97523, 1.847545], [0.0, 149.08186, 1.874961], [0.0, 148.947817, 1.954164], [0.0, 148.868601, 1.820129], [0.0, 149.002646, 1.740915], [-0.110097, 148.97523, 1.847545], [0.0, 148.947817, 1.954164], [0.110097, 148.97523, 1.847545], [0.0, 149.002646, 1.740915], [0.0, 149.08186, 1.874961], [0.0, 148.947817, 1.954164], [0.0, 151.561595, -8.211756]]}]},
-			"C_chest_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_chest_FK_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 127.606377, -14.721745], [0.0, 127.839344, -14.768085], [0.0, 128.036844, -14.900056], [0.0, 128.168814, -15.097556], [0.0, 128.215155, -15.330523], [0.0, 128.168814, -15.56349], [0.0, 128.036844, -15.76099], [0.0, 127.839344, -15.892961], [0.0, 127.606377, -15.939301], [0.0, 127.373409, -15.892961], [0.0, 127.17591, -15.76099], [0.0, 127.043939, -15.56349], [0.0, 126.997599, -15.330523], [0.0, 127.043939, -15.097556], [0.0, 127.17591, -14.900056], [0.0, 127.373409, -14.768085], [0.0, 127.606377, -14.721745], [0.0, 127.606377, -8.633965]]}]},
-			"L_shoulder_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [5.51861, 146.415763, -1.982087], [7.627856, 146.240259, -3.192355], [8.433518, 146.173222, -3.654637], [4.774944, 146.240259, -8.164392], [0.902499, 146.415763, -10.027016], [-1.704686, 146.632699, -8.531036], [-2.050734, 146.808203, -4.247877], [-0.003484, 146.87524, 1.186442], [0.802179, 146.808203, 0.72416], [2.911425, 146.632699, -0.486107], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
-			"L_ring_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[73.481783, 87.999364, -8.591448], [73.553985, 88.079102, -8.478879], [73.45461, 88.021043, -8.374014], [73.382408, 87.941306, -8.486583], [73.481783, 87.999364, -8.591448], [73.535845, 87.925023, -8.465784], [73.45461, 88.021043, -8.374014], [73.400542, 88.095392, -8.499679], [73.553985, 88.079102, -8.478879], [73.535845, 87.925023, -8.465784], [73.382408, 87.941306, -8.486583], [73.400542, 88.095392, -8.499679], [73.481783, 87.999364, -8.591448], [73.535845, 87.925023, -8.465784], [67.085714, 96.046762, -10.081628]]}, {"shapeName": "L_ring_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[75.192499, 102.535685, -9.82695], [75.111257, 102.631712, -9.735182], [75.165325, 102.557363, -9.609516], [75.246567, 102.461336, -9.701285], [75.192499, 102.535685, -9.82695], [75.264693, 102.615416, -9.714382], [75.165325, 102.557363, -9.609516], [75.093123, 102.477626, -9.722085], [75.111257, 102.631712, -9.735182], [75.264693, 102.615416, -9.714382], [75.246567, 102.461336, -9.701285], [75.093123, 102.477626, -9.722085], [75.192499, 102.535685, -9.82695], [75.264693, 102.615416, -9.714382], [67.085714, 96.046762, -10.081628]]}, {"shapeName": "L_ring_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[65.889749, 97.138224, 0.178455], [65.736306, 97.154514, 0.157655], [65.718172, 97.000428, 0.170751], [65.871615, 96.984137, 0.191552], [65.889749, 97.138224, 0.178455], [65.790375, 97.080164, 0.28331], [65.718172, 97.000428, 0.170751], [65.817547, 97.058486, 0.065886], [65.736306, 97.154514, 0.157655], [65.790375, 97.080164, 0.28331], [65.871615, 96.984137, 0.191552], [65.817547, 97.058486, 0.065886], [65.889749, 97.138224, 0.178455], [65.790375, 97.080164, 0.28331], [67.085714, 96.046762, -10.081628]]}]},
-			"R_leg_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_leg_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[-17.911685, 8.650198, -5.58849], [-17.588678, 8.650198, -5.58849], [-17.527506, 8.322669, -5.639316], [-17.297976, 8.228692, -5.653899], [-17.020333, 8.417548, -5.624593], [-16.791929, 8.191846, -5.659617], [-16.983035, 7.917516, -5.702188], [-16.887974, 7.690671, -5.737389], [-16.556495, 7.630223, -5.74677], [-16.556495, 7.311025, -5.796303], [-16.887974, 7.250577, -5.805683], [-16.983035, 7.023762, -5.84088], [-16.791929, 6.749402, -5.883455], [-17.020333, 6.5237, -5.91848], [-17.297976, 6.712556, -5.889173], [-17.527506, 6.618579, -5.903756], [-17.588678, 6.29105, -5.954582], [-17.911685, 6.29105, -5.954582], [-17.972887, 6.618579, -5.903756], [-18.202417, 6.712556, -5.889173], [-18.48006, 6.5237, -5.91848], [-18.708443, 6.749402, -5.883455], [-18.517358, 7.023762, -5.84088], [-18.612419, 7.250577, -5.805683], [-18.943868, 7.311025, -5.796303], [-18.943868, 7.630223, -5.74677], [-18.612419, 7.690671, -5.737389], [-18.517358, 7.917516, -5.702188], [-18.708443, 8.191846, -5.659617], [-18.48006, 8.417548, -5.624593], [-18.202417, 8.228692, -5.653899], [-17.972887, 8.322669, -5.639316], [-17.911685, 8.650198, -5.58849]]}, {"shapeName": "R_leg_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[-18.100792, 7.817093, -5.717771], [-18.246026, 7.470624, -5.771536], [-18.100792, 7.124155, -5.825301], [-17.750186, 6.980669, -5.847567], [-17.399601, 7.124155, -5.825301], [-17.254367, 7.470624, -5.771536], [-17.399601, 7.817093, -5.717771], [-17.750186, 7.960579, -5.695505]]}, {"shapeName": "R_leg_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[-16.556495, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}]},
-			"R_arm_IK_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-57.379343, 106.982836, -7.947672], [-53.769482, 102.853114, -9.430442], [-55.928338, 102.853114, -14.686262], [-59.538199, 106.982836, -13.203492], [-63.358219, 103.080312, -11.634399], [-59.748358, 98.95059, -13.117168], [-57.589502, 98.95059, -7.861348], [-61.199363, 103.080312, -6.378579], [-57.379343, 106.982836, -7.947672], [-59.538199, 106.982836, -13.203492], [-55.928338, 102.853114, -14.686262], [-59.748358, 98.95059, -13.117168], [-63.358219, 103.080312, -11.634399], [-61.199363, 103.080312, -6.378579], [-57.589502, 98.95059, -7.861348], [-53.769482, 102.853114, -9.430442]]}]},
-			"L_ankleOffset_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ankleOffset_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.364989, 7.4651, -5.881495], [20.364989, 7.580583, -5.77706], [20.364989, 7.476148, -5.661578], [20.364989, 7.360665, -5.766012], [20.364989, 7.4651, -5.881495], [20.475077, 7.470624, -5.771536], [20.364989, 7.476148, -5.661578], [20.254892, 7.470624, -5.771536], [20.364989, 7.580583, -5.77706], [20.475077, 7.470624, -5.771536], [20.364989, 7.360665, -5.766012], [20.254892, 7.470624, -5.771536], [20.364989, 7.4651, -5.881495], [20.475077, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_ankleOffset_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.978517, 17.83849, -6.402631], [9.868419, 17.844015, -6.292672], [9.978517, 17.849539, -6.182713], [10.088614, 17.844015, -6.292672], [9.978517, 17.83849, -6.402631], [9.978517, 17.953963, -6.298195], [9.978517, 17.849539, -6.182713], [9.978517, 17.734056, -6.287148], [9.868419, 17.844015, -6.292672], [9.978517, 17.953963, -6.298195], [10.088614, 17.844015, -6.292672], [9.978517, 17.734056, -6.287148], [9.978517, 17.83849, -6.402631], [9.978517, 17.953963, -6.298195], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_ankleOffset_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.978517, 8.101718, 4.59633], [9.868419, 7.99176, 4.601854], [9.978517, 7.881801, 4.607378], [10.088614, 7.99176, 4.601854], [9.978517, 8.101718, 4.59633], [9.978517, 7.997283, 4.711803], [9.978517, 7.881801, 4.607378], [9.978517, 7.986235, 4.491895], [9.868419, 7.99176, 4.601854], [9.978517, 7.997283, 4.711803], [10.088614, 7.99176, 4.601854], [9.978517, 7.986235, 4.491895], [9.978517, 8.101718, 4.59633], [9.978517, 7.997283, 4.711803], [9.978517, 7.470624, -5.771536]]}]},
-			"L_shoulder_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_shoulder_PIV_CTLShape", "degree": 1, "form": 0, "points": [[13.145654, 145.77658, -6.485353], [13.207321, 145.886392, -6.393804], [13.255241, 145.77658, -6.294365], [13.193573, 145.666768, -6.385915], [13.145654, 145.77658, -6.485353], [13.295685, 145.768656, -6.444506], [13.255241, 145.77658, -6.294365], [13.105201, 145.784505, -6.335208], [13.207321, 145.886392, -6.393804], [13.295685, 145.768656, -6.444506], [13.193573, 145.666768, -6.385915], [13.105201, 145.784505, -6.335208], [13.145654, 145.77658, -6.485353], [13.295685, 145.768656, -6.444506], [4.215017, 146.524231, -1.234097]]}, {"shapeName": "L_shoulder_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[4.808705, 156.88376, -1.701684], [4.768253, 156.891685, -1.551539], [4.918293, 156.88376, -1.510696], [4.958745, 156.875834, -1.660842], [4.808705, 156.88376, -1.701684], [4.870372, 156.993561, -1.610134], [4.918293, 156.88376, -1.510696], [4.856625, 156.773948, -1.602246], [4.768253, 156.891685, -1.551539], [4.870372, 156.993561, -1.610134], [4.958745, 156.875834, -1.660842], [4.856625, 156.773948, -1.602246], [4.808705, 156.88376, -1.701684], [4.870372, 156.993561, -1.610134], [4.215017, 146.524231, -1.234097]]}, {"shapeName": "L_shoulder_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.391063, 146.634043, 7.770759], [9.288943, 146.532156, 7.829354], [9.377315, 146.414419, 7.778647], [9.479435, 146.516306, 7.720051], [9.391063, 146.634043, 7.770759], [9.438978, 146.524231, 7.870188], [9.377315, 146.414419, 7.778647], [9.329395, 146.524231, 7.679209], [9.288943, 146.532156, 7.829354], [9.438978, 146.524231, 7.870188], [9.479435, 146.516306, 7.720051], [9.329395, 146.524231, 7.679209], [9.391063, 146.634043, 7.770759], [9.438978, 146.524231, 7.870188], [4.215017, 146.524231, -1.234097]]}]},
-			"R_pinky_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_pinky_B_CTLShape", "degree": 3, "form": 2, "points": [[-65.000393, 102.285212, -16.798184], [-64.905288, 103.474028, -17.29218], [-64.810182, 104.662844, -16.798184], [-64.770789, 105.155267, -15.60557], [-64.810182, 104.662844, -14.412956], [-64.905288, 103.474028, -13.91896], [-65.000393, 102.285212, -14.412956], [-65.039787, 101.792789, -15.60557]]}]},
-			"R_ring_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_ring_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-69.319518, 94.483246, -9.758044], [-69.375531, 94.579392, -9.649134], [-69.292344, 94.504924, -9.54061], [-69.236331, 94.408778, -9.64952], [-69.319518, 94.483246, -9.758044], [-69.390141, 94.42534, -9.631949], [-69.292344, 94.504924, -9.54061], [-69.221713, 94.562836, -9.666707], [-69.375531, 94.579392, -9.649134], [-69.390141, 94.42534, -9.631949], [-69.236331, 94.408778, -9.64952], [-69.221713, 94.562836, -9.666707], [-69.319518, 94.483246, -9.758044], [-69.390141, 94.42534, -9.631949], [-61.3609, 100.98, -11.2889]]}, {"shapeName": "R_ring_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-67.94049, 109.016899, -11.379416], [-67.842685, 109.096489, -11.288078], [-67.913316, 109.038577, -11.161982], [-68.011121, 108.958987, -11.253319], [-67.94049, 109.016899, -11.379416], [-67.996497, 109.113037, -11.270506], [-67.913316, 109.038577, -11.161982], [-67.857303, 108.942431, -11.270892], [-67.842685, 109.096489, -11.288078], [-67.996497, 109.113037, -11.270506], [-68.011121, 108.958987, -11.253319], [-67.857303, 108.942431, -11.270892], [-67.94049, 109.016899, -11.379416], [-67.996497, 109.113037, -11.270506], [-61.3609, 100.98, -11.2889]]}, {"shapeName": "R_ring_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-60.148746, 102.087871, -1.032475], [-59.994928, 102.071315, -1.050048], [-60.009546, 101.917257, -1.032861], [-60.163364, 101.933813, -1.015289], [-60.148746, 102.087871, -1.032475], [-60.065561, 102.013402, -0.923961], [-60.009546, 101.917257, -1.032861], [-60.092733, 101.991725, -1.141385], [-59.994928, 102.071315, -1.050048], [-60.065561, 102.013402, -0.923961], [-60.163364, 101.933813, -1.015289], [-60.092733, 101.991725, -1.141385], [-60.148746, 102.087871, -1.032475], [-60.065561, 102.013402, -0.923961], [-61.3609, 100.98, -11.2889]]}]},
-			"R_arm_IK_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_CTLShape", "degree": 1, "form": 0, "points": [[-56.871697, 108.704032, -6.839923], [-51.714753, 102.804429, -8.958165], [-54.798833, 102.804429, -16.466479], [-59.955777, 108.704032, -14.348237], [-65.412948, 103.128997, -12.106675], [-60.256004, 97.229394, -14.224917], [-57.171924, 97.229394, -6.716603], [-62.328868, 103.128997, -4.598361], [-56.871697, 108.704032, -6.839923], [-59.955777, 108.704032, -14.348237], [-54.798833, 102.804429, -16.466479], [-60.256004, 97.229394, -14.224917], [-65.412948, 103.128997, -12.106675], [-62.328868, 103.128997, -4.598361], [-57.171924, 97.229394, -6.716603], [-51.714753, 102.804429, -8.958165]]}]},
-			"L_wrist_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[57.65017, 100.366276, -14.775631], [60.48634, 102.966713, -15.212796], [62.196343, 105.56715, -12.908266], [61.778478, 106.644284, -9.211995], [59.477531, 105.56715, -6.28921], [56.641361, 102.966713, -5.852044], [54.931357, 100.366276, -8.156575], [55.349222, 99.289142, -11.852846]]}]},
-			"L_loArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_loArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[45.684849, 117.073958, -14.614821], [45.748818, 117.163398, -14.504588], [45.650922, 117.103638, -14.399289], [45.586952, 117.014197, -14.509522], [45.684849, 117.073958, -14.614821], [45.740567, 117.009206, -14.484654], [45.650922, 117.103638, -14.399289], [45.595197, 117.168397, -14.529458], [45.748818, 117.163398, -14.504588], [45.740567, 117.009206, -14.484654], [45.586952, 117.014197, -14.509522], [45.595197, 117.168397, -14.529458], [45.684849, 117.073958, -14.614821], [45.740567, 117.009206, -14.484654], [38.810577, 124.598083, -16.620529]]}, {"shapeName": "L_loArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[46.462662, 131.620969, -16.495544], [46.37301, 131.715408, -16.410181], [46.428734, 131.650648, -16.280012], [46.518386, 131.556209, -16.365375], [46.462662, 131.620969, -16.495544], [46.526624, 131.710402, -16.385311], [46.428734, 131.650648, -16.280012], [46.364765, 131.561208, -16.390245], [46.37301, 131.715408, -16.410181], [46.526624, 131.710402, -16.385311], [46.518386, 131.556209, -16.365375], [46.364765, 131.561208, -16.390245], [46.462662, 131.620969, -16.495544], [46.526624, 131.710402, -16.385311], [38.810577, 124.598083, -16.620529]]}, {"shapeName": "L_loArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[37.291174, 126.072638, -6.451555], [37.137553, 126.077637, -6.476425], [37.129308, 125.923437, -6.456489], [37.282929, 125.918439, -6.431619], [37.291174, 126.072638, -6.451555], [37.193279, 126.012876, -6.346266], [37.129308, 125.923437, -6.456489], [37.227205, 125.983198, -6.561788], [37.137553, 126.077637, -6.476425], [37.193279, 126.012876, -6.346266], [37.282929, 125.918439, -6.431619], [37.227205, 125.983198, -6.561788], [37.291174, 126.072638, -6.451555], [37.193279, 126.012876, -6.346266], [38.810577, 124.598083, -16.620529]]}]},
-			"R_wrist_IK_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_CTLShape", "degree": 3, "form": 2, "points": [[-60.959382, 96.592941, -13.846122], [-64.110682, 99.482316, -14.331862], [-66.010685, 102.371691, -11.771272], [-65.546391, 103.568506, -7.664304], [-62.989783, 102.371691, -4.416766], [-59.838483, 99.482316, -3.931026], [-57.938479, 96.592941, -6.491616], [-58.402773, 95.396126, -10.598583]]}]},
-			"L_ring_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_A_CTLShape", "degree": 3, "form": 2, "points": [[60.754131, 99.938387, -12.468667], [61.569027, 100.813825, -12.954379], [62.261998, 101.786531, -12.464487], [62.427111, 102.286708, -11.285962], [61.967646, 102.021361, -10.109168], [61.152751, 101.145923, -9.623457], [60.459779, 100.173217, -10.113348], [60.294667, 99.67304, -11.291873]]}]},
-			"R_leg_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, -2.809889, -7.255449], [-9.868419, -2.793006, -7.364244], [-9.978517, -2.776123, -7.47304], [-10.088614, -2.793006, -7.364244], [-9.978517, -2.809889, -7.255449], [-9.978517, -2.901791, -7.381126], [-9.978517, -2.776123, -7.47304], [-9.978517, -2.68421, -7.347362], [-9.868419, -2.793006, -7.364244], [-9.978517, -2.901791, -7.381126], [-10.088614, -2.793006, -7.364244], [-9.978517, -2.68421, -7.347362], [-9.978517, -2.809889, -7.255449], [-9.978517, -2.901791, -7.381126], [-9.978517, 7.470624, -5.771536]]}, {"shapeName": "R_leg_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407956, 7.453741, -5.662741], [0.407956, 7.579419, -5.754654], [0.407956, 7.487507, -5.880332], [0.407956, 7.361829, -5.788419], [0.407956, 7.453741, -5.662741], [0.518043, 7.470624, -5.771536], [0.407956, 7.487507, -5.880332], [0.297859, 7.470624, -5.771536], [0.407956, 7.579419, -5.754654], [0.518043, 7.470624, -5.771536], [0.407956, 7.361829, -5.788419], [0.297859, 7.470624, -5.771536], [0.407956, 7.453741, -5.662741], [0.518043, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}, {"shapeName": "R_leg_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868419, 9.063332, -16.035166], [-9.978517, 9.172127, -16.018283], [-10.088614, 9.063332, -16.035166], [-9.978517, 8.954537, -16.052049], [-9.868419, 9.063332, -16.035166], [-9.978517, 9.080213, -16.143951], [-10.088614, 9.063332, -16.035166], [-9.978517, 9.046449, -15.926371], [-9.978517, 9.172127, -16.018283], [-9.978517, 9.080213, -16.143951], [-9.978517, 8.954537, -16.052049], [-9.978517, 9.046449, -15.926371], [-9.868419, 9.063332, -16.035166], [-9.978517, 9.080213, -16.143951], [-9.978517, 7.470624, -5.771536]]}]},
-			"R_upArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_upArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-26.45757, 137.863802, -12.512194], [-26.553665, 137.918409, -12.402527], [-26.487894, 137.823814, -12.297794], [-26.391799, 137.769208, -12.407461], [-26.45757, 137.863802, -12.512194], [-26.54581, 137.765352, -12.429963], [-26.487894, 137.823814, -12.297794], [-26.399647, 137.922271, -12.380023], [-26.553665, 137.918409, -12.402527], [-26.54581, 137.765352, -12.429963], [-26.391799, 137.769208, -12.407461], [-26.399647, 137.922271, -12.380023], [-26.45757, 137.863802, -12.512194], [-26.54581, 137.765352, -12.429963], [-19.577965, 145.245926, -10.049224]]}, {"shapeName": "R_upArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-27.197923, 152.303645, -9.923672], [-27.14, 152.362114, -9.791501], [-27.228247, 152.263657, -9.709273], [-27.286171, 152.205188, -9.841444], [-27.197923, 152.303645, -9.923672], [-27.294011, 152.358245, -9.814006], [-27.228247, 152.263657, -9.709273], [-27.132152, 152.20905, -9.81894], [-27.14, 152.362114, -9.791501], [-27.294011, 152.358245, -9.814006], [-27.286171, 152.205188, -9.841444], [-27.132152, 152.20905, -9.81894], [-27.197923, 152.303645, -9.923672], [-27.294011, 152.358245, -9.814006], [-19.577965, 145.245926, -10.049224]]}, {"shapeName": "R_upArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-21.089259, 143.434289, 0.066353], [-20.935241, 143.438151, 0.088857], [-20.927393, 143.285088, 0.061419], [-21.081411, 143.281225, 0.038914], [-21.089259, 143.434289, 0.066353], [-21.023487, 143.339696, 0.171076], [-20.927393, 143.285088, 0.061419], [-20.993164, 143.379682, -0.043314], [-20.935241, 143.438151, 0.088857], [-21.023487, 143.339696, 0.171076], [-21.081411, 143.281225, 0.038914], [-20.993164, 143.379682, -0.043314], [-21.089259, 143.434289, 0.066353], [-21.023487, 143.339696, 0.171076], [-19.577965, 145.245926, -10.049224]]}]},
-			"L_legBase_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 89.281001, -5.022824], [9.978517, 86.473729, -4.56423], [9.978517, 85.401445, -4.389062], [9.978517, 87.551951, 2.036067], [9.978517, 91.025602, 5.656683], [9.978517, 94.495597, 5.089826], [9.978517, 96.63649, 0.55202], [9.978517, 96.630553, -6.223444], [9.978517, 95.558268, -6.048276], [9.978517, 92.750996, -5.589682], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
-			"C_head_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_head_FK_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 164.260844, -15.114363], [0.0, 164.649754, -15.188351], [0.0, 164.980746, -15.405546], [0.0, 165.203439, -15.732863], [0.0, 165.283913, -16.120483], [0.0, 165.209925, -16.509393], [0.0, 164.99273, -16.840385], [0.0, 164.665412, -17.063078], [0.0, 164.277792, -17.143552], [0.0, 163.888882, -17.069564], [0.0, 163.55789, -16.852369], [0.0, 163.335197, -16.525052], [0.0, 163.254723, -16.137432], [0.0, 163.328711, -15.748522], [0.0, 163.545906, -15.41753], [0.0, 163.873224, -15.194837], [0.0, 164.260844, -15.114363], [0.0, 164.176102, -4.968417]]}]},
-			"L_middle_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[69.140371, 92.609215, -1.211216], [69.151933, 92.713448, -1.096131], [69.025601, 92.652667, -1.02839], [69.014039, 92.548434, -1.143475], [69.140371, 92.609215, -1.211216], [69.146814, 92.561363, -1.063198], [69.025601, 92.652667, -1.02839], [69.019152, 92.700526, -1.176413], [69.151933, 92.713448, -1.096131], [69.146814, 92.561363, -1.063198], [69.014039, 92.548434, -1.143475], [69.019152, 92.700526, -1.176413], [69.140371, 92.609215, -1.211216], [69.146814, 92.561363, -1.063198], [63.060977, 99.195474, -6.460321]]}, {"shapeName": "L_middle_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[69.62272, 106.957375, -4.31851], [69.501501, 107.048686, -4.283707], [69.50795, 107.000827, -4.135683], [69.629169, 106.909517, -4.170487], [69.62272, 106.957375, -4.31851], [69.634275, 107.061601, -4.203426], [69.50795, 107.000827, -4.135683], [69.496388, 106.896594, -4.250769], [69.501501, 107.048686, -4.283707], [69.634275, 107.061601, -4.203426], [69.629169, 106.909517, -4.170487], [69.496388, 106.896594, -4.250769], [69.62272, 106.957375, -4.31851], [69.634275, 107.061601, -4.203426], [63.060977, 99.195474, -6.460321]]}, {"shapeName": "L_middle_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.716279, 101.327584, 2.187178], [57.583498, 101.314662, 2.106896], [57.578385, 101.16257, 2.139833], [57.711166, 101.175492, 2.220116], [57.716279, 101.327584, 2.187178], [57.589952, 101.266801, 2.254911], [57.578385, 101.16257, 2.139833], [57.704717, 101.223351, 2.072093], [57.583498, 101.314662, 2.106896], [57.589952, 101.266801, 2.254911], [57.711166, 101.175492, 2.220116], [57.704717, 101.223351, 2.072093], [57.716279, 101.327584, 2.187178], [57.589952, 101.266801, 2.254911], [63.060977, 99.195474, -6.460321]]}]},
-			"R_wrist_IK_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-57.95473, 101.233088, -13.361227], [-59.84551, 102.966713, -13.652671], [-60.985512, 104.700338, -12.116317], [-60.706936, 105.418427, -9.652136], [-59.172971, 104.700338, -7.703613], [-57.282191, 102.966713, -7.412169], [-56.142188, 101.233088, -8.948523], [-56.420765, 100.514999, -11.412704]]}]},
-			"R_innerBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_innerBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.025762, 1.922447, 7.68369], [5.026366, 2.030265, 7.571361], [5.026943, 1.917933, 7.463544], [5.026341, 1.810116, 7.575874], [5.025762, 1.922447, 7.68369], [5.136438, 1.92019, 7.574208], [5.026943, 1.917933, 7.463544], [4.916257, 1.92019, 7.573026], [5.026366, 2.030265, 7.571361], [5.136438, 1.92019, 7.574208], [5.026341, 1.810116, 7.575874], [4.916257, 1.92019, 7.573026], [5.025762, 1.922447, 7.68369], [5.136438, 1.92019, 7.574208], [-5.35997, 1.92019, 7.51788]]}, {"shapeName": "R_innerBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.359419, 12.306737, 7.41507], [-5.468924, 12.304481, 7.304406], [-5.358237, 12.302224, 7.194924], [-5.248732, 12.304481, 7.305588], [-5.359419, 12.306737, 7.41507], [-5.358815, 12.414545, 7.30274], [-5.358237, 12.302224, 7.194924], [-5.35884, 12.194407, 7.307254], [-5.468924, 12.304481, 7.304406], [-5.358815, 12.414545, 7.30274], [-5.248732, 12.304481, 7.305588], [-5.35884, 12.194407, 7.307254], [-5.359419, 12.306737, 7.41507], [-5.358815, 12.414545, 7.30274], [-5.35997, 1.92019, 7.51788]]}, {"shapeName": "R_innerBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-5.304232, 1.817378, -2.868518], [-5.414341, 1.707303, -2.866852], [-5.304257, 1.597229, -2.864005], [-5.194149, 1.707303, -2.86567], [-5.304232, 1.817378, -2.868518], [-5.303654, 1.705048, -2.976324], [-5.304257, 1.597229, -2.864005], [-5.304836, 1.709561, -2.756188], [-5.414341, 1.707303, -2.866852], [-5.303654, 1.705048, -2.976324], [-5.194149, 1.707303, -2.86567], [-5.304836, 1.709561, -2.756188], [-5.304232, 1.817378, -2.868518], [-5.303654, 1.705048, -2.976324], [-5.35997, 1.92019, 7.51788]]}]},
-			"C_midNeck_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_midNeck_PIV_CTLShape", "degree": 1, "form": 0, "points": [[10.386473, 157.892703, -6.697631], [10.386473, 157.971917, -6.563586], [10.386473, 157.837872, -6.484373], [10.386473, 157.758658, -6.618418], [10.386473, 157.892703, -6.697631], [10.49656, 157.865288, -6.591002], [10.386473, 157.837872, -6.484373], [10.276375, 157.865288, -6.591002], [10.386473, 157.971917, -6.563586], [10.49656, 157.865288, -6.591002], [10.386473, 157.758658, -6.618418], [10.276375, 157.865288, -6.591002], [10.386473, 157.892703, -6.697631], [10.49656, 157.865288, -6.591002], [0.0, 157.865288, -6.591002]]}, {"shapeName": "C_midNeck_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 167.952004, -4.111266], [-0.110097, 167.924588, -4.004637], [0.0, 167.897173, -3.898007], [0.110097, 167.924588, -4.004637], [0.0, 167.952004, -4.111266], [0.0, 168.031208, -3.977224], [0.0, 167.897173, -3.898007], [0.0, 167.817959, -4.032053], [-0.110097, 167.924588, -4.004637], [0.0, 168.031208, -3.977224], [0.110097, 167.924588, -4.004637], [0.0, 167.817959, -4.032053], [0.0, 167.952004, -4.111266], [0.0, 168.031208, -3.977224], [0.0, 157.865288, -6.591002]]}, {"shapeName": "C_midNeck_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 155.385552, 3.495714], [-0.110097, 155.278923, 3.468299], [0.0, 155.172293, 3.440883], [0.110097, 155.278923, 3.468299], [0.0, 155.385552, 3.495714], [0.0, 155.25151, 3.574918], [0.0, 155.172293, 3.440883], [0.0, 155.306338, 3.361669], [-0.110097, 155.278923, 3.468299], [0.0, 155.25151, 3.574918], [0.110097, 155.278923, 3.468299], [0.0, 155.306338, 3.361669], [0.0, 155.385552, 3.495714], [0.0, 155.25151, 3.574918], [0.0, 157.865288, -6.591002]]}]},
-			"R_ring_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_ring_D_CTLShape", "degree": 3, "form": 2, "points": [[-68.611826, 92.279258, -10.723038], [-69.639408, 92.927285, -11.159496], [-70.545066, 93.672582, -10.620351], [-70.798277, 94.078563, -9.421425], [-70.250715, 93.907411, -8.265032], [-69.223132, 93.259384, -7.828574], [-68.317474, 92.514087, -8.367719], [-68.064264, 92.108106, -9.566645]]}]},
-			"L_toeTip_CTL": {"color": 20, "shapes": [{"shapeName": "L_toeTip_CTLShape", "degree": 1, "form": 0, "points": [[9.969646, 1.564909, 17.359174], [9.964314, 0.529695, 16.365568], [10.978817, 1.544112, 16.339327], [9.969646, 1.564909, 17.359174], [8.949587, 1.544112, 16.350217], [9.964314, 0.529695, 16.365568], [9.958758, 1.523316, 15.33037], [8.949587, 1.544112, 16.350217], [9.964091, 2.558529, 16.323976], [9.969646, 1.564909, 17.359174], [10.978817, 1.544112, 16.339327], [9.958758, 1.523316, 15.33037], [9.964091, 2.558529, 16.323976], [10.978817, 1.544112, 16.339327]]}]},
-			"C_chest_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.869458, 127.606377, -14.358514], [0.0, 130.528511, -16.729695], [-6.869458, 127.606377, -14.358514], [-9.714875, 124.684242, -8.633965], [-6.869458, 127.606377, -2.909417], [0.0, 130.528511, -0.538236], [6.869458, 127.606377, -2.909417], [9.714875, 124.684242, -8.633965]]}]},
-			"L_ring_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[71.898708, 91.671036, -9.155361], [71.959062, 91.76344, -9.045536], [71.871534, 91.692714, -8.937928], [71.811179, 91.60031, -9.047753], [71.898708, 91.671036, -9.155361], [71.965547, 91.608731, -9.029301], [71.871534, 91.692714, -8.937928], [71.804688, 91.755026, -9.06399], [71.959062, 91.76344, -9.045536], [71.965547, 91.608731, -9.029301], [71.811179, 91.60031, -9.047753], [71.804688, 91.755026, -9.06399], [71.898708, 91.671036, -9.155361], [71.965547, 91.608731, -9.029301], [64.297138, 98.582871, -10.68298]]}, {"shapeName": "L_ring_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[71.286285, 106.266798, -10.68712], [71.192265, 106.350789, -10.595749], [71.259112, 106.288477, -10.469687], [71.353132, 106.204487, -10.561058], [71.286285, 106.266798, -10.68712], [71.346633, 106.359195, -10.577295], [71.259112, 106.288477, -10.469687], [71.198757, 106.196072, -10.579512], [71.192265, 106.350789, -10.595749], [71.346633, 106.359195, -10.577295], [71.353132, 106.204487, -10.561058], [71.198757, 106.196072, -10.579512], [71.286285, 106.266798, -10.68712], [71.346633, 106.359195, -10.577295], [64.297138, 98.582871, -10.68298]]}, {"shapeName": "L_ring_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[63.089326, 99.687, -0.42564], [62.934951, 99.678586, -0.444094], [62.941443, 99.52387, -0.427857], [63.095818, 99.532284, -0.409403], [63.089326, 99.687, -0.42564], [63.001799, 99.616273, -0.318042], [62.941443, 99.52387, -0.427857], [63.028971, 99.594596, -0.535465], [62.934951, 99.678586, -0.444094], [63.001799, 99.616273, -0.318042], [63.095818, 99.532284, -0.409403], [63.028971, 99.594596, -0.535465], [63.089326, 99.687, -0.42564], [63.001799, 99.616273, -0.318042], [64.297138, 98.582871, -10.68298]]}]},
-			"R_index_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_index_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-72.63744, 88.356132, -4.661676], [-72.693792, 88.440588, -4.54363], [-72.580407, 88.387145, -4.451268], [-72.524056, 88.30269, -4.569314], [-72.63744, 88.356132, -4.661676], [-72.672994, 88.287225, -4.526663], [-72.580407, 88.387145, -4.451268], [-72.544848, 88.45606, -4.586284], [-72.693792, 88.440588, -4.54363], [-72.672994, 88.287225, -4.526663], [-72.524056, 88.30269, -4.569314], [-72.544848, 88.45606, -4.586284], [-72.63744, 88.356132, -4.661676], [-72.672994, 88.287225, -4.526663], [-66.5641, 96.3359, -7.36885]]}, {"shapeName": "R_index_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-74.598968, 102.824967, -6.262573], [-74.506376, 102.924895, -6.187181], [-74.541935, 102.855979, -6.052166], [-74.634527, 102.756051, -6.127558], [-74.598968, 102.824967, -6.262573], [-74.655312, 102.909416, -6.144529], [-74.541935, 102.855979, -6.052166], [-74.485584, 102.771524, -6.170211], [-74.506376, 102.924895, -6.187181], [-74.655312, 102.909416, -6.144529], [-74.634527, 102.756051, -6.127558], [-74.485584, 102.771524, -6.170211], [-74.598968, 102.824967, -6.262573], [-74.655312, 102.909416, -6.144529], [-66.5641, 96.3359, -7.36885]]}, {"shapeName": "R_index_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-63.958752, 97.867684, 2.568793], [-63.809808, 97.883157, 2.526139], [-63.789016, 97.729786, 2.543109], [-63.93796, 97.714313, 2.585762], [-63.958752, 97.867684, 2.568793], [-63.84537, 97.81424, 2.661145], [-63.789016, 97.729786, 2.543109], [-63.902401, 97.783229, 2.450747], [-63.809808, 97.883157, 2.526139], [-63.84537, 97.81424, 2.661145], [-63.93796, 97.714313, 2.585762], [-63.902401, 97.783229, 2.450747], [-63.958752, 97.867684, 2.568793], [-63.84537, 97.81424, 2.661145], [-66.5641, 96.3359, -7.36885]]}]},
-			"R_middle_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_middle_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-71.652046, 85.867036, 1.967884], [-71.675514, 85.954748, 2.094371], [-71.537276, 85.910488, 2.150711], [-71.513808, 85.822776, 2.024224], [-71.652046, 85.867036, 1.967884], [-71.642523, 85.803357, 2.109641], [-71.537276, 85.910488, 2.150711], [-71.546794, 85.974175, 2.008949], [-71.675514, 85.954748, 2.094371], [-71.642523, 85.803357, 2.109641], [-71.513808, 85.822776, 2.024224], [-71.546794, 85.974175, 2.008949], [-71.652046, 85.867036, 1.967884], [-71.642523, 85.803357, 2.109641], [-67.079, 93.9465, -2.69049]]}, {"shapeName": "R_middle_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-74.763972, 100.149788, 0.526864], [-74.65872, 100.256927, 0.567929], [-74.649201, 100.19324, 0.709691], [-74.754453, 100.086101, 0.668626], [-74.763972, 100.149788, 0.526864], [-74.787432, 100.237494, 0.653347], [-74.649201, 100.19324, 0.709691], [-74.625733, 100.105528, 0.583204], [-74.65872, 100.256927, 0.567929], [-74.787432, 100.237494, 0.653347], [-74.754453, 100.086101, 0.668626], [-74.625733, 100.105528, 0.583204], [-74.763972, 100.149788, 0.526864], [-74.787432, 100.237494, 0.653347], [-67.079, 93.9465, -2.69049]]}, {"shapeName": "R_middle_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-61.746208, 96.062088, 5.96841], [-61.617489, 96.081515, 5.882989], [-61.584502, 95.930117, 5.898264], [-61.713222, 95.91069, 5.983685], [-61.746208, 96.062088, 5.96841], [-61.607975, 96.017827, 6.024742], [-61.584502, 95.930117, 5.898264], [-61.72274, 95.974377, 5.841924], [-61.617489, 96.081515, 5.882989], [-61.607975, 96.017827, 6.024742], [-61.713222, 95.91069, 5.983685], [-61.72274, 95.974377, 5.841924], [-61.746208, 96.062088, 5.96841], [-61.607975, 96.017827, 6.024742], [-67.079, 93.9465, -2.69049]]}]},
-			"L_heel_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_heel_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.204977, 0.988078, -10.833164], [20.205555, 1.100409, -10.725348], [20.206158, 0.992591, -10.613019], [20.20558, 0.88026, -10.720835], [20.204977, 0.988078, -10.833164], [20.315653, 0.990335, -10.723682], [20.206158, 0.992591, -10.613019], [20.095472, 0.990335, -10.722501], [20.205555, 1.100409, -10.725348], [20.315653, 0.990335, -10.723682], [20.20558, 0.88026, -10.720835], [20.095472, 0.990335, -10.722501], [20.204977, 0.988078, -10.833164], [20.315653, 0.990335, -10.723682], [9.819244, 0.990335, -10.667355]]}, {"shapeName": "L_heel_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.817511, 11.372369, -10.99031], [9.708006, 11.374625, -10.879647], [9.818693, 11.376882, -10.770165], [9.928198, 11.374625, -10.880828], [9.817511, 11.372369, -10.99031], [9.81809, 11.484689, -10.882494], [9.818693, 11.376882, -10.770165], [9.818114, 11.264551, -10.877981], [9.708006, 11.374625, -10.879647], [9.81809, 11.484689, -10.882494], [9.928198, 11.374625, -10.880828], [9.818114, 11.264551, -10.877981], [9.817511, 11.372369, -10.99031], [9.81809, 11.484689, -10.882494], [9.819244, 0.990335, -10.667355]]}, {"shapeName": "L_heel_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.874958, 1.313295, -0.28547], [9.764874, 1.203221, -0.282623], [9.874982, 1.093146, -0.280957], [9.985066, 1.203221, -0.283804], [9.874958, 1.313295, -0.28547], [9.87556, 1.205477, -0.173151], [9.874982, 1.093146, -0.280957], [9.874379, 1.200964, -0.393286], [9.764874, 1.203221, -0.282623], [9.87556, 1.205477, -0.173151], [9.985066, 1.203221, -0.283804], [9.874379, 1.200964, -0.393286], [9.874958, 1.313295, -0.28547], [9.87556, 1.205477, -0.173151], [9.819244, 0.990335, -10.667355]]}]},
-			"L_middle_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_D_CTLShape", "degree": 3, "form": 2, "points": [[66.824758, 92.99635, -4.060637], [67.958067, 93.613648, -4.090874], [68.576415, 94.42591, -3.300786], [68.317579, 94.957324, -2.153196], [67.333184, 94.896596, -1.320345], [66.199875, 94.279298, -1.290109], [65.581527, 93.467036, -2.080196], [65.840364, 92.935622, -3.227786]]}]},
-			"L_arm_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[57.379343, 106.982836, -7.947672], [53.769482, 102.853114, -9.430442], [55.928338, 102.853114, -14.686262], [59.538199, 106.982836, -13.203492], [63.358219, 103.080312, -11.634399], [59.748358, 98.95059, -13.117168], [57.589502, 98.95059, -7.861348], [61.199363, 103.080312, -6.378579], [57.379343, 106.982836, -7.947672], [59.538199, 106.982836, -13.203492], [55.928338, 102.853114, -14.686262], [59.748358, 98.95059, -13.117168], [63.358219, 103.080312, -11.634399], [61.199363, 103.080312, -6.378579], [57.589502, 98.95059, -7.861348], [53.769482, 102.853114, -9.430442]]}]},
-			"L_middle_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_B_CTLShape", "degree": 3, "form": 2, "points": [[62.935737, 98.066385, -7.706969], [63.940073, 98.862649, -7.860704], [64.429447, 99.853877, -7.194114], [64.117189, 100.459421, -6.097678], [63.186217, 100.324563, -5.213673], [62.181881, 99.528299, -5.059939], [61.692507, 98.537072, -5.726528], [62.004765, 97.931528, -6.822964]]}]},
-			"R_arm_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_arm_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-63.237977, 106.923591, -8.612498], [-63.073805, 106.735777, -8.679932], [-62.864445, 106.882328, -8.765928], [-62.696634, 106.801122, -8.834857], [-62.658311, 106.534674, -8.850599], [-62.419377, 106.527368, -8.948742], [-62.367194, 106.791025, -8.970177], [-62.19541, 106.861887, -9.040738], [-61.994031, 106.702759, -9.123455], [-61.820297, 106.880246, -9.194817], [-61.955873, 107.106598, -9.139129], [-61.880736, 107.287989, -9.169992], [-61.634275, 107.329426, -9.271227], [-61.627517, 107.587731, -9.274003], [-61.871423, 107.644157, -9.173817], [-61.936933, 107.829872, -9.146909], [-61.789755, 108.047561, -9.207363], [-61.953926, 108.235374, -9.139929], [-62.163302, 108.088841, -9.053926], [-62.331113, 108.170047, -8.984997], [-62.369436, 108.436495, -8.969256], [-62.60836, 108.44379, -8.871116], [-62.660569, 108.180127, -8.849671], [-62.832337, 108.109282, -8.779117], [-63.0337, 108.268393, -8.696406], [-63.207434, 108.090906, -8.625043], [-63.071874, 107.864572, -8.680726], [-63.147027, 107.683163, -8.649856], [-63.393461, 107.641732, -8.548632], [-63.40023, 107.383438, -8.545852], [-63.156324, 107.327013, -8.646037], [-63.090814, 107.141297, -8.672946], [-63.237977, 106.923591, -8.612498]]}, {"shapeName": "R_arm_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-62.880644, 107.496789, -8.759274], [-62.765883, 107.773886, -8.806413], [-62.503488, 107.88209, -8.914193], [-62.247193, 107.758014, -9.019468], [-62.147102, 107.474381, -9.06058], [-62.261864, 107.197283, -9.013441], [-62.524258, 107.089079, -8.905662], [-62.780544, 107.213143, -8.800391]]}, {"shapeName": "R_arm_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-61.907164, 106.791502, -9.159136], [-58.56385, 102.966713, -10.53242]]}]},
-			"C_neck_FK_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_C_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 162.495451, -15.876833], [0.0, 162.890731, -15.854948], [0.0, 163.2643, -15.986004], [0.0, 163.559289, -16.250031], [0.0, 163.730776, -16.606847], [0.0, 163.752662, -17.002127], [0.0, 163.621606, -17.375695], [0.0, 163.357579, -17.670685], [0.0, 163.000763, -17.842172], [0.0, 162.605483, -17.864058], [0.0, 162.231915, -17.733001], [0.0, 161.936925, -17.468974], [0.0, 161.765438, -17.112159], [0.0, 161.743552, -16.716879], [0.0, 161.874609, -16.34331], [0.0, 162.138636, -16.048321], [0.0, 162.495451, -15.876833], [0.0, 159.968892, -6.05014]]}]},
-			"R_index_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_index_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-74.428629, 85.097526, -3.695875], [-74.48824, 85.177437, -3.576276], [-74.371596, 85.128538, -3.485468], [-74.311986, 85.048628, -3.605066], [-74.428629, 85.097526, -3.695875], [-74.459622, 85.025102, -3.561581], [-74.371596, 85.128538, -3.485468], [-74.340599, 85.20097, -3.619765], [-74.48824, 85.177437, -3.576276], [-74.459622, 85.025102, -3.561581], [-74.311986, 85.048628, -3.605066], [-74.340599, 85.20097, -3.619765], [-74.428629, 85.097526, -3.695875], [-74.459622, 85.025102, -3.561581], [-68.7856, 93.409, -6.3353]]}, {"shapeName": "R_index_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-77.127888, 99.469335, -5.082502], [-77.039857, 99.572779, -5.006392], [-77.070855, 99.500347, -4.872095], [-77.158886, 99.396903, -4.948205], [-77.127888, 99.469335, -5.082502], [-77.18749, 99.54924, -4.962905], [-77.070855, 99.500347, -4.872095], [-77.011245, 99.420437, -4.991694], [-77.039857, 99.572779, -5.006392], [-77.18749, 99.54924, -4.962905], [-77.158886, 99.396903, -4.948205], [-77.011245, 99.420437, -4.991694], [-77.127888, 99.469335, -5.082502], [-77.18749, 99.54924, -4.962905], [-68.7856, 93.409, -6.3353]]}, {"shapeName": "R_index_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-66.18351, 94.936239, 3.603896], [-66.035869, 94.959773, 3.560407], [-66.007257, 94.80743, 3.575106], [-66.154898, 94.783897, 3.618594], [-66.18351, 94.936239, 3.603896], [-66.06687, 94.88734, 3.694695], [-66.007257, 94.80743, 3.575106], [-66.1239, 94.856329, 3.484297], [-66.035869, 94.959773, 3.560407], [-66.06687, 94.88734, 3.694695], [-66.154898, 94.783897, 3.618594], [-66.1239, 94.856329, 3.484297], [-66.18351, 94.936239, 3.603896], [-66.06687, 94.88734, 3.694695], [-68.7856, 93.409, -6.3353]]}]},
-			"L_legBase_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 88.785288, -4.941845], [9.978517, 85.175938, -4.352223], [9.978517, 83.797286, -4.127007], [9.978517, 86.562223, 4.133872], [9.978517, 91.028345, 8.788951], [9.978517, 95.489768, 8.060134], [9.978517, 98.242345, 2.225812], [9.978517, 98.234711, -6.485499], [9.978517, 96.856059, -6.260283], [9.978517, 93.24671, -5.670661], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
-			"C_hip_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_hip_PIV_CTLShape", "degree": 1, "form": 0, "points": [[6.231884, 98.139605, -8.700024], [6.231884, 98.205663, -8.633965], [6.231884, 98.139605, -8.567907], [6.231884, 98.073546, -8.633965], [6.231884, 98.139605, -8.700024], [6.297936, 98.139605, -8.633965], [6.231884, 98.139605, -8.567907], [6.165825, 98.139605, -8.633965], [6.231884, 98.205663, -8.633965], [6.297936, 98.139605, -8.633965], [6.231884, 98.073546, -8.633965], [6.165825, 98.139605, -8.633965], [6.231884, 98.139605, -8.700024], [6.297936, 98.139605, -8.633965], [-0.0, 98.139605, -8.633965]]}, {"shapeName": "C_hip_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 104.371488, -8.700024], [-0.066058, 104.371488, -8.633965], [-0.0, 104.371488, -8.567907], [0.066058, 104.371488, -8.633965], [-0.0, 104.371488, -8.700024], [-0.0, 104.437541, -8.633965], [-0.0, 104.371488, -8.567907], [-0.0, 104.30543, -8.633965], [-0.066058, 104.371488, -8.633965], [-0.0, 104.437541, -8.633965], [0.066058, 104.371488, -8.633965], [-0.0, 104.30543, -8.633965], [-0.0, 104.371488, -8.700024], [-0.0, 104.437541, -8.633965], [-0.0, 98.139605, -8.633965]]}, {"shapeName": "C_hip_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 98.205663, -2.402082], [-0.066058, 98.139605, -2.402082], [-0.0, 98.073546, -2.402082], [0.066058, 98.139605, -2.402082], [-0.0, 98.205663, -2.402082], [-0.0, 98.139605, -2.336029], [-0.0, 98.073546, -2.402082], [-0.0, 98.139605, -2.46814], [-0.066058, 98.139605, -2.402082], [-0.0, 98.139605, -2.336029], [0.066058, 98.139605, -2.402082], [-0.0, 98.139605, -2.46814], [-0.0, 98.205663, -2.402082], [-0.0, 98.139605, -2.336029], [-0.0, 98.139605, -8.633965]]}]},
-			"L_legEnd_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_legEnd_FK_CTLShape", "degree": 3, "form": 2, "points": [[13.953898, 6.861021, -1.843173], [9.978517, 6.608516, -0.215995], [6.003136, 6.861021, -1.843173], [4.356482, 7.470624, -5.771536], [6.003136, 8.080227, -9.6999], [9.978517, 8.332732, -11.327078], [13.953898, 8.080227, -9.6999], [15.600551, 7.470624, -5.771536]]}]},
-			"R_ring_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_ring_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-73.481769, 87.999402, -8.59142], [-73.553971, 88.07914, -8.478851], [-73.454596, 88.021081, -8.373986], [-73.382394, 87.941344, -8.486555], [-73.481769, 87.999402, -8.59142], [-73.535831, 87.925061, -8.465756], [-73.454596, 88.021081, -8.373986], [-73.400528, 88.09543, -8.499651], [-73.553971, 88.07914, -8.478851], [-73.535831, 87.925061, -8.465756], [-73.382394, 87.941344, -8.486555], [-73.400528, 88.09543, -8.499651], [-73.481769, 87.999402, -8.59142], [-73.535831, 87.925061, -8.465756], [-67.0857, 96.0468, -10.0816]]}, {"shapeName": "R_ring_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-75.192485, 102.535723, -9.826922], [-75.111243, 102.63175, -9.735154], [-75.165311, 102.557401, -9.609488], [-75.246553, 102.461374, -9.701257], [-75.192485, 102.535723, -9.826922], [-75.264679, 102.615454, -9.714354], [-75.165311, 102.557401, -9.609488], [-75.093109, 102.477664, -9.722057], [-75.111243, 102.63175, -9.735154], [-75.264679, 102.615454, -9.714354], [-75.246553, 102.461374, -9.701257], [-75.093109, 102.477664, -9.722057], [-75.192485, 102.535723, -9.826922], [-75.264679, 102.615454, -9.714354], [-67.0857, 96.0468, -10.0816]]}, {"shapeName": "R_ring_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-65.889735, 97.138262, 0.178483], [-65.736292, 97.154552, 0.157683], [-65.718158, 97.000466, 0.170779], [-65.871601, 96.984175, 0.19158], [-65.889735, 97.138262, 0.178483], [-65.790361, 97.080202, 0.283338], [-65.718158, 97.000466, 0.170779], [-65.817533, 97.058524, 0.065914], [-65.736292, 97.154552, 0.157683], [-65.790361, 97.080202, 0.283338], [-65.871601, 96.984175, 0.19158], [-65.817533, 97.058524, 0.065914], [-65.889735, 97.138262, 0.178483], [-65.790361, 97.080202, 0.283338], [-67.0857, 96.0468, -10.0816]]}]},
-			"R_shoulder_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_CTLShape", "degree": 3, "form": 0, "points": [[-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-5.46491, 146.524231, 0.944207], [-7.487268, 146.524231, 4.468761], [-8.259742, 146.524231, 5.815024], [-15.752501, 145.836506, -0.273757], [-18.838341, 145.411468, -6.729352], [-16.338557, 145.411468, -11.085962], [-9.207998, 145.836506, -11.679475], [-0.170292, 146.524231, -8.283219], [-0.942766, 146.524231, -6.936956], [-2.965125, 146.524231, -3.412402], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097]]}]},
-			"L_innerBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_innerBall_CTLShape", "degree": 1, "form": 0, "points": [[3.336185, 1.940984, 8.543172], [3.330852, 0.905771, 7.549566], [4.345356, 1.920187, 7.523325], [3.336185, 1.940984, 8.543172], [2.316125, 1.920187, 7.534214], [3.330852, 0.905771, 7.549566], [3.325297, 1.899391, 6.514367], [2.316125, 1.920187, 7.534214], [3.330629, 2.934604, 7.507974], [3.336185, 1.940984, 8.543172], [4.345356, 1.920187, 7.523325], [3.325297, 1.899391, 6.514367], [3.330629, 2.934604, 7.507974], [4.345356, 1.920187, 7.523325]]}]},
-			"C_neckBase_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.880235, 154.234382, -18.607181], [0.0, 150.035069, -24.277439], [-12.880235, 154.234382, -18.607181], [-18.215391, 156.868009, -6.847414], [-12.880235, 148.888809, 2.183669], [0.0, 142.475292, 5.125243], [12.880235, 148.888809, 2.183669], [18.215391, 156.868009, -6.847414]]}]},
-			"R_leg_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_leg_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-14.738418, 8.178368, -5.661709], [-14.544613, 8.178368, -5.661709], [-14.50791, 7.981851, -5.692204], [-14.370192, 7.925465, -5.700954], [-14.203606, 8.038778, -5.68337], [-14.066564, 7.903357, -5.704385], [-14.181228, 7.738759, -5.729927], [-14.124191, 7.602652, -5.751048], [-13.925303, 7.566383, -5.756676], [-13.925303, 7.374865, -5.786396], [-14.124191, 7.338596, -5.792024], [-14.181228, 7.202507, -5.813143], [-14.066564, 7.037891, -5.838688], [-14.203606, 6.90247, -5.859702], [-14.370192, 7.015783, -5.842118], [-14.50791, 6.959397, -5.850868], [-14.544613, 6.76288, -5.881364], [-14.738418, 6.76288, -5.881364], [-14.775139, 6.959397, -5.850868], [-14.912857, 7.015783, -5.842118], [-15.079443, 6.90247, -5.859702], [-15.216473, 7.037891, -5.838688], [-15.101822, 7.202507, -5.813143], [-15.158858, 7.338596, -5.792024], [-15.357727, 7.374865, -5.786396], [-15.357727, 7.566383, -5.756676], [-15.158858, 7.602652, -5.751048], [-15.101822, 7.738759, -5.729927], [-15.216473, 7.903357, -5.704385], [-15.079443, 8.038778, -5.68337], [-14.912857, 7.925465, -5.700954], [-14.775139, 7.981851, -5.692204], [-14.738418, 8.178368, -5.661709]]}, {"shapeName": "R_leg_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-14.851882, 7.678505, -5.739277], [-14.939022, 7.470624, -5.771536], [-14.851882, 7.262743, -5.803795], [-14.641518, 7.176651, -5.817155], [-14.431167, 7.262743, -5.803795], [-14.344027, 7.470624, -5.771536], [-14.431167, 7.678505, -5.739277], [-14.641518, 7.764597, -5.725918]]}, {"shapeName": "R_leg_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-13.925303, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}]},
-			"R_thumb_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_thumb_B_CTLShape", "degree": 3, "form": 2, "points": [[-59.191712, 99.107888, -5.585468], [-59.325236, 100.144685, -4.828114], [-58.512024, 100.941091, -4.219194], [-57.228443, 101.030583, -4.115405], [-56.226397, 100.360738, -4.577545], [-56.092873, 99.323941, -5.334899], [-56.906085, 98.527534, -5.943819], [-58.189666, 98.438043, -6.047608]]}]},
-			"C_world_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_world_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 0.0, -0.054255], [5.118355, 0.054255, 0.0], [5.118355, 0.0, 0.054255], [5.118355, -0.054255, 0.0], [5.118355, 0.0, -0.054255], [5.172605, 0.0, 0.0], [5.118355, 0.0, 0.054255], [5.0641, 0.0, 0.0], [5.118355, 0.054255, 0.0], [5.172605, 0.0, 0.0], [5.118355, -0.054255, 0.0], [5.0641, 0.0, 0.0], [5.118355, 0.0, -0.054255], [5.172605, 0.0, 0.0], [0.0, 0.0, 0.0]]}, {"shapeName": "C_world_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 5.118355, -0.054255], [-0.054255, 5.118355, 0.0], [0.0, 5.118355, 0.054255], [0.054255, 5.118355, 0.0], [0.0, 5.118355, -0.054255], [0.0, 5.172605, 0.0], [0.0, 5.118355, 0.054255], [0.0, 5.0641, 0.0], [-0.054255, 5.118355, 0.0], [0.0, 5.172605, 0.0], [0.054255, 5.118355, 0.0], [0.0, 5.0641, 0.0], [0.0, 5.118355, -0.054255], [0.0, 5.172605, 0.0], [0.0, 0.0, 0.0]]}, {"shapeName": "C_world_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 0.054255, 5.118355], [-0.054255, 0.0, 5.118355], [0.0, -0.054255, 5.118355], [0.054255, 0.0, 5.118355], [0.0, 0.054255, 5.118355], [0.0, 0.0, 5.172605], [0.0, -0.054255, 5.118355], [0.0, 0.0, 5.0641], [-0.054255, 0.0, 5.118355], [0.0, 0.0, 5.172605], [0.054255, 0.0, 5.118355], [0.0, 0.0, 5.0641], [0.0, 0.054255, 5.118355], [0.0, 0.0, 5.172605], [0.0, 0.0, 0.0]]}]},
-			"R_hand_CTL": {"color": 18, "shapes": [{"shapeName": "R_hand_CTLShape", "degree": 3, "form": 2, "points": [[-62.29304, 113.113013, -11.725034], [-61.100425, 113.113013, -12.21903], [-59.907811, 113.113013, -11.725034], [-59.413815, 113.113013, -10.53242], [-59.907811, 113.113013, -9.339806], [-61.100425, 113.113013, -8.84581], [-62.29304, 113.113013, -9.339806], [-62.787036, 113.113013, -10.53242]]}, {"shapeName": "R_hand_CTLShape1", "degree": 3, "form": 2, "points": [[-61.100425, 114.305627, -11.725034], [-61.100425, 113.113013, -12.21903], [-61.100425, 111.920398, -11.725034], [-61.100425, 111.426402, -10.53242], [-61.100425, 111.920398, -9.339806], [-61.100425, 113.113013, -8.84581], [-61.100425, 114.305627, -9.339806], [-61.100425, 114.799623, -10.53242]]}, {"shapeName": "R_hand_CTLShape2", "degree": 3, "form": 2, "points": [[-59.907811, 114.305627, -10.53242], [-59.413815, 113.113013, -10.53242], [-59.907811, 111.920398, -10.53242], [-61.100425, 111.426402, -10.53242], [-62.29304, 111.920398, -10.53242], [-62.787036, 113.113013, -10.53242], [-62.29304, 114.305627, -10.53242], [-61.100425, 114.799623, -10.53242]]}]},
-			"R_arm_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_arm_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[-64.406508, 107.91281, -8.132517], [-64.201294, 107.678043, -8.21681], [-63.939593, 107.861232, -8.324305], [-63.72983, 107.759724, -8.410467], [-63.681926, 107.426664, -8.430143], [-63.383258, 107.417531, -8.552823], [-63.31803, 107.747103, -8.579616], [-63.1033, 107.83568, -8.667817], [-62.851577, 107.63677, -8.771214], [-62.634409, 107.858629, -8.860417], [-62.803879, 108.141569, -8.790806], [-62.709958, 108.368308, -8.829385], [-62.401881, 108.420104, -8.955929], [-62.393433, 108.742986, -8.959399], [-62.698316, 108.813517, -8.834167], [-62.780204, 109.045662, -8.800531], [-62.596231, 109.317772, -8.876098], [-62.801445, 109.55254, -8.791806], [-63.063165, 109.369373, -8.684303], [-63.272928, 109.470881, -8.598141], [-63.320832, 109.803941, -8.578465], [-63.619487, 109.813059, -8.45579], [-63.684749, 109.483481, -8.428984], [-63.899458, 109.394925, -8.340791], [-64.151162, 109.593813, -8.237402], [-64.368331, 109.371954, -8.148199], [-64.19888, 109.089036, -8.217802], [-64.292821, 108.862276, -8.179215], [-64.600864, 108.810486, -8.052685], [-64.609325, 108.487619, -8.049209], [-64.304443, 108.417087, -8.174441], [-64.222555, 108.184943, -8.208077], [-64.406508, 107.91281, -8.132517]]}, {"shapeName": "R_arm_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[-63.959843, 108.629307, -8.315988], [-63.816391, 108.97568, -8.374911], [-63.488398, 109.110935, -8.509636], [-63.168028, 108.955839, -8.64123], [-63.042915, 108.601298, -8.69262], [-63.186367, 108.254925, -8.633697], [-63.51436, 108.11967, -8.498972], [-63.834717, 108.274751, -8.367384]]}, {"shapeName": "R_arm_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[-62.742993, 107.747699, -8.815815], [-58.56385, 102.966713, -10.53242]]}]},
-			"L_arm_PV_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_PV_CTLShape", "degree": 1, "form": 0, "points": [[38.889805, 127.780623, -117.039834], [38.889805, 125.751363, -117.039834], [38.889805, 125.751363, -119.069094], [38.889805, 127.780623, -119.069094], [40.919065, 127.780623, -119.069094], [40.919065, 125.751363, -119.069094], [40.919065, 125.751363, -117.039834], [40.919065, 127.780623, -117.039834], [38.889805, 127.780623, -117.039834], [38.889805, 127.780623, -119.069094], [38.889805, 125.751363, -119.069094], [40.919065, 125.751363, -119.069094], [40.919065, 127.780623, -119.069094], [40.919065, 127.780623, -117.039834], [40.919065, 125.751363, -117.039834], [38.889805, 125.751363, -117.039834]]}]},
-			"R_legBase_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 89.033144, -4.982335], [-9.978517, 85.824834, -4.458226], [-9.978517, 84.599366, -4.258034], [-9.978517, 87.057087, 3.084969], [-9.978517, 91.026973, 7.222817], [-9.978517, 94.992682, 6.57498], [-9.978517, 97.439417, 1.388916], [-9.978517, 97.432632, -6.354472], [-9.978517, 96.207164, -6.15428], [-9.978517, 92.998853, -5.630171], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}]},
-			"C_cog_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[25.550624, 98.139605, -6.79522], [25.523674, 98.139605, -10.814846], [18.587685, 98.139605, -13.228375], [17.639829, 98.139605, -16.080714], [21.751655, 98.139605, -22.164678], [19.367197, 98.139605, -25.400778], [12.33617, 98.139605, -23.280776], [9.893466, 98.139605, -25.031336], [9.644325, 98.139605, -32.365838], [5.813089, 98.139605, -33.58237], [1.372654, 98.139605, -27.738573], [-1.63187, 98.139605, -27.718706], [-6.146837, 98.139605, -33.502238], [-9.961402, 98.139605, -32.234492], [-10.115172, 98.139605, -24.899069], [-12.533892, 98.139605, -23.11637], [-19.590105, 98.139605, -25.139798], [-21.930994, 98.139605, -21.872019], [-17.739342, 98.139605, -15.846838], [-18.648385, 98.139605, -12.982251], [-25.550624, 98.139605, -10.472711], [-25.523674, 98.139605, -6.453085], [-18.587685, 98.139605, -4.039556], [-17.639829, 98.139605, -1.187217], [-21.751655, 98.139605, 4.896747], [-19.367197, 98.139605, 8.132847], [-12.33617, 98.139605, 6.012845], [-9.893466, 98.139605, 7.763405], [-9.644325, 98.139605, 15.097907], [-5.813089, 98.139605, 16.314439], [-1.372654, 98.139605, 10.470642], [1.63187, 98.139605, 10.450775], [6.146837, 98.139605, 16.234307], [9.961402, 98.139605, 14.966561], [10.115172, 98.139605, 7.631138], [12.533892, 98.139605, 5.848439], [19.590105, 98.139605, 7.871867], [21.930994, 98.139605, 4.604088], [17.739342, 98.139605, -1.421093], [18.648385, 98.139605, -4.28568], [25.550624, 98.139605, -6.79522]]}]},
-			"R_index_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_index_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-68.72087, 94.786265, -6.671079], [-68.761808, 94.886966, -6.559606], [-68.663837, 94.817277, -6.460672], [-68.622899, 94.716576, -6.572145], [-68.72087, 94.786265, -6.671079], [-68.772871, 94.733786, -6.53403], [-68.663837, 94.817277, -6.460672], [-68.611828, 94.869763, -6.597724], [-68.761808, 94.886966, -6.559606], [-68.772871, 94.733786, -6.53403], [-68.622899, 94.716576, -6.572145], [-68.611828, 94.869763, -6.597724], [-68.72087, 94.786265, -6.671079], [-68.772871, 94.733786, -6.53403], [-61.0957, 101.216, -9.57043]]}, {"shapeName": "R_index_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-67.676499, 109.237695, -9.08419], [-67.567458, 109.321192, -9.010835], [-67.619466, 109.268707, -8.873783], [-67.728508, 109.185209, -8.947138], [-67.676499, 109.237695, -9.08419], [-67.717431, 109.338388, -8.972718], [-67.619466, 109.268707, -8.873783], [-67.578528, 109.168006, -8.985256], [-67.567458, 109.321192, -9.010835], [-67.717431, 109.338388, -8.972718], [-67.728508, 109.185209, -8.947138], [-67.578528, 109.168006, -8.985256], [-67.676499, 109.237695, -9.08419], [-67.717431, 109.338388, -8.972718], [-61.0957, 101.216, -9.57043]]}, {"shapeName": "R_index_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-58.474938, 102.76403, 0.36064], [-58.324958, 102.746826, 0.322522], [-58.336029, 102.59364, 0.348101], [-58.486009, 102.610844, 0.386219], [-58.474938, 102.76403, 0.36064], [-58.37697, 102.69434, 0.459565], [-58.336029, 102.59364, 0.348101], [-58.434, 102.663329, 0.249167], [-58.324958, 102.746826, 0.322522], [-58.37697, 102.69434, 0.459565], [-58.486009, 102.610844, 0.386219], [-58.434, 102.663329, 0.249167], [-58.474938, 102.76403, 0.36064], [-58.37697, 102.69434, 0.459565], [-61.0957, 101.216, -9.57043]]}]},
-			"C_neck_FK_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_A_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 154.088154, -18.038449], [0.0, 154.483434, -18.016563], [0.0, 154.857002, -18.14762], [0.0, 155.151992, -18.411647], [0.0, 155.323479, -18.768462], [0.0, 155.345365, -19.163742], [0.0, 155.214308, -19.537311], [0.0, 154.950282, -19.8323], [0.0, 154.593466, -20.003787], [0.0, 154.198186, -20.025673], [0.0, 153.824617, -19.894617], [0.0, 153.529628, -19.63059], [0.0, 153.358141, -19.273774], [0.0, 153.336255, -18.878494], [0.0, 153.467312, -18.504926], [0.0, 153.731338, -18.209936], [0.0, 154.088154, -18.038449], [0.0, 151.561595, -8.211756]]}]},
-			"L_toe_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_toe_FK_CTLShape", "degree": 3, "form": 2, "points": [[13.953871, 5.641427, 7.565292], [9.978517, 7.287955, 7.590294], [6.003162, 5.642129, 7.536104], [4.35652, 1.668043, 7.434465], [6.003162, -2.306334, 7.344916], [9.978517, -3.952862, 7.319914], [13.953871, -2.307036, 7.374104], [15.600513, 1.66705, 7.475743]]}]},
-			"C_head_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[10.733529, 174.909256, -4.878771], [0.0, 179.355064, -4.841638], [-10.733529, 174.909256, -4.878771], [-15.179492, 164.176102, -4.968417], [-10.733529, 153.442947, -5.058064], [0.0, 148.997139, -5.095197], [10.733529, 153.442947, -5.058064], [15.179492, 164.176102, -4.968417]]}]},
-			"C_chest_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[5.152094, 127.606377, -12.927377], [0.0, 129.797977, -14.705762], [-5.152094, 127.606377, -12.927377], [-7.286156, 125.414776, -8.633965], [-5.152094, 127.606377, -4.340554], [0.0, 129.797977, -2.562169], [5.152094, 127.606377, -4.340554], [7.286156, 125.414776, -8.633965]]}]},
-			"L_upLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_upLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[13.953898, 91.65692, -1.382878], [9.978517, 91.922398, 0.242234], [6.003136, 91.65692, -1.382878], [4.356482, 91.015999, -5.306253], [6.003136, 90.375078, -9.229628], [9.978517, 90.1096, -10.85474], [13.953898, 90.375078, -9.229628], [15.600551, 91.015999, -5.306253]]}]},
-			"L_ring_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[69.319507, 94.48312, -9.758062], [69.37552, 94.579266, -9.649152], [69.292333, 94.504798, -9.540628], [69.23632, 94.408652, -9.649538], [69.319507, 94.48312, -9.758062], [69.39013, 94.425214, -9.631967], [69.292333, 94.504798, -9.540628], [69.221702, 94.56271, -9.666725], [69.37552, 94.579266, -9.649152], [69.39013, 94.425214, -9.631967], [69.23632, 94.408652, -9.649538], [69.221702, 94.56271, -9.666725], [69.319507, 94.48312, -9.758062], [69.39013, 94.425214, -9.631967], [61.360889, 100.979874, -11.288918]]}, {"shapeName": "L_ring_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[67.940479, 109.016773, -11.379434], [67.842674, 109.096363, -11.288096], [67.913305, 109.038451, -11.162], [68.01111, 108.958861, -11.253337], [67.940479, 109.016773, -11.379434], [67.996486, 109.112911, -11.270524], [67.913305, 109.038451, -11.162], [67.857292, 108.942305, -11.27091], [67.842674, 109.096363, -11.288096], [67.996486, 109.112911, -11.270524], [68.01111, 108.958861, -11.253337], [67.857292, 108.942305, -11.27091], [67.940479, 109.016773, -11.379434], [67.996486, 109.112911, -11.270524], [61.360889, 100.979874, -11.288918]]}, {"shapeName": "L_ring_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[60.148735, 102.087745, -1.032493], [59.994917, 102.071189, -1.050066], [60.009535, 101.917131, -1.032879], [60.163353, 101.933687, -1.015307], [60.148735, 102.087745, -1.032493], [60.06555, 102.013276, -0.923979], [60.009535, 101.917131, -1.032879], [60.092722, 101.991599, -1.141403], [59.994917, 102.071189, -1.050066], [60.06555, 102.013276, -0.923979], [60.163353, 101.933687, -1.015307], [60.092722, 101.991599, -1.141403], [60.148735, 102.087745, -1.032493], [60.06555, 102.013276, -0.923979], [61.360889, 100.979874, -11.288918]]}]},
-			"C_torso_FK_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_D_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 117.037224, -14.721745], [0.0, 117.270191, -14.768085], [0.0, 117.467691, -14.900056], [0.0, 117.599662, -15.097556], [0.0, 117.646002, -15.330523], [0.0, 117.599662, -15.56349], [0.0, 117.467691, -15.76099], [0.0, 117.270191, -15.892961], [0.0, 117.037224, -15.939301], [0.0, 116.804257, -15.892961], [0.0, 116.606757, -15.76099], [0.0, 116.474786, -15.56349], [0.0, 116.428446, -15.330523], [0.0, 116.474786, -15.097556], [0.0, 116.606757, -14.900056], [0.0, 116.804257, -14.768085], [0.0, 117.037224, -14.721745], [0.0, 117.037224, -8.633965]]}]},
-			"L_wrist_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_wrist_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.588617, 95.83296, -7.765984], [65.616732, 95.912981, -7.635411], [65.504953, 95.83296, -7.562302], [65.476837, 95.75294, -7.692874], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [65.504953, 95.83296, -7.562302], [65.472765, 95.908579, -7.694547], [65.616732, 95.912981, -7.635411], [65.620798, 95.757349, -7.633742], [65.476837, 95.75294, -7.692874], [65.472765, 95.908579, -7.694547], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.204449, 110.515778, -7.923782], [65.088598, 110.591397, -7.852345], [65.120786, 110.515778, -7.720101], [65.236637, 110.44016, -7.791537], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [65.120786, 110.515778, -7.720101], [65.09267, 110.435758, -7.850673], [65.088598, 110.591397, -7.852345], [65.232559, 110.595792, -7.793213], [65.236637, 110.44016, -7.791537], [65.09267, 110.435758, -7.850673], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[54.687444, 103.046734, -0.896134], [54.543477, 103.042331, -0.95527], [54.547549, 102.886692, -0.953597], [54.691516, 102.891095, -0.894462], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [54.547549, 102.886692, -0.953597], [54.659328, 102.966713, -1.026707], [54.543477, 103.042331, -0.95527], [54.575669, 102.966713, -0.823034], [54.691516, 102.891095, -0.894462], [54.659328, 102.966713, -1.026707], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [58.56385, 102.966713, -10.53242]]}]},
-			"L_heel_CTL": {"color": 20, "shapes": [{"shapeName": "L_heel_CTLShape", "degree": 1, "form": 0, "points": [[9.813801, 0.969538, -11.681757], [9.808469, -0.065675, -12.675363], [10.822972, 0.948742, -12.701604], [9.813801, 0.969538, -11.681757], [8.793742, 0.948742, -12.690714], [9.808469, -0.065675, -12.675363], [9.802913, 0.927945, -13.710561], [8.793742, 0.948742, -12.690714], [9.808245, 1.963159, -12.716955], [9.813801, 0.969538, -11.681757], [10.822972, 0.948742, -12.701604], [9.802913, 0.927945, -13.710561], [9.808245, 1.963159, -12.716955], [10.822972, 0.948742, -12.701604]]}]},
-			"R_legEnd_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_legEnd_FK_CTLShape", "degree": 3, "form": 2, "points": [[-13.953898, 6.861021, -1.843173], [-9.978517, 6.608516, -0.215995], [-6.003136, 6.861021, -1.843173], [-4.356482, 7.470624, -5.771536], [-6.003136, 8.080227, -9.6999], [-9.978517, 8.332732, -11.327078], [-13.953898, 8.080227, -9.6999], [-15.600551, 7.470624, -5.771536]]}]},
-			"world_D_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 0.0, -346.62], [153.99, 0.0, -192.48], [115.44, 0.0, -192.48], [115.44, 0.0, -115.41], [192.51, 0.0, -115.41], [192.51, 0.0, -153.96], [346.62, 0.0, 0.0], [192.48, 0.0, 153.99], [192.48, 0.0, 115.44], [115.41, 0.0, 115.44], [115.41, 0.0, 192.51], [153.96, 0.0, 192.51], [0.0, 0.0, 346.62], [-153.99, 0.0, 192.48], [-115.44, 0.0, 192.48], [-115.44, 0.0, 115.41], [-192.51, 0.0, 115.41], [-192.51, 0.0, 153.96], [-346.62, 0.0, 0.0], [-192.48, 0.0, -153.99], [-192.48, 0.0, -115.44], [-115.41, 0.0, -115.44], [-115.41, 0.0, -192.51], [-153.96, 0.0, -192.51], [0.0, 0.0, -346.62], [30.18, 0.42, -316.98], [27.54, 0.0, -314.16], [27.54, 0.0, -302.64], [25.14, 0.0, -302.64], [25.29, 0.0, -314.25], [23.58, 0.0, -313.38], [23.64, 0.0, -308.34], [21.21, 0.0, -308.34], [21.21, 0.0, -313.38], [19.71, 0.0, -314.25], [19.71, 0.0, -302.46], [17.28, 0.0, -302.46], [17.28, 0.0, -314.55], [19.23, 0.0, -316.5], [22.23, 0.0, -315.0], [25.53, 0.0, -316.5], [27.54, 0.0, -314.22], [25.53, 0.0, -316.5], [22.26, 0.0, -315.03], [19.23, 0.0, -316.47], [13.38, 0.0, -316.5], [15.36, 0.0, -314.55], [15.36, 0.0, -304.44], [13.38, 0.0, -302.46], [7.05, 0.0, -302.46], [5.1, 0.0, -304.44], [5.1, 0.0, -314.55], [7.05, 0.0, -316.5], [13.38, 0.0, -316.5], [12.63, 0.0, -314.25], [12.93, 0.0, -304.95], [7.5, 0.0, -305.01], [7.53, 0.0, -314.25], [12.66, 0.0, -314.31], [13.38, 0.0, -316.5], [7.05, 0.0, -316.5], [3.0, 0.0, -316.5], [3.15, 0.0, -302.46], [-3.69, 0.0, -302.46], [-5.67, 0.0, -304.44], [-5.67, 0.0, -308.67], [-3.66, 0.0, -310.62], [-3.54, 0.0, -310.77], [-7.47, 0.0, -316.44], [-7.47, 0.0, -316.5], [-4.65, 0.0, -316.5], [-0.72, 0.0, -310.8], [0.75, 0.0, -310.8], [0.75, 0.0, -304.8], [-3.03, 0.0, -304.8], [-3.06, 0.0, -308.37], [0.75, 0.0, -308.37], [0.75, 0.0, -316.5], [3.0, 0.0, -316.5], [-19.29, 0.0, -316.5], [-19.29, 0.0, -314.25], [-11.43, 0.0, -314.22], [-11.43, 0.0, -302.46], [-9.0, 0.0, -302.46], [-9.0, 0.0, -316.5], [-29.52, 0.0, -316.5], [-31.32, 0.0, -314.55], [-31.47, 0.0, -304.44], [-29.52, 0.0, -302.46], [-21.21, 0.0, -302.46], [-21.21, 0.0, -316.5], [-23.67, 0.0, -314.25], [-23.61, 0.0, -304.74], [-28.74, 0.0, -304.74], [-28.68, 0.0, -314.19], [-23.58, 0.0, -314.31], [-21.15, 0.0, -316.5]]}]},
-			"L_ring_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_B_CTLShape", "degree": 3, "form": 2, "points": [[63.643354, 97.581914, -11.872647], [64.505276, 98.416822, -12.348441], [65.245275, 99.348999, -11.848632], [65.429867, 99.832388, -10.665998], [64.950923, 99.583828, -9.493313], [64.089, 98.74892, -9.017519], [63.349002, 97.816743, -9.517328], [63.16441, 97.333354, -10.699962]]}]},
-			"L_pinky_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_A_CTLShape", "degree": 3, "form": 2, "points": [[61.258046, 101.78456, -16.798184], [61.100425, 102.966713, -17.29218], [60.942805, 104.148866, -16.798184], [60.877517, 104.638528, -15.60557], [60.942805, 104.148866, -14.412956], [61.100425, 102.966713, -13.91896], [61.258046, 101.78456, -14.412956], [61.323334, 101.294898, -15.60557]]}]},
-			"L_middle_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_A_CTLShape", "degree": 3, "form": 2, "points": [[60.624074, 100.299004, -9.688746], [61.590934, 101.133747, -9.875152], [62.042832, 102.163455, -9.241234], [61.71505, 102.784937, -8.158331], [60.799601, 102.634141, -7.260793], [59.832742, 101.799398, -7.074387], [59.380844, 100.769691, -7.708305], [59.708625, 100.148208, -8.791208]]}]},
-			"L_pinky_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_D_CTLShape", "degree": 3, "form": 2, "points": [[72.357392, 102.291875, -16.798184], [72.515012, 103.474028, -17.29218], [72.672633, 104.656181, -16.798184], [72.737921, 105.145843, -15.60557], [72.672633, 104.656181, -14.412956], [72.515012, 103.474028, -13.91896], [72.357392, 102.291875, -14.412956], [72.292104, 101.802213, -15.60557]]}]},
-			"R_pinky_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_pinky_C_CTLShape", "degree": 3, "form": 2, "points": [[-68.615045, 102.589601, -16.798184], [-68.71015, 103.778417, -17.29218], [-68.805255, 104.967233, -16.798184], [-68.844649, 105.459656, -15.60557], [-68.805255, 104.967233, -14.412956], [-68.71015, 103.778417, -13.91896], [-68.615045, 102.589601, -14.412956], [-68.575651, 102.097178, -15.60557]]}]},
-			"L_arm_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[57.040912, 108.1303, -7.209173], [52.399663, 102.820658, -9.115591], [55.175335, 102.820658, -15.873073], [59.816584, 108.1303, -13.966656], [64.728038, 103.112768, -11.94925], [60.086789, 97.803126, -13.855668], [57.311117, 97.803126, -7.098185], [61.952366, 103.112768, -5.191767], [57.040912, 108.1303, -7.209173], [59.816584, 108.1303, -13.966656], [55.175335, 102.820658, -15.873073], [60.086789, 97.803126, -13.855668], [64.728038, 103.112768, -11.94925], [61.952366, 103.112768, -5.191767], [57.311117, 97.803126, -7.098185], [52.399663, 102.820658, -9.115591]]}]},
-			"C_torso_FK_E_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_E_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 128.553684, -8.700024], [-0.066058, 128.553684, -8.633965], [0.0, 128.553684, -8.567907], [0.066058, 128.553684, -8.633965], [0.0, 128.553684, -8.700024], [0.0, 128.619736, -8.633965], [0.0, 128.553684, -8.567907], [0.0, 128.487625, -8.633965], [-0.066058, 128.553684, -8.633965], [0.0, 128.619736, -8.633965], [0.066058, 128.553684, -8.633965], [0.0, 128.487625, -8.633965], [0.0, 128.553684, -8.700024], [0.0, 128.619736, -8.633965], [0.0, 122.3218, -8.633965]]}, {"shapeName": "C_torso_FK_E_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 122.3218, -8.700024], [-6.231884, 122.255742, -8.633965], [-6.231884, 122.3218, -8.567907], [-6.231884, 122.387859, -8.633965], [-6.231884, 122.3218, -8.700024], [-6.297936, 122.3218, -8.633965], [-6.231884, 122.3218, -8.567907], [-6.165825, 122.3218, -8.633965], [-6.231884, 122.255742, -8.633965], [-6.297936, 122.3218, -8.633965], [-6.231884, 122.387859, -8.633965], [-6.165825, 122.3218, -8.633965], [-6.231884, 122.3218, -8.700024], [-6.297936, 122.3218, -8.633965], [0.0, 122.3218, -8.633965]]}, {"shapeName": "C_torso_FK_E_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 122.3218, -2.402082], [0.0, 122.255742, -2.402082], [0.066058, 122.3218, -2.402082], [0.0, 122.387859, -2.402082], [-0.066058, 122.3218, -2.402082], [0.0, 122.3218, -2.336029], [0.066058, 122.3218, -2.402082], [0.0, 122.3218, -2.46814], [0.0, 122.255742, -2.402082], [0.0, 122.3218, -2.336029], [0.0, 122.387859, -2.402082], [0.0, 122.3218, -2.46814], [-0.066058, 122.3218, -2.402082], [0.0, 122.3218, -2.336029], [0.0, 122.3218, -8.633965]]}]},
-			"R_wrist_IK_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-57.85321, 100.944151, -13.832695], [-60.05912, 102.966713, -14.172713], [-61.389123, 104.989275, -12.3803], [-61.064117, 105.827046, -9.505423], [-59.274491, 104.989275, -7.232145], [-57.068581, 102.966713, -6.892128], [-55.738578, 100.944151, -8.68454], [-56.063584, 100.10638, -11.559418]]}]},
-			"L_leg_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[15.531734, 8.296326, -5.643404], [15.305629, 8.296326, -5.643404], [15.262809, 8.067055, -5.678982], [15.102138, 8.001272, -5.689191], [14.907788, 8.133471, -5.668676], [14.747905, 7.975479, -5.693193], [14.881679, 7.783448, -5.722992], [14.815137, 7.624657, -5.747634], [14.583101, 7.582343, -5.7542], [14.583101, 7.358905, -5.788873], [14.815137, 7.316591, -5.795439], [14.881679, 7.157821, -5.820077], [14.747905, 6.965769, -5.84988], [14.907788, 6.807777, -5.874397], [15.102138, 6.939976, -5.853882], [15.262809, 6.874193, -5.86409], [15.305629, 6.644922, -5.899669], [15.531734, 6.644922, -5.899669], [15.574576, 6.874193, -5.86409], [15.735247, 6.939976, -5.853882], [15.929597, 6.807777, -5.874397], [16.089465, 6.965769, -5.84988], [15.955706, 7.157821, -5.820077], [16.022248, 7.316591, -5.795439], [16.254263, 7.358905, -5.788873], [16.254263, 7.582343, -5.7542], [16.022248, 7.624657, -5.747634], [15.955706, 7.783448, -5.722992], [16.089465, 7.975479, -5.693193], [15.929597, 8.133471, -5.668676], [15.735247, 8.001272, -5.689191], [15.574576, 8.067055, -5.678982], [15.531734, 8.296326, -5.643404]]}, {"shapeName": "L_leg_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[15.664109, 7.713152, -5.733901], [15.765773, 7.470624, -5.771536], [15.664109, 7.228096, -5.809172], [15.418685, 7.127655, -5.824758], [15.173276, 7.228096, -5.809172], [15.071612, 7.470624, -5.771536], [15.173276, 7.713152, -5.733901], [15.418685, 7.813593, -5.718315]]}, {"shapeName": "L_leg_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[14.583101, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
-			"C_chest_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_CTLShape", "degree": 3, "form": 2, "points": [[8.586823, 127.606377, -15.789651], [0.0, 131.259045, -18.753627], [-8.586823, 127.606377, -15.789651], [-12.143594, 123.953709, -8.633965], [-8.586823, 127.606377, -1.47828], [0.0, 131.259045, 1.485696], [8.586823, 127.606377, -1.47828], [12.143594, 123.953709, -8.633965]]}]},
-			"C_neck_FK_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 161.648312, -5.73202], [-0.110097, 161.620896, -5.625391], [0.0, 161.59348, -5.518761], [0.110097, 161.620896, -5.625391], [0.0, 161.648312, -5.73202], [0.0, 161.727515, -5.597978], [0.0, 161.59348, -5.518761], [0.0, 161.514266, -5.652806], [-0.110097, 161.620896, -5.625391], [0.0, 161.727515, -5.597978], [0.110097, 161.620896, -5.625391], [0.0, 161.514266, -5.652806], [0.0, 161.648312, -5.73202], [0.0, 161.727515, -5.597978], [0.0, 151.561595, -8.211756]]}, {"shapeName": "C_neck_FK_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-10.386473, 151.589011, -8.318385], [-10.386473, 151.454966, -8.239172], [-10.386473, 151.534179, -8.105126], [-10.386473, 151.668225, -8.18434], [-10.386473, 151.589011, -8.318385], [-10.49656, 151.561595, -8.211756], [-10.386473, 151.534179, -8.105126], [-10.276375, 151.561595, -8.211756], [-10.386473, 151.454966, -8.239172], [-10.49656, 151.561595, -8.211756], [-10.386473, 151.668225, -8.18434], [-10.276375, 151.561595, -8.211756], [-10.386473, 151.589011, -8.318385], [-10.49656, 151.561595, -8.211756], [0.0, 151.561595, -8.211756]]}, {"shapeName": "C_neck_FK_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.110097, 148.97523, 1.847545], [0.0, 148.868601, 1.820129], [0.110097, 148.97523, 1.847545], [0.0, 149.08186, 1.874961], [-0.110097, 148.97523, 1.847545], [0.0, 148.947817, 1.954164], [0.110097, 148.97523, 1.847545], [0.0, 149.002646, 1.740915], [0.0, 148.868601, 1.820129], [0.0, 148.947817, 1.954164], [0.0, 149.08186, 1.874961], [0.0, 149.002646, 1.740915], [-0.110097, 148.97523, 1.847545], [0.0, 148.947817, 1.954164], [0.0, 151.561595, -8.211756]]}]},
-			"C_chest_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_chest_PIV_CTLShape", "degree": 1, "form": 0, "points": [[6.231884, 127.606377, -8.700024], [6.231884, 127.672435, -8.633965], [6.231884, 127.606377, -8.567907], [6.231884, 127.540318, -8.633965], [6.231884, 127.606377, -8.700024], [6.297936, 127.606377, -8.633965], [6.231884, 127.606377, -8.567907], [6.165825, 127.606377, -8.633965], [6.231884, 127.672435, -8.633965], [6.297936, 127.606377, -8.633965], [6.231884, 127.540318, -8.633965], [6.165825, 127.606377, -8.633965], [6.231884, 127.606377, -8.700024], [6.297936, 127.606377, -8.633965], [0.0, 127.606377, -8.633965]]}, {"shapeName": "C_chest_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 133.83826, -8.700024], [-0.066058, 133.83826, -8.633965], [0.0, 133.83826, -8.567907], [0.066058, 133.83826, -8.633965], [0.0, 133.83826, -8.700024], [0.0, 133.904313, -8.633965], [0.0, 133.83826, -8.567907], [0.0, 133.772202, -8.633965], [-0.066058, 133.83826, -8.633965], [0.0, 133.904313, -8.633965], [0.066058, 133.83826, -8.633965], [0.0, 133.772202, -8.633965], [0.0, 133.83826, -8.700024], [0.0, 133.904313, -8.633965], [0.0, 127.606377, -8.633965]]}, {"shapeName": "C_chest_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 127.672435, -2.402082], [-0.066058, 127.606377, -2.402082], [0.0, 127.540318, -2.402082], [0.066058, 127.606377, -2.402082], [0.0, 127.672435, -2.402082], [0.0, 127.606377, -2.336029], [0.0, 127.540318, -2.402082], [0.0, 127.606377, -2.46814], [-0.066058, 127.606377, -2.402082], [0.0, 127.606377, -2.336029], [0.066058, 127.606377, -2.402082], [0.0, 127.606377, -2.46814], [0.0, 127.672435, -2.402082], [0.0, 127.606377, -2.336029], [0.0, 127.606377, -8.633965]]}]},
-			"L_arm_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[46.946304, 119.132902, -118.251793], [47.02605, 119.20515, -118.13926], [46.94393, 119.128197, -118.031662], [46.864184, 119.055949, -118.144195], [46.946304, 119.132902, -118.251793], [47.019742, 119.049621, -118.142652], [46.94393, 119.128197, -118.031662], [46.870485, 119.211486, -118.140802], [47.02605, 119.20515, -118.13926], [47.019742, 119.049621, -118.142652], [46.864184, 119.055949, -118.144195], [46.870485, 119.211486, -118.140802], [46.946304, 119.132902, -118.251793], [47.019742, 119.049621, -118.142652], [39.904435, 126.765993, -118.054464]]}, {"shapeName": "L_arm_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[47.540743, 133.80607, -117.931779], [47.464924, 133.884654, -117.820788], [47.538369, 133.801366, -117.711647], [47.614187, 133.722782, -117.822638], [47.540743, 133.80607, -117.931779], [47.620481, 133.878312, -117.819246], [47.538369, 133.801366, -117.711647], [47.458623, 133.729117, -117.82418], [47.464924, 133.884654, -117.820788], [47.620481, 133.878312, -117.819246], [47.614187, 133.722782, -117.822638], [47.458623, 133.729117, -117.82418], [47.540743, 133.80607, -117.931779], [47.620481, 133.878312, -117.819246], [39.904435, 126.765993, -118.054464]]}, {"shapeName": "L_arm_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[39.873393, 126.618671, -107.668499], [39.717828, 126.625007, -107.670042], [39.711527, 126.46947, -107.673434], [39.867092, 126.463134, -107.671892], [39.873393, 126.618671, -107.668499], [39.791273, 126.541718, -107.560911], [39.711527, 126.46947, -107.673434], [39.793647, 126.546423, -107.781032], [39.717828, 126.625007, -107.670042], [39.791273, 126.541718, -107.560911], [39.867092, 126.463134, -107.671892], [39.793647, 126.546423, -107.781032], [39.873393, 126.618671, -107.668499], [39.791273, 126.541718, -107.560911], [39.904435, 126.765993, -118.054464]]}]},
-			"R_pinky_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_pinky_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-82.810362, 102.101285, -15.715697], [-82.824913, 102.210417, -15.6056], [-82.810362, 102.101285, -15.495502], [-82.795811, 101.992153, -15.6056], [-82.810362, 102.101285, -15.715697], [-82.919483, 102.086736, -15.6056], [-82.810362, 102.101285, -15.495502], [-82.70123, 102.115836, -15.6056], [-82.824913, 102.210417, -15.6056], [-82.919483, 102.086736, -15.6056], [-82.795811, 101.992153, -15.6056], [-82.70123, 102.115836, -15.6056], [-82.810362, 102.101285, -15.715697], [-82.919483, 102.086736, -15.6056], [-72.515, 103.474, -15.6056]]}, {"shapeName": "R_pinky_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-73.887715, 113.769361, -15.715697], [-73.778584, 113.783912, -15.6056], [-73.887715, 113.769361, -15.495502], [-73.996847, 113.754811, -15.6056], [-73.887715, 113.769361, -15.715697], [-73.902265, 113.878483, -15.6056], [-73.887715, 113.769361, -15.495502], [-73.873164, 113.66023, -15.6056], [-73.778584, 113.783912, -15.6056], [-73.902265, 113.878483, -15.6056], [-73.996847, 113.754811, -15.6056], [-73.873164, 113.66023, -15.6056], [-73.887715, 113.769361, -15.715697], [-73.902265, 113.878483, -15.6056], [-72.515, 103.474, -15.6056]]}, {"shapeName": "R_pinky_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-72.529551, 103.583132, -5.219127], [-72.405869, 103.488551, -5.219127], [-72.500449, 103.364868, -5.219127], [-72.624132, 103.459449, -5.219127], [-72.529551, 103.583132, -5.219127], [-72.515, 103.474, -5.10904], [-72.500449, 103.364868, -5.219127], [-72.515, 103.474, -5.329225], [-72.405869, 103.488551, -5.219127], [-72.515, 103.474, -5.10904], [-72.624132, 103.459449, -5.219127], [-72.515, 103.474, -5.329225], [-72.529551, 103.583132, -5.219127], [-72.515, 103.474, -5.10904], [-72.515, 103.474, -15.6056]]}]},
-			"C_neck_FK_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 165.8484, -4.652128], [-0.110097, 165.820984, -4.545499], [0.0, 165.793568, -4.438869], [0.110097, 165.820984, -4.545499], [0.0, 165.8484, -4.652128], [0.0, 165.927603, -4.518085], [0.0, 165.793568, -4.438869], [0.0, 165.714354, -4.572914], [-0.110097, 165.820984, -4.545499], [0.0, 165.927603, -4.518085], [0.110097, 165.820984, -4.545499], [0.0, 165.714354, -4.572914], [0.0, 165.8484, -4.652128], [0.0, 165.927603, -4.518085], [0.0, 155.761683, -7.131864]]}, {"shapeName": "C_neck_FK_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-10.386473, 155.789099, -7.238493], [-10.386473, 155.655054, -7.159279], [-10.386473, 155.734267, -7.025234], [-10.386473, 155.868313, -7.104448], [-10.386473, 155.789099, -7.238493], [-10.49656, 155.761683, -7.131864], [-10.386473, 155.734267, -7.025234], [-10.276375, 155.761683, -7.131864], [-10.386473, 155.655054, -7.159279], [-10.49656, 155.761683, -7.131864], [-10.386473, 155.868313, -7.104448], [-10.276375, 155.761683, -7.131864], [-10.386473, 155.789099, -7.238493], [-10.49656, 155.761683, -7.131864], [0.0, 155.761683, -7.131864]]}, {"shapeName": "C_neck_FK_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.110097, 153.175318, 2.927437], [0.0, 153.068689, 2.900021], [0.110097, 153.175318, 2.927437], [0.0, 153.281948, 2.954853], [-0.110097, 153.175318, 2.927437], [0.0, 153.147905, 3.034057], [0.110097, 153.175318, 2.927437], [0.0, 153.202734, 2.820808], [0.0, 153.068689, 2.900021], [0.0, 153.147905, 3.034057], [0.0, 153.281948, 2.954853], [0.0, 153.202734, 2.820808], [-0.110097, 153.175318, 2.927437], [0.0, 153.147905, 3.034057], [0.0, 155.761683, -7.131864]]}]},
-			"R_middle_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_middle_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-67.125587, 95.300037, -3.115401], [-67.133689, 95.407822, -3.003331], [-67.010817, 95.343489, -2.932574], [-67.002715, 95.235703, -3.044644], [-67.125587, 95.300037, -3.115401], [-67.135575, 95.256629, -2.966214], [-67.010817, 95.343489, -2.932574], [-67.000824, 95.386903, -3.081766], [-67.133689, 95.407822, -3.003331], [-67.135575, 95.256629, -2.966214], [-67.002715, 95.235703, -3.044644], [-67.000824, 95.386903, -3.081766], [-67.125587, 95.300037, -3.115401], [-67.135575, 95.256629, -2.966214], [-60.7118, 101.467, -8.47477]]}, {"shapeName": "R_middle_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-66.947163, 109.564018, -6.617491], [-66.822399, 109.650884, -6.583857], [-66.832393, 109.60747, -6.434665], [-66.957156, 109.520604, -6.468299], [-66.947163, 109.564018, -6.617491], [-66.955259, 109.671795, -6.505424], [-66.832393, 109.60747, -6.434665], [-66.824291, 109.499684, -6.546734], [-66.822399, 109.650884, -6.583857], [-66.955259, 109.671795, -6.505424], [-66.957156, 109.520604, -6.468299], [-66.824291, 109.499684, -6.546734], [-66.947163, 109.564018, -6.617491], [-66.955259, 109.671795, -6.505424], [-60.7118, 101.467, -8.47477]]}, {"shapeName": "R_middle_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-55.363642, 103.602662, 0.169714], [-55.230776, 103.581742, 0.091279], [-55.232668, 103.430543, 0.128401], [-55.365533, 103.451462, 0.206836], [-55.363642, 103.602662, 0.169714], [-55.240775, 103.538326, 0.240462], [-55.232668, 103.430543, 0.128401], [-55.35554, 103.494876, 0.057644], [-55.230776, 103.581742, 0.091279], [-55.240775, 103.538326, 0.240462], [-55.365533, 103.451462, 0.206836], [-55.35554, 103.494876, 0.057644], [-55.363642, 103.602662, 0.169714], [-55.240775, 103.538326, 0.240462], [-60.7118, 101.467, -8.47477]]}]},
-			"R_legBase_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 89.281001, -5.022824], [-9.978517, 86.473729, -4.56423], [-9.978517, 85.401445, -4.389062], [-9.978517, 87.551951, 2.036067], [-9.978517, 91.025602, 5.656683], [-9.978517, 94.495597, 5.089826], [-9.978517, 96.63649, 0.55202], [-9.978517, 96.630553, -6.223444], [-9.978517, 95.558268, -6.048276], [-9.978517, 92.750996, -5.589682], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}]},
-			"L_hand_CTL": {"color": 18, "shapes": [{"shapeName": "L_hand_CTLShape", "degree": 3, "form": 2, "points": [[62.29304, 113.113013, -11.725034], [61.100425, 113.113013, -12.21903], [59.907811, 113.113013, -11.725034], [59.413815, 113.113013, -10.53242], [59.907811, 113.113013, -9.339806], [61.100425, 113.113013, -8.84581], [62.29304, 113.113013, -9.339806], [62.787036, 113.113013, -10.53242]]}, {"shapeName": "L_hand_CTLShape1", "degree": 3, "form": 2, "points": [[61.100425, 114.305627, -11.725034], [61.100425, 113.113013, -12.21903], [61.100425, 111.920398, -11.725034], [61.100425, 111.426402, -10.53242], [61.100425, 111.920398, -9.339806], [61.100425, 113.113013, -8.84581], [61.100425, 114.305627, -9.339806], [61.100425, 114.799623, -10.53242]]}, {"shapeName": "L_hand_CTLShape2", "degree": 3, "form": 2, "points": [[59.907811, 114.305627, -10.53242], [59.413815, 113.113013, -10.53242], [59.907811, 111.920398, -10.53242], [61.100425, 111.426402, -10.53242], [62.29304, 111.920398, -10.53242], [62.787036, 113.113013, -10.53242], [62.29304, 114.305627, -10.53242], [61.100425, 114.799623, -10.53242]]}]},
-			"C_torso_FK_E_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_E_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 122.3218, -14.721745], [0.0, 122.554767, -14.768085], [0.0, 122.752267, -14.900056], [0.0, 122.884238, -15.097556], [0.0, 122.930578, -15.330523], [0.0, 122.884238, -15.56349], [0.0, 122.752267, -15.76099], [0.0, 122.554767, -15.892961], [0.0, 122.3218, -15.939301], [0.0, 122.088833, -15.892961], [0.0, 121.891333, -15.76099], [0.0, 121.759362, -15.56349], [0.0, 121.713022, -15.330523], [0.0, 121.759362, -15.097556], [0.0, 121.891333, -14.900056], [0.0, 122.088833, -14.768085], [0.0, 122.3218, -14.721745], [0.0, 122.3218, -8.633965]]}]},
-			"R_legBase_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 89.528858, -5.063314], [-9.978517, 87.122625, -4.670233], [-9.978517, 86.203524, -4.520089], [-9.978517, 88.046815, 0.987164], [-9.978517, 91.02423, 4.09055], [-9.978517, 93.998511, 3.604672], [-9.978517, 95.833563, -0.284876], [-9.978517, 95.828474, -6.092417], [-9.978517, 94.909373, -5.942273], [-9.978517, 92.50314, -5.549192], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}]},
-			"R_thumb_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_thumb_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-58.579963, 90.498066, 5.054681], [-58.443828, 90.545295, 5.113667], [-58.368963, 90.44449, 5.021599], [-58.505099, 90.39726, 4.962613], [-58.579963, 90.498066, 5.054681], [-58.481719, 90.394309, 5.116513], [-58.368963, 90.44449, 5.021599], [-58.467207, 90.548254, 4.95976], [-58.443828, 90.545295, 5.113667], [-58.481719, 90.394309, 5.116513], [-58.505099, 90.39726, 4.962613], [-58.467207, 90.548254, 4.95976], [-58.579963, 90.498066, 5.054681], [-58.481719, 90.394309, 5.116513], [-57.7899, 97.7331, -2.35619]]}, {"shapeName": "R_thumb_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-55.005275, 104.742601, 4.785497], [-54.892519, 104.792788, 4.690576], [-54.794275, 104.689025, 4.752416], [-54.907032, 104.638837, 4.847337], [-55.005275, 104.742601, 4.785497], [-54.869142, 104.789823, 4.844477], [-54.794275, 104.689025, 4.752416], [-54.930411, 104.641795, 4.693429], [-54.892519, 104.792788, 4.690576], [-54.869142, 104.789823, 4.844477], [-54.907032, 104.638837, 4.847337], [-54.930411, 104.641795, 4.693429], [-55.005275, 104.742601, 4.785497], [-54.869142, 104.789823, 4.844477], [-57.7899, 97.7331, -2.35619]]}, {"shapeName": "R_thumb_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-47.806508, 95.27997, -3.841103], [-47.829887, 95.282928, -3.995011], [-47.867779, 95.131935, -3.992158], [-47.8444, 95.128976, -3.83825], [-47.806508, 95.27997, -3.841103], [-47.731653, 95.179167, -3.93317], [-47.867779, 95.131935, -3.992158], [-47.942644, 95.23274, -3.90009], [-47.829887, 95.282928, -3.995011], [-47.731653, 95.179167, -3.93317], [-47.8444, 95.128976, -3.83825], [-47.942644, 95.23274, -3.90009], [-47.806508, 95.27997, -3.841103], [-47.731653, 95.179167, -3.93317], [-57.7899, 97.7331, -2.35619]]}]},
-			"R_wrist_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-65.588617, 95.83296, -7.765984], [-65.616732, 95.912981, -7.635411], [-65.504953, 95.83296, -7.562302], [-65.476837, 95.75294, -7.692874], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-65.504953, 95.83296, -7.562302], [-65.472765, 95.908579, -7.694547], [-65.616732, 95.912981, -7.635411], [-65.620798, 95.757349, -7.633742], [-65.476837, 95.75294, -7.692874], [-65.472765, 95.908579, -7.694547], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_wrist_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-65.204449, 110.515778, -7.923782], [-65.088598, 110.591397, -7.852345], [-65.120786, 110.515778, -7.720101], [-65.236637, 110.44016, -7.791537], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-65.120786, 110.515778, -7.720101], [-65.09267, 110.435758, -7.850673], [-65.088598, 110.591397, -7.852345], [-65.232559, 110.595792, -7.793213], [-65.236637, 110.44016, -7.791537], [-65.09267, 110.435758, -7.850673], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_wrist_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-54.687444, 103.046734, -0.896134], [-54.543477, 103.042331, -0.95527], [-54.547549, 102.886692, -0.953597], [-54.691516, 102.891095, -0.894462], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-54.547549, 102.886692, -0.953597], [-54.659328, 102.966713, -1.026707], [-54.543477, 103.042331, -0.95527], [-54.575669, 102.966713, -0.823034], [-54.691516, 102.891095, -0.894462], [-54.659328, 102.966713, -1.026707], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-58.56385, 102.966713, -10.53242]]}]},
-			"R_reverseBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_reverseBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-20.364252, 1.665293, 7.28929], [-20.364831, 1.777624, 7.397106], [-20.365433, 1.669806, 7.509436], [-20.364855, 1.557476, 7.401619], [-20.364252, 1.665293, 7.28929], [-20.474928, 1.66755, 7.398772], [-20.365433, 1.669806, 7.509436], [-20.254747, 1.66755, 7.399954], [-20.364831, 1.777624, 7.397106], [-20.474928, 1.66755, 7.398772], [-20.364855, 1.557476, 7.401619], [-20.254747, 1.66755, 7.399954], [-20.364252, 1.665293, 7.28929], [-20.474928, 1.66755, 7.398772], [-9.97852, 1.66755, 7.4551]]}, {"shapeName": "R_reverseBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-9.976786, 12.049584, 7.132144], [-9.867281, 12.051841, 7.242808], [-9.977968, 12.054097, 7.35229], [-10.087473, 12.051841, 7.241626], [-9.976786, 12.049584, 7.132144], [-9.977365, 12.161905, 7.23996], [-9.977968, 12.054097, 7.35229], [-9.977389, 11.941766, 7.244473], [-9.867281, 12.051841, 7.242808], [-9.977365, 12.161905, 7.23996], [-10.087473, 12.051841, 7.241626], [-9.977389, 11.941766, 7.244473], [-9.976786, 12.049584, 7.132144], [-9.977365, 12.161905, 7.23996], [-9.97852, 1.66755, 7.4551]]}, {"shapeName": "R_reverseBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-10.034233, 1.99051, 17.836984], [-9.924149, 1.880436, 17.839832], [-10.034257, 1.770362, 17.841498], [-10.144341, 1.880436, 17.83865], [-10.034233, 1.99051, 17.836984], [-10.034836, 1.882692, 17.949304], [-10.034257, 1.770362, 17.841498], [-10.033654, 1.878179, 17.729168], [-9.924149, 1.880436, 17.839832], [-10.034836, 1.882692, 17.949304], [-10.144341, 1.880436, 17.83865], [-10.033654, 1.878179, 17.729168], [-10.034233, 1.99051, 17.836984], [-10.034836, 1.882692, 17.949304], [-9.97852, 1.66755, 7.4551]]}]},
-			"R_leg_IK_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_CTLShape", "degree": 3, "form": 2, "points": [[-15.941588, 7.470624, -15.709989], [-9.978517, 7.470624, -19.826622], [-4.015445, 7.470624, -15.709989], [-1.545465, 7.470624, -5.771536], [-4.015445, 7.470624, 4.166916], [-9.978517, 7.470624, 8.283549], [-15.941588, 7.470624, 4.166916], [-18.411568, 7.470624, -5.771536]]}]},
-			"C_neckBase_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[10.01796, 153.640429, -16.297086], [0.0, 150.374297, -20.707287], [-10.01796, 153.640429, -16.297086], [-14.167526, 155.688806, -7.150601], [-10.01796, 149.482761, -0.126426], [0.0, 144.494471, 2.161466], [10.01796, 149.482761, -0.126426], [14.167526, 155.688806, -7.150601]]}]},
-			"R_middle_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_middle_D_CTLShape", "degree": 3, "form": 2, "points": [[-66.824758, 92.99635, -4.060637], [-67.958067, 93.613648, -4.090874], [-68.576415, 94.42591, -3.300786], [-68.317579, 94.957324, -2.153196], [-67.333184, 94.896596, -1.320345], [-66.199875, 94.279298, -1.290109], [-65.581527, 93.467036, -2.080196], [-65.840364, 92.935622, -3.227786]]}]},
-			"R_ring_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_ring_A_CTLShape", "degree": 3, "form": 2, "points": [[-60.754131, 99.938387, -12.468667], [-61.569027, 100.813825, -12.954379], [-62.261998, 101.786531, -12.464487], [-62.427111, 102.286708, -11.285962], [-61.967646, 102.021361, -10.109168], [-61.152751, 101.145923, -9.623457], [-60.459779, 100.173217, -10.113348], [-60.294667, 99.67304, -11.291873]]}]},
-			"C_head_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_head_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 174.563132, -4.991763], [-0.110097, 174.562212, -4.881669], [0.0, 174.561293, -4.771575], [0.110097, 174.562212, -4.881669], [0.0, 174.563132, -4.991763], [0.0, 174.672296, -4.88075], [0.0, 174.561293, -4.771575], [0.0, 174.452118, -4.882589], [-0.110097, 174.562212, -4.881669], [0.0, 174.672296, -4.88075], [0.110097, 174.562212, -4.881669], [0.0, 174.452118, -4.882589], [0.0, 174.563132, -4.991763], [0.0, 174.672296, -4.88075], [0.0, 164.176102, -4.968417]]}, {"shapeName": "C_head_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-10.386473, 164.177021, -5.078511], [-10.386473, 164.066008, -4.969337], [-10.386473, 164.175182, -4.858324], [-10.386473, 164.286195, -4.967498], [-10.386473, 164.177021, -5.078511], [-10.49656, 164.176102, -4.968417], [-10.386473, 164.175182, -4.858324], [-10.276375, 164.176102, -4.968417], [-10.386473, 164.066008, -4.969337], [-10.49656, 164.176102, -4.968417], [-10.386473, 164.286195, -4.967498], [-10.276375, 164.176102, -4.968417], [-10.386473, 164.177021, -5.078511], [-10.49656, 164.176102, -4.968417], [0.0, 164.176102, -4.968417]]}, {"shapeName": "C_head_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.110097, 164.089354, 5.417693], [0.0, 163.97926, 5.416774], [0.110097, 164.089354, 5.417693], [0.0, 164.199447, 5.418613], [-0.110097, 164.089354, 5.417693], [0.0, 164.088434, 5.527777], [0.110097, 164.089354, 5.417693], [0.0, 164.090273, 5.3076], [0.0, 163.97926, 5.416774], [0.0, 164.088434, 5.527777], [0.0, 164.199447, 5.418613], [0.0, 164.090273, 5.3076], [-0.110097, 164.089354, 5.417693], [0.0, 164.088434, 5.527777], [0.0, 164.176102, -4.968417]]}]},
-			"C_midNeck_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_CTLShape", "degree": 3, "form": 2, "points": [[14.311372, 160.835051, -18.141474], [0.0, 162.065164, -22.925825], [-14.311372, 160.835051, -18.141474], [-20.239323, 157.865288, -6.591002], [-14.311372, 154.895525, 4.95947], [0.0, 153.665412, 9.743821], [14.311372, 154.895525, 4.95947], [20.239323, 157.865288, -6.591002]]}]},
-			"C_chest_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[7.728141, 127.606377, -15.074083], [0.0, 130.893778, -17.741661], [-7.728141, 127.606377, -15.074083], [-10.929234, 124.318976, -8.633965], [-7.728141, 127.606377, -2.193848], [0.0, 130.893778, 0.47373], [7.728141, 127.606377, -2.193848], [10.929234, 124.318976, -8.633965]]}]},
-			"C_head_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[7.155686, 171.331538, -4.908653], [0.0, 174.29541, -4.883898], [-7.155686, 171.331538, -4.908653], [-10.119662, 164.176102, -4.968417], [-7.155686, 157.020665, -5.028182], [0.0, 154.056793, -5.052937], [7.155686, 157.020665, -5.028182], [10.119662, 164.176102, -4.968417]]}]},
-			"R_pinky_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_pinky_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-75.258694, 104.302272, -15.715697], [-75.249915, 104.412018, -15.6056], [-75.258694, 104.302272, -15.495502], [-75.267474, 104.192525, -15.6056], [-75.258694, 104.302272, -15.715697], [-75.368431, 104.31105, -15.6056], [-75.258694, 104.302272, -15.495502], [-75.148947, 104.293492, -15.6056], [-75.249915, 104.412018, -15.6056], [-75.368431, 104.31105, -15.6056], [-75.267474, 104.192525, -15.6056], [-75.148947, 104.293492, -15.6056], [-75.258694, 104.302272, -15.715697], [-75.368431, 104.31105, -15.6056], [-64.9053, 103.474, -15.6056]]}, {"shapeName": "R_pinky_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-64.077028, 113.827395, -15.715697], [-63.967281, 113.818615, -15.6056], [-64.077028, 113.827395, -15.495502], [-64.186775, 113.836174, -15.6056], [-64.077028, 113.827395, -15.715697], [-64.068249, 113.937131, -15.6056], [-64.077028, 113.827395, -15.495502], [-64.085808, 113.717648, -15.6056], [-63.967281, 113.818615, -15.6056], [-64.068249, 113.937131, -15.6056], [-64.186775, 113.836174, -15.6056], [-64.085808, 113.717648, -15.6056], [-64.077028, 113.827395, -15.715697], [-64.068249, 113.937131, -15.6056], [-64.9053, 103.474, -15.6056]]}, {"shapeName": "R_pinky_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-64.89652, 103.583747, -5.219127], [-64.795553, 103.46522, -5.219127], [-64.914079, 103.364253, -5.219127], [-65.015047, 103.48278, -5.219127], [-64.89652, 103.583747, -5.219127], [-64.9053, 103.474, -5.10904], [-64.914079, 103.364253, -5.219127], [-64.9053, 103.474, -5.329225], [-64.795553, 103.46522, -5.219127], [-64.9053, 103.474, -5.10904], [-65.015047, 103.48278, -5.219127], [-64.9053, 103.474, -5.329225], [-64.89652, 103.583747, -5.219127], [-64.9053, 103.474, -5.10904], [-64.9053, 103.474, -15.6056]]}]},
-			"L_reverseBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_reverseBall_CTLShape", "degree": 1, "form": 0, "points": [[9.978823, -1.122099, 7.512293], [9.978014, 6.232423, 7.361522], [9.972459, 7.226043, 6.326323], [10.992518, 7.246839, 7.335281], [9.977791, 8.261256, 7.31993], [9.972459, 7.226043, 6.326323], [8.963287, 7.246839, 7.34617], [9.978014, 6.232423, 7.361522], [9.983346, 7.267636, 8.355128], [8.963287, 7.246839, 7.34617], [9.977791, 8.261256, 7.31993], [9.983346, 7.267636, 8.355128], [10.992518, 7.246839, 7.335281], [9.978014, 6.232423, 7.361522]]}]},
-			"R_thumb_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_thumb_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-57.684776, 96.479274, 1.078546], [-57.54786, 96.545831, 1.111211], [-57.473776, 96.425699, 1.045464], [-57.610693, 96.359142, 1.012798], [-57.684776, 96.479274, 1.078546], [-57.577225, 96.40062, 1.159087], [-57.473776, 96.425699, 1.045464], [-57.581328, 96.504358, 0.964914], [-57.54786, 96.545831, 1.111211], [-57.577225, 96.40062, 1.159087], [-57.610693, 96.359142, 1.012798], [-57.581328, 96.504358, 0.964914], [-57.684776, 96.479274, 1.078546], [-57.577225, 96.40062, 1.159087], [-57.7728, 101.346, -8.09741]]}, {"shapeName": "R_thumb_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-54.914519, 110.178801, -3.438784], [-54.81107, 110.203885, -3.552416], [-54.703518, 110.125225, -3.471866], [-54.806967, 110.100141, -3.358235], [-54.914519, 110.178801, -3.438784], [-54.777605, 110.245349, -3.406123], [-54.703518, 110.125225, -3.471866], [-54.840435, 110.058669, -3.504532], [-54.81107, 110.203885, -3.552416], [-54.777605, 110.245349, -3.406123], [-54.806967, 110.100141, -3.358235], [-54.840435, 110.058669, -3.504532], [-54.914519, 110.178801, -3.438784], [-54.777605, 110.245349, -3.406123], [-57.7728, 101.346, -8.09741]]}, {"shapeName": "R_thumb_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-47.788627, 98.912197, -9.608644], [-47.822094, 98.870724, -9.754941], [-47.851459, 98.725508, -9.707057], [-47.817992, 98.766981, -9.56076], [-47.788627, 98.912197, -9.608644], [-47.714553, 98.792067, -9.67439], [-47.851459, 98.725508, -9.707057], [-47.925543, 98.84564, -9.64131], [-47.822094, 98.870724, -9.754941], [-47.714553, 98.792067, -9.67439], [-47.817992, 98.766981, -9.56076], [-47.925543, 98.84564, -9.64131], [-47.788627, 98.912197, -9.608644], [-47.714553, 98.792067, -9.67439], [-57.7728, 101.346, -8.09741]]}]},
-			"L_loLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_loLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[13.953898, 51.167074, 5.032231], [9.978517, 50.914568, 6.659409], [6.003136, 51.167074, 5.032231], [4.356482, 51.776676, 1.103868], [6.003136, 52.386279, -2.824495], [9.978517, 52.638784, -4.451673], [13.953898, 52.386279, -2.824495], [15.600551, 51.776676, 1.103868]]}]},
-			"C_reverseJaw_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_reverseJaw_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.110097, 158.716896, 3.814574], [0.0, 158.79873, 3.888225], [-0.110097, 158.716896, 3.814574], [0.0, 158.635061, 3.740922], [0.110097, 158.716896, 3.814574], [0.0, 158.643251, 3.896401], [-0.110097, 158.716896, 3.814574], [0.0, 158.790547, 3.732739], [0.0, 158.79873, 3.888225], [0.0, 158.643251, 3.896401], [0.0, 158.635061, 3.740922], [0.0, 158.790547, 3.732739], [0.110097, 158.716896, 3.814574], [0.0, 158.643251, 3.896401], [-0.0, 165.665077, -3.905633]]}, {"shapeName": "C_reverseJaw_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.110097, 173.385283, 3.042548], [-0.0, 173.458935, 2.960713], [-0.110097, 173.385283, 3.042548], [-0.0, 173.311632, 3.124383], [0.110097, 173.385283, 3.042548], [-0.0, 173.467111, 3.116192], [-0.110097, 173.385283, 3.042548], [-0.0, 173.303449, 2.968896], [-0.0, 173.458935, 2.960713], [-0.0, 173.467111, 3.116192], [-0.0, 173.311632, 3.124383], [-0.0, 173.303449, 2.968896], [0.110097, 173.385283, 3.042548], [-0.0, 173.467111, 3.116192], [-0.0, 165.665077, -3.905633]]}, {"shapeName": "C_reverseJaw_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-10.386473, 165.746911, -3.831982], [-10.386473, 165.738728, -3.987468], [-10.386473, 165.583242, -3.979285], [-10.386473, 165.591425, -3.823798], [-10.386473, 165.746911, -3.831982], [-10.49656, 165.665077, -3.905633], [-10.386473, 165.583242, -3.979285], [-10.276375, 165.665077, -3.905633], [-10.386473, 165.738728, -3.987468], [-10.49656, 165.665077, -3.905633], [-10.386473, 165.591425, -3.823798], [-10.276375, 165.665077, -3.905633], [-10.386473, 165.746911, -3.831982], [-10.49656, 165.665077, -3.905633], [-0.0, 165.665077, -3.905633]]}]},
-			"L_wrist_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[57.95473, 101.233088, -13.361227], [59.84551, 102.966713, -13.652671], [60.985512, 104.700338, -12.116317], [60.706936, 105.418427, -9.652136], [59.172971, 104.700338, -7.703613], [57.282191, 102.966713, -7.412169], [56.142188, 101.233088, -8.948523], [56.420765, 100.514999, -11.412704]]}]},
-			"L_pinky_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[82.810374, 102.101313, -15.715667], [82.824925, 102.210445, -15.60557], [82.810374, 102.101313, -15.495472], [82.795823, 101.992181, -15.60557], [82.810374, 102.101313, -15.715667], [82.919495, 102.086764, -15.60557], [82.810374, 102.101313, -15.495472], [82.701242, 102.115864, -15.60557], [82.824925, 102.210445, -15.60557], [82.919495, 102.086764, -15.60557], [82.795823, 101.992181, -15.60557], [82.701242, 102.115864, -15.60557], [82.810374, 102.101313, -15.715667], [82.919495, 102.086764, -15.60557], [72.515012, 103.474028, -15.60557]]}, {"shapeName": "L_pinky_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[73.887727, 113.769389, -15.715667], [73.778596, 113.78394, -15.60557], [73.887727, 113.769389, -15.495472], [73.996859, 113.754839, -15.60557], [73.887727, 113.769389, -15.715667], [73.902277, 113.878511, -15.60557], [73.887727, 113.769389, -15.495472], [73.873176, 113.660258, -15.60557], [73.778596, 113.78394, -15.60557], [73.902277, 113.878511, -15.60557], [73.996859, 113.754839, -15.60557], [73.873176, 113.660258, -15.60557], [73.887727, 113.769389, -15.715667], [73.902277, 113.878511, -15.60557], [72.515012, 103.474028, -15.60557]]}, {"shapeName": "L_pinky_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[72.529563, 103.58316, -5.219097], [72.405881, 103.488579, -5.219097], [72.500461, 103.364896, -5.219097], [72.624144, 103.459477, -5.219097], [72.529563, 103.58316, -5.219097], [72.515012, 103.474028, -5.10901], [72.500461, 103.364896, -5.219097], [72.515012, 103.474028, -5.329195], [72.405881, 103.488579, -5.219097], [72.515012, 103.474028, -5.10901], [72.624144, 103.459477, -5.219097], [72.515012, 103.474028, -5.329195], [72.529563, 103.58316, -5.219097], [72.515012, 103.474028, -5.10901], [72.515012, 103.474028, -15.60557]]}]},
-			"C_neckBase_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[11.449097, 153.937405, -17.452133], [0.0, 150.204683, -22.492363], [-11.449097, 153.937405, -17.452133], [-16.191458, 156.278408, -6.999008], [-11.449097, 149.185785, 1.028622], [0.0, 143.484882, 3.643355], [11.449097, 149.185785, 1.028622], [16.191458, 156.278408, -6.999008]]}]},
-			"L_arm_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[63.237977, 106.923591, -8.612498], [63.073805, 106.735777, -8.679932], [62.864445, 106.882328, -8.765928], [62.696634, 106.801122, -8.834857], [62.658311, 106.534674, -8.850599], [62.419377, 106.527368, -8.948742], [62.367194, 106.791025, -8.970177], [62.19541, 106.861887, -9.040738], [61.994031, 106.702759, -9.123455], [61.820297, 106.880246, -9.194817], [61.955873, 107.106598, -9.139129], [61.880736, 107.287989, -9.169992], [61.634275, 107.329426, -9.271227], [61.627517, 107.587731, -9.274003], [61.871423, 107.644157, -9.173817], [61.936933, 107.829872, -9.146909], [61.789755, 108.047561, -9.207363], [61.953926, 108.235374, -9.139929], [62.163302, 108.088841, -9.053926], [62.331113, 108.170047, -8.984997], [62.369436, 108.436495, -8.969256], [62.60836, 108.44379, -8.871116], [62.660569, 108.180127, -8.849671], [62.832337, 108.109282, -8.779117], [63.0337, 108.268393, -8.696406], [63.207434, 108.090906, -8.625043], [63.071874, 107.864572, -8.680726], [63.147027, 107.683163, -8.649856], [63.393461, 107.641732, -8.548632], [63.40023, 107.383438, -8.545852], [63.156324, 107.327013, -8.646037], [63.090814, 107.141297, -8.672946], [63.237977, 106.923591, -8.612498]]}, {"shapeName": "L_arm_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[62.880644, 107.496789, -8.759274], [62.765883, 107.773886, -8.806413], [62.503488, 107.88209, -8.914193], [62.247193, 107.758014, -9.019468], [62.147102, 107.474381, -9.06058], [62.261864, 107.197283, -9.013441], [62.524258, 107.089079, -8.905662], [62.780544, 107.213143, -8.800391]]}, {"shapeName": "L_arm_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[61.907164, 106.791502, -9.159136], [58.56385, 102.966713, -10.53242]]}]},
-			"R_ring_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_ring_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-75.392012, 84.71455, -8.025221], [-75.46766, 84.789702, -7.911764], [-75.364839, 84.736228, -7.807787], [-75.289191, 84.661076, -7.921244], [-75.392012, 84.71455, -8.025221], [-75.44146, 84.636697, -7.899783], [-75.364839, 84.736228, -7.807787], [-75.315386, 84.81409, -7.933226], [-75.46766, 84.789702, -7.911764], [-75.44146, 84.636697, -7.899783], [-75.289191, 84.661076, -7.921244], [-75.315386, 84.81409, -7.933226], [-75.392012, 84.71455, -8.025221], [-75.44146, 84.636697, -7.899783], [-69.4313, 93.0933, -9.49403]]}, {"shapeName": "R_ring_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-77.863178, 99.149688, -9.155599], [-77.786551, 99.249228, -9.063604], [-77.836004, 99.171367, -8.938166], [-77.912631, 99.071827, -9.030161], [-77.863178, 99.149688, -9.155599], [-77.938818, 99.224835, -9.042143], [-77.836004, 99.171367, -8.938166], [-77.760357, 99.096214, -9.051622], [-77.786551, 99.249228, -9.063604], [-77.938818, 99.224835, -9.042143], [-77.912631, 99.071827, -9.030161], [-77.760357, 99.096214, -9.051622], [-77.863178, 99.149688, -9.155599], [-77.938818, 99.224835, -9.042143], [-69.4313, 93.0933, -9.49403]]}, {"shapeName": "R_ring_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-68.238781, 94.180177, 0.766941], [-68.086506, 94.204564, 0.74548], [-68.060312, 94.05155, 0.757462], [-68.212587, 94.027163, 0.778923], [-68.238781, 94.180177, 0.766941], [-68.135961, 94.126702, 0.870908], [-68.060312, 94.05155, 0.757462], [-68.163133, 94.105024, 0.653485], [-68.086506, 94.204564, 0.74548], [-68.135961, 94.126702, 0.870908], [-68.212587, 94.027163, 0.778923], [-68.163133, 94.105024, 0.653485], [-68.238781, 94.180177, 0.766941], [-68.135961, 94.126702, 0.870908], [-69.4313, 93.0933, -9.49403]]}]},
-			"L_arm_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[57.548558, 106.409104, -8.316922], [54.454392, 102.869343, -9.587867], [56.30484, 102.869343, -14.092856], [59.399006, 106.409104, -12.82191], [62.673309, 103.064083, -11.476973], [59.579143, 99.524321, -12.747918], [57.728695, 99.524321, -8.24293], [60.822861, 103.064083, -6.971985], [57.548558, 106.409104, -8.316922], [59.399006, 106.409104, -12.82191], [56.30484, 102.869343, -14.092856], [59.579143, 99.524321, -12.747918], [62.673309, 103.064083, -11.476973], [60.822861, 103.064083, -6.971985], [57.728695, 99.524321, -8.24293], [54.454392, 102.869343, -9.587867]]}]},
-			"R_leg_IK_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-15.345281, 7.470624, -14.716144], [-9.978517, 7.470624, -18.421113], [-4.611752, 7.470624, -14.716144], [-2.38877, 7.470624, -5.771536], [-4.611752, 7.470624, 3.173071], [-9.978517, 7.470624, 6.878041], [-15.345281, 7.470624, 3.173071], [-17.568263, 7.470624, -5.771536]]}]},
-			"C_midTorso_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_CTLShape", "degree": 3, "form": 2, "points": [[8.586823, 114.394936, -15.789651], [0.0, 114.394936, -18.753627], [-8.586823, 114.394936, -15.789651], [-12.143594, 114.394936, -8.633965], [-8.586823, 114.394936, -1.47828], [0.0, 114.394936, 1.485696], [8.586823, 114.394936, -1.47828], [12.143594, 114.394936, -8.633965]]}]},
-			"visibility_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "visibility_CTLShape", "degree": 3, "form": 2, "points": [[2.274043, 209.103428, 0.0], [0.5, 210.525876, 0.0], [-1.274043, 209.103428, 0.0], [-1.269384, 209.103428, 0.0], [-1.274043, 209.103428, 0.0], [0.5, 207.680981, 0.0], [2.274043, 209.103428, 0.0], [2.274043, 209.103428, 0.0]]}, {"shapeName": "visibility_CTLShape1", "degree": 3, "form": 2, "points": [[1.242516, 209.845944, 0.0], [0.5, 210.153503, 0.0], [-0.242516, 209.845944, 0.0], [-0.550074, 209.103428, 0.0], [-0.242516, 208.360913, 0.0], [0.5, 208.053354, 0.0], [1.242516, 208.360913, 0.0], [1.550074, 209.103428, 0.0]]}]},
-			"R_toe_IK_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-12.363729, 4.051875, 7.521217], [-9.978517, 5.039792, 7.536218], [-7.593304, 4.052296, 7.503704], [-6.605319, 1.667845, 7.44272], [-7.593304, -0.716781, 7.388991], [-9.978517, -1.704698, 7.37399], [-12.363729, -0.717203, 7.406504], [-13.351714, 1.667249, 7.467487]]}]},
-			"L_ring_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_D_CTLShape", "degree": 3, "form": 2, "points": [[68.611826, 92.279258, -10.723038], [69.639408, 92.927285, -11.159496], [70.545066, 93.672582, -10.620351], [70.798277, 94.078563, -9.421425], [70.250715, 93.907411, -8.265032], [69.223132, 93.259384, -7.828574], [68.317474, 92.514087, -8.367719], [68.064264, 92.108106, -9.566645]]}]},
-			"C_torso_FK_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 117.984531, -8.700024], [-0.066058, 117.984531, -8.633965], [0.0, 117.984531, -8.567907], [0.066058, 117.984531, -8.633965], [0.0, 117.984531, -8.700024], [0.0, 118.050583, -8.633965], [0.0, 117.984531, -8.567907], [0.0, 117.918472, -8.633965], [-0.066058, 117.984531, -8.633965], [0.0, 118.050583, -8.633965], [0.066058, 117.984531, -8.633965], [0.0, 117.918472, -8.633965], [0.0, 117.984531, -8.700024], [0.0, 118.050583, -8.633965], [0.0, 111.752647, -8.633965]]}, {"shapeName": "C_torso_FK_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 111.752647, -8.700024], [-6.231884, 111.686589, -8.633965], [-6.231884, 111.752647, -8.567907], [-6.231884, 111.818706, -8.633965], [-6.231884, 111.752647, -8.700024], [-6.297936, 111.752647, -8.633965], [-6.231884, 111.752647, -8.567907], [-6.165825, 111.752647, -8.633965], [-6.231884, 111.686589, -8.633965], [-6.297936, 111.752647, -8.633965], [-6.231884, 111.818706, -8.633965], [-6.165825, 111.752647, -8.633965], [-6.231884, 111.752647, -8.700024], [-6.297936, 111.752647, -8.633965], [0.0, 111.752647, -8.633965]]}, {"shapeName": "C_torso_FK_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 111.752647, -2.402082], [0.0, 111.686589, -2.402082], [0.066058, 111.752647, -2.402082], [0.0, 111.818706, -2.402082], [-0.066058, 111.752647, -2.402082], [0.0, 111.752647, -2.336029], [0.066058, 111.752647, -2.402082], [0.0, 111.752647, -2.46814], [0.0, 111.686589, -2.402082], [0.0, 111.752647, -2.336029], [0.0, 111.818706, -2.402082], [0.0, 111.752647, -2.46814], [-0.066058, 111.752647, -2.402082], [0.0, 111.752647, -2.336029], [0.0, 111.752647, -8.633965]]}]},
-			"L_shoulder_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [5.95314, 146.379607, -2.231417], [8.765469, 146.145601, -3.845107], [9.839685, 146.056219, -4.461483], [4.961586, 146.145601, -10.47449], [-0.201674, 146.379607, -12.957989], [-3.67792, 146.668855, -10.963349], [-4.139317, 146.90286, -5.252471], [-1.409651, 146.992243, 1.993289], [-0.335434, 146.90286, 1.376913], [2.476894, 146.668855, -0.236777], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
-			"L_leg_PV_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_PV_CTLShape", "degree": 1, "form": 0, "points": [[8.963887, 52.226244, 103.57992], [8.963887, 50.196984, 103.57992], [8.963887, 50.196984, 101.550661], [8.963887, 52.226244, 101.550661], [10.993147, 52.226244, 101.550661], [10.993147, 50.196984, 101.550661], [10.993147, 50.196984, 103.57992], [10.993147, 52.226244, 103.57992], [8.963887, 52.226244, 103.57992], [8.963887, 52.226244, 101.550661], [8.963887, 50.196984, 101.550661], [10.993147, 50.196984, 101.550661], [10.993147, 52.226244, 101.550661], [10.993147, 52.226244, 103.57992], [10.993147, 50.196984, 103.57992], [8.963887, 50.196984, 103.57992]]}]},
-			"R_shoulder_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-5.95314, 146.379607, -2.231417], [-8.765469, 146.145601, -3.845107], [-9.839685, 146.056219, -4.461483], [-4.961586, 146.145601, -10.47449], [0.201674, 146.379607, -12.957989], [3.67792, 146.668855, -10.963349], [4.139317, 146.90286, -5.252471], [1.409651, 146.992243, 1.993289], [0.335434, 146.90286, 1.376913], [-2.476894, 146.668855, -0.236777], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097]]}]},
-			"R_legBase_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, 80.783151, -3.523062], [-9.868419, 80.765401, -3.631719], [-9.978517, 80.747651, -3.740376], [-10.088614, 80.765401, -3.631719], [-9.978517, 80.783151, -3.523062], [-9.978517, 80.656754, -3.613971], [-9.978517, 80.747651, -3.740376], [-9.978517, 80.874058, -3.649469], [-9.868419, 80.765401, -3.631719], [-9.978517, 80.656754, -3.613971], [-10.088614, 80.765401, -3.631719], [-9.978517, 80.874058, -3.649469], [-9.978517, 80.783151, -3.523062], [-9.978517, 80.656754, -3.613971], [-9.978517, 91.015999, -5.306253]]}, {"shapeName": "R_legBase_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407956, 91.033749, -5.197596], [0.407956, 91.124656, -5.324003], [0.407956, 90.998249, -5.41491], [0.407956, 90.907342, -5.288503], [0.407956, 91.033749, -5.197596], [0.518043, 91.015999, -5.306253], [0.407956, 90.998249, -5.41491], [0.297859, 91.015999, -5.306253], [0.407956, 91.124656, -5.324003], [0.518043, 91.015999, -5.306253], [0.407956, 90.907342, -5.288503], [0.297859, 91.015999, -5.306253], [0.407956, 91.033749, -5.197596], [0.518043, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}, {"shapeName": "R_legBase_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868419, 89.341465, -15.556851], [-9.978517, 89.450122, -15.574601], [-10.088614, 89.341465, -15.556851], [-9.978517, 89.232808, -15.5391], [-9.868419, 89.341465, -15.556851], [-9.978517, 89.323717, -15.665498], [-10.088614, 89.341465, -15.556851], [-9.978517, 89.359215, -15.448193], [-9.978517, 89.450122, -15.574601], [-9.978517, 89.323717, -15.665498], [-9.978517, 89.232808, -15.5391], [-9.978517, 89.359215, -15.448193], [-9.868419, 89.341465, -15.556851], [-9.978517, 89.323717, -15.665498], [-9.978517, 91.015999, -5.306253]]}]},
-			"C_neckBase_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_CTLShape", "degree": 3, "form": 2, "points": [[14.311372, 154.531358, -19.762228], [0.0, 149.865455, -26.062515], [-14.311372, 154.531358, -19.762228], [-20.239323, 157.457611, -6.695821], [-14.311372, 148.591832, 3.338716], [0.0, 141.465703, 6.607132], [14.311372, 148.591832, 3.338716], [20.239323, 157.457611, -6.695821]]}]},
-			"R_wrist_IK_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-57.75169, 100.655213, -14.304163], [-60.27273, 102.966713, -14.692755], [-61.792733, 105.278213, -12.644283], [-61.421298, 106.235665, -9.358709], [-59.376011, 105.278213, -6.760678], [-56.854971, 102.966713, -6.372086], [-55.334968, 100.655213, -8.420558], [-55.706403, 99.697761, -11.706132]]}]},
-			"C_midNeck_A_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.880235, 160.538074, -16.986427], [0.0, 161.645176, -21.292343], [-12.880235, 160.538074, -16.986427], [-18.215391, 157.865288, -6.591002], [-12.880235, 155.192501, 3.804423], [0.0, 154.085399, 8.110339], [12.880235, 155.192501, 3.804423], [18.215391, 157.865288, -6.591002]]}]},
-			"R_arm_IK_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-57.548558, 106.409104, -8.316922], [-54.454392, 102.869343, -9.587867], [-56.30484, 102.869343, -14.092856], [-59.399006, 106.409104, -12.82191], [-62.673309, 103.064083, -11.476973], [-59.579143, 99.524321, -12.747918], [-57.728695, 99.524321, -8.24293], [-60.822861, 103.064083, -6.971985], [-57.548558, 106.409104, -8.316922], [-59.399006, 106.409104, -12.82191], [-56.30484, 102.869343, -14.092856], [-59.579143, 99.524321, -12.747918], [-62.673309, 103.064083, -11.476973], [-60.822861, 103.064083, -6.971985], [-57.728695, 99.524321, -8.24293], [-54.454392, 102.869343, -9.587867]]}]},
-			"L_arm_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.588617, 95.83296, -7.765984], [65.616732, 95.912981, -7.635411], [65.504953, 95.83296, -7.562302], [65.476837, 95.75294, -7.692874], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [65.504953, 95.83296, -7.562302], [65.472765, 95.908579, -7.694547], [65.616732, 95.912981, -7.635411], [65.620798, 95.757349, -7.633742], [65.476837, 95.75294, -7.692874], [65.472765, 95.908579, -7.694547], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.204449, 110.515778, -7.923782], [65.088598, 110.591397, -7.852345], [65.120786, 110.515778, -7.720101], [65.236637, 110.44016, -7.791537], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [65.120786, 110.515778, -7.720101], [65.09267, 110.435758, -7.850673], [65.088598, 110.591397, -7.852345], [65.232559, 110.595792, -7.793213], [65.236637, 110.44016, -7.791537], [65.09267, 110.435758, -7.850673], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[54.687444, 103.046734, -0.896134], [54.543477, 103.042331, -0.95527], [54.547549, 102.886692, -0.953597], [54.691516, 102.891095, -0.894462], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [54.547549, 102.886692, -0.953597], [54.659328, 102.966713, -1.026707], [54.543477, 103.042331, -0.95527], [54.575669, 102.966713, -0.823034], [54.691516, 102.891095, -0.894462], [54.659328, 102.966713, -1.026707], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [58.56385, 102.966713, -10.53242]]}]},
-			"L_toe_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.363729, 4.051875, 7.521217], [9.978517, 5.039792, 7.536218], [7.593304, 4.052296, 7.503704], [6.605319, 1.667845, 7.44272], [7.593304, -0.716781, 7.388991], [9.978517, -1.704698, 7.37399], [12.363729, -0.717203, 7.406504], [13.351714, 1.667249, 7.467487]]}]},
-			"C_torso_FK_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_A_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 101.197773, -14.721745], [-0.0, 101.43074, -14.768085], [-0.0, 101.62824, -14.900056], [-0.0, 101.760211, -15.097556], [-0.0, 101.806551, -15.330523], [-0.0, 101.760211, -15.56349], [-0.0, 101.62824, -15.76099], [-0.0, 101.43074, -15.892961], [-0.0, 101.197773, -15.939301], [-0.0, 100.964806, -15.892961], [-0.0, 100.767306, -15.76099], [-0.0, 100.635335, -15.56349], [-0.0, 100.588995, -15.330523], [-0.0, 100.635335, -15.097556], [-0.0, 100.767306, -14.900056], [-0.0, 100.964806, -14.768085], [-0.0, 101.197773, -14.721745], [-0.0, 101.197773, -8.633965]]}]},
-			"L_thumb_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[57.684752, 96.478866, 1.078544], [57.547836, 96.545423, 1.111209], [57.473752, 96.425291, 1.045462], [57.610669, 96.358734, 1.012796], [57.684752, 96.478866, 1.078544], [57.577201, 96.400212, 1.159085], [57.473752, 96.425291, 1.045462], [57.581304, 96.50395, 0.964912], [57.547836, 96.545423, 1.111209], [57.577201, 96.400212, 1.159085], [57.610669, 96.358734, 1.012796], [57.581304, 96.50395, 0.964912], [57.684752, 96.478866, 1.078544], [57.577201, 96.400212, 1.159085], [57.772776, 101.345592, -8.097412]]}, {"shapeName": "L_thumb_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[54.914495, 110.178393, -3.438786], [54.811046, 110.203477, -3.552418], [54.703494, 110.124817, -3.471868], [54.806943, 110.099733, -3.358237], [54.914495, 110.178393, -3.438786], [54.777581, 110.244941, -3.406125], [54.703494, 110.124817, -3.471868], [54.840411, 110.058261, -3.504534], [54.811046, 110.203477, -3.552418], [54.777581, 110.244941, -3.406125], [54.806943, 110.099733, -3.358237], [54.840411, 110.058261, -3.504534], [54.914495, 110.178393, -3.438786], [54.777581, 110.244941, -3.406125], [57.772776, 101.345592, -8.097412]]}, {"shapeName": "L_thumb_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[47.788603, 98.911789, -9.608646], [47.82207, 98.870316, -9.754943], [47.851435, 98.7251, -9.707059], [47.817968, 98.766573, -9.560762], [47.788603, 98.911789, -9.608646], [47.714529, 98.791659, -9.674392], [47.851435, 98.7251, -9.707059], [47.925519, 98.845232, -9.641312], [47.82207, 98.870316, -9.754943], [47.714529, 98.791659, -9.674392], [47.817968, 98.766573, -9.560762], [47.925519, 98.845232, -9.641312], [47.788603, 98.911789, -9.608646], [47.714529, 98.791659, -9.674392], [57.772776, 101.345592, -8.097412]]}]},
-			"L_leg_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[14.738418, 8.178368, -5.661709], [14.544613, 8.178368, -5.661709], [14.50791, 7.981851, -5.692204], [14.370192, 7.925465, -5.700954], [14.203606, 8.038778, -5.68337], [14.066564, 7.903357, -5.704385], [14.181228, 7.738759, -5.729927], [14.124191, 7.602652, -5.751048], [13.925303, 7.566383, -5.756676], [13.925303, 7.374865, -5.786396], [14.124191, 7.338596, -5.792024], [14.181228, 7.202507, -5.813143], [14.066564, 7.037891, -5.838688], [14.203606, 6.90247, -5.859702], [14.370192, 7.015783, -5.842118], [14.50791, 6.959397, -5.850868], [14.544613, 6.76288, -5.881364], [14.738418, 6.76288, -5.881364], [14.775139, 6.959397, -5.850868], [14.912857, 7.015783, -5.842118], [15.079443, 6.90247, -5.859702], [15.216473, 7.037891, -5.838688], [15.101822, 7.202507, -5.813143], [15.158858, 7.338596, -5.792024], [15.357727, 7.374865, -5.786396], [15.357727, 7.566383, -5.756676], [15.158858, 7.602652, -5.751048], [15.101822, 7.738759, -5.729927], [15.216473, 7.903357, -5.704385], [15.079443, 8.038778, -5.68337], [14.912857, 7.925465, -5.700954], [14.775139, 7.981851, -5.692204], [14.738418, 8.178368, -5.661709]]}, {"shapeName": "L_leg_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[14.851882, 7.678505, -5.739277], [14.939022, 7.470624, -5.771536], [14.851882, 7.262743, -5.803795], [14.641518, 7.176651, -5.817155], [14.431167, 7.262743, -5.803795], [14.344027, 7.470624, -5.771536], [14.431167, 7.678505, -5.739277], [14.641518, 7.764597, -5.725918]]}, {"shapeName": "L_leg_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[13.925303, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
-			"L_arm_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_CTLShape", "degree": 1, "form": 0, "points": [[56.871697, 108.704032, -6.839923], [51.714753, 102.804429, -8.958165], [54.798833, 102.804429, -16.466479], [59.955777, 108.704032, -14.348237], [65.412948, 103.128997, -12.106675], [60.256004, 97.229394, -14.224917], [57.171924, 97.229394, -6.716603], [62.328868, 103.128997, -4.598361], [56.871697, 108.704032, -6.839923], [59.955777, 108.704032, -14.348237], [54.798833, 102.804429, -16.466479], [60.256004, 97.229394, -14.224917], [65.412948, 103.128997, -12.106675], [62.328868, 103.128997, -4.598361], [57.171924, 97.229394, -6.716603], [51.714753, 102.804429, -8.958165]]}]},
-			"L_legBase_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 89.033144, -4.982335], [9.978517, 85.824834, -4.458226], [9.978517, 84.599366, -4.258034], [9.978517, 87.057087, 3.084969], [9.978517, 91.026973, 7.222817], [9.978517, 94.992682, 6.57498], [9.978517, 97.439417, 1.388916], [9.978517, 97.432632, -6.354472], [9.978517, 96.207164, -6.15428], [9.978517, 92.998853, -5.630171], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
-			"L_outterBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_outterBall_CTLShape", "degree": 1, "form": 0, "points": [[17.316787, 1.453949, 5.358633], [17.311455, 0.418736, 4.365027], [18.325959, 1.433153, 4.338786], [17.316787, 1.453949, 5.358633], [16.296728, 1.433153, 4.349675], [17.311455, 0.418736, 4.365027], [17.3059, 1.412357, 3.329828], [16.296728, 1.433153, 4.349675], [17.311232, 2.44757, 4.323434], [17.316787, 1.453949, 5.358633], [18.325959, 1.433153, 4.338786], [17.3059, 1.412357, 3.329828], [17.311232, 2.44757, 4.323434], [18.325959, 1.433153, 4.338786]]}]},
-			"R_ankleOffset_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_ankleOffset_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-20.364992, 7.465096, -5.881499], [-20.364992, 7.580579, -5.777064], [-20.364992, 7.476144, -5.661582], [-20.364992, 7.360661, -5.766016], [-20.364992, 7.465096, -5.881499], [-20.47508, 7.47062, -5.77154], [-20.364992, 7.476144, -5.661582], [-20.254895, 7.47062, -5.77154], [-20.364992, 7.580579, -5.777064], [-20.47508, 7.47062, -5.77154], [-20.364992, 7.360661, -5.766016], [-20.254895, 7.47062, -5.77154], [-20.364992, 7.465096, -5.881499], [-20.47508, 7.47062, -5.77154], [-9.97852, 7.47062, -5.77154]]}, {"shapeName": "R_ankleOffset_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-9.97852, 17.838486, -6.402635], [-9.868422, 17.844011, -6.292676], [-9.97852, 17.849535, -6.182717], [-10.088617, 17.844011, -6.292676], [-9.97852, 17.838486, -6.402635], [-9.97852, 17.953959, -6.298199], [-9.97852, 17.849535, -6.182717], [-9.97852, 17.734052, -6.287152], [-9.868422, 17.844011, -6.292676], [-9.97852, 17.953959, -6.298199], [-10.088617, 17.844011, -6.292676], [-9.97852, 17.734052, -6.287152], [-9.97852, 17.838486, -6.402635], [-9.97852, 17.953959, -6.298199], [-9.97852, 7.47062, -5.77154]]}, {"shapeName": "R_ankleOffset_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.97852, 8.101714, 4.596326], [-9.868422, 7.991756, 4.60185], [-9.97852, 7.881797, 4.607374], [-10.088617, 7.991756, 4.60185], [-9.97852, 8.101714, 4.596326], [-9.97852, 7.997279, 4.711799], [-9.97852, 7.881797, 4.607374], [-9.97852, 7.986231, 4.491891], [-9.868422, 7.991756, 4.60185], [-9.97852, 7.997279, 4.711799], [-10.088617, 7.991756, 4.60185], [-9.97852, 7.986231, 4.491891], [-9.97852, 8.101714, 4.596326], [-9.97852, 7.997279, 4.711799], [-9.97852, 7.47062, -5.77154]]}]},
-			"C_midTorso_D_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[5.152094, 114.394936, -12.927377], [0.0, 114.394936, -14.705762], [-5.152094, 114.394936, -12.927377], [-7.286156, 114.394936, -8.633965], [-5.152094, 114.394936, -4.340554], [0.0, 114.394936, -2.562169], [5.152094, 114.394936, -4.340554], [7.286156, 114.394936, -8.633965]]}]},
-			"L_toe_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.761265, 4.449263, 7.532235], [9.978517, 5.601833, 7.549737], [7.195769, 4.449755, 7.511804], [6.043119, 1.667894, 7.440656], [7.195769, -1.114169, 7.377972], [9.978517, -2.266739, 7.360471], [12.761265, -1.114661, 7.398404], [13.913914, 1.667199, 7.469551]]}]},
-			"C_cog_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[32.850802, 98.139605, -6.269864], [32.816152, 98.139605, -11.437954], [23.898452, 98.139605, -14.541064], [22.67978, 98.139605, -18.208357], [27.966414, 98.139605, -26.030596], [24.900682, 98.139605, -30.191295], [15.86079, 98.139605, -27.46558], [12.720171, 98.139605, -29.716299], [12.399847, 98.139605, -39.146373], [7.473972, 98.139605, -40.710486], [1.764841, 98.139605, -33.197032], [-2.098118, 98.139605, -33.171489], [-7.903077, 98.139605, -40.607458], [-12.807517, 98.139605, -38.977499], [-13.005222, 98.139605, -29.546241], [-16.115004, 98.139605, -27.2542], [-25.187278, 98.139605, -29.85575], [-28.196992, 98.139605, -25.65432], [-22.807726, 98.139605, -17.907658], [-23.976495, 98.139605, -14.224618], [-32.850802, 98.139605, -10.998067], [-32.816152, 98.139605, -5.829977], [-23.898452, 98.139605, -2.726867], [-22.67978, 98.139605, 0.940426], [-27.966414, 98.139605, 8.762665], [-24.900682, 98.139605, 12.923364], [-15.86079, 98.139605, 10.197649], [-12.720171, 98.139605, 12.448368], [-12.399847, 98.139605, 21.878442], [-7.473972, 98.139605, 23.442555], [-1.764841, 98.139605, 15.929101], [2.098118, 98.139605, 15.903558], [7.903077, 98.139605, 23.339527], [12.807517, 98.139605, 21.709568], [13.005222, 98.139605, 12.27831], [16.115004, 98.139605, 9.986269], [25.187278, 98.139605, 12.587819], [28.196992, 98.139605, 8.386389], [22.807726, 98.139605, 0.639727], [23.976495, 98.139605, -3.043313], [32.850802, 98.139605, -6.269864]]}]},
-			"L_arm_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[62.069445, 105.934371, -9.092479], [61.946317, 105.793511, -9.143054], [61.789296, 105.903424, -9.207551], [61.663438, 105.84252, -9.259248], [61.634696, 105.642684, -9.271054], [61.455495, 105.637204, -9.344662], [61.416358, 105.834947, -9.360737], [61.28752, 105.888093, -9.413658], [61.136486, 105.768747, -9.475696], [61.006185, 105.901862, -9.529218], [61.107867, 106.071626, -9.487452], [61.051515, 106.20767, -9.510599], [60.866669, 106.238747, -9.586525], [60.8616, 106.432477, -9.588607], [61.04453, 106.474796, -9.513468], [61.093662, 106.614082, -9.493286], [60.983279, 106.777349, -9.538627], [61.106407, 106.918209, -9.488051], [61.263439, 106.808309, -9.42355], [61.389297, 106.869214, -9.371853], [61.41804, 107.06905, -9.360047], [61.597233, 107.074521, -9.286442], [61.63639, 106.876774, -9.270358], [61.765215, 106.82364, -9.217443], [61.916238, 106.942973, -9.155409], [62.046538, 106.809858, -9.101888], [61.944868, 106.640107, -9.143649], [62.001233, 106.504051, -9.120497], [62.186059, 106.472977, -9.044579], [62.191135, 106.279257, -9.042494], [62.008206, 106.236938, -9.117633], [61.959073, 106.097651, -9.137814], [62.069445, 105.934371, -9.092479]]}, {"shapeName": "L_arm_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[61.801446, 106.36427, -9.202561], [61.715375, 106.572093, -9.237915], [61.518579, 106.653246, -9.31875], [61.326357, 106.560189, -9.397706], [61.251289, 106.347464, -9.42854], [61.337361, 106.13964, -9.393186], [61.534156, 106.058487, -9.312351], [61.72637, 106.151536, -9.233398]]}, {"shapeName": "L_arm_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[61.071336, 105.835305, -9.502457], [58.56385, 102.966713, -10.53242]]}]},
-			"C_hip_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[7.728141, 98.139605, -15.074083], [-0.0, 94.852204, -17.741661], [-7.728141, 98.139605, -15.074083], [-10.929234, 101.427006, -8.633965], [-7.728141, 98.139605, -2.193848], [-0.0, 94.852204, 0.47373], [7.728141, 98.139605, -2.193848], [10.929234, 101.427006, -8.633965]]}]},
-			"R_arm_IK_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-57.210128, 107.556568, -7.578422], [-53.084573, 102.836886, -9.273016], [-55.551837, 102.836886, -15.279667], [-59.677392, 107.556568, -13.585074], [-64.043128, 103.09654, -11.791824], [-59.917573, 98.376858, -13.486418], [-57.450309, 98.376858, -7.479766], [-61.575864, 103.09654, -5.785173], [-57.210128, 107.556568, -7.578422], [-59.677392, 107.556568, -13.585074], [-55.551837, 102.836886, -15.279667], [-59.917573, 98.376858, -13.486418], [-64.043128, 103.09654, -11.791824], [-61.575864, 103.09654, -5.785173], [-57.450309, 98.376858, -7.479766], [-53.084573, 102.836886, -9.273016]]}]},
-			"L_index_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[72.637482, 88.356136, -4.661675], [72.693834, 88.440592, -4.543629], [72.580449, 88.387149, -4.451267], [72.524098, 88.302694, -4.569313], [72.637482, 88.356136, -4.661675], [72.673036, 88.287229, -4.526662], [72.580449, 88.387149, -4.451267], [72.54489, 88.456064, -4.586283], [72.693834, 88.440592, -4.543629], [72.673036, 88.287229, -4.526662], [72.524098, 88.302694, -4.569313], [72.54489, 88.456064, -4.586283], [72.637482, 88.356136, -4.661675], [72.673036, 88.287229, -4.526662], [66.564142, 96.335904, -7.368849]]}, {"shapeName": "L_index_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[74.59901, 102.824971, -6.262572], [74.506418, 102.924899, -6.18718], [74.541977, 102.855983, -6.052165], [74.634569, 102.756055, -6.127557], [74.59901, 102.824971, -6.262572], [74.655354, 102.90942, -6.144528], [74.541977, 102.855983, -6.052165], [74.485626, 102.771528, -6.17021], [74.506418, 102.924899, -6.18718], [74.655354, 102.90942, -6.144528], [74.634569, 102.756055, -6.127557], [74.485626, 102.771528, -6.17021], [74.59901, 102.824971, -6.262572], [74.655354, 102.90942, -6.144528], [66.564142, 96.335904, -7.368849]]}, {"shapeName": "L_index_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[63.958794, 97.867688, 2.568794], [63.80985, 97.883161, 2.52614], [63.789058, 97.72979, 2.54311], [63.938002, 97.714317, 2.585763], [63.958794, 97.867688, 2.568794], [63.845412, 97.814244, 2.661146], [63.789058, 97.72979, 2.54311], [63.902443, 97.783233, 2.450748], [63.80985, 97.883161, 2.52614], [63.845412, 97.814244, 2.661146], [63.938002, 97.714317, 2.585763], [63.902443, 97.783233, 2.450748], [63.958794, 97.867688, 2.568794], [63.845412, 97.814244, 2.661146], [66.564142, 96.335904, -7.368849]]}]},
-			"L_leg_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.55636, 7.470624, -11.734608], [9.978517, 7.470624, -14.204588], [6.400674, 7.470624, -11.734608], [4.918686, 7.470624, -5.771536], [6.400674, 7.470624, 0.191535], [9.978517, 7.470624, 2.661515], [13.55636, 7.470624, 0.191535], [15.038347, 7.470624, -5.771536]]}]},
-			"C_chest_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.010776, 127.606377, -13.642946], [0.0, 130.163244, -15.717729], [-6.010776, 127.606377, -13.642946], [-8.500516, 125.049509, -8.633965], [-6.010776, 127.606377, -3.624985], [0.0, 130.163244, -1.550202], [6.010776, 127.606377, -3.624985], [8.500516, 125.049509, -8.633965]]}]},
-			"L_shoulder_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [5.46491, 146.524231, 0.944207], [7.487268, 146.524231, 4.468761], [8.259742, 146.524231, 5.815024], [15.752501, 145.836506, -0.273757], [18.838341, 145.411468, -6.729352], [16.338557, 145.411468, -11.085962], [9.207998, 145.836506, -11.679475], [0.170292, 146.524231, -8.283219], [0.942766, 146.524231, -6.936956], [2.965125, 146.524231, -3.412402], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
-			"C_chest_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_chest_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 133.83826, -8.700024], [-0.066058, 133.83826, -8.633965], [0.0, 133.83826, -8.567907], [0.066058, 133.83826, -8.633965], [0.0, 133.83826, -8.700024], [0.0, 133.904313, -8.633965], [0.0, 133.83826, -8.567907], [0.0, 133.772202, -8.633965], [-0.066058, 133.83826, -8.633965], [0.0, 133.904313, -8.633965], [0.066058, 133.83826, -8.633965], [0.0, 133.772202, -8.633965], [0.0, 133.83826, -8.700024], [0.0, 133.904313, -8.633965], [0.0, 127.606377, -8.633965]]}, {"shapeName": "C_chest_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 127.606377, -8.700024], [-6.231884, 127.540318, -8.633965], [-6.231884, 127.606377, -8.567907], [-6.231884, 127.672435, -8.633965], [-6.231884, 127.606377, -8.700024], [-6.297936, 127.606377, -8.633965], [-6.231884, 127.606377, -8.567907], [-6.165825, 127.606377, -8.633965], [-6.231884, 127.540318, -8.633965], [-6.297936, 127.606377, -8.633965], [-6.231884, 127.672435, -8.633965], [-6.165825, 127.606377, -8.633965], [-6.231884, 127.606377, -8.700024], [-6.297936, 127.606377, -8.633965], [0.0, 127.606377, -8.633965]]}, {"shapeName": "C_chest_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 127.606377, -2.402082], [0.0, 127.540318, -2.402082], [0.066058, 127.606377, -2.402082], [0.0, 127.672435, -2.402082], [-0.066058, 127.606377, -2.402082], [0.0, 127.606377, -2.336029], [0.066058, 127.606377, -2.402082], [0.0, 127.606377, -2.46814], [0.0, 127.540318, -2.402082], [0.0, 127.606377, -2.336029], [0.0, 127.672435, -2.402082], [0.0, 127.606377, -2.46814], [-0.066058, 127.606377, -2.402082], [0.0, 127.606377, -2.336029], [0.0, 127.606377, -8.633965]]}]},
-			"L_thumb_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_C_CTLShape", "degree": 3, "form": 2, "points": [[59.264565, 97.221524, -2.995155], [59.406078, 98.143501, -2.102802], [58.600855, 98.825087, -1.358882], [57.320583, 98.867019, -1.199175], [56.315228, 98.244734, -1.717233], [56.173715, 97.322758, -2.609587], [56.978938, 96.641171, -3.353506], [58.25921, 96.599239, -3.513213]]}]},
-			"C_midTorso_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_midTorso_PIV_CTLShape", "degree": 1, "form": 0, "points": [[6.231884, 114.394936, -8.700024], [6.231884, 114.460994, -8.633965], [6.231884, 114.394936, -8.567907], [6.231884, 114.328877, -8.633965], [6.231884, 114.394936, -8.700024], [6.297936, 114.394936, -8.633965], [6.231884, 114.394936, -8.567907], [6.165825, 114.394936, -8.633965], [6.231884, 114.460994, -8.633965], [6.297936, 114.394936, -8.633965], [6.231884, 114.328877, -8.633965], [6.165825, 114.394936, -8.633965], [6.231884, 114.394936, -8.700024], [6.297936, 114.394936, -8.633965], [0.0, 114.394936, -8.633965]]}, {"shapeName": "C_midTorso_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 120.626819, -8.700024], [-0.066058, 120.626819, -8.633965], [0.0, 120.626819, -8.567907], [0.066058, 120.626819, -8.633965], [0.0, 120.626819, -8.700024], [0.0, 120.692872, -8.633965], [0.0, 120.626819, -8.567907], [0.0, 120.560761, -8.633965], [-0.066058, 120.626819, -8.633965], [0.0, 120.692872, -8.633965], [0.066058, 120.626819, -8.633965], [0.0, 120.560761, -8.633965], [0.0, 120.626819, -8.700024], [0.0, 120.692872, -8.633965], [0.0, 114.394936, -8.633965]]}, {"shapeName": "C_midTorso_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 114.460994, -2.402082], [-0.066058, 114.394936, -2.402082], [0.0, 114.328877, -2.402082], [0.066058, 114.394936, -2.402082], [0.0, 114.460994, -2.402082], [0.0, 114.394936, -2.336029], [0.0, 114.328877, -2.402082], [0.0, 114.394936, -2.46814], [-0.066058, 114.394936, -2.402082], [0.0, 114.394936, -2.336029], [0.066058, 114.394936, -2.402082], [0.0, 114.394936, -2.46814], [0.0, 114.460994, -2.402082], [0.0, 114.394936, -2.336029], [0.0, 114.394936, -8.633965]]}]},
-			"C_visibility_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_visibility_PIV_CTLShape", "degree": 1, "form": 0, "points": [[1.523671, 209.103428, -0.010851], [1.523671, 209.114279, 0.0], [1.523671, 209.103428, 0.010851], [1.523671, 209.092577, 0.0], [1.523671, 209.103428, -0.010851], [1.534521, 209.103428, 0.0], [1.523671, 209.103428, 0.010851], [1.51282, 209.103428, 0.0], [1.523671, 209.114279, 0.0], [1.534521, 209.103428, 0.0], [1.523671, 209.092577, 0.0], [1.51282, 209.103428, 0.0], [1.523671, 209.103428, -0.010851], [1.534521, 209.103428, 0.0], [0.5, 209.103428, 0.0]]}, {"shapeName": "C_visibility_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.5, 210.127099, -0.010851], [0.489149, 210.127099, 0.0], [0.5, 210.127099, 0.010851], [0.510851, 210.127099, 0.0], [0.5, 210.127099, -0.010851], [0.5, 210.137949, 0.0], [0.5, 210.127099, 0.010851], [0.5, 210.116248, 0.0], [0.489149, 210.127099, 0.0], [0.5, 210.137949, 0.0], [0.510851, 210.127099, 0.0], [0.5, 210.116248, 0.0], [0.5, 210.127099, -0.010851], [0.5, 210.137949, 0.0], [0.5, 209.103428, 0.0]]}, {"shapeName": "C_visibility_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.5, 209.114279, 1.023671], [0.489149, 209.103428, 1.023671], [0.5, 209.092577, 1.023671], [0.510851, 209.103428, 1.023671], [0.5, 209.114279, 1.023671], [0.5, 209.103428, 1.034521], [0.5, 209.092577, 1.023671], [0.5, 209.103428, 1.01282], [0.489149, 209.103428, 1.023671], [0.5, 209.103428, 1.034521], [0.510851, 209.103428, 1.023671], [0.5, 209.103428, 1.01282], [0.5, 209.114279, 1.023671], [0.5, 209.103428, 1.034521], [0.5, 209.103428, 0.0]]}]},
-			"R_toe_IK_B_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-13.1588, 4.846651, 7.543254], [-9.978517, 6.163874, 7.563256], [-6.798233, 4.847213, 7.519904], [-5.48092, 1.667944, 7.438593], [-6.798233, -1.511558, 7.366953], [-9.978517, -2.82878, 7.346952], [-13.1588, -1.512119, 7.390304], [-14.476114, 1.66715, 7.471615]]}]},
-			"L_index_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_C_CTLShape", "degree": 3, "form": 2, "points": [[65.953724, 95.421056, -8.647559], [67.000994, 96.098361, -8.98049], [67.792363, 96.914815, -8.369345], [67.864256, 97.392151, -7.172122], [67.174561, 97.250752, -6.090139], [66.127291, 96.573447, -5.757207], [65.335922, 95.756992, -6.368352], [65.264029, 95.279657, -7.565575]]}]},
-			"L_ring_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[75.391982, 84.714585, -8.025226], [75.46763, 84.789737, -7.911769], [75.364809, 84.736263, -7.807792], [75.289161, 84.661111, -7.921249], [75.391982, 84.714585, -8.025226], [75.44143, 84.636732, -7.899788], [75.364809, 84.736263, -7.807792], [75.315356, 84.814125, -7.933231], [75.46763, 84.789737, -7.911769], [75.44143, 84.636732, -7.899788], [75.289161, 84.661111, -7.921249], [75.315356, 84.814125, -7.933231], [75.391982, 84.714585, -8.025226], [75.44143, 84.636732, -7.899788], [69.43127, 93.093335, -9.494035]]}, {"shapeName": "L_ring_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[77.863148, 99.149723, -9.155604], [77.786521, 99.249263, -9.063609], [77.835974, 99.171402, -8.938171], [77.912601, 99.071862, -9.030166], [77.863148, 99.149723, -9.155604], [77.938788, 99.22487, -9.042148], [77.835974, 99.171402, -8.938171], [77.760327, 99.096249, -9.051627], [77.786521, 99.249263, -9.063609], [77.938788, 99.22487, -9.042148], [77.912601, 99.071862, -9.030166], [77.760327, 99.096249, -9.051627], [77.863148, 99.149723, -9.155604], [77.938788, 99.22487, -9.042148], [69.43127, 93.093335, -9.494035]]}, {"shapeName": "L_ring_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[68.238751, 94.180212, 0.766936], [68.086476, 94.204599, 0.745475], [68.060282, 94.051585, 0.757457], [68.212557, 94.027198, 0.778918], [68.238751, 94.180212, 0.766936], [68.135931, 94.126737, 0.870903], [68.060282, 94.051585, 0.757457], [68.163103, 94.105059, 0.65348], [68.086476, 94.204599, 0.745475], [68.135931, 94.126737, 0.870903], [68.212557, 94.027198, 0.778918], [68.163103, 94.105059, 0.65348], [68.238751, 94.180212, 0.766936], [68.135931, 94.126737, 0.870903], [69.43127, 93.093335, -9.494035]]}]},
-			"R_wrist_IK_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-57.65017, 100.366276, -14.775631], [-60.48634, 102.966713, -15.212796], [-62.196343, 105.56715, -12.908266], [-61.778478, 106.644284, -9.211995], [-59.477531, 105.56715, -6.28921], [-56.641361, 102.966713, -5.852044], [-54.931357, 100.366276, -8.156575], [-55.349222, 99.289142, -11.852846]]}]},
-			"R_leg_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.97852, 62.728649, -100.410098], [-9.868422, 62.728035, -100.300002], [-9.97852, 62.727422, -100.189906], [-10.088617, 62.728035, -100.300002], [-9.97852, 62.728649, -100.410098], [-9.97852, 62.838121, -100.299389], [-9.97852, 62.727422, -100.189906], [-9.97852, 62.61794, -100.300615], [-9.868422, 62.728035, -100.300002], [-9.97852, 62.838121, -100.299389], [-10.088617, 62.728035, -100.300002], [-9.97852, 62.61794, -100.300615], [-9.97852, 62.728649, -100.410098], [-9.97852, 62.838121, -100.299389], [-9.97852, 52.341724, -100.357846]]}, {"shapeName": "R_leg_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407953, 52.342337, -100.467941], [0.407953, 52.231628, -100.358459], [0.407953, 52.341111, -100.24775], [0.407953, 52.45182, -100.357232], [0.407953, 52.342337, -100.467941], [0.51804, 52.341724, -100.357846], [0.407953, 52.341111, -100.24775], [0.297856, 52.341724, -100.357846], [0.407953, 52.231628, -100.358459], [0.51804, 52.341724, -100.357846], [0.407953, 52.45182, -100.357232], [0.297856, 52.341724, -100.357846], [0.407953, 52.342337, -100.467941], [0.51804, 52.341724, -100.357846], [-9.97852, 52.341724, -100.357846]]}, {"shapeName": "R_leg_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868422, 52.28388, -89.971534], [-9.97852, 52.173784, -89.972147], [-10.088617, 52.28388, -89.971534], [-9.97852, 52.393976, -89.970921], [-9.868422, 52.28388, -89.971534], [-9.97852, 52.283267, -89.861448], [-10.088617, 52.28388, -89.971534], [-9.97852, 52.284493, -90.08163], [-9.97852, 52.173784, -89.972147], [-9.97852, 52.283267, -89.861448], [-9.97852, 52.393976, -89.970921], [-9.97852, 52.284493, -90.08163], [-9.868422, 52.28388, -89.971534], [-9.97852, 52.283267, -89.861448], [-9.97852, 52.341724, -100.357846]]}]},
-			"R_loLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_loLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[-13.953898, 51.167074, 5.032231], [-9.978517, 50.914568, 6.659409], [-6.003136, 51.167074, 5.032231], [-4.356482, 51.776676, 1.103868], [-6.003136, 52.386279, -2.824495], [-9.978517, 52.638784, -4.451673], [-13.953898, 52.386279, -2.824495], [-15.600551, 51.776676, 1.103868]]}]},
-			"C_torso_FK_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_C_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 111.752647, -14.721745], [0.0, 111.985615, -14.768085], [0.0, 112.183114, -14.900056], [0.0, 112.315085, -15.097556], [0.0, 112.361425, -15.330523], [0.0, 112.315085, -15.56349], [0.0, 112.183114, -15.76099], [0.0, 111.985615, -15.892961], [0.0, 111.752647, -15.939301], [0.0, 111.51968, -15.892961], [0.0, 111.32218, -15.76099], [0.0, 111.19021, -15.56349], [0.0, 111.143869, -15.330523], [0.0, 111.19021, -15.097556], [0.0, 111.32218, -14.900056], [0.0, 111.51968, -14.768085], [0.0, 111.752647, -14.721745], [0.0, 111.752647, -8.633965]]}]},
-			"world_B_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 0.0, -462.16], [205.32, 0.0, -256.64], [153.92, 0.0, -256.64], [153.92, 0.0, -153.88], [256.68, 0.0, -153.88], [256.68, 0.0, -205.28], [462.16, 0.0, 0.0], [256.64, 0.0, 205.32], [256.64, 0.0, 153.92], [153.88, 0.0, 153.92], [153.88, 0.0, 256.68], [205.28, 0.0, 256.68], [0.0, 0.0, 462.16], [-205.32, 0.0, 256.64], [-153.92, 0.0, 256.64], [-153.92, 0.0, 153.88], [-256.68, 0.0, 153.88], [-256.68, 0.0, 205.28], [-462.16, 0.0, 0.0], [-256.64, 0.0, -205.32], [-256.64, 0.0, -153.92], [-153.88, 0.0, -153.92], [-153.88, 0.0, -256.68], [-205.28, 0.0, -256.68], [0.0, 0.0, -462.16], [40.24, 0.56, -422.64], [36.72, 0.0, -418.88], [36.72, 0.0, -403.52], [33.52, 0.0, -403.52], [33.72, 0.0, -419.0], [31.44, 0.0, -417.84], [31.52, 0.0, -411.12], [28.28, 0.0, -411.12], [28.28, 0.0, -417.84], [26.28, 0.0, -419.0], [26.28, 0.0, -403.28], [23.04, 0.0, -403.28], [23.04, 0.0, -419.4], [25.64, 0.0, -422.0], [29.64, 0.0, -420.0], [34.04, 0.0, -422.0], [36.72, 0.0, -418.96], [34.04, 0.0, -422.0], [29.68, 0.0, -420.04], [25.64, 0.0, -421.96], [17.84, 0.0, -422.0], [20.48, 0.0, -419.4], [20.48, 0.0, -405.92], [17.84, 0.0, -403.28], [9.4, 0.0, -403.28], [6.8, 0.0, -405.92], [6.8, 0.0, -419.4], [9.4, 0.0, -422.0], [17.84, 0.0, -422.0], [16.84, 0.0, -419.0], [17.24, 0.0, -406.6], [10.0, 0.0, -406.68], [10.04, 0.0, -419.0], [16.88, 0.0, -419.08], [17.84, 0.0, -422.0], [9.4, 0.0, -422.0], [4.0, 0.0, -422.0], [4.2, 0.0, -403.28], [-4.92, 0.0, -403.28], [-7.56, 0.0, -405.92], [-7.56, 0.0, -411.56], [-4.88, 0.0, -414.16], [-4.72, 0.0, -414.36], [-9.96, 0.0, -421.92], [-9.96, 0.0, -422.0], [-6.2, 0.0, -422.0], [-0.96, 0.0, -414.4], [1.0, 0.0, -414.4], [1.0, 0.0, -406.4], [-4.04, 0.0, -406.4], [-4.08, 0.0, -411.16], [1.0, 0.0, -411.16], [1.0, 0.0, -422.0], [4.0, 0.0, -422.0], [-25.72, 0.0, -422.0], [-25.72, 0.0, -419.0], [-15.24, 0.0, -418.96], [-15.24, 0.0, -403.28], [-12.0, 0.0, -403.28], [-12.0, 0.0, -422.0], [-39.36, 0.0, -422.0], [-41.76, 0.0, -419.4], [-41.96, 0.0, -405.92], [-39.36, 0.0, -403.28], [-28.28, 0.0, -403.28], [-28.28, 0.0, -422.0], [-31.56, 0.0, -419.0], [-31.48, 0.0, -406.32], [-38.32, 0.0, -406.32], [-38.24, 0.0, -418.92], [-31.44, 0.0, -419.08], [-28.2, 0.0, -422.0]]}]},
-			"L_upLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_upLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 80.783151, -3.523062], [9.868419, 80.765401, -3.631719], [9.978517, 80.747651, -3.740376], [10.088614, 80.765401, -3.631719], [9.978517, 80.783151, -3.523062], [9.978517, 80.656754, -3.613971], [9.978517, 80.747651, -3.740376], [9.978517, 80.874058, -3.649469], [9.868419, 80.765401, -3.631719], [9.978517, 80.656754, -3.613971], [10.088614, 80.765401, -3.631719], [9.978517, 80.874058, -3.649469], [9.978517, 80.783151, -3.523062], [9.978517, 80.656754, -3.613971], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_upLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 91.033749, -5.197596], [-0.407956, 91.124656, -5.324003], [-0.407956, 90.998249, -5.41491], [-0.407956, 90.907342, -5.288503], [-0.407956, 91.033749, -5.197596], [-0.518043, 91.015999, -5.306253], [-0.407956, 90.998249, -5.41491], [-0.297859, 91.015999, -5.306253], [-0.407956, 91.124656, -5.324003], [-0.518043, 91.015999, -5.306253], [-0.407956, 90.907342, -5.288503], [-0.297859, 91.015999, -5.306253], [-0.407956, 91.033749, -5.197596], [-0.518043, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_upLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 89.341465, -15.556851], [9.978517, 89.450122, -15.574601], [10.088614, 89.341465, -15.556851], [9.978517, 89.232808, -15.5391], [9.868419, 89.341465, -15.556851], [9.978517, 89.323717, -15.665498], [10.088614, 89.341465, -15.556851], [9.978517, 89.359215, -15.448193], [9.978517, 89.450122, -15.574601], [9.978517, 89.323717, -15.665498], [9.978517, 89.232808, -15.5391], [9.978517, 89.359215, -15.448193], [9.868419, 89.341465, -15.556851], [9.978517, 89.323717, -15.665498], [9.978517, 91.015999, -5.306253]]}]},
-			"world_C_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 0.0, -404.39], [179.655, 0.0, -224.56], [134.68, 0.0, -224.56], [134.68, 0.0, -134.645], [224.595, 0.0, -134.645], [224.595, 0.0, -179.62], [404.39, 0.0, 0.0], [224.56, 0.0, 179.655], [224.56, 0.0, 134.68], [134.645, 0.0, 134.68], [134.645, 0.0, 224.595], [179.62, 0.0, 224.595], [0.0, 0.0, 404.39], [-179.655, 0.0, 224.56], [-134.68, 0.0, 224.56], [-134.68, 0.0, 134.645], [-224.595, 0.0, 134.645], [-224.595, 0.0, 179.62], [-404.39, 0.0, 0.0], [-224.56, 0.0, -179.655], [-224.56, 0.0, -134.68], [-134.645, 0.0, -134.68], [-134.645, 0.0, -224.595], [-179.62, 0.0, -224.595], [0.0, 0.0, -404.39], [35.21, 0.49, -369.81], [32.13, 0.0, -366.52], [32.13, 0.0, -353.08], [29.33, 0.0, -353.08], [29.505, 0.0, -366.625], [27.51, 0.0, -365.61], [27.58, 0.0, -359.73], [24.745, 0.0, -359.73], [24.745, 0.0, -365.61], [22.995, 0.0, -366.625], [22.995, 0.0, -352.87], [20.16, 0.0, -352.87], [20.16, 0.0, -366.975], [22.435, 0.0, -369.25], [25.935, 0.0, -367.5], [29.785, 0.0, -369.25], [32.13, 0.0, -366.59], [29.785, 0.0, -369.25], [25.97, 0.0, -367.535], [22.435, 0.0, -369.215], [15.61, 0.0, -369.25], [17.92, 0.0, -366.975], [17.92, 0.0, -355.18], [15.61, 0.0, -352.87], [8.225, 0.0, -352.87], [5.95, 0.0, -355.18], [5.95, 0.0, -366.975], [8.225, 0.0, -369.25], [15.61, 0.0, -369.25], [14.735, 0.0, -366.625], [15.085, 0.0, -355.775], [8.75, 0.0, -355.845], [8.785, 0.0, -366.625], [14.77, 0.0, -366.695], [15.61, 0.0, -369.25], [8.225, 0.0, -369.25], [3.5, 0.0, -369.25], [3.675, 0.0, -352.87], [-4.305, 0.0, -352.87], [-6.615, 0.0, -355.18], [-6.615, 0.0, -360.115], [-4.27, 0.0, -362.39], [-4.13, 0.0, -362.565], [-8.715, 0.0, -369.18], [-8.715, 0.0, -369.25], [-5.425, 0.0, -369.25], [-0.84, 0.0, -362.6], [0.875, 0.0, -362.6], [0.875, 0.0, -355.6], [-3.535, 0.0, -355.6], [-3.57, 0.0, -359.765], [0.875, 0.0, -359.765], [0.875, 0.0, -369.25], [3.5, 0.0, -369.25], [-22.505, 0.0, -369.25], [-22.505, 0.0, -366.625], [-13.335, 0.0, -366.59], [-13.335, 0.0, -352.87], [-10.5, 0.0, -352.87], [-10.5, 0.0, -369.25], [-34.44, 0.0, -369.25], [-36.54, 0.0, -366.975], [-36.715, 0.0, -355.18], [-34.44, 0.0, -352.87], [-24.745, 0.0, -352.87], [-24.745, 0.0, -369.25], [-27.615, 0.0, -366.625], [-27.545, 0.0, -355.53], [-33.53, 0.0, -355.53], [-33.46, 0.0, -366.555], [-27.51, 0.0, -366.695], [-24.675, 0.0, -369.25]]}]},
-			"C_torso_FK_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 123.269107, -8.700024], [-0.066058, 123.269107, -8.633965], [0.0, 123.269107, -8.567907], [0.066058, 123.269107, -8.633965], [0.0, 123.269107, -8.700024], [0.0, 123.33516, -8.633965], [0.0, 123.269107, -8.567907], [0.0, 123.203049, -8.633965], [-0.066058, 123.269107, -8.633965], [0.0, 123.33516, -8.633965], [0.066058, 123.269107, -8.633965], [0.0, 123.203049, -8.633965], [0.0, 123.269107, -8.700024], [0.0, 123.33516, -8.633965], [0.0, 117.037224, -8.633965]]}, {"shapeName": "C_torso_FK_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 117.037224, -8.700024], [-6.231884, 116.971165, -8.633965], [-6.231884, 117.037224, -8.567907], [-6.231884, 117.103282, -8.633965], [-6.231884, 117.037224, -8.700024], [-6.297936, 117.037224, -8.633965], [-6.231884, 117.037224, -8.567907], [-6.165825, 117.037224, -8.633965], [-6.231884, 116.971165, -8.633965], [-6.297936, 117.037224, -8.633965], [-6.231884, 117.103282, -8.633965], [-6.165825, 117.037224, -8.633965], [-6.231884, 117.037224, -8.700024], [-6.297936, 117.037224, -8.633965], [0.0, 117.037224, -8.633965]]}, {"shapeName": "C_torso_FK_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 117.037224, -2.402082], [0.0, 116.971165, -2.402082], [0.066058, 117.037224, -2.402082], [0.0, 117.103282, -2.402082], [-0.066058, 117.037224, -2.402082], [0.0, 117.037224, -2.336029], [0.066058, 117.037224, -2.402082], [0.0, 117.037224, -2.46814], [0.0, 116.971165, -2.402082], [0.0, 117.037224, -2.336029], [0.0, 117.103282, -2.402082], [0.0, 117.037224, -2.46814], [-0.066058, 117.037224, -2.402082], [0.0, 117.037224, -2.336029], [0.0, 117.037224, -8.633965]]}]},
-			"R_toe_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_toe_FK_CTLShape", "degree": 3, "form": 2, "points": [[-13.953871, 5.641427, 7.565292], [-9.978517, 7.287955, 7.590294], [-6.003162, 5.642129, 7.536104], [-4.35652, 1.668043, 7.434465], [-6.003162, -2.306334, 7.344916], [-9.978517, -3.952862, 7.319914], [-13.953871, -2.307036, 7.374104], [-15.600513, 1.66705, 7.475743]]}]},
-			"R_upArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_upArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[-16.108188, 143.274215, -14.009061], [-18.803733, 146.266917, -15.523291], [-21.952812, 148.661537, -13.830892], [-23.710735, 149.055336, -9.923239], [-23.047742, 147.217637, -6.089387], [-20.352197, 144.224935, -4.575157], [-17.203118, 141.830315, -6.267556], [-15.445194, 141.436516, -10.175209]]}]},
-			"R_pinky_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_pinky_A_CTLShape", "degree": 3, "form": 2, "points": [[-61.258046, 101.78456, -16.798184], [-61.100425, 102.966713, -17.29218], [-60.942805, 104.148866, -16.798184], [-60.877517, 104.638528, -15.60557], [-60.942805, 104.148866, -14.412956], [-61.100425, 102.966713, -13.91896], [-61.258046, 101.78456, -14.412956], [-61.323334, 101.294898, -15.60557]]}]},
-			"L_arm_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[64.406508, 107.91281, -8.132517], [64.201294, 107.678043, -8.21681], [63.939593, 107.861232, -8.324305], [63.72983, 107.759724, -8.410467], [63.681926, 107.426664, -8.430143], [63.383258, 107.417531, -8.552823], [63.31803, 107.747103, -8.579616], [63.1033, 107.83568, -8.667817], [62.851577, 107.63677, -8.771214], [62.634409, 107.858629, -8.860417], [62.803879, 108.141569, -8.790806], [62.709958, 108.368308, -8.829385], [62.401881, 108.420104, -8.955929], [62.393433, 108.742986, -8.959399], [62.698316, 108.813517, -8.834167], [62.780204, 109.045662, -8.800531], [62.596231, 109.317772, -8.876098], [62.801445, 109.55254, -8.791806], [63.063165, 109.369373, -8.684303], [63.272928, 109.470881, -8.598141], [63.320832, 109.803941, -8.578465], [63.619487, 109.813059, -8.45579], [63.684749, 109.483481, -8.428984], [63.899458, 109.394925, -8.340791], [64.151162, 109.593813, -8.237402], [64.368331, 109.371954, -8.148199], [64.19888, 109.089036, -8.217802], [64.292821, 108.862276, -8.179215], [64.600864, 108.810486, -8.052685], [64.609325, 108.487619, -8.049209], [64.304443, 108.417087, -8.174441], [64.222555, 108.184943, -8.208077], [64.406508, 107.91281, -8.132517]]}, {"shapeName": "L_arm_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[63.959843, 108.629307, -8.315988], [63.816391, 108.97568, -8.374911], [63.488398, 109.110935, -8.509636], [63.168028, 108.955839, -8.64123], [63.042915, 108.601298, -8.69262], [63.186367, 108.254925, -8.633697], [63.51436, 108.11967, -8.498972], [63.834717, 108.274751, -8.367384]]}, {"shapeName": "L_arm_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[62.742993, 107.747699, -8.815815], [58.56385, 102.966713, -10.53242]]}]},
-			"C_cog_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[21.900534, 98.139605, -7.057898], [21.877435, 98.139605, -10.503291], [15.932302, 98.139605, -12.572031], [15.119853, 98.139605, -15.016893], [18.644276, 98.139605, -20.231719], [16.600455, 98.139605, -23.005519], [10.57386, 98.139605, -21.188375], [8.480114, 98.139605, -22.688854], [8.266564, 98.139605, -28.975571], [4.982648, 98.139605, -30.018312], [1.176561, 98.139605, -25.009343], [-1.398745, 98.139605, -24.992314], [-5.268718, 98.139605, -29.949627], [-8.538345, 98.139605, -28.862988], [-8.670148, 98.139605, -22.575483], [-10.743336, 98.139605, -21.047455], [-16.791519, 98.139605, -22.781822], [-18.797995, 98.139605, -19.980869], [-15.20515, 98.139605, -14.816427], [-15.98433, 98.139605, -12.361067], [-21.900534, 98.139605, -10.210033], [-21.877435, 98.139605, -6.76464], [-15.932302, 98.139605, -4.6959], [-15.119853, 98.139605, -2.251038], [-18.644276, 98.139605, 2.963788], [-16.600455, 98.139605, 5.737588], [-10.57386, 98.139605, 3.920444], [-8.480114, 98.139605, 5.420923], [-8.266564, 98.139605, 11.70764], [-4.982648, 98.139605, 12.750381], [-1.176561, 98.139605, 7.741412], [1.398745, 98.139605, 7.724383], [5.268718, 98.139605, 12.681696], [8.538345, 98.139605, 11.595057], [8.670148, 98.139605, 5.307552], [10.743336, 98.139605, 3.779524], [16.791519, 98.139605, 5.513891], [18.797995, 98.139605, 2.712938], [15.20515, 98.139605, -2.451504], [15.98433, 98.139605, -4.906864], [21.900534, 98.139605, -7.057898]]}]},
-			"R_toeTip_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_toeTip_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.432422, 1.504777, 14.48181], [0.433025, 1.612594, 14.36948], [0.433604, 1.500263, 14.261665], [0.433001, 1.392445, 14.373994], [0.432422, 1.504777, 14.48181], [0.543099, 1.50252, 14.372328], [0.433604, 1.500263, 14.261665], [0.322917, 1.50252, 14.371147], [0.433025, 1.612594, 14.36948], [0.543099, 1.50252, 14.372328], [0.433001, 1.392445, 14.373994], [0.322917, 1.50252, 14.371147], [0.432422, 1.504777, 14.48181], [0.543099, 1.50252, 14.372328], [-9.95331, 1.50252, 14.316]]}, {"shapeName": "R_toeTip_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-9.952758, 11.889068, 14.213189], [-10.062264, 11.88681, 14.102526], [-9.951577, 11.884554, 13.993044], [-9.842072, 11.88681, 14.103707], [-9.952758, 11.889068, 14.213189], [-9.952156, 11.996875, 14.100861], [-9.951577, 11.884554, 13.993044], [-9.95218, 11.776736, 14.105374], [-10.062264, 11.88681, 14.102526], [-9.952156, 11.996875, 14.100861], [-9.842072, 11.88681, 14.103707], [-9.95218, 11.776736, 14.105374], [-9.952758, 11.889068, 14.213189], [-9.952156, 11.996875, 14.100861], [-9.95331, 1.50252, 14.316]]}, {"shapeName": "R_toeTip_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.897573, 1.399708, 3.929602], [-10.007681, 1.289634, 3.931268], [-9.897597, 1.179559, 3.934116], [-9.787489, 1.289634, 3.93245], [-9.897573, 1.399708, 3.929602], [-9.896994, 1.287377, 3.821797], [-9.897597, 1.179559, 3.934116], [-9.898176, 1.29189, 4.041932], [-10.007681, 1.289634, 3.931268], [-9.896994, 1.287377, 3.821797], [-9.787489, 1.289634, 3.93245], [-9.898176, 1.29189, 4.041932], [-9.897573, 1.399708, 3.929602], [-9.896994, 1.287377, 3.821797], [-9.95331, 1.50252, 14.316]]}]},
-			"L_pinky_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_B_CTLShape", "degree": 3, "form": 2, "points": [[65.000393, 102.285212, -16.798184], [64.905288, 103.474028, -17.29218], [64.810182, 104.662844, -16.798184], [64.770789, 105.155267, -15.60557], [64.810182, 104.662844, -14.412956], [64.905288, 103.474028, -13.91896], [65.000393, 102.285212, -14.412956], [65.039787, 101.792789, -15.60557]]}]},
-			"R_toe_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-10.016661, 1.807241, -2.930947], [-9.906564, 1.917316, -2.928703], [-10.016661, 2.027372, -2.925652], [-10.126757, 1.917296, -2.927895], [-10.016661, 1.807241, -2.930947], [-10.017065, 1.919954, -3.038354], [-10.016661, 2.027372, -2.925652], [-10.016257, 1.914659, -2.818234], [-9.906564, 1.917316, -2.928703], [-10.017065, 1.919954, -3.038354], [-10.126757, 1.917296, -2.927895], [-10.016257, 1.914659, -2.818234], [-10.016661, 1.807241, -2.930947], [-10.017065, 1.919954, -3.038354], [-9.97852, 1.66755, 7.4551]]}, {"shapeName": "R_toe_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407883, 1.558401, 7.414323], [0.408287, 1.66582, 7.527035], [0.407883, 1.778533, 7.419618], [0.407478, 1.671114, 7.306905], [0.407883, 1.558401, 7.414323], [0.51797, 1.668477, 7.416566], [0.407883, 1.778533, 7.419618], [0.297786, 1.668458, 7.417374], [0.408287, 1.66582, 7.527035], [0.51797, 1.668477, 7.416566], [0.407478, 1.671114, 7.306905], [0.297786, 1.668458, 7.417374], [0.407883, 1.558401, 7.414323], [0.51797, 1.668477, 7.416566], [-9.97852, 1.66755, 7.4551]]}, {"shapeName": "R_toe_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868423, 12.051029, 7.704454], [-9.978116, 12.048372, 7.814923], [-10.088616, 12.051009, 7.705262], [-9.978924, 12.053667, 7.594793], [-9.868423, 12.051029, 7.704454], [-9.97852, 12.161075, 7.707505], [-10.088616, 12.051009, 7.705262], [-9.97852, 11.940954, 7.702211], [-9.978116, 12.048372, 7.814923], [-9.97852, 12.161075, 7.707505], [-9.978924, 12.053667, 7.594793], [-9.97852, 11.940954, 7.702211], [-9.868423, 12.051029, 7.704454], [-9.97852, 12.161075, 7.707505], [-9.97852, 1.66755, 7.4551]]}]},
-			"L_leg_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 17.857097, -5.881634], [9.868419, 17.857097, -5.771536], [9.978517, 17.857097, -5.661439], [10.088614, 17.857097, -5.771536], [9.978517, 17.857097, -5.881634], [9.978517, 17.967184, -5.771536], [9.978517, 17.857097, -5.661439], [9.978517, 17.746999, -5.771536], [9.868419, 17.857097, -5.771536], [9.978517, 17.967184, -5.771536], [10.088614, 17.857097, -5.771536], [9.978517, 17.746999, -5.771536], [9.978517, 17.857097, -5.881634], [9.978517, 17.967184, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 7.470624, -5.881634], [-0.407956, 7.360526, -5.771536], [-0.407956, 7.470624, -5.661439], [-0.407956, 7.580721, -5.771536], [-0.407956, 7.470624, -5.881634], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.470624, -5.661439], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.360526, -5.771536], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.580721, -5.771536], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.470624, -5.881634], [-0.518043, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 7.470624, 4.614936], [9.978517, 7.360526, 4.614936], [10.088614, 7.470624, 4.614936], [9.978517, 7.580721, 4.614936], [9.868419, 7.470624, 4.614936], [9.978517, 7.470624, 4.725024], [10.088614, 7.470624, 4.614936], [9.978517, 7.470624, 4.504839], [9.978517, 7.360526, 4.614936], [9.978517, 7.470624, 4.725024], [9.978517, 7.580721, 4.614936], [9.978517, 7.470624, 4.504839], [9.868419, 7.470624, 4.614936], [9.978517, 7.470624, 4.725024], [9.978517, 7.470624, -5.771536]]}]},
-			"L_thumb_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_B_CTLShape", "degree": 3, "form": 2, "points": [[59.191712, 99.107888, -5.585468], [59.325236, 100.144685, -4.828114], [58.512024, 100.941091, -4.219194], [57.228443, 101.030583, -4.115405], [56.226397, 100.360738, -4.577545], [56.092873, 99.323941, -5.334899], [56.906085, 98.527534, -5.943819], [58.189666, 98.438043, -6.047608]]}]},
-			"R_leg_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_leg_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-17.118368, 8.53224, -5.606795], [-16.827661, 8.53224, -5.606795], [-16.772607, 8.237464, -5.652538], [-16.56603, 8.152885, -5.665663], [-16.316151, 8.322855, -5.639287], [-16.110588, 8.119723, -5.670809], [-16.282583, 7.872827, -5.709123], [-16.197028, 7.668666, -5.740804], [-15.898697, 7.614263, -5.749247], [-15.898697, 7.326985, -5.793826], [-16.197028, 7.272582, -5.802269], [-16.282583, 7.068448, -5.833946], [-16.110588, 6.821524, -5.872263], [-16.316151, 6.618393, -5.903785], [-16.56603, 6.788363, -5.87741], [-16.772607, 6.703784, -5.890534], [-16.827661, 6.409008, -5.936278], [-17.118368, 6.409008, -5.936278], [-17.17345, 6.703784, -5.890534], [-17.380027, 6.788363, -5.87741], [-17.629906, 6.618393, -5.903785], [-17.835451, 6.821524, -5.872263], [-17.663474, 7.068448, -5.833946], [-17.749029, 7.272582, -5.802269], [-18.047333, 7.326985, -5.793826], [-18.047333, 7.614263, -5.749247], [-17.749029, 7.668666, -5.740804], [-17.663474, 7.872827, -5.709123], [-17.835451, 8.119723, -5.670809], [-17.629906, 8.322855, -5.639287], [-17.380027, 8.152885, -5.665663], [-17.17345, 8.237464, -5.652538], [-17.118368, 8.53224, -5.606795]]}, {"shapeName": "R_leg_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-17.288564, 7.782446, -5.723148], [-17.419275, 7.470624, -5.771536], [-17.288564, 7.158802, -5.819925], [-16.973019, 7.029664, -5.839964], [-16.657493, 7.158802, -5.819925], [-16.526782, 7.470624, -5.771536], [-16.657493, 7.782446, -5.723148], [-16.973019, 7.911584, -5.703108]]}, {"shapeName": "R_leg_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-15.898697, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}]},
-			"L_loLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_loLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 41.496164, -0.380045], [9.868419, 41.513046, -0.48884], [9.978517, 41.529929, -0.597635], [10.088614, 41.513046, -0.48884], [9.978517, 41.496164, -0.380045], [9.978517, 41.404261, -0.505721], [9.978517, 41.529929, -0.597635], [9.978517, 41.621842, -0.471957], [9.868419, 41.513046, -0.48884], [9.978517, 41.404261, -0.505721], [10.088614, 41.513046, -0.48884], [9.978517, 41.621842, -0.471957], [9.978517, 41.496164, -0.380045], [9.978517, 41.404261, -0.505721], [9.978517, 51.776676, 1.103868]]}, {"shapeName": "L_loLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 51.759793, 1.212663], [-0.407956, 51.885472, 1.120751], [-0.407956, 51.793559, 0.995073], [-0.407956, 51.667881, 1.086985], [-0.407956, 51.759793, 1.212663], [-0.518043, 51.776676, 1.103868], [-0.407956, 51.793559, 0.995073], [-0.297859, 51.776676, 1.103868], [-0.407956, 51.885472, 1.120751], [-0.518043, 51.776676, 1.103868], [-0.407956, 51.667881, 1.086985], [-0.297859, 51.776676, 1.103868], [-0.407956, 51.759793, 1.212663], [-0.518043, 51.776676, 1.103868], [9.978517, 51.776676, 1.103868]]}, {"shapeName": "L_loLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 53.369384, -9.159762], [9.978517, 53.47818, -9.142879], [10.088614, 53.369384, -9.159762], [9.978517, 53.260589, -9.176645], [9.868419, 53.369384, -9.159762], [9.978517, 53.386265, -9.268547], [10.088614, 53.369384, -9.159762], [9.978517, 53.352501, -9.050966], [9.978517, 53.47818, -9.142879], [9.978517, 53.386265, -9.268547], [9.978517, 53.260589, -9.176645], [9.978517, 53.352501, -9.050966], [9.868419, 53.369384, -9.159762], [9.978517, 53.386265, -9.268547], [9.978517, 51.776676, 1.103868]]}]},
-			"L_arm_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[63.822242, 107.418201, -8.372508], [63.63755, 107.20691, -8.448371], [63.402019, 107.37178, -8.545117], [63.213232, 107.280423, -8.622662], [63.170118, 106.980669, -8.640371], [62.901317, 106.972449, -8.750783], [62.842612, 107.269064, -8.774896], [62.649355, 107.348784, -8.854277], [62.422804, 107.169764, -8.947334], [62.227353, 107.369437, -9.027617], [62.379876, 107.624083, -8.964967], [62.295347, 107.828149, -8.999688], [62.018078, 107.874765, -9.113578], [62.010475, 108.165358, -9.116701], [62.284869, 108.228837, -9.003992], [62.358568, 108.437767, -8.97372], [62.192993, 108.682666, -9.041731], [62.377686, 108.893957, -8.965867], [62.613234, 108.729107, -8.869114], [62.80202, 108.820464, -8.791569], [62.845134, 109.120218, -8.77386], [63.113924, 109.128424, -8.663453], [63.172659, 108.831804, -8.639327], [63.365898, 108.752103, -8.559954], [63.592431, 108.931103, -8.466904], [63.787882, 108.73143, -8.386621], [63.635377, 108.476804, -8.449264], [63.719924, 108.272719, -8.414536], [63.997163, 108.226109, -8.300658], [64.004778, 107.935529, -8.29753], [63.730383, 107.87205, -8.410239], [63.656684, 107.66312, -8.440512], [63.822242, 107.418201, -8.372508]]}, {"shapeName": "L_arm_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[63.420244, 108.063048, -8.537631], [63.291137, 108.374783, -8.590662], [62.995943, 108.496513, -8.711914], [62.70761, 108.356927, -8.830349], [62.595009, 108.037839, -8.8766], [62.724116, 107.726104, -8.823569], [63.019309, 107.604374, -8.702317], [63.307631, 107.743947, -8.583887]]}, {"shapeName": "L_arm_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[62.325078, 107.269601, -8.987476], [58.56385, 102.966713, -10.53242]]}]},
-			"R_loArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_loArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-45.684849, 117.073958, -14.614821], [-45.748818, 117.163398, -14.504588], [-45.650922, 117.103638, -14.399289], [-45.586952, 117.014197, -14.509522], [-45.684849, 117.073958, -14.614821], [-45.740567, 117.009206, -14.484654], [-45.650922, 117.103638, -14.399289], [-45.595197, 117.168397, -14.529458], [-45.748818, 117.163398, -14.504588], [-45.740567, 117.009206, -14.484654], [-45.586952, 117.014197, -14.509522], [-45.595197, 117.168397, -14.529458], [-45.684849, 117.073958, -14.614821], [-45.740567, 117.009206, -14.484654], [-38.810577, 124.598083, -16.620529]]}, {"shapeName": "R_loArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-46.462662, 131.620969, -16.495544], [-46.37301, 131.715408, -16.410181], [-46.428734, 131.650648, -16.280012], [-46.518386, 131.556209, -16.365375], [-46.462662, 131.620969, -16.495544], [-46.526624, 131.710402, -16.385311], [-46.428734, 131.650648, -16.280012], [-46.364765, 131.561208, -16.390245], [-46.37301, 131.715408, -16.410181], [-46.526624, 131.710402, -16.385311], [-46.518386, 131.556209, -16.365375], [-46.364765, 131.561208, -16.390245], [-46.462662, 131.620969, -16.495544], [-46.526624, 131.710402, -16.385311], [-38.810577, 124.598083, -16.620529]]}, {"shapeName": "R_loArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-37.291174, 126.072638, -6.451555], [-37.137553, 126.077637, -6.476425], [-37.129308, 125.923437, -6.456489], [-37.282929, 125.918439, -6.431619], [-37.291174, 126.072638, -6.451555], [-37.193279, 126.012876, -6.346266], [-37.129308, 125.923437, -6.456489], [-37.227205, 125.983198, -6.561788], [-37.137553, 126.077637, -6.476425], [-37.193279, 126.012876, -6.346266], [-37.282929, 125.918439, -6.431619], [-37.227205, 125.983198, -6.561788], [-37.291174, 126.072638, -6.451555], [-37.193279, 126.012876, -6.346266], [-38.810577, 124.598083, -16.620529]]}]},
-			"L_reverseBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_reverseBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.364249, 1.66529, 7.289294], [20.364828, 1.777621, 7.39711], [20.36543, 1.669803, 7.50944], [20.364852, 1.557473, 7.401623], [20.364249, 1.66529, 7.289294], [20.474925, 1.667547, 7.398776], [20.36543, 1.669803, 7.50944], [20.254744, 1.667547, 7.399958], [20.364828, 1.777621, 7.39711], [20.474925, 1.667547, 7.398776], [20.364852, 1.557473, 7.401623], [20.254744, 1.667547, 7.399958], [20.364249, 1.66529, 7.289294], [20.474925, 1.667547, 7.398776], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_reverseBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.976783, 12.049581, 7.132148], [9.867278, 12.051838, 7.242812], [9.977965, 12.054094, 7.352294], [10.08747, 12.051838, 7.24163], [9.976783, 12.049581, 7.132148], [9.977362, 12.161902, 7.239964], [9.977965, 12.054094, 7.352294], [9.977386, 11.941763, 7.244477], [9.867278, 12.051838, 7.242812], [9.977362, 12.161902, 7.239964], [10.08747, 12.051838, 7.24163], [9.977386, 11.941763, 7.244477], [9.976783, 12.049581, 7.132148], [9.977362, 12.161902, 7.239964], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_reverseBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[10.03423, 1.990507, 17.836988], [9.924146, 1.880433, 17.839836], [10.034254, 1.770359, 17.841502], [10.144338, 1.880433, 17.838654], [10.03423, 1.990507, 17.836988], [10.034833, 1.882689, 17.949308], [10.034254, 1.770359, 17.841502], [10.033651, 1.878176, 17.729172], [9.924146, 1.880433, 17.839836], [10.034833, 1.882689, 17.949308], [10.144338, 1.880433, 17.838654], [10.033651, 1.878176, 17.729172], [10.03423, 1.990507, 17.836988], [10.034833, 1.882689, 17.949308], [9.978517, 1.667547, 7.455104]]}]},
-			"R_toe_IK_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-13.556335, 5.244039, 7.554273], [-9.978517, 6.725915, 7.576775], [-6.400698, 5.244671, 7.528004], [-4.91872, 1.667994, 7.436529], [-6.400698, -1.908946, 7.355935], [-9.978517, -3.390821, 7.333433], [-13.556335, -1.909577, 7.382204], [-15.038313, 1.6671, 7.473679]]}]},
-			"R_outterBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_outterBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-4.896368, 1.435407, 4.52093], [-4.895765, 1.543225, 4.408601], [-4.895186, 1.430894, 4.300784], [-4.895789, 1.323076, 4.413113], [-4.896368, 1.435407, 4.52093], [-4.785691, 1.43315, 4.411448], [-4.895186, 1.430894, 4.300784], [-5.005873, 1.43315, 4.410266], [-4.895765, 1.543225, 4.408601], [-4.785691, 1.43315, 4.411448], [-4.895789, 1.323076, 4.413113], [-5.005873, 1.43315, 4.410266], [-4.896368, 1.435407, 4.52093], [-4.785691, 1.43315, 4.411448], [-15.2821, 1.43315, 4.35512]]}, {"shapeName": "R_outterBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-15.281548, 11.819697, 4.25231], [-15.391053, 11.817441, 4.141646], [-15.280367, 11.815184, 4.032164], [-15.170861, 11.817441, 4.142828], [-15.281548, 11.819697, 4.25231], [-15.280945, 11.927505, 4.13998], [-15.280367, 11.815184, 4.032164], [-15.280969, 11.707367, 4.144493], [-15.391053, 11.817441, 4.141646], [-15.280945, 11.927505, 4.13998], [-15.170861, 11.817441, 4.142828], [-15.280969, 11.707367, 4.144493], [-15.281548, 11.819697, 4.25231], [-15.280945, 11.927505, 4.13998], [-15.2821, 1.43315, 4.35512]]}, {"shapeName": "R_outterBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-15.226363, 1.330339, -6.031278], [-15.33647, 1.220264, -6.029612], [-15.226386, 1.11019, -6.026765], [-15.116279, 1.220264, -6.028431], [-15.226363, 1.330339, -6.031278], [-15.225784, 1.218008, -6.139084], [-15.226386, 1.11019, -6.026765], [-15.226965, 1.222521, -5.918949], [-15.33647, 1.220264, -6.029612], [-15.225784, 1.218008, -6.139084], [-15.116279, 1.220264, -6.028431], [-15.226965, 1.222521, -5.918949], [-15.226363, 1.330339, -6.031278], [-15.225784, 1.218008, -6.139084], [-15.2821, 1.43315, 4.35512]]}]},
-			"R_heel_CTL": {"color": 20, "shapes": [{"shapeName": "R_heel_CTLShape", "degree": 1, "form": 0, "points": [[-9.813801, 0.969538, -11.681757], [-9.808469, -0.065675, -12.675363], [-10.822972, 0.948742, -12.701604], [-9.813801, 0.969538, -11.681757], [-8.793742, 0.948742, -12.690714], [-9.808469, -0.065675, -12.675363], [-9.802913, 0.927945, -13.710561], [-8.793742, 0.948742, -12.690714], [-9.808245, 1.963159, -12.716955], [-9.813801, 0.969538, -11.681757], [-10.822972, 0.948742, -12.701604], [-9.802913, 0.927945, -13.710561], [-9.808245, 1.963159, -12.716955], [-10.822972, 0.948742, -12.701604]]}]},
-			"R_thumb_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_thumb_A_CTLShape", "degree": 3, "form": 2, "points": [[-59.255902, 100.624629, -8.451258], [-59.388957, 101.755964, -7.84402], [-58.575276, 102.646909, -7.385215], [-57.291501, 102.775559, -7.343606], [-56.28965, 102.066555, -7.743566], [-56.156594, 100.935221, -8.350805], [-56.970275, 100.044276, -8.80961], [-58.25405, 99.915625, -8.851219]]}]},
-			"R_outterBall_CTL": {"color": 20, "shapes": [{"shapeName": "R_outterBall_CTLShape", "degree": 1, "form": 0, "points": [[-17.316787, 1.453949, 5.358633], [-17.311455, 0.418736, 4.365027], [-18.325959, 1.433153, 4.338786], [-17.316787, 1.453949, 5.358633], [-16.296728, 1.433153, 4.349675], [-17.311455, 0.418736, 4.365027], [-17.3059, 1.412357, 3.329828], [-16.296728, 1.433153, 4.349675], [-17.311232, 2.44757, 4.323434], [-17.316787, 1.453949, 5.358633], [-18.325959, 1.433153, 4.338786], [-17.3059, 1.412357, 3.329828], [-17.311232, 2.44757, 4.323434], [-18.325959, 1.433153, 4.338786]]}]},
-			"L_pinky_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[75.258682, 104.3023, -15.715667], [75.249903, 104.412046, -15.60557], [75.258682, 104.3023, -15.495472], [75.267462, 104.192553, -15.60557], [75.258682, 104.3023, -15.715667], [75.368419, 104.311078, -15.60557], [75.258682, 104.3023, -15.495472], [75.148935, 104.29352, -15.60557], [75.249903, 104.412046, -15.60557], [75.368419, 104.311078, -15.60557], [75.267462, 104.192553, -15.60557], [75.148935, 104.29352, -15.60557], [75.258682, 104.3023, -15.715667], [75.368419, 104.311078, -15.60557], [64.905288, 103.474028, -15.60557]]}, {"shapeName": "L_pinky_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.077016, 113.827423, -15.715667], [63.967269, 113.818643, -15.60557], [64.077016, 113.827423, -15.495472], [64.186763, 113.836202, -15.60557], [64.077016, 113.827423, -15.715667], [64.068237, 113.937159, -15.60557], [64.077016, 113.827423, -15.495472], [64.085796, 113.717676, -15.60557], [63.967269, 113.818643, -15.60557], [64.068237, 113.937159, -15.60557], [64.186763, 113.836202, -15.60557], [64.085796, 113.717676, -15.60557], [64.077016, 113.827423, -15.715667], [64.068237, 113.937159, -15.60557], [64.905288, 103.474028, -15.60557]]}, {"shapeName": "L_pinky_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[64.896508, 103.583775, -5.219097], [64.795541, 103.465248, -5.219097], [64.914067, 103.364281, -5.219097], [65.015035, 103.482808, -5.219097], [64.896508, 103.583775, -5.219097], [64.905288, 103.474028, -5.10901], [64.914067, 103.364281, -5.219097], [64.905288, 103.474028, -5.329195], [64.795541, 103.465248, -5.219097], [64.905288, 103.474028, -5.10901], [65.015035, 103.482808, -5.219097], [64.905288, 103.474028, -5.329195], [64.896508, 103.583775, -5.219097], [64.905288, 103.474028, -5.10901], [64.905288, 103.474028, -15.60557]]}]},
-			"L_middle_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[67.125625, 95.29961, -3.115401], [67.133727, 95.407395, -3.003331], [67.010855, 95.343062, -2.932574], [67.002753, 95.235276, -3.044644], [67.125625, 95.29961, -3.115401], [67.135613, 95.256202, -2.966214], [67.010855, 95.343062, -2.932574], [67.000862, 95.386476, -3.081766], [67.133727, 95.407395, -3.003331], [67.135613, 95.256202, -2.966214], [67.002753, 95.235276, -3.044644], [67.000862, 95.386476, -3.081766], [67.125625, 95.29961, -3.115401], [67.135613, 95.256202, -2.966214], [60.711838, 101.466573, -8.47477]]}, {"shapeName": "L_middle_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[66.947201, 109.563591, -6.617491], [66.822437, 109.650457, -6.583857], [66.832431, 109.607043, -6.434665], [66.957194, 109.520177, -6.468299], [66.947201, 109.563591, -6.617491], [66.955297, 109.671368, -6.505424], [66.832431, 109.607043, -6.434665], [66.824329, 109.499257, -6.546734], [66.822437, 109.650457, -6.583857], [66.955297, 109.671368, -6.505424], [66.957194, 109.520177, -6.468299], [66.824329, 109.499257, -6.546734], [66.947201, 109.563591, -6.617491], [66.955297, 109.671368, -6.505424], [60.711838, 101.466573, -8.47477]]}, {"shapeName": "L_middle_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[55.36368, 103.602235, 0.169714], [55.230814, 103.581315, 0.091279], [55.232706, 103.430116, 0.128401], [55.365571, 103.451035, 0.206836], [55.36368, 103.602235, 0.169714], [55.240813, 103.537899, 0.240462], [55.232706, 103.430116, 0.128401], [55.355578, 103.494449, 0.057644], [55.230814, 103.581315, 0.091279], [55.240813, 103.537899, 0.240462], [55.365571, 103.451035, 0.206836], [55.355578, 103.494449, 0.057644], [55.36368, 103.602235, 0.169714], [55.240813, 103.537899, 0.240462], [60.711838, 101.466573, -8.47477]]}]},
-			"R_shoulder_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-13.145654, 145.77658, -6.485353], [-13.207321, 145.886392, -6.393804], [-13.255241, 145.77658, -6.294365], [-13.193573, 145.666768, -6.385915], [-13.145654, 145.77658, -6.485353], [-13.295685, 145.768656, -6.444506], [-13.255241, 145.77658, -6.294365], [-13.105201, 145.784505, -6.335208], [-13.207321, 145.886392, -6.393804], [-13.295685, 145.768656, -6.444506], [-13.193573, 145.666768, -6.385915], [-13.105201, 145.784505, -6.335208], [-13.145654, 145.77658, -6.485353], [-13.295685, 145.768656, -6.444506], [-4.215017, 146.524231, -1.234097]]}, {"shapeName": "R_shoulder_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-4.808705, 156.88376, -1.701684], [-4.768253, 156.891685, -1.551539], [-4.918293, 156.88376, -1.510696], [-4.958745, 156.875834, -1.660842], [-4.808705, 156.88376, -1.701684], [-4.870372, 156.993561, -1.610134], [-4.918293, 156.88376, -1.510696], [-4.856625, 156.773948, -1.602246], [-4.768253, 156.891685, -1.551539], [-4.870372, 156.993561, -1.610134], [-4.958745, 156.875834, -1.660842], [-4.856625, 156.773948, -1.602246], [-4.808705, 156.88376, -1.701684], [-4.870372, 156.993561, -1.610134], [-4.215017, 146.524231, -1.234097]]}, {"shapeName": "R_shoulder_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.391063, 146.634043, 7.770759], [-9.288943, 146.532156, 7.829354], [-9.377315, 146.414419, 7.778647], [-9.479435, 146.516306, 7.720051], [-9.391063, 146.634043, 7.770759], [-9.438978, 146.524231, 7.870188], [-9.377315, 146.414419, 7.778647], [-9.329395, 146.524231, 7.679209], [-9.288943, 146.532156, 7.829354], [-9.438978, 146.524231, 7.870188], [-9.479435, 146.516306, 7.720051], [-9.329395, 146.524231, 7.679209], [-9.391063, 146.634043, 7.770759], [-9.438978, 146.524231, 7.870188], [-4.215017, 146.524231, -1.234097]]}]},
-			"C_torso_FK_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_B_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 106.468071, -14.721745], [-0.0, 106.701038, -14.768085], [-0.0, 106.898538, -14.900056], [-0.0, 107.030509, -15.097556], [-0.0, 107.076849, -15.330523], [-0.0, 107.030509, -15.56349], [-0.0, 106.898538, -15.76099], [-0.0, 106.701038, -15.892961], [-0.0, 106.468071, -15.939301], [-0.0, 106.235104, -15.892961], [-0.0, 106.037604, -15.76099], [-0.0, 105.905633, -15.56349], [-0.0, 105.859293, -15.330523], [-0.0, 105.905633, -15.097556], [-0.0, 106.037604, -14.900056], [-0.0, 106.235104, -14.768085], [-0.0, 106.468071, -14.721745], [-0.0, 106.468071, -8.633965]]}]},
-			"R_legBase_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 88.785288, -4.941845], [-9.978517, 85.175938, -4.352223], [-9.978517, 83.797286, -4.127007], [-9.978517, 86.562223, 4.133872], [-9.978517, 91.028345, 8.788951], [-9.978517, 95.489768, 8.060134], [-9.978517, 98.242345, 2.225812], [-9.978517, 98.234711, -6.485499], [-9.978517, 96.856059, -6.260283], [-9.978517, 93.24671, -5.670661], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}]},
-			"L_index_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[71.172479, 92.001141, -5.596023], [71.217565, 92.098141, -5.48288], [71.115446, 92.032153, -5.385615], [71.070361, 91.935154, -5.498758], [71.172479, 92.001141, -5.596023], [71.220709, 91.944267, -5.459348], [71.115446, 92.032153, -5.385615], [71.06721, 92.089034, -5.522293], [71.217565, 92.098141, -5.48288], [71.220709, 91.944267, -5.459348], [71.070361, 91.935154, -5.498758], [71.06721, 92.089034, -5.522293], [71.172479, 92.001141, -5.596023], [71.220709, 91.944267, -5.459348], [63.903151, 98.845501, -8.460031]]}, {"shapeName": "L_index_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[70.875168, 106.518017, -7.816282], [70.769898, 106.605909, -7.742552], [70.818135, 106.549029, -7.605874], [70.923405, 106.461137, -7.679604], [70.875168, 106.518017, -7.816282], [70.920247, 106.615009, -7.70314], [70.818135, 106.549029, -7.605874], [70.77305, 106.452029, -7.719017], [70.769898, 106.605909, -7.742552], [70.920247, 106.615009, -7.70314], [70.923405, 106.461137, -7.679604], [70.77305, 106.452029, -7.719017], [70.875168, 106.518017, -7.816282], [70.920247, 106.615009, -7.70314], [63.903151, 98.845501, -8.460031]]}, {"shapeName": "L_index_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.286537, 100.38983, 1.472708], [61.136182, 100.380722, 1.433295], [61.139333, 100.226842, 1.45683], [61.289688, 100.23595, 1.496243], [61.286537, 100.38983, 1.472708], [61.184421, 100.323841, 1.569963], [61.139333, 100.226842, 1.45683], [61.241451, 100.29283, 1.359565], [61.136182, 100.380722, 1.433295], [61.184421, 100.323841, 1.569963], [61.289688, 100.23595, 1.496243], [61.241451, 100.29283, 1.359565], [61.286537, 100.38983, 1.472708], [61.184421, 100.323841, 1.569963], [63.903151, 98.845501, -8.460031]]}]},
-			"R_wrist_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_wrist_FK_CTLShape", "degree": 3, "form": 2, "points": [[-59.254016, 98.33514, -14.54661], [-62.405316, 101.224514, -15.03235], [-64.30532, 104.113889, -12.47176], [-63.841025, 105.310705, -8.364793], [-61.284417, 104.113889, -5.117254], [-58.133117, 101.224514, -4.631514], [-56.233113, 98.33514, -7.192104], [-56.697407, 97.138324, -11.299072]]}]},
-			"R_heel_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_heel_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.566493, 0.992592, -10.501591], [0.567095, 1.100409, -10.61392], [0.567674, 0.988078, -10.721736], [0.567071, 0.88026, -10.609406], [0.566493, 0.992592, -10.501591], [0.677169, 0.990335, -10.611073], [0.567674, 0.988078, -10.721736], [0.456988, 0.990335, -10.612254], [0.567095, 1.100409, -10.61392], [0.677169, 0.990335, -10.611073], [0.567071, 0.88026, -10.609406], [0.456988, 0.990335, -10.612254], [0.566493, 0.992592, -10.501591], [0.677169, 0.990335, -10.611073], [-9.81924, 0.990336, -10.6674]]}, {"shapeName": "R_heel_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-9.818689, 11.376883, -10.770211], [-9.928194, 11.374625, -10.880874], [-9.817507, 11.372369, -10.990356], [-9.708002, 11.374625, -10.879693], [-9.818689, 11.376883, -10.770211], [-9.818085, 11.484689, -10.882539], [-9.817507, 11.372369, -10.990356], [-9.81811, 11.264551, -10.878027], [-9.928194, 11.374625, -10.880874], [-9.818085, 11.484689, -10.882539], [-9.708002, 11.374625, -10.879693], [-9.81811, 11.264551, -10.878027], [-9.818689, 11.376883, -10.770211], [-9.818085, 11.484689, -10.882539], [-9.81924, 0.990336, -10.6674]]}, {"shapeName": "R_heel_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.763502, 0.887523, -21.053798], [-9.87361, 0.777449, -21.052132], [-9.763527, 0.667374, -21.049284], [-9.653418, 0.777449, -21.050951], [-9.763502, 0.887523, -21.053798], [-9.762924, 0.775192, -21.161604], [-9.763527, 0.667374, -21.049284], [-9.764105, 0.779705, -20.941469], [-9.87361, 0.777449, -21.052132], [-9.762924, 0.775192, -21.161604], [-9.653418, 0.777449, -21.050951], [-9.764105, 0.779705, -20.941469], [-9.763502, 0.887523, -21.053798], [-9.762924, 0.775192, -21.161604], [-9.81924, 0.990336, -10.6674]]}]},
-			"R_toeTip_CTL": {"color": 20, "shapes": [{"shapeName": "R_toeTip_CTLShape", "degree": 1, "form": 0, "points": [[-9.969646, 1.564909, 17.359174], [-9.964314, 0.529695, 16.365568], [-10.978817, 1.544112, 16.339327], [-9.969646, 1.564909, 17.359174], [-8.949587, 1.544112, 16.350217], [-9.964314, 0.529695, 16.365568], [-9.958758, 1.523316, 15.33037], [-8.949587, 1.544112, 16.350217], [-9.964091, 2.558529, 16.323976], [-9.969646, 1.564909, 17.359174], [-10.978817, 1.544112, 16.339327], [-9.958758, 1.523316, 15.33037], [-9.964091, 2.558529, 16.323976], [-10.978817, 1.544112, 16.339327]]}]},
-			"L_thumb_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[58.062821, 93.615439, 3.304504], [57.925948, 93.673269, 3.351028], [57.851821, 93.561863, 3.271422], [57.988694, 93.504034, 3.224898], [58.062821, 93.615439, 3.304504], [57.959952, 93.523513, 3.376672], [57.851821, 93.561863, 3.271422], [57.954689, 93.653796, 3.199246], [57.925948, 93.673269, 3.351028], [57.959952, 93.523513, 3.376672], [57.988694, 93.504034, 3.224898], [57.954689, 93.653796, 3.199246], [58.062821, 93.615439, 3.304504], [57.959952, 93.523513, 3.376672], [57.709054, 99.734313, -5.081507]]}, {"shapeName": "L_thumb_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[54.854856, 107.743781, 0.884473], [54.746725, 107.782138, 0.779215], [54.643856, 107.690205, 0.851391], [54.751988, 107.651849, 0.956649], [54.854856, 107.743781, 0.884473], [54.717986, 107.801602, 0.930991], [54.643856, 107.690205, 0.851391], [54.780729, 107.632376, 0.804867], [54.746725, 107.782138, 0.779215], [54.717986, 107.801602, 0.930991], [54.751988, 107.651849, 0.956649], [54.780729, 107.632376, 0.804867], [54.854856, 107.743781, 0.884473], [54.717986, 107.801602, 0.930991], [57.709054, 99.734313, -5.081507]]}, {"shapeName": "L_thumb_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[47.724925, 97.291782, -6.578882], [47.753666, 97.27231, -6.730664], [47.787671, 97.122548, -6.705012], [47.758929, 97.142021, -6.55323], [47.724925, 97.291782, -6.578882], [47.650807, 97.18038, -6.658486], [47.787671, 97.122548, -6.705012], [47.861798, 97.233953, -6.625406], [47.753666, 97.27231, -6.730664], [47.650807, 97.18038, -6.658486], [47.758929, 97.142021, -6.55323], [47.861798, 97.233953, -6.625406], [47.724925, 97.291782, -6.578882], [47.650807, 97.18038, -6.658486], [57.709054, 99.734313, -5.081507]]}]},
-			"C_hip_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[5.152094, 98.139605, -12.927377], [-0.0, 95.948004, -14.705762], [-5.152094, 98.139605, -12.927377], [-7.286156, 100.331205, -8.633965], [-5.152094, 98.139605, -4.340554], [-0.0, 95.948004, -2.562169], [5.152094, 98.139605, -4.340554], [7.286156, 100.331205, -8.633965]]}]},
-			"C_head_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[9.540915, 173.716683, -4.888731], [0.0, 177.668513, -4.855724], [-9.540915, 173.716683, -4.888731], [-13.492882, 164.176102, -4.968417], [-9.540915, 154.63552, -5.048103], [0.0, 150.68369, -5.08111], [9.540915, 154.63552, -5.048103], [13.492882, 164.176102, -4.968417]]}]},
-			"R_middle_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_middle_A_CTLShape", "degree": 3, "form": 2, "points": [[-60.624074, 100.299004, -9.688746], [-61.590934, 101.133747, -9.875152], [-62.042832, 102.163455, -9.241234], [-61.71505, 102.784937, -8.158331], [-60.799601, 102.634141, -7.260793], [-59.832742, 101.799398, -7.074387], [-59.380844, 100.769691, -7.708305], [-59.708625, 100.148208, -8.791208]]}]},
-			"R_arm_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_arm_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-63.822242, 107.418201, -8.372508], [-63.63755, 107.20691, -8.448371], [-63.402019, 107.37178, -8.545117], [-63.213232, 107.280423, -8.622662], [-63.170118, 106.980669, -8.640371], [-62.901317, 106.972449, -8.750783], [-62.842612, 107.269064, -8.774896], [-62.649355, 107.348784, -8.854277], [-62.422804, 107.169764, -8.947334], [-62.227353, 107.369437, -9.027617], [-62.379876, 107.624083, -8.964967], [-62.295347, 107.828149, -8.999688], [-62.018078, 107.874765, -9.113578], [-62.010475, 108.165358, -9.116701], [-62.284869, 108.228837, -9.003992], [-62.358568, 108.437767, -8.97372], [-62.192993, 108.682666, -9.041731], [-62.377686, 108.893957, -8.965867], [-62.613234, 108.729107, -8.869114], [-62.80202, 108.820464, -8.791569], [-62.845134, 109.120218, -8.77386], [-63.113924, 109.128424, -8.663453], [-63.172659, 108.831804, -8.639327], [-63.365898, 108.752103, -8.559954], [-63.592431, 108.931103, -8.466904], [-63.787882, 108.73143, -8.386621], [-63.635377, 108.476804, -8.449264], [-63.719924, 108.272719, -8.414536], [-63.997163, 108.226109, -8.300658], [-64.004778, 107.935529, -8.29753], [-63.730383, 107.87205, -8.410239], [-63.656684, 107.66312, -8.440512], [-63.822242, 107.418201, -8.372508]]}, {"shapeName": "R_arm_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-63.420244, 108.063048, -8.537631], [-63.291137, 108.374783, -8.590662], [-62.995943, 108.496513, -8.711914], [-62.70761, 108.356927, -8.830349], [-62.595009, 108.037839, -8.8766], [-62.724116, 107.726104, -8.823569], [-63.019309, 107.604374, -8.702317], [-63.307631, 107.743947, -8.583887]]}, {"shapeName": "R_arm_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-62.325078, 107.269601, -8.987476], [-58.56385, 102.966713, -10.53242]]}]},
-			"L_ankleOffset_CTL": {"color": 20, "shapes": [{"shapeName": "L_ankleOffset_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 4.867005, -6.774814], [9.978517, 10.697845, -2.541692], [9.978517, 12.132748, -2.541109], [10.993147, 11.415005, -1.823949], [9.978517, 12.132165, -1.106206], [9.978517, 12.132748, -2.541109], [8.963887, 11.415005, -1.823949], [9.978517, 10.697845, -2.541692], [9.978517, 10.697262, -1.106789], [8.963887, 11.415005, -1.823949], [9.978517, 12.132165, -1.106206], [9.978517, 10.697262, -1.106789], [10.993147, 11.415005, -1.823949], [9.978517, 10.697845, -2.541692]]}]},
-			"L_legEnd_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_legEnd_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, -2.809889, -7.255449], [9.868419, -2.793006, -7.364244], [9.978517, -2.776123, -7.47304], [10.088614, -2.793006, -7.364244], [9.978517, -2.809889, -7.255449], [9.978517, -2.901791, -7.381126], [9.978517, -2.776123, -7.47304], [9.978517, -2.68421, -7.347362], [9.868419, -2.793006, -7.364244], [9.978517, -2.901791, -7.381126], [10.088614, -2.793006, -7.364244], [9.978517, -2.68421, -7.347362], [9.978517, -2.809889, -7.255449], [9.978517, -2.901791, -7.381126], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_legEnd_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 7.453741, -5.662741], [-0.407956, 7.579419, -5.754654], [-0.407956, 7.487507, -5.880332], [-0.407956, 7.361829, -5.788419], [-0.407956, 7.453741, -5.662741], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.487507, -5.880332], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.579419, -5.754654], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.361829, -5.788419], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.453741, -5.662741], [-0.518043, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_legEnd_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 9.063332, -16.035166], [9.978517, 9.172127, -16.018283], [10.088614, 9.063332, -16.035166], [9.978517, 8.954537, -16.052049], [9.868419, 9.063332, -16.035166], [9.978517, 9.080213, -16.143951], [10.088614, 9.063332, -16.035166], [9.978517, 9.046449, -15.926371], [9.978517, 9.172127, -16.018283], [9.978517, 9.080213, -16.143951], [9.978517, 8.954537, -16.052049], [9.978517, 9.046449, -15.926371], [9.868419, 9.063332, -16.035166], [9.978517, 9.080213, -16.143951], [9.978517, 7.470624, -5.771536]]}]},
-			"R_middle_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_middle_B_CTLShape", "degree": 3, "form": 2, "points": [[-62.935737, 98.066385, -7.706969], [-63.940073, 98.862649, -7.860704], [-64.429447, 99.853877, -7.194114], [-64.117189, 100.459421, -6.097678], [-63.186217, 100.324563, -5.213673], [-62.181881, 99.528299, -5.059939], [-61.692507, 98.537072, -5.726528], [-62.004765, 97.931528, -6.822964]]}]},
-			"R_ring_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_ring_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-71.89867, 91.671065, -9.155381], [-71.959024, 91.763469, -9.045556], [-71.871496, 91.692743, -8.937948], [-71.811141, 91.600339, -9.047773], [-71.89867, 91.671065, -9.155381], [-71.965509, 91.60876, -9.029321], [-71.871496, 91.692743, -8.937948], [-71.80465, 91.755055, -9.06401], [-71.959024, 91.763469, -9.045556], [-71.965509, 91.60876, -9.029321], [-71.811141, 91.600339, -9.047773], [-71.80465, 91.755055, -9.06401], [-71.89867, 91.671065, -9.155381], [-71.965509, 91.60876, -9.029321], [-64.2971, 98.5829, -10.683]]}, {"shapeName": "R_ring_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-71.286247, 106.266827, -10.68714], [-71.192227, 106.350818, -10.595769], [-71.259074, 106.288506, -10.469707], [-71.353094, 106.204516, -10.561078], [-71.286247, 106.266827, -10.68714], [-71.346595, 106.359224, -10.577315], [-71.259074, 106.288506, -10.469707], [-71.198719, 106.196101, -10.579532], [-71.192227, 106.350818, -10.595769], [-71.346595, 106.359224, -10.577315], [-71.353094, 106.204516, -10.561078], [-71.198719, 106.196101, -10.579532], [-71.286247, 106.266827, -10.68714], [-71.346595, 106.359224, -10.577315], [-64.2971, 98.5829, -10.683]]}, {"shapeName": "R_ring_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-63.089288, 99.687029, -0.42566], [-62.934913, 99.678615, -0.444114], [-62.941405, 99.523899, -0.427877], [-63.09578, 99.532313, -0.409423], [-63.089288, 99.687029, -0.42566], [-63.001761, 99.616302, -0.318062], [-62.941405, 99.523899, -0.427877], [-63.028933, 99.594625, -0.535485], [-62.934913, 99.678615, -0.444114], [-63.001761, 99.616302, -0.318062], [-63.09578, 99.532313, -0.409423], [-63.028933, 99.594625, -0.535485], [-63.089288, 99.687029, -0.42566], [-63.001761, 99.616302, -0.318062], [-64.2971, 98.5829, -10.683]]}]},
-			"L_pinky_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[71.395787, 104.339428, -15.715667], [71.381236, 104.44856, -15.60557], [71.395787, 104.339428, -15.495472], [71.410338, 104.230296, -15.60557], [71.395787, 104.339428, -15.715667], [71.504908, 104.353977, -15.60557], [71.395787, 104.339428, -15.495472], [71.286655, 104.324877, -15.60557], [71.381236, 104.44856, -15.60557], [71.504908, 104.353977, -15.60557], [71.410338, 104.230296, -15.60557], [71.286655, 104.324877, -15.60557], [71.395787, 104.339428, -15.715667], [71.504908, 104.353977, -15.60557], [61.100425, 102.966713, -15.60557]]}, {"shapeName": "L_pinky_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[59.72771, 113.262074, -15.715667], [59.618579, 113.247524, -15.60557], [59.72771, 113.262074, -15.495472], [59.836842, 113.276625, -15.60557], [59.72771, 113.262074, -15.715667], [59.713161, 113.371196, -15.60557], [59.72771, 113.262074, -15.495472], [59.742261, 113.152943, -15.60557], [59.618579, 113.247524, -15.60557], [59.713161, 113.371196, -15.60557], [59.836842, 113.276625, -15.60557], [59.742261, 113.152943, -15.60557], [59.72771, 113.262074, -15.715667], [59.713161, 113.371196, -15.60557], [61.100425, 102.966713, -15.60557]]}, {"shapeName": "L_pinky_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.085874, 103.075845, -5.219097], [60.991294, 102.952162, -5.219097], [61.114976, 102.857581, -5.219097], [61.209557, 102.981264, -5.219097], [61.085874, 103.075845, -5.219097], [61.100425, 102.966713, -5.10901], [61.114976, 102.857581, -5.219097], [61.100425, 102.966713, -5.329195], [60.991294, 102.952162, -5.219097], [61.100425, 102.966713, -5.10901], [61.209557, 102.981264, -5.219097], [61.100425, 102.966713, -5.329195], [61.085874, 103.075845, -5.219097], [61.100425, 102.966713, -5.10901], [61.100425, 102.966713, -15.60557]]}]},
-			"C_neck_FK_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_B_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 158.288242, -16.958557], [0.0, 158.683522, -16.936671], [0.0, 159.05709, -17.067727], [0.0, 159.35208, -17.331754], [0.0, 159.523567, -17.68857], [0.0, 159.545453, -18.08385], [0.0, 159.414396, -18.457418], [0.0, 159.15037, -18.752408], [0.0, 158.793554, -18.923895], [0.0, 158.398274, -18.945781], [0.0, 158.024705, -18.814724], [0.0, 157.729716, -18.550698], [0.0, 157.558229, -18.193882], [0.0, 157.536343, -17.798602], [0.0, 157.667399, -17.425033], [0.0, 157.931426, -17.130044], [0.0, 158.288242, -16.958557], [0.0, 155.761683, -7.131864]]}]},
-			"R_leg_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.97852, -2.915853, -5.661442], [-9.868422, -2.915853, -5.77154], [-9.97852, -2.915853, -5.881637], [-10.088617, -2.915853, -5.77154], [-9.97852, -2.915853, -5.661442], [-9.97852, -3.02594, -5.77154], [-9.97852, -2.915853, -5.881637], [-9.97852, -2.805755, -5.77154], [-9.868422, -2.915853, -5.77154], [-9.97852, -3.02594, -5.77154], [-10.088617, -2.915853, -5.77154], [-9.97852, -2.805755, -5.77154], [-9.97852, -2.915853, -5.661442], [-9.97852, -3.02594, -5.77154], [-9.97852, 7.47062, -5.77154]]}, {"shapeName": "R_leg_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407953, 7.47062, -5.661442], [0.407953, 7.580718, -5.77154], [0.407953, 7.47062, -5.881637], [0.407953, 7.360523, -5.77154], [0.407953, 7.47062, -5.661442], [0.51804, 7.47062, -5.77154], [0.407953, 7.47062, -5.881637], [0.297856, 7.47062, -5.77154], [0.407953, 7.580718, -5.77154], [0.51804, 7.47062, -5.77154], [0.407953, 7.360523, -5.77154], [0.297856, 7.47062, -5.77154], [0.407953, 7.47062, -5.661442], [0.51804, 7.47062, -5.77154], [-9.97852, 7.47062, -5.77154]]}, {"shapeName": "R_leg_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868422, 7.47062, -16.158012], [-9.97852, 7.580718, -16.158012], [-10.088617, 7.47062, -16.158012], [-9.97852, 7.360523, -16.158012], [-9.868422, 7.47062, -16.158012], [-9.97852, 7.47062, -16.2681], [-10.088617, 7.47062, -16.158012], [-9.97852, 7.47062, -16.047915], [-9.97852, 7.580718, -16.158012], [-9.97852, 7.47062, -16.2681], [-9.97852, 7.360523, -16.158012], [-9.97852, 7.47062, -16.047915], [-9.868422, 7.47062, -16.158012], [-9.97852, 7.47062, -16.2681], [-9.97852, 7.47062, -5.77154]]}]},
-			"R_upLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_upLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[-13.953898, 91.65692, -1.382878], [-9.978517, 91.922398, 0.242234], [-6.003136, 91.65692, -1.382878], [-4.356482, 91.015999, -5.306253], [-6.003136, 90.375078, -9.229628], [-9.978517, 90.1096, -10.85474], [-13.953898, 90.375078, -9.229628], [-15.600551, 91.015999, -5.306253]]}]},
-			"L_leg_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, -2.809889, -7.255449], [9.868419, -2.793006, -7.364244], [9.978517, -2.776123, -7.47304], [10.088614, -2.793006, -7.364244], [9.978517, -2.809889, -7.255449], [9.978517, -2.901791, -7.381126], [9.978517, -2.776123, -7.47304], [9.978517, -2.68421, -7.347362], [9.868419, -2.793006, -7.364244], [9.978517, -2.901791, -7.381126], [10.088614, -2.793006, -7.364244], [9.978517, -2.68421, -7.347362], [9.978517, -2.809889, -7.255449], [9.978517, -2.901791, -7.381126], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 7.453741, -5.662741], [-0.407956, 7.579419, -5.754654], [-0.407956, 7.487507, -5.880332], [-0.407956, 7.361829, -5.788419], [-0.407956, 7.453741, -5.662741], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.487507, -5.880332], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.579419, -5.754654], [-0.518043, 7.470624, -5.771536], [-0.407956, 7.361829, -5.788419], [-0.297859, 7.470624, -5.771536], [-0.407956, 7.453741, -5.662741], [-0.518043, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 9.063332, -16.035166], [9.978517, 9.172127, -16.018283], [10.088614, 9.063332, -16.035166], [9.978517, 8.954537, -16.052049], [9.868419, 9.063332, -16.035166], [9.978517, 9.080213, -16.143951], [10.088614, 9.063332, -16.035166], [9.978517, 9.046449, -15.926371], [9.978517, 9.172127, -16.018283], [9.978517, 9.080213, -16.143951], [9.978517, 8.954537, -16.052049], [9.978517, 9.046449, -15.926371], [9.868419, 9.063332, -16.035166], [9.978517, 9.080213, -16.143951], [9.978517, 7.470624, -5.771536]]}]},
-			"C_jaw_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_jaw_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.110097, 158.716896, 3.814574], [0.0, 158.79873, 3.888225], [-0.110097, 158.716896, 3.814574], [0.0, 158.635061, 3.740922], [0.110097, 158.716896, 3.814574], [0.0, 158.643251, 3.896401], [-0.110097, 158.716896, 3.814574], [0.0, 158.790547, 3.732739], [0.0, 158.79873, 3.888225], [0.0, 158.643251, 3.896401], [0.0, 158.635061, 3.740922], [0.0, 158.790547, 3.732739], [0.110097, 158.716896, 3.814574], [0.0, 158.643251, 3.896401], [0.0, 165.665077, -3.905633]]}, {"shapeName": "C_jaw_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.110097, 173.385283, 3.042548], [-0.0, 173.458935, 2.960713], [-0.110097, 173.385283, 3.042548], [-0.0, 173.311632, 3.124383], [0.110097, 173.385283, 3.042548], [-0.0, 173.467111, 3.116192], [-0.110097, 173.385283, 3.042548], [-0.0, 173.303449, 2.968896], [-0.0, 173.458935, 2.960713], [-0.0, 173.467111, 3.116192], [-0.0, 173.311632, 3.124383], [-0.0, 173.303449, 2.968896], [0.110097, 173.385283, 3.042548], [-0.0, 173.467111, 3.116192], [0.0, 165.665077, -3.905633]]}, {"shapeName": "C_jaw_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-10.386473, 165.746911, -3.831982], [-10.386473, 165.738728, -3.987468], [-10.386473, 165.583242, -3.979285], [-10.386473, 165.591425, -3.823798], [-10.386473, 165.746911, -3.831982], [-10.49656, 165.665077, -3.905633], [-10.386473, 165.583242, -3.979285], [-10.276375, 165.665077, -3.905633], [-10.386473, 165.738728, -3.987468], [-10.49656, 165.665077, -3.905633], [-10.386473, 165.591425, -3.823798], [-10.276375, 165.665077, -3.905633], [-10.386473, 165.746911, -3.831982], [-10.49656, 165.665077, -3.905633], [0.0, 165.665077, -3.905633]]}]},
-			"R_ring_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_ring_B_CTLShape", "degree": 3, "form": 2, "points": [[-63.643354, 97.581914, -11.872647], [-64.505276, 98.416822, -12.348441], [-65.245275, 99.348999, -11.848632], [-65.429867, 99.832388, -10.665998], [-64.950923, 99.583828, -9.493313], [-64.089, 98.74892, -9.017519], [-63.349002, 97.816743, -9.517328], [-63.16441, 97.333354, -10.699962]]}]},
-			"R_leg_PV_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_PV_CTLShape", "degree": 1, "form": 0, "points": [[-8.963887, 52.226244, 103.57992], [-8.963887, 50.196984, 103.57992], [-8.963887, 50.196984, 101.550661], [-8.963887, 52.226244, 101.550661], [-10.993147, 52.226244, 101.550661], [-10.993147, 50.196984, 101.550661], [-10.993147, 50.196984, 103.57992], [-10.993147, 52.226244, 103.57992], [-8.963887, 52.226244, 103.57992], [-8.963887, 52.226244, 101.550661], [-8.963887, 50.196984, 101.550661], [-10.993147, 50.196984, 101.550661], [-10.993147, 52.226244, 101.550661], [-10.993147, 52.226244, 103.57992], [-10.993147, 50.196984, 103.57992], [-8.963887, 50.196984, 103.57992]]}]},
-			"R_ring_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_ring_C_CTLShape", "degree": 3, "form": 2, "points": [[-66.303599, 95.18302, -11.301014], [-67.293852, 95.880712, -11.747089], [-68.162182, 96.675675, -11.217561], [-68.399931, 97.102227, -10.022618], [-67.86783, 96.910504, -8.862242], [-66.877577, 96.212811, -8.416167], [-66.009247, 95.417849, -8.945695], [-65.771498, 94.991296, -10.140638]]}]},
-			"C_head_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_head_PIV_CTLShape", "degree": 1, "form": 0, "points": [[10.386473, 164.177021, -5.078511], [10.386473, 164.286195, -4.967498], [10.386473, 164.175182, -4.858324], [10.386473, 164.066008, -4.969337], [10.386473, 164.177021, -5.078511], [10.49656, 164.176102, -4.968417], [10.386473, 164.175182, -4.858324], [10.276375, 164.176102, -4.968417], [10.386473, 164.286195, -4.967498], [10.49656, 164.176102, -4.968417], [10.386473, 164.066008, -4.969337], [10.276375, 164.176102, -4.968417], [10.386473, 164.177021, -5.078511], [10.49656, 164.176102, -4.968417], [0.0, 164.176102, -4.968417]]}, {"shapeName": "C_head_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 174.563132, -4.991763], [-0.110097, 174.562212, -4.881669], [0.0, 174.561293, -4.771575], [0.110097, 174.562212, -4.881669], [0.0, 174.563132, -4.991763], [0.0, 174.672296, -4.88075], [0.0, 174.561293, -4.771575], [0.0, 174.452118, -4.882589], [-0.110097, 174.562212, -4.881669], [0.0, 174.672296, -4.88075], [0.110097, 174.562212, -4.881669], [0.0, 174.452118, -4.882589], [0.0, 174.563132, -4.991763], [0.0, 174.672296, -4.88075], [0.0, 164.176102, -4.968417]]}, {"shapeName": "C_head_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 164.199447, 5.418613], [-0.110097, 164.089354, 5.417693], [0.0, 163.97926, 5.416774], [0.110097, 164.089354, 5.417693], [0.0, 164.199447, 5.418613], [0.0, 164.088434, 5.527777], [0.0, 163.97926, 5.416774], [0.0, 164.090273, 5.3076], [-0.110097, 164.089354, 5.417693], [0.0, 164.088434, 5.527777], [0.110097, 164.089354, 5.417693], [0.0, 164.090273, 5.3076], [0.0, 164.199447, 5.418613], [0.0, 164.088434, 5.527777], [0.0, 164.176102, -4.968417]]}]},
-			"R_legEnd_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_legEnd_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, -2.809889, -7.255449], [-9.868419, -2.793006, -7.364244], [-9.978517, -2.776123, -7.47304], [-10.088614, -2.793006, -7.364244], [-9.978517, -2.809889, -7.255449], [-9.978517, -2.901791, -7.381126], [-9.978517, -2.776123, -7.47304], [-9.978517, -2.68421, -7.347362], [-9.868419, -2.793006, -7.364244], [-9.978517, -2.901791, -7.381126], [-10.088614, -2.793006, -7.364244], [-9.978517, -2.68421, -7.347362], [-9.978517, -2.809889, -7.255449], [-9.978517, -2.901791, -7.381126], [-9.978517, 7.470624, -5.771536]]}, {"shapeName": "R_legEnd_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407956, 7.453741, -5.662741], [0.407956, 7.579419, -5.754654], [0.407956, 7.487507, -5.880332], [0.407956, 7.361829, -5.788419], [0.407956, 7.453741, -5.662741], [0.518043, 7.470624, -5.771536], [0.407956, 7.487507, -5.880332], [0.297859, 7.470624, -5.771536], [0.407956, 7.579419, -5.754654], [0.518043, 7.470624, -5.771536], [0.407956, 7.361829, -5.788419], [0.297859, 7.470624, -5.771536], [0.407956, 7.453741, -5.662741], [0.518043, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}, {"shapeName": "R_legEnd_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868419, 9.063332, -16.035166], [-9.978517, 9.172127, -16.018283], [-10.088614, 9.063332, -16.035166], [-9.978517, 8.954537, -16.052049], [-9.868419, 9.063332, -16.035166], [-9.978517, 9.080213, -16.143951], [-10.088614, 9.063332, -16.035166], [-9.978517, 9.046449, -15.926371], [-9.978517, 9.172127, -16.018283], [-9.978517, 9.080213, -16.143951], [-9.978517, 8.954537, -16.052049], [-9.978517, 9.046449, -15.926371], [-9.868419, 9.063332, -16.035166], [-9.978517, 9.080213, -16.143951], [-9.978517, 7.470624, -5.771536]]}]},
-			"R_thumb_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_thumb_C_CTLShape", "degree": 3, "form": 2, "points": [[-59.264565, 97.221524, -2.995155], [-59.406078, 98.143501, -2.102802], [-58.600855, 98.825087, -1.358882], [-57.320583, 98.867019, -1.199175], [-56.315228, 98.244734, -1.717233], [-56.173715, 97.322758, -2.609587], [-56.978938, 96.641171, -3.353506], [-58.25921, 96.599239, -3.513213]]}]},
-			"C_cog_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[29.200713, 98.139605, -6.532542], [29.169913, 98.139605, -11.1264], [21.243069, 98.139605, -13.884719], [20.159804, 98.139605, -17.144535], [24.859035, 98.139605, -24.097637], [22.13394, 98.139605, -27.796036], [14.09848, 98.139605, -25.373178], [11.306819, 98.139605, -27.373817], [11.022086, 98.139605, -35.756106], [6.643531, 98.139605, -37.146428], [1.568748, 98.139605, -30.467802], [-1.864994, 98.139605, -30.445097], [-7.024957, 98.139605, -37.054848], [-11.38446, 98.139605, -35.605995], [-11.560197, 98.139605, -27.222655], [-14.324448, 98.139605, -25.185285], [-22.388692, 98.139605, -27.497774], [-25.063993, 98.139605, -23.76317], [-20.273534, 98.139605, -16.877248], [-21.31244, 98.139605, -13.603435], [-29.200713, 98.139605, -10.735389], [-29.169913, 98.139605, -6.141531], [-21.243069, 98.139605, -3.383212], [-20.159804, 98.139605, -0.123395], [-24.859035, 98.139605, 6.829706], [-22.13394, 98.139605, 10.528105], [-14.09848, 98.139605, 8.105247], [-11.306819, 98.139605, 10.105886], [-11.022086, 98.139605, 18.488175], [-6.643531, 98.139605, 19.878497], [-1.568748, 98.139605, 13.199871], [1.864994, 98.139605, 13.177166], [7.024957, 98.139605, 19.786917], [11.38446, 98.139605, 18.338064], [11.560197, 98.139605, 9.954724], [14.324448, 98.139605, 7.917354], [22.388692, 98.139605, 10.229843], [25.063993, 98.139605, 6.495239], [20.273534, 98.139605, -0.390683], [21.31244, 98.139605, -3.664496], [29.200713, 98.139605, -6.532542]]}]},
-			"L_arm_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.588617, 95.83296, -7.765984], [65.616732, 95.912981, -7.635411], [65.504953, 95.83296, -7.562302], [65.476837, 95.75294, -7.692874], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [65.504953, 95.83296, -7.562302], [65.472765, 95.908579, -7.694547], [65.616732, 95.912981, -7.635411], [65.620798, 95.757349, -7.633742], [65.476837, 95.75294, -7.692874], [65.472765, 95.908579, -7.694547], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.204449, 110.515778, -7.923782], [65.088598, 110.591397, -7.852345], [65.120786, 110.515778, -7.720101], [65.236637, 110.44016, -7.791537], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [65.120786, 110.515778, -7.720101], [65.09267, 110.435758, -7.850673], [65.088598, 110.591397, -7.852345], [65.232559, 110.595792, -7.793213], [65.236637, 110.44016, -7.791537], [65.09267, 110.435758, -7.850673], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[54.687444, 103.046734, -0.896134], [54.543477, 103.042331, -0.95527], [54.547549, 102.886692, -0.953597], [54.691516, 102.891095, -0.894462], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [54.547549, 102.886692, -0.953597], [54.659328, 102.966713, -1.026707], [54.543477, 103.042331, -0.95527], [54.575669, 102.966713, -0.823034], [54.691516, 102.891095, -0.894462], [54.659328, 102.966713, -1.026707], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [58.56385, 102.966713, -10.53242]]}]},
-			"R_shoulder_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-6.170406, 146.361529, -2.356082], [-9.334275, 146.098273, -4.171483], [-10.542769, 145.997718, -4.864906], [-5.054907, 146.098273, -11.62954], [0.75376, 146.361529, -14.423475], [4.664537, 146.686933, -12.179506], [5.183609, 146.950189, -5.754767], [2.112734, 147.050744, 2.396712], [0.904241, 146.950189, 1.703289], [-2.259629, 146.686933, -0.112112], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097]]}]},
-			"C_torso_FK_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 112.699955, -8.700024], [-0.066058, 112.699955, -8.633965], [-0.0, 112.699955, -8.567907], [0.066058, 112.699955, -8.633965], [-0.0, 112.699955, -8.700024], [-0.0, 112.766007, -8.633965], [-0.0, 112.699955, -8.567907], [-0.0, 112.633896, -8.633965], [-0.066058, 112.699955, -8.633965], [-0.0, 112.766007, -8.633965], [0.066058, 112.699955, -8.633965], [-0.0, 112.633896, -8.633965], [-0.0, 112.699955, -8.700024], [-0.0, 112.766007, -8.633965], [-0.0, 106.468071, -8.633965]]}, {"shapeName": "C_torso_FK_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-6.231884, 106.468071, -8.700024], [-6.231884, 106.402012, -8.633965], [-6.231884, 106.468071, -8.567907], [-6.231884, 106.534129, -8.633965], [-6.231884, 106.468071, -8.700024], [-6.297936, 106.468071, -8.633965], [-6.231884, 106.468071, -8.567907], [-6.165825, 106.468071, -8.633965], [-6.231884, 106.402012, -8.633965], [-6.297936, 106.468071, -8.633965], [-6.231884, 106.534129, -8.633965], [-6.165825, 106.468071, -8.633965], [-6.231884, 106.468071, -8.700024], [-6.297936, 106.468071, -8.633965], [-0.0, 106.468071, -8.633965]]}, {"shapeName": "C_torso_FK_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.066058, 106.468071, -2.402082], [-0.0, 106.402012, -2.402082], [0.066058, 106.468071, -2.402082], [-0.0, 106.534129, -2.402082], [-0.066058, 106.468071, -2.402082], [-0.0, 106.468071, -2.336029], [0.066058, 106.468071, -2.402082], [-0.0, 106.468071, -2.46814], [-0.0, 106.402012, -2.402082], [-0.0, 106.468071, -2.336029], [-0.0, 106.534129, -2.402082], [-0.0, 106.468071, -2.46814], [-0.066058, 106.468071, -2.402082], [-0.0, 106.468071, -2.336029], [-0.0, 106.468071, -8.633965]]}]},
-			"R_arm_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_arm_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-62.069445, 105.934371, -9.092479], [-61.946317, 105.793511, -9.143054], [-61.789296, 105.903424, -9.207551], [-61.663438, 105.84252, -9.259248], [-61.634696, 105.642684, -9.271054], [-61.455495, 105.637204, -9.344662], [-61.416358, 105.834947, -9.360737], [-61.28752, 105.888093, -9.413658], [-61.136486, 105.768747, -9.475696], [-61.006185, 105.901862, -9.529218], [-61.107867, 106.071626, -9.487452], [-61.051515, 106.20767, -9.510599], [-60.866669, 106.238747, -9.586525], [-60.8616, 106.432477, -9.588607], [-61.04453, 106.474796, -9.513468], [-61.093662, 106.614082, -9.493286], [-60.983279, 106.777349, -9.538627], [-61.106407, 106.918209, -9.488051], [-61.263439, 106.808309, -9.42355], [-61.389297, 106.869214, -9.371853], [-61.41804, 107.06905, -9.360047], [-61.597233, 107.074521, -9.286442], [-61.63639, 106.876774, -9.270358], [-61.765215, 106.82364, -9.217443], [-61.916238, 106.942973, -9.155409], [-62.046538, 106.809858, -9.101888], [-61.944868, 106.640107, -9.143649], [-62.001233, 106.504051, -9.120497], [-62.186059, 106.472977, -9.044579], [-62.191135, 106.279257, -9.042494], [-62.008206, 106.236938, -9.117633], [-61.959073, 106.097651, -9.137814], [-62.069445, 105.934371, -9.092479]]}, {"shapeName": "R_arm_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-61.801446, 106.36427, -9.202561], [-61.715375, 106.572093, -9.237915], [-61.518579, 106.653246, -9.31875], [-61.326357, 106.560189, -9.397706], [-61.251289, 106.347464, -9.42854], [-61.337361, 106.13964, -9.393186], [-61.534156, 106.058487, -9.312351], [-61.72637, 106.151536, -9.233398]]}, {"shapeName": "R_arm_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-61.071336, 105.835305, -9.502457], [-58.56385, 102.966713, -10.53242]]}]},
-			"C_neck_FK_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 170.055609, -3.570405], [-0.110097, 170.028193, -3.463775], [0.0, 170.000777, -3.357146], [0.110097, 170.028193, -3.463775], [0.0, 170.055609, -3.570405], [0.0, 170.134813, -3.436362], [0.0, 170.000777, -3.357146], [0.0, 169.921564, -3.491191], [-0.110097, 170.028193, -3.463775], [0.0, 170.134813, -3.436362], [0.110097, 170.028193, -3.463775], [0.0, 169.921564, -3.491191], [0.0, 170.055609, -3.570405], [0.0, 170.134813, -3.436362], [0.0, 159.968892, -6.05014]]}, {"shapeName": "C_neck_FK_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-10.386473, 159.996308, -6.15677], [-10.386473, 159.862263, -6.077556], [-10.386473, 159.941477, -5.943511], [-10.386473, 160.075522, -6.022725], [-10.386473, 159.996308, -6.15677], [-10.49656, 159.968892, -6.05014], [-10.386473, 159.941477, -5.943511], [-10.276375, 159.968892, -6.05014], [-10.386473, 159.862263, -6.077556], [-10.49656, 159.968892, -6.05014], [-10.386473, 160.075522, -6.022725], [-10.276375, 159.968892, -6.05014], [-10.386473, 159.996308, -6.15677], [-10.49656, 159.968892, -6.05014], [0.0, 159.968892, -6.05014]]}, {"shapeName": "C_neck_FK_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.110097, 157.382527, 4.00916], [0.0, 157.275898, 3.981745], [0.110097, 157.382527, 4.00916], [0.0, 157.489157, 4.036576], [-0.110097, 157.382527, 4.00916], [0.0, 157.355114, 4.11578], [0.110097, 157.382527, 4.00916], [0.0, 157.409943, 3.902531], [0.0, 157.275898, 3.981745], [0.0, 157.355114, 4.11578], [0.0, 157.489157, 4.036576], [0.0, 157.409943, 3.902531], [-0.110097, 157.382527, 4.00916], [0.0, 157.355114, 4.11578], [0.0, 159.968892, -6.05014]]}]},
-			"C_midTorso_A_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[7.728141, 114.394936, -15.074083], [0.0, 114.394936, -17.741661], [-7.728141, 114.394936, -15.074083], [-10.929234, 114.394936, -8.633965], [-7.728141, 114.394936, -2.193848], [0.0, 114.394936, 0.47373], [7.728141, 114.394936, -2.193848], [10.929234, 114.394936, -8.633965]]}]},
-			"R_leg_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_leg_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-15.531734, 8.296326, -5.643404], [-15.305629, 8.296326, -5.643404], [-15.262809, 8.067055, -5.678982], [-15.102138, 8.001272, -5.689191], [-14.907788, 8.133471, -5.668676], [-14.747905, 7.975479, -5.693193], [-14.881679, 7.783448, -5.722992], [-14.815137, 7.624657, -5.747634], [-14.583101, 7.582343, -5.7542], [-14.583101, 7.358905, -5.788873], [-14.815137, 7.316591, -5.795439], [-14.881679, 7.157821, -5.820077], [-14.747905, 6.965769, -5.84988], [-14.907788, 6.807777, -5.874397], [-15.102138, 6.939976, -5.853882], [-15.262809, 6.874193, -5.86409], [-15.305629, 6.644922, -5.899669], [-15.531734, 6.644922, -5.899669], [-15.574576, 6.874193, -5.86409], [-15.735247, 6.939976, -5.853882], [-15.929597, 6.807777, -5.874397], [-16.089465, 6.965769, -5.84988], [-15.955706, 7.157821, -5.820077], [-16.022248, 7.316591, -5.795439], [-16.254263, 7.358905, -5.788873], [-16.254263, 7.582343, -5.7542], [-16.022248, 7.624657, -5.747634], [-15.955706, 7.783448, -5.722992], [-16.089465, 7.975479, -5.693193], [-15.929597, 8.133471, -5.668676], [-15.735247, 8.001272, -5.689191], [-15.574576, 8.067055, -5.678982], [-15.531734, 8.296326, -5.643404]]}, {"shapeName": "R_leg_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-15.664109, 7.713152, -5.733901], [-15.765773, 7.470624, -5.771536], [-15.664109, 7.228096, -5.809172], [-15.418685, 7.127655, -5.824758], [-15.173276, 7.228096, -5.809172], [-15.071612, 7.470624, -5.771536], [-15.173276, 7.713152, -5.733901], [-15.418685, 7.813593, -5.718315]]}, {"shapeName": "R_leg_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-14.583101, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}]},
-			"C_midTorso_C_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.010776, 114.394936, -13.642946], [0.0, 114.394936, -15.717729], [-6.010776, 114.394936, -13.642946], [-8.500516, 114.394936, -8.633965], [-6.010776, 114.394936, -3.624985], [0.0, 114.394936, -1.550202], [6.010776, 114.394936, -3.624985], [8.500516, 114.394936, -8.633965]]}]},
-			"C_hip_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.010776, 98.139605, -13.642946], [-0.0, 95.582737, -15.717729], [-6.010776, 98.139605, -13.642946], [-8.500516, 100.696472, -8.633965], [-6.010776, 98.139605, -3.624985], [-0.0, 95.582737, -1.550202], [6.010776, 98.139605, -3.624985], [8.500516, 100.696472, -8.633965]]}]},
-			"L_middle_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[70.242783, 89.042787, 0.328451], [70.263616, 89.134908, 0.452236], [70.128012, 89.086239, 0.511278], [70.107179, 88.994118, 0.387493], [70.242783, 89.042787, 0.328451], [70.237453, 88.982704, 0.471986], [70.128012, 89.086239, 0.511278], [70.133337, 89.14633, 0.367738], [70.263616, 89.134908, 0.452236], [70.237453, 88.982704, 0.471986], [70.107179, 88.994118, 0.387493], [70.133337, 89.14633, 0.367738], [70.242783, 89.042787, 0.328451], [70.237453, 88.982704, 0.471986], [65.274059, 96.783015, -4.497686]]}, {"shapeName": "L_middle_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[72.71047, 103.402273, -1.535229], [72.601024, 103.505816, -1.495943], [72.5957, 103.445725, -1.352403], [72.705146, 103.342182, -1.39169], [72.71047, 103.402273, -1.535229], [72.731296, 103.494388, -1.411448], [72.5957, 103.445725, -1.352403], [72.574867, 103.353604, -1.476187], [72.601024, 103.505816, -1.495943], [72.731296, 103.494388, -1.411448], [72.705146, 103.342182, -1.39169], [72.574867, 103.353604, -1.476187], [72.71047, 103.402273, -1.535229], [72.731296, 103.494388, -1.411448], [65.274059, 96.783015, -4.497686]]}, {"shapeName": "L_middle_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[59.938633, 98.903013, 4.158512], [59.808354, 98.914434, 4.074014], [59.782196, 98.762223, 4.09377], [59.912475, 98.750801, 4.178267], [59.938633, 98.903013, 4.158512], [59.803035, 98.854341, 4.217546], [59.782196, 98.762223, 4.09377], [59.917799, 98.810892, 4.034728], [59.808354, 98.914434, 4.074014], [59.803035, 98.854341, 4.217546], [59.912475, 98.750801, 4.178267], [59.917799, 98.810892, 4.034728], [59.938633, 98.903013, 4.158512], [59.803035, 98.854341, 4.217546], [65.274059, 96.783015, -4.497686]]}]},
-			"L_arm_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[62.653711, 106.428981, -8.852488], [62.510061, 106.264644, -8.911493], [62.32687, 106.392876, -8.98674], [62.180036, 106.321821, -9.047053], [62.146503, 106.088679, -9.060826], [61.937436, 106.082286, -9.146702], [61.891776, 106.312986, -9.165457], [61.741465, 106.37499, -9.227198], [61.565259, 106.235753, -9.299576], [61.413241, 106.391054, -9.362018], [61.53187, 106.589112, -9.31329], [61.466126, 106.74783, -9.340295], [61.250472, 106.784087, -9.428876], [61.244558, 107.010104, -9.431305], [61.457976, 107.059476, -9.343643], [61.515298, 107.221977, -9.320098], [61.386517, 107.412455, -9.372995], [61.530167, 107.576792, -9.31399], [61.713371, 107.448575, -9.238738], [61.860205, 107.51963, -9.178425], [61.893738, 107.752772, -9.164651], [62.102796, 107.759155, -9.078779], [62.148479, 107.52845, -9.060015], [62.298776, 107.466461, -8.99828], [62.474969, 107.605683, -8.925908], [62.626986, 107.450382, -8.863465], [62.508371, 107.252339, -8.912187], [62.57413, 107.093607, -8.885177], [62.78976, 107.057354, -8.796605], [62.795683, 106.831347, -8.794173], [62.582265, 106.781975, -8.881835], [62.524943, 106.619474, -8.90538], [62.653711, 106.428981, -8.852488]]}, {"shapeName": "L_arm_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[62.341045, 106.930529, -8.980917], [62.240629, 107.17299, -9.022164], [62.011034, 107.267668, -9.116471], [61.786775, 107.159101, -9.208587], [61.699196, 106.910922, -9.24456], [61.799612, 106.668462, -9.203314], [62.029207, 106.573783, -9.109006], [62.253457, 106.68234, -9.016895]]}, {"shapeName": "L_arm_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[61.48925, 106.313404, -9.330797], [58.56385, 102.966713, -10.53242]]}]},
-			"R_reverseBall_CTL": {"color": 20, "shapes": [{"shapeName": "R_reverseBall_CTLShape", "degree": 1, "form": 0, "points": [[-9.978823, -1.122099, 7.512293], [-9.978014, 6.232423, 7.361522], [-9.972459, 7.226043, 6.326323], [-10.992518, 7.246839, 7.335281], [-9.977791, 8.261256, 7.31993], [-9.972459, 7.226043, 6.326323], [-8.963287, 7.246839, 7.34617], [-9.978014, 6.232423, 7.361522], [-9.983346, 7.267636, 8.355128], [-8.963287, 7.246839, 7.34617], [-9.977791, 8.261256, 7.31993], [-9.983346, 7.267636, 8.355128], [-10.992518, 7.246839, 7.335281], [-9.978014, 6.232423, 7.361522]]}]},
-			"R_pinky_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_pinky_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-71.395762, 104.339715, -15.715697], [-71.381211, 104.448847, -15.6056], [-71.395762, 104.339715, -15.495502], [-71.410313, 104.230583, -15.6056], [-71.395762, 104.339715, -15.715697], [-71.504883, 104.354264, -15.6056], [-71.395762, 104.339715, -15.495502], [-71.28663, 104.325164, -15.6056], [-71.381211, 104.448847, -15.6056], [-71.504883, 104.354264, -15.6056], [-71.410313, 104.230583, -15.6056], [-71.28663, 104.325164, -15.6056], [-71.395762, 104.339715, -15.715697], [-71.504883, 104.354264, -15.6056], [-61.1004, 102.967, -15.6056]]}, {"shapeName": "R_pinky_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-59.727685, 113.262361, -15.715697], [-59.618554, 113.247811, -15.6056], [-59.727685, 113.262361, -15.495502], [-59.836817, 113.276912, -15.6056], [-59.727685, 113.262361, -15.715697], [-59.713136, 113.371483, -15.6056], [-59.727685, 113.262361, -15.495502], [-59.742236, 113.15323, -15.6056], [-59.618554, 113.247811, -15.6056], [-59.713136, 113.371483, -15.6056], [-59.836817, 113.276912, -15.6056], [-59.742236, 113.15323, -15.6056], [-59.727685, 113.262361, -15.715697], [-59.713136, 113.371483, -15.6056], [-61.1004, 102.967, -15.6056]]}, {"shapeName": "R_pinky_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-61.085849, 103.076132, -5.219127], [-60.991269, 102.952449, -5.219127], [-61.114951, 102.857868, -5.219127], [-61.209532, 102.981551, -5.219127], [-61.085849, 103.076132, -5.219127], [-61.1004, 102.967, -5.10904], [-61.114951, 102.857868, -5.219127], [-61.1004, 102.967, -5.329225], [-60.991269, 102.952449, -5.219127], [-61.1004, 102.967, -5.10904], [-61.209532, 102.981551, -5.219127], [-61.1004, 102.967, -5.329225], [-61.085849, 103.076132, -5.219127], [-61.1004, 102.967, -5.10904], [-61.1004, 102.967, -15.6056]]}]},
-			"L_leg_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.748974, 7.470624, -13.722298], [9.978517, 7.470624, -17.015605], [5.208059, 7.470624, -13.722298], [3.232076, 7.470624, -5.771536], [5.208059, 7.470624, 2.179226], [9.978517, 7.470624, 5.472532], [14.748974, 7.470624, 2.179226], [16.724958, 7.470624, -5.771536]]}]},
-			"R_index_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_index_C_CTLShape", "degree": 3, "form": 2, "points": [[-65.953724, 95.421056, -8.647559], [-67.000994, 96.098361, -8.98049], [-67.792363, 96.914815, -8.369345], [-67.864256, 97.392151, -7.172122], [-67.174561, 97.250752, -6.090139], [-66.127291, 96.573447, -5.757207], [-65.335922, 95.756992, -6.368352], [-65.264029, 95.279657, -7.565575]]}]},
-			"L_upArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_upArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[16.108188, 143.274215, -14.009061], [18.803733, 146.266917, -15.523291], [21.952812, 148.661537, -13.830892], [23.710735, 149.055336, -9.923239], [23.047742, 147.217637, -6.089387], [20.352197, 144.224935, -4.575157], [17.203118, 141.830315, -6.267556], [15.445194, 141.436516, -10.175209]]}]},
-			"L_thumb_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_A_CTLShape", "degree": 3, "form": 2, "points": [[59.255902, 100.624629, -8.451258], [59.388957, 101.755964, -7.84402], [58.575276, 102.646909, -7.385215], [57.291501, 102.775559, -7.343606], [56.28965, 102.066555, -7.743566], [56.156594, 100.935221, -8.350805], [56.970275, 100.044276, -8.80961], [58.25405, 99.915625, -8.851219]]}]},
-			"L_index_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[68.720822, 94.786276, -6.671075], [68.76176, 94.886977, -6.559602], [68.663789, 94.817288, -6.460668], [68.622851, 94.716587, -6.572141], [68.720822, 94.786276, -6.671075], [68.772823, 94.733797, -6.534026], [68.663789, 94.817288, -6.460668], [68.61178, 94.869774, -6.59772], [68.76176, 94.886977, -6.559602], [68.772823, 94.733797, -6.534026], [68.622851, 94.716587, -6.572141], [68.61178, 94.869774, -6.59772], [68.720822, 94.786276, -6.671075], [68.772823, 94.733797, -6.534026], [61.095652, 101.216011, -9.570426]]}, {"shapeName": "L_index_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[67.676451, 109.237706, -9.084186], [67.56741, 109.321203, -9.010831], [67.619418, 109.268718, -8.873779], [67.72846, 109.18522, -8.947134], [67.676451, 109.237706, -9.084186], [67.717383, 109.338399, -8.972714], [67.619418, 109.268718, -8.873779], [67.57848, 109.168017, -8.985252], [67.56741, 109.321203, -9.010831], [67.717383, 109.338399, -8.972714], [67.72846, 109.18522, -8.947134], [67.57848, 109.168017, -8.985252], [67.676451, 109.237706, -9.084186], [67.717383, 109.338399, -8.972714], [61.095652, 101.216011, -9.570426]]}, {"shapeName": "L_index_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[58.47489, 102.764041, 0.360644], [58.32491, 102.746837, 0.322526], [58.335981, 102.593651, 0.348105], [58.485961, 102.610855, 0.386223], [58.47489, 102.764041, 0.360644], [58.376922, 102.694351, 0.459569], [58.335981, 102.593651, 0.348105], [58.433952, 102.66334, 0.249171], [58.32491, 102.746837, 0.322526], [58.376922, 102.694351, 0.459569], [58.485961, 102.610855, 0.386223], [58.433952, 102.66334, 0.249171], [58.47489, 102.764041, 0.360644], [58.376922, 102.694351, 0.459569], [61.095652, 101.216011, -9.570426]]}]},
-			"C_hip_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.869458, 98.139605, -14.358514], [-0.0, 95.21747, -16.729695], [-6.869458, 98.139605, -14.358514], [-9.714875, 101.061739, -8.633965], [-6.869458, 98.139605, -2.909417], [-0.0, 95.21747, -0.538236], [6.869458, 98.139605, -2.909417], [9.714875, 101.061739, -8.633965]]}]},
-			"C_hip_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_CTLShape", "degree": 3, "form": 2, "points": [[8.586823, 98.139605, -15.789651], [-0.0, 94.486937, -18.753627], [-8.586823, 98.139605, -15.789651], [-12.143594, 101.792273, -8.633965], [-8.586823, 98.139605, -1.47828], [-0.0, 94.486937, 1.485696], [8.586823, 98.139605, -1.47828], [12.143594, 101.792273, -8.633965]]}]},
-			"R_index_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_index_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-71.172528, 92.00114, -5.596022], [-71.217614, 92.09814, -5.482879], [-71.115495, 92.032152, -5.385614], [-71.07041, 91.935153, -5.498757], [-71.172528, 92.00114, -5.596022], [-71.220758, 91.944266, -5.459347], [-71.115495, 92.032152, -5.385614], [-71.067259, 92.089033, -5.522292], [-71.217614, 92.09814, -5.482879], [-71.220758, 91.944266, -5.459347], [-71.07041, 91.935153, -5.498757], [-71.067259, 92.089033, -5.522292], [-71.172528, 92.00114, -5.596022], [-71.220758, 91.944266, -5.459347], [-63.9032, 98.8455, -8.46003]]}, {"shapeName": "R_index_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-70.875217, 106.518016, -7.816281], [-70.769947, 106.605908, -7.742551], [-70.818184, 106.549028, -7.605873], [-70.923454, 106.461136, -7.679603], [-70.875217, 106.518016, -7.816281], [-70.920296, 106.615008, -7.703139], [-70.818184, 106.549028, -7.605873], [-70.773099, 106.452028, -7.719016], [-70.769947, 106.605908, -7.742551], [-70.920296, 106.615008, -7.703139], [-70.923454, 106.461136, -7.679603], [-70.773099, 106.452028, -7.719016], [-70.875217, 106.518016, -7.816281], [-70.920296, 106.615008, -7.703139], [-63.9032, 98.8455, -8.46003]]}, {"shapeName": "R_index_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-61.286586, 100.389829, 1.472709], [-61.136231, 100.380721, 1.433296], [-61.139382, 100.226841, 1.456831], [-61.289737, 100.235949, 1.496244], [-61.286586, 100.389829, 1.472709], [-61.18447, 100.32384, 1.569964], [-61.139382, 100.226841, 1.456831], [-61.2415, 100.292829, 1.359566], [-61.136231, 100.380721, 1.433296], [-61.18447, 100.32384, 1.569964], [-61.289737, 100.235949, 1.496244], [-61.2415, 100.292829, 1.359566], [-61.286586, 100.389829, 1.472709], [-61.18447, 100.32384, 1.569964], [-63.9032, 98.8455, -8.46003]]}]},
-			"L_legBase_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_legBase_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 80.783151, -3.523062], [9.868419, 80.765401, -3.631719], [9.978517, 80.747651, -3.740376], [10.088614, 80.765401, -3.631719], [9.978517, 80.783151, -3.523062], [9.978517, 80.656754, -3.613971], [9.978517, 80.747651, -3.740376], [9.978517, 80.874058, -3.649469], [9.868419, 80.765401, -3.631719], [9.978517, 80.656754, -3.613971], [10.088614, 80.765401, -3.631719], [9.978517, 80.874058, -3.649469], [9.978517, 80.783151, -3.523062], [9.978517, 80.656754, -3.613971], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_legBase_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 91.033749, -5.197596], [-0.407956, 91.124656, -5.324003], [-0.407956, 90.998249, -5.41491], [-0.407956, 90.907342, -5.288503], [-0.407956, 91.033749, -5.197596], [-0.518043, 91.015999, -5.306253], [-0.407956, 90.998249, -5.41491], [-0.297859, 91.015999, -5.306253], [-0.407956, 91.124656, -5.324003], [-0.518043, 91.015999, -5.306253], [-0.407956, 90.907342, -5.288503], [-0.297859, 91.015999, -5.306253], [-0.407956, 91.033749, -5.197596], [-0.518043, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_legBase_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 89.341465, -15.556851], [9.978517, 89.450122, -15.574601], [10.088614, 89.341465, -15.556851], [9.978517, 89.232808, -15.5391], [9.868419, 89.341465, -15.556851], [9.978517, 89.323717, -15.665498], [10.088614, 89.341465, -15.556851], [9.978517, 89.359215, -15.448193], [9.978517, 89.450122, -15.574601], [9.978517, 89.323717, -15.665498], [9.978517, 89.232808, -15.5391], [9.978517, 89.359215, -15.448193], [9.868419, 89.341465, -15.556851], [9.978517, 89.323717, -15.665498], [9.978517, 91.015999, -5.306253]]}]},
-			"C_head_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[8.3483, 172.524111, -4.898692], [0.0, 175.981962, -4.869811], [-8.3483, 172.524111, -4.898692], [-11.806272, 164.176102, -4.968417], [-8.3483, 155.828093, -5.038142], [0.0, 152.370242, -5.067023], [8.3483, 155.828093, -5.038142], [11.806272, 164.176102, -4.968417]]}]},
-			"L_hand_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_hand_PIV_CTLShape", "degree": 1, "form": 0, "points": [[71.486898, 113.113013, -10.642518], [71.486898, 113.22311, -10.53242], [71.486898, 113.113013, -10.422323], [71.486898, 113.002915, -10.53242], [71.486898, 113.113013, -10.642518], [71.596985, 113.113013, -10.53242], [71.486898, 113.113013, -10.422323], [71.3768, 113.113013, -10.53242], [71.486898, 113.22311, -10.53242], [71.596985, 113.113013, -10.53242], [71.486898, 113.002915, -10.53242], [71.3768, 113.113013, -10.53242], [71.486898, 113.113013, -10.642518], [71.596985, 113.113013, -10.53242], [61.100425, 113.113013, -10.53242]]}, {"shapeName": "L_hand_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[61.100425, 123.499485, -10.642518], [60.990328, 123.499485, -10.53242], [61.100425, 123.499485, -10.422323], [61.210523, 123.499485, -10.53242], [61.100425, 123.499485, -10.642518], [61.100425, 123.609573, -10.53242], [61.100425, 123.499485, -10.422323], [61.100425, 123.389388, -10.53242], [60.990328, 123.499485, -10.53242], [61.100425, 123.609573, -10.53242], [61.210523, 123.499485, -10.53242], [61.100425, 123.389388, -10.53242], [61.100425, 123.499485, -10.642518], [61.100425, 123.609573, -10.53242], [61.100425, 113.113013, -10.53242]]}, {"shapeName": "L_hand_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.100425, 113.22311, -0.145948], [60.990328, 113.113013, -0.145948], [61.100425, 113.002915, -0.145948], [61.210523, 113.113013, -0.145948], [61.100425, 113.22311, -0.145948], [61.100425, 113.113013, -0.03586], [61.100425, 113.002915, -0.145948], [61.100425, 113.113013, -0.256045], [60.990328, 113.113013, -0.145948], [61.100425, 113.113013, -0.03586], [61.210523, 113.113013, -0.145948], [61.100425, 113.113013, -0.256045], [61.100425, 113.22311, -0.145948], [61.100425, 113.113013, -0.03586], [61.100425, 113.113013, -10.53242]]}]},
-			"L_pinky_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_C_CTLShape", "degree": 3, "form": 2, "points": [[68.615045, 102.589601, -16.798184], [68.71015, 103.778417, -17.29218], [68.805255, 104.967233, -16.798184], [68.844649, 105.459656, -15.60557], [68.805255, 104.967233, -14.412956], [68.71015, 103.778417, -13.91896], [68.615045, 102.589601, -14.412956], [68.575651, 102.097178, -15.60557]]}]},
-			"R_leg_IK_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-14.152667, 7.470624, -12.728453], [-9.978517, 7.470624, -15.610096], [-5.804366, 7.470624, -12.728453], [-4.075381, 7.470624, -5.771536], [-5.804366, 7.470624, 1.185381], [-9.978517, 7.470624, 4.067023], [-14.152667, 7.470624, 1.185381], [-15.881652, 7.470624, -5.771536]]}]},
-			"L_index_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_B_CTLShape", "degree": 3, "form": 2, "points": [[63.414773, 97.794765, -9.685632], [64.340003, 98.607958, -10.071673], [65.009331, 99.5603, -9.513637], [65.030674, 100.093922, -8.338412], [64.39153, 99.896237, -7.23443], [63.4663, 99.083044, -6.84839], [62.796971, 98.130701, -7.406425], [62.775629, 97.597079, -8.58165]]}]},
-			"L_leg_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[17.118368, 8.53224, -5.606795], [16.827661, 8.53224, -5.606795], [16.772607, 8.237464, -5.652538], [16.56603, 8.152885, -5.665663], [16.316151, 8.322855, -5.639287], [16.110588, 8.119723, -5.670809], [16.282583, 7.872827, -5.709123], [16.197028, 7.668666, -5.740804], [15.898697, 7.614263, -5.749247], [15.898697, 7.326985, -5.793826], [16.197028, 7.272582, -5.802269], [16.282583, 7.068448, -5.833946], [16.110588, 6.821524, -5.872263], [16.316151, 6.618393, -5.903785], [16.56603, 6.788363, -5.87741], [16.772607, 6.703784, -5.890534], [16.827661, 6.409008, -5.936278], [17.118368, 6.409008, -5.936278], [17.17345, 6.703784, -5.890534], [17.380027, 6.788363, -5.87741], [17.629906, 6.618393, -5.903785], [17.835451, 6.821524, -5.872263], [17.663474, 7.068448, -5.833946], [17.749029, 7.272582, -5.802269], [18.047333, 7.326985, -5.793826], [18.047333, 7.614263, -5.749247], [17.749029, 7.668666, -5.740804], [17.663474, 7.872827, -5.709123], [17.835451, 8.119723, -5.670809], [17.629906, 8.322855, -5.639287], [17.380027, 8.152885, -5.665663], [17.17345, 8.237464, -5.652538], [17.118368, 8.53224, -5.606795]]}, {"shapeName": "L_leg_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[17.288564, 7.782446, -5.723148], [17.419275, 7.470624, -5.771536], [17.288564, 7.158802, -5.819925], [16.973019, 7.029664, -5.839964], [16.657493, 7.158802, -5.819925], [16.526782, 7.470624, -5.771536], [16.657493, 7.782446, -5.723148], [16.973019, 7.911584, -5.703108]]}, {"shapeName": "L_leg_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[15.898697, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
-			"L_innerBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_innerBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[15.745704, 1.917931, 7.35207], [15.746283, 2.030262, 7.459886], [15.746885, 1.922444, 7.572216], [15.746307, 1.810113, 7.464399], [15.745704, 1.917931, 7.35207], [15.85638, 1.920187, 7.461552], [15.746885, 1.922444, 7.572216], [15.636199, 1.920187, 7.462734], [15.746283, 2.030262, 7.459886], [15.85638, 1.920187, 7.461552], [15.746307, 1.810113, 7.464399], [15.636199, 1.920187, 7.462734], [15.745704, 1.917931, 7.35207], [15.85638, 1.920187, 7.461552], [5.359972, 1.920187, 7.51788]]}, {"shapeName": "L_innerBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[5.358238, 12.302221, 7.194924], [5.248733, 12.304478, 7.305588], [5.35942, 12.306735, 7.41507], [5.468925, 12.304478, 7.304406], [5.358238, 12.302221, 7.194924], [5.358817, 12.414542, 7.302741], [5.35942, 12.306735, 7.41507], [5.358841, 12.194404, 7.307253], [5.248733, 12.304478, 7.305588], [5.358817, 12.414542, 7.302741], [5.468925, 12.304478, 7.304406], [5.358841, 12.194404, 7.307253], [5.358238, 12.302221, 7.194924], [5.358817, 12.414542, 7.302741], [5.359972, 1.920187, 7.51788]]}, {"shapeName": "L_innerBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[5.415685, 2.243148, 17.899765], [5.305601, 2.133073, 17.902612], [5.415709, 2.022999, 17.904278], [5.525793, 2.133073, 17.90143], [5.415685, 2.243148, 17.899765], [5.416288, 2.13533, 18.012084], [5.415709, 2.022999, 17.904278], [5.415106, 2.130817, 17.791948], [5.305601, 2.133073, 17.902612], [5.416288, 2.13533, 18.012084], [5.525793, 2.133073, 17.90143], [5.415106, 2.130817, 17.791948], [5.415685, 2.243148, 17.899765], [5.416288, 2.13533, 18.012084], [5.359972, 1.920187, 7.51788]]}]},
-			"R_pinky_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_pinky_D_CTLShape", "degree": 3, "form": 2, "points": [[-72.357392, 102.291875, -16.798184], [-72.515012, 103.474028, -17.29218], [-72.672633, 104.656181, -16.798184], [-72.737921, 105.145843, -15.60557], [-72.672633, 104.656181, -14.412956], [-72.515012, 103.474028, -13.91896], [-72.357392, 102.291875, -14.412956], [-72.292104, 101.802213, -15.60557]]}]},
-			"L_wrist_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_wrist_FK_CTLShape", "degree": 3, "form": 2, "points": [[59.254016, 98.33514, -14.54661], [62.405316, 101.224514, -15.03235], [64.30532, 104.113889, -12.47176], [63.841025, 105.310705, -8.364793], [61.284417, 104.113889, -5.117254], [58.133117, 101.224514, -4.631514], [56.233113, 98.33514, -7.192104], [56.697407, 97.138324, -11.299072]]}]},
-			"L_wrist_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_wrist_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.588617, 95.83296, -7.765984], [65.616732, 95.912981, -7.635411], [65.504953, 95.83296, -7.562302], [65.476837, 95.75294, -7.692874], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [65.504953, 95.83296, -7.562302], [65.472765, 95.908579, -7.694547], [65.616732, 95.912981, -7.635411], [65.620798, 95.757349, -7.633742], [65.476837, 95.75294, -7.692874], [65.472765, 95.908579, -7.694547], [65.588617, 95.83296, -7.765984], [65.620798, 95.757349, -7.633742], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.204449, 110.515778, -7.923782], [65.088598, 110.591397, -7.852345], [65.120786, 110.515778, -7.720101], [65.236637, 110.44016, -7.791537], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [65.120786, 110.515778, -7.720101], [65.09267, 110.435758, -7.850673], [65.088598, 110.591397, -7.852345], [65.232559, 110.595792, -7.793213], [65.236637, 110.44016, -7.791537], [65.09267, 110.435758, -7.850673], [65.204449, 110.515778, -7.923782], [65.232559, 110.595792, -7.793213], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[54.687444, 103.046734, -0.896134], [54.543477, 103.042331, -0.95527], [54.547549, 102.886692, -0.953597], [54.691516, 102.891095, -0.894462], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [54.547549, 102.886692, -0.953597], [54.659328, 102.966713, -1.026707], [54.543477, 103.042331, -0.95527], [54.575669, 102.966713, -0.823034], [54.691516, 102.891095, -0.894462], [54.659328, 102.966713, -1.026707], [54.687444, 103.046734, -0.896134], [54.575669, 102.966713, -0.823034], [58.56385, 102.966713, -10.53242]]}]},
-			"R_hand_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_hand_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-71.486873, 113.113, -10.642498], [-71.486873, 113.223097, -10.5324], [-71.486873, 113.113, -10.422303], [-71.486873, 113.002902, -10.5324], [-71.486873, 113.113, -10.642498], [-71.59696, 113.113, -10.5324], [-71.486873, 113.113, -10.422303], [-71.376775, 113.113, -10.5324], [-71.486873, 113.223097, -10.5324], [-71.59696, 113.113, -10.5324], [-71.486873, 113.002902, -10.5324], [-71.376775, 113.113, -10.5324], [-71.486873, 113.113, -10.642498], [-71.59696, 113.113, -10.5324], [-61.1004, 113.113, -10.5324]]}, {"shapeName": "R_hand_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-61.1004, 123.499472, -10.642498], [-60.990303, 123.499472, -10.5324], [-61.1004, 123.499472, -10.422303], [-61.210498, 123.499472, -10.5324], [-61.1004, 123.499472, -10.642498], [-61.1004, 123.60956, -10.5324], [-61.1004, 123.499472, -10.422303], [-61.1004, 123.389375, -10.5324], [-60.990303, 123.499472, -10.5324], [-61.1004, 123.60956, -10.5324], [-61.210498, 123.499472, -10.5324], [-61.1004, 123.389375, -10.5324], [-61.1004, 123.499472, -10.642498], [-61.1004, 123.60956, -10.5324], [-61.1004, 113.113, -10.5324]]}, {"shapeName": "R_hand_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-61.1004, 113.223097, -0.145928], [-60.990303, 113.113, -0.145928], [-61.1004, 113.002902, -0.145928], [-61.210498, 113.113, -0.145928], [-61.1004, 113.223097, -0.145928], [-61.1004, 113.113, -0.03584], [-61.1004, 113.002902, -0.145928], [-61.1004, 113.113, -0.256025], [-60.990303, 113.113, -0.145928], [-61.1004, 113.113, -0.03584], [-61.210498, 113.113, -0.145928], [-61.1004, 113.113, -0.256025], [-61.1004, 113.223097, -0.145928], [-61.1004, 113.113, -0.03584], [-61.1004, 113.113, -10.5324]]}]},
-			"C_midNeck_B_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[11.449097, 160.241098, -15.831379], [0.0, 161.225189, -19.658861], [-11.449097, 160.241098, -15.831379], [-16.191458, 157.865288, -6.591002], [-11.449097, 155.489478, 2.649375], [0.0, 154.505387, 6.476857], [11.449097, 155.489478, 2.649375], [16.191458, 157.865288, -6.591002]]}]},
-			"R_index_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_index_A_CTLShape", "degree": 3, "form": 2, "points": [[-60.652195, 100.12518, -10.777941], [-61.532504, 100.978468, -11.182067], [-62.156911, 101.970904, -10.642117], [-62.159646, 102.521134, -9.474384], [-61.539109, 102.306841, -8.362911], [-60.658801, 101.453554, -7.958784], [-60.034393, 100.461117, -8.498734], [-60.031658, 99.910888, -9.666468]]}]},
-			"world_CTL": {"color": 1, "shapes": [{"shapeName": "world_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 0.0, -577.7], [256.65, 0.0, -320.8], [192.4, 0.0, -320.8], [192.4, 0.0, -192.35], [320.85, 0.0, -192.35], [320.85, 0.0, -256.6], [577.7, 0.0, 0.0], [320.8, 0.0, 256.65], [320.8, 0.0, 192.4], [192.35, 0.0, 192.4], [192.35, 0.0, 320.85], [256.6, 0.0, 320.85], [0.0, 0.0, 577.7], [-256.65, 0.0, 320.8], [-192.4, 0.0, 320.8], [-192.4, 0.0, 192.35], [-320.85, 0.0, 192.35], [-320.85, 0.0, 256.6], [-577.7, 0.0, 0.0], [-320.8, 0.0, -256.65], [-320.8, 0.0, -192.4], [-192.35, 0.0, -192.4], [-192.35, 0.0, -320.85], [-256.6, 0.0, -320.85], [0.0, 0.0, -577.7], [50.3, 0.7, -528.3], [45.9, 0.0, -523.6], [45.9, 0.0, -504.4], [41.9, 0.0, -504.4], [42.15, 0.0, -523.75], [39.3, 0.0, -522.3], [39.4, 0.0, -513.9], [35.35, 0.0, -513.9], [35.35, 0.0, -522.3], [32.85, 0.0, -523.75], [32.85, 0.0, -504.1], [28.8, 0.0, -504.1], [28.8, 0.0, -524.25], [32.05, 0.0, -527.5], [37.05, 0.0, -525.0], [42.55, 0.0, -527.5], [45.9, 0.0, -523.7], [42.55, 0.0, -527.5], [37.1, 0.0, -525.05], [32.05, 0.0, -527.45], [22.3, 0.0, -527.5], [25.6, 0.0, -524.25], [25.6, 0.0, -507.4], [22.3, 0.0, -504.1], [11.75, 0.0, -504.1], [8.5, 0.0, -507.4], [8.5, 0.0, -524.25], [11.75, 0.0, -527.5], [22.3, 0.0, -527.5], [21.05, 0.0, -523.75], [21.55, 0.0, -508.25], [12.5, 0.0, -508.35], [12.55, 0.0, -523.75], [21.1, 0.0, -523.85], [22.3, 0.0, -527.5], [11.75, 0.0, -527.5], [5.0, 0.0, -527.5], [5.25, 0.0, -504.1], [-6.15, 0.0, -504.1], [-9.45, 0.0, -507.4], [-9.45, 0.0, -514.45], [-6.1, 0.0, -517.7], [-5.9, 0.0, -517.95], [-12.45, 0.0, -527.4], [-12.45, 0.0, -527.5], [-7.75, 0.0, -527.5], [-1.2, 0.0, -518.0], [1.25, 0.0, -518.0], [1.25, 0.0, -508.0], [-5.05, 0.0, -508.0], [-5.1, 0.0, -513.95], [1.25, 0.0, -513.95], [1.25, 0.0, -527.5], [5.0, 0.0, -527.5], [-32.15, 0.0, -527.5], [-32.15, 0.0, -523.75], [-19.05, 0.0, -523.7], [-19.05, 0.0, -504.1], [-15.0, 0.0, -504.1], [-15.0, 0.0, -527.5], [-49.2, 0.0, -527.5], [-52.2, 0.0, -524.25], [-52.45, 0.0, -507.4], [-49.2, 0.0, -504.1], [-35.35, 0.0, -504.1], [-35.35, 0.0, -527.5], [-39.45, 0.0, -523.75], [-39.35, 0.0, -507.9], [-47.9, 0.0, -507.9], [-47.8, 0.0, -523.65], [-39.3, 0.0, -523.85], [-35.25, 0.0, -527.5]]}]},
-			"L_leg_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[17.911685, 8.650198, -5.58849], [17.588678, 8.650198, -5.58849], [17.527506, 8.322669, -5.639316], [17.297976, 8.228692, -5.653899], [17.020333, 8.417548, -5.624593], [16.791929, 8.191846, -5.659617], [16.983035, 7.917516, -5.702188], [16.887974, 7.690671, -5.737389], [16.556495, 7.630223, -5.74677], [16.556495, 7.311025, -5.796303], [16.887974, 7.250577, -5.805683], [16.983035, 7.023762, -5.84088], [16.791929, 6.749402, -5.883455], [17.020333, 6.5237, -5.91848], [17.297976, 6.712556, -5.889173], [17.527506, 6.618579, -5.903756], [17.588678, 6.29105, -5.954582], [17.911685, 6.29105, -5.954582], [17.972887, 6.618579, -5.903756], [18.202417, 6.712556, -5.889173], [18.48006, 6.5237, -5.91848], [18.708443, 6.749402, -5.883455], [18.517358, 7.023762, -5.84088], [18.612419, 7.250577, -5.805683], [18.943868, 7.311025, -5.796303], [18.943868, 7.630223, -5.74677], [18.612419, 7.690671, -5.737389], [18.517358, 7.917516, -5.702188], [18.708443, 8.191846, -5.659617], [18.48006, 8.417548, -5.624593], [18.202417, 8.228692, -5.653899], [17.972887, 8.322669, -5.639316], [17.911685, 8.650198, -5.58849]]}, {"shapeName": "L_leg_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[18.100792, 7.817093, -5.717771], [18.246026, 7.470624, -5.771536], [18.100792, 7.124155, -5.825301], [17.750186, 6.980669, -5.847567], [17.399601, 7.124155, -5.825301], [17.254367, 7.470624, -5.771536], [17.399601, 7.817093, -5.717771], [17.750186, 7.960579, -5.695505]]}, {"shapeName": "L_leg_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[16.556495, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
-			"R_arm_IK_A_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-57.040912, 108.1303, -7.209173], [-52.399663, 102.820658, -9.115591], [-55.175335, 102.820658, -15.873073], [-59.816584, 108.1303, -13.966656], [-64.728038, 103.112768, -11.94925], [-60.086789, 97.803126, -13.855668], [-57.311117, 97.803126, -7.098185], [-61.952366, 103.112768, -5.191767], [-57.040912, 108.1303, -7.209173], [-59.816584, 108.1303, -13.966656], [-55.175335, 102.820658, -15.873073], [-60.086789, 97.803126, -13.855668], [-64.728038, 103.112768, -11.94925], [-61.952366, 103.112768, -5.191767], [-57.311117, 97.803126, -7.098185], [-52.399663, 102.820658, -9.115591]]}]},
-			"C_midNeck_D_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[8.586823, 159.647145, -13.521285], [0.0, 160.385213, -16.391896], [-8.586823, 159.647145, -13.521285], [-12.143594, 157.865288, -6.591002], [-8.586823, 156.08343, 0.339281], [0.0, 155.345362, 3.209892], [8.586823, 156.08343, 0.339281], [12.143594, 157.865288, -6.591002]]}]},
-			"R_leg_IK_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_leg_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-13.55636, 7.470624, -11.734608], [-9.978517, 7.470624, -14.204588], [-6.400674, 7.470624, -11.734608], [-4.918686, 7.470624, -5.771536], [-6.400674, 7.470624, 0.191535], [-9.978517, 7.470624, 2.661515], [-13.55636, 7.470624, 0.191535], [-15.038347, 7.470624, -5.771536]]}]},
-			"R_legBase_CTL": {"color": 13, "shapes": [{"shapeName": "R_legBase_CTLShape", "degree": 3, "form": 0, "points": [[-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.420897, -2.827685], [-9.978517, 92.076032, 1.182703], [-9.978517, 92.326272, 2.714539], [-19.532495, 92.076032, 1.182703], [-25.437185, 91.420897, -2.827685], [-25.437185, 90.611101, -7.784821], [-19.532495, 89.955965, -11.795209], [-9.978517, 89.705725, -13.327045], [-9.978517, 89.955965, -11.795209], [-9.978517, 90.611101, -7.784821], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253], [-9.978517, 91.015999, -5.306253]]}]},
-			"L_leg_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 40.824689, 102.617543], [9.868419, 40.825303, 102.507447], [9.978517, 40.825916, 102.397351], [10.088614, 40.825303, 102.507447], [9.978517, 40.824689, 102.617543], [9.978517, 40.715217, 102.506834], [9.978517, 40.825916, 102.397351], [9.978517, 40.935398, 102.50806], [9.868419, 40.825303, 102.507447], [9.978517, 40.715217, 102.506834], [10.088614, 40.825303, 102.507447], [9.978517, 40.935398, 102.50806], [9.978517, 40.824689, 102.617543], [9.978517, 40.715217, 102.506834], [9.978517, 51.211614, 102.565291]]}, {"shapeName": "L_leg_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407956, 51.211001, 102.675386], [-0.407956, 51.32171, 102.565904], [-0.407956, 51.212227, 102.455195], [-0.407956, 51.101518, 102.564677], [-0.407956, 51.211001, 102.675386], [-0.518043, 51.211614, 102.565291], [-0.407956, 51.212227, 102.455195], [-0.297859, 51.211614, 102.565291], [-0.407956, 51.32171, 102.565904], [-0.518043, 51.211614, 102.565291], [-0.407956, 51.101518, 102.564677], [-0.297859, 51.211614, 102.565291], [-0.407956, 51.211001, 102.675386], [-0.518043, 51.211614, 102.565291], [9.978517, 51.211614, 102.565291]]}, {"shapeName": "L_leg_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.868419, 51.269458, 92.178979], [9.978517, 51.379554, 92.179592], [10.088614, 51.269458, 92.178979], [9.978517, 51.159362, 92.178366], [9.868419, 51.269458, 92.178979], [9.978517, 51.270071, 92.068893], [10.088614, 51.269458, 92.178979], [9.978517, 51.268845, 92.289075], [9.978517, 51.379554, 92.179592], [9.978517, 51.270071, 92.068893], [9.978517, 51.159362, 92.178366], [9.978517, 51.268845, 92.289075], [9.868419, 51.269458, 92.178979], [9.978517, 51.270071, 92.068893], [9.978517, 51.211614, 102.565291]]}]},
-			"R_leg_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_leg_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-16.325051, 8.414283, -5.6251], [-16.066645, 8.414283, -5.6251], [-16.017708, 8.15226, -5.66576], [-15.834084, 8.077079, -5.677427], [-15.611969, 8.228163, -5.653982], [-15.429247, 8.047601, -5.682001], [-15.582131, 7.828138, -5.716057], [-15.506083, 7.646662, -5.744219], [-15.240899, 7.598303, -5.751723], [-15.240899, 7.342945, -5.79135], [-15.506083, 7.294586, -5.798854], [-15.582131, 7.113134, -5.827012], [-15.429247, 6.893647, -5.861072], [-15.611969, 6.713085, -5.889091], [-15.834084, 6.864169, -5.865646], [-16.017708, 6.788988, -5.877312], [-16.066645, 6.526965, -5.917973], [-16.325051, 6.526965, -5.917973], [-16.374013, 6.788988, -5.877312], [-16.557637, 6.864169, -5.865646], [-16.779752, 6.713085, -5.889091], [-16.962458, 6.893647, -5.861072], [-16.80959, 7.113134, -5.827012], [-16.885638, 7.294586, -5.798854], [-17.150798, 7.342945, -5.79135], [-17.150798, 7.598303, -5.751723], [-16.885638, 7.646662, -5.744219], [-16.80959, 7.828138, -5.716057], [-16.962458, 8.047601, -5.682001], [-16.779752, 8.228163, -5.653982], [-16.557637, 8.077079, -5.677427], [-16.374013, 8.15226, -5.66576], [-16.325051, 8.414283, -5.6251]]}, {"shapeName": "R_leg_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-16.476337, 7.747799, -5.728524], [-16.592524, 7.470624, -5.771536], [-16.476337, 7.193449, -5.814548], [-16.195852, 7.07866, -5.832361], [-15.915384, 7.193449, -5.814548], [-15.799197, 7.470624, -5.771536], [-15.915384, 7.747799, -5.728524], [-16.195852, 7.862588, -5.710711]]}, {"shapeName": "R_leg_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-15.240899, 7.470624, -5.771536], [-9.978517, 7.470624, -5.771536]]}]},
-			"L_leg_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[16.325051, 8.414283, -5.6251], [16.066645, 8.414283, -5.6251], [16.017708, 8.15226, -5.66576], [15.834084, 8.077079, -5.677427], [15.611969, 8.228163, -5.653982], [15.429247, 8.047601, -5.682001], [15.582131, 7.828138, -5.716057], [15.506083, 7.646662, -5.744219], [15.240899, 7.598303, -5.751723], [15.240899, 7.342945, -5.79135], [15.506083, 7.294586, -5.798854], [15.582131, 7.113134, -5.827012], [15.429247, 6.893647, -5.861072], [15.611969, 6.713085, -5.889091], [15.834084, 6.864169, -5.865646], [16.017708, 6.788988, -5.877312], [16.066645, 6.526965, -5.917973], [16.325051, 6.526965, -5.917973], [16.374013, 6.788988, -5.877312], [16.557637, 6.864169, -5.865646], [16.779752, 6.713085, -5.889091], [16.962458, 6.893647, -5.861072], [16.80959, 7.113134, -5.827012], [16.885638, 7.294586, -5.798854], [17.150798, 7.342945, -5.79135], [17.150798, 7.598303, -5.751723], [16.885638, 7.646662, -5.744219], [16.80959, 7.828138, -5.716057], [16.962458, 8.047601, -5.682001], [16.779752, 8.228163, -5.653982], [16.557637, 8.077079, -5.677427], [16.374013, 8.15226, -5.66576], [16.325051, 8.414283, -5.6251]]}, {"shapeName": "L_leg_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[16.476337, 7.747799, -5.728524], [16.592524, 7.470624, -5.771536], [16.476337, 7.193449, -5.814548], [16.195852, 7.07866, -5.832361], [15.915384, 7.193449, -5.814548], [15.799197, 7.470624, -5.771536], [15.915384, 7.747799, -5.728524], [16.195852, 7.862588, -5.710711]]}, {"shapeName": "L_leg_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[15.240899, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
-			"L_toe_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.556335, 5.244039, 7.554273], [9.978517, 6.725915, 7.576775], [6.400698, 5.244671, 7.528004], [4.91872, 1.667994, 7.436529], [6.400698, -1.908946, 7.355935], [9.978517, -3.390821, 7.333433], [13.556335, -1.909577, 7.382204], [15.038313, 1.6671, 7.473679]]}]},
-			"L_leg_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.152667, 7.470624, -12.728453], [9.978517, 7.470624, -15.610096], [5.804366, 7.470624, -12.728453], [4.075381, 7.470624, -5.771536], [5.804366, 7.470624, 1.185381], [9.978517, 7.470624, 4.067023], [14.152667, 7.470624, 1.185381], [15.881652, 7.470624, -5.771536]]}]},
-			"L_wrist_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[57.85321, 100.944151, -13.832695], [60.05912, 102.966713, -14.172713], [61.389123, 104.989275, -12.3803], [61.064117, 105.827046, -9.505423], [59.274491, 104.989275, -7.232145], [57.068581, 102.966713, -6.892128], [55.738578, 100.944151, -8.68454], [56.063584, 100.10638, -11.559418]]}]},
-			"R_middle_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_middle_C_CTLShape", "degree": 3, "form": 2, "points": [[-65.048387, 95.785128, -5.838564], [-66.153156, 96.450189, -5.898069], [-66.742962, 97.310215, -5.13725], [-66.472304, 97.861413, -4.001782], [-65.499732, 97.780901, -3.156808], [-64.394963, 97.11584, -3.097303], [-63.805156, 96.255815, -3.858122], [-64.075814, 95.704617, -4.993589]]}]},
-			"R_thumb_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_thumb_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-58.062867, 93.615426, 3.304501], [-57.925994, 93.673256, 3.351025], [-57.851867, 93.56185, 3.271419], [-57.98874, 93.504021, 3.224895], [-58.062867, 93.615426, 3.304501], [-57.959998, 93.5235, 3.376669], [-57.851867, 93.56185, 3.271419], [-57.954735, 93.653783, 3.199243], [-57.925994, 93.673256, 3.351025], [-57.959998, 93.5235, 3.376669], [-57.98874, 93.504021, 3.224895], [-57.954735, 93.653783, 3.199243], [-58.062867, 93.615426, 3.304501], [-57.959998, 93.5235, 3.376669], [-57.7091, 99.7343, -5.08151]]}, {"shapeName": "R_thumb_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-54.854902, 107.743768, 0.88447], [-54.746771, 107.782125, 0.779212], [-54.643902, 107.690192, 0.851388], [-54.752034, 107.651836, 0.956646], [-54.854902, 107.743768, 0.88447], [-54.718032, 107.801589, 0.930988], [-54.643902, 107.690192, 0.851388], [-54.780775, 107.632363, 0.804864], [-54.746771, 107.782125, 0.779212], [-54.718032, 107.801589, 0.930988], [-54.752034, 107.651836, 0.956646], [-54.780775, 107.632363, 0.804864], [-54.854902, 107.743768, 0.88447], [-54.718032, 107.801589, 0.930988], [-57.7091, 99.7343, -5.08151]]}, {"shapeName": "R_thumb_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-47.724971, 97.291769, -6.578885], [-47.753712, 97.272297, -6.730667], [-47.787717, 97.122535, -6.705015], [-47.758975, 97.142008, -6.553233], [-47.724971, 97.291769, -6.578885], [-47.650853, 97.180367, -6.658489], [-47.787717, 97.122535, -6.705015], [-47.861844, 97.23394, -6.625409], [-47.753712, 97.272297, -6.730667], [-47.650853, 97.180367, -6.658489], [-47.758975, 97.142008, -6.553233], [-47.861844, 97.23394, -6.625409], [-47.724971, 97.291769, -6.578885], [-47.650853, 97.180367, -6.658489], [-57.7091, 99.7343, -5.08151]]}]},
-			"L_legBase_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 89.528858, -5.063314], [9.978517, 87.122625, -4.670233], [9.978517, 86.203524, -4.520089], [9.978517, 88.046815, 0.987164], [9.978517, 91.02423, 4.09055], [9.978517, 93.998511, 3.604672], [9.978517, 95.833563, -0.284876], [9.978517, 95.828474, -6.092417], [9.978517, 94.909373, -5.942273], [9.978517, 92.50314, -5.549192], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
-			"R_pinky_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_pinky_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-79.063595, 102.949728, -15.715697], [-79.072374, 103.059475, -15.6056], [-79.063595, 102.949728, -15.495502], [-79.054815, 102.839981, -15.6056], [-79.063595, 102.949728, -15.715697], [-79.173331, 102.940949, -15.6056], [-79.063595, 102.949728, -15.495502], [-78.953848, 102.958508, -15.6056], [-79.072374, 103.059475, -15.6056], [-79.173331, 102.940949, -15.6056], [-79.054815, 102.839981, -15.6056], [-78.953848, 102.958508, -15.6056], [-79.063595, 102.949728, -15.715697], [-79.173331, 102.940949, -15.6056], [-68.7102, 103.778, -15.6056]]}, {"shapeName": "R_pinky_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-69.538472, 114.131395, -15.715697], [-69.428725, 114.140174, -15.6056], [-69.538472, 114.131395, -15.495502], [-69.648218, 114.122615, -15.6056], [-69.538472, 114.131395, -15.715697], [-69.547251, 114.241131, -15.6056], [-69.538472, 114.131395, -15.495502], [-69.529692, 114.021648, -15.6056], [-69.428725, 114.140174, -15.6056], [-69.547251, 114.241131, -15.6056], [-69.648218, 114.122615, -15.6056], [-69.529692, 114.021648, -15.6056], [-69.538472, 114.131395, -15.715697], [-69.547251, 114.241131, -15.6056], [-68.7102, 103.778, -15.6056]]}, {"shapeName": "R_pinky_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-68.71898, 103.887747, -5.219127], [-68.600453, 103.78678, -5.219127], [-68.70142, 103.668253, -5.219127], [-68.819947, 103.76922, -5.219127], [-68.71898, 103.887747, -5.219127], [-68.7102, 103.778, -5.10904], [-68.70142, 103.668253, -5.219127], [-68.7102, 103.778, -5.329225], [-68.600453, 103.78678, -5.219127], [-68.7102, 103.778, -5.10904], [-68.819947, 103.76922, -5.219127], [-68.7102, 103.778, -5.329225], [-68.71898, 103.887747, -5.219127], [-68.7102, 103.778, -5.10904], [-68.7102, 103.778, -15.6056]]}]},
-			"L_shoulder_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [6.170406, 146.361529, -2.356082], [9.334275, 146.098273, -4.171483], [10.542769, 145.997718, -4.864906], [5.054907, 146.098273, -11.62954], [-0.75376, 146.361529, -14.423475], [-4.664537, 146.686933, -12.179506], [-5.183609, 146.950189, -5.754767], [-2.112734, 147.050744, 2.396712], [-0.904241, 146.950189, 1.703289], [2.259629, 146.686933, -0.112112], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
-			"L_toe_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_CTLShape", "degree": 3, "form": 2, "points": [[13.944556, 5.580432, 10.101116], [9.969202, 7.22696, 10.126118], [5.993848, 5.581134, 10.071928], [4.347206, 1.607048, 9.970289], [5.993848, -2.367329, 9.88074], [9.969202, -4.013857, 9.855738], [13.944556, -2.368031, 9.909928], [15.591198, 1.606055, 10.011567]]}]},
-			"C_midTorso_B_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[6.869458, 114.394936, -14.358514], [0.0, 114.394936, -16.729695], [-6.869458, 114.394936, -14.358514], [-9.714875, 114.394936, -8.633965], [-6.869458, 114.394936, -2.909417], [0.0, 114.394936, -0.538236], [6.869458, 114.394936, -2.909417], [9.714875, 114.394936, -8.633965]]}]},
-			"R_toe_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.940376, 1.527856, 17.841151], [-9.830279, 1.4178, 17.838099], [-9.940376, 1.307725, 17.835856], [-10.050472, 1.417781, 17.838907], [-9.940376, 1.527856, 17.841151], [-9.939971, 1.415143, 17.948558], [-9.940376, 1.307725, 17.835856], [-9.94078, 1.420438, 17.728438], [-9.830279, 1.4178, 17.838099], [-9.939971, 1.415143, 17.948558], [-10.050472, 1.417781, 17.838907], [-9.94078, 1.420438, 17.728438], [-9.940376, 1.527856, 17.841151], [-9.939971, 1.415143, 17.948558], [-9.978517, 1.667547, 7.455104]]}, {"shapeName": "R_toe_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407886, 1.77853, 7.419621], [0.407482, 1.671111, 7.306909], [0.407886, 1.558398, 7.414326], [0.40829, 1.665817, 7.527039], [0.407886, 1.77853, 7.419621], [0.517973, 1.668474, 7.41657], [0.407886, 1.558398, 7.414326], [0.297789, 1.668454, 7.417378], [0.407482, 1.671111, 7.306909], [0.517973, 1.668474, 7.41657], [0.40829, 1.665817, 7.527039], [0.297789, 1.668454, 7.417378], [0.407886, 1.77853, 7.419621], [0.517973, 1.668474, 7.41657], [-9.978517, 1.667547, 7.455104]]}, {"shapeName": "R_toe_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.86842, -8.715913, 7.204942], [-9.978921, -8.713275, 7.095281], [-10.088613, -8.715932, 7.20575], [-9.978112, -8.71857, 7.315411], [-9.86842, -8.715913, 7.204942], [-9.978517, -8.825978, 7.202699], [-10.088613, -8.715932, 7.20575], [-9.978517, -8.605857, 7.207993], [-9.978921, -8.713275, 7.095281], [-9.978517, -8.825978, 7.202699], [-9.978112, -8.71857, 7.315411], [-9.978517, -8.605857, 7.207993], [-9.86842, -8.715913, 7.204942], [-9.978517, -8.825978, 7.202699], [-9.978517, 1.667547, 7.455104]]}]},
-			"L_loArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_loArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[36.500788, 121.368595, -20.600804], [39.676814, 123.84031, -22.123499], [42.345412, 126.755918, -20.422635], [42.943348, 128.407493, -16.494545], [41.120367, 127.827572, -12.640254], [37.944341, 125.355857, -11.117559], [35.275743, 122.440249, -12.818424], [34.677807, 120.788674, -16.746514]]}]},
-			"R_shoulder_D_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-5.51861, 146.415763, -1.982087], [-7.627856, 146.240259, -3.192355], [-8.433518, 146.173222, -3.654637], [-4.774944, 146.240259, -8.164392], [-0.902499, 146.415763, -10.027016], [1.704686, 146.632699, -8.531036], [2.050734, 146.808203, -4.247877], [0.003484, 146.87524, 1.186442], [-0.802179, 146.808203, 0.72416], [-2.911425, 146.632699, -0.486107], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097]]}]},
-			"L_arm_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[57.210128, 107.556568, -7.578422], [53.084573, 102.836886, -9.273016], [55.551837, 102.836886, -15.279667], [59.677392, 107.556568, -13.585074], [64.043128, 103.09654, -11.791824], [59.917573, 98.376858, -13.486418], [57.450309, 98.376858, -7.479766], [61.575864, 103.09654, -5.785173], [57.210128, 107.556568, -7.578422], [59.677392, 107.556568, -13.585074], [55.551837, 102.836886, -15.279667], [59.917573, 98.376858, -13.486418], [64.043128, 103.09654, -11.791824], [61.575864, 103.09654, -5.785173], [57.450309, 98.376858, -7.479766], [53.084573, 102.836886, -9.273016]]}]},
-			"L_upArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_upArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[26.45757, 137.863802, -12.512194], [26.553665, 137.918409, -12.402527], [26.487894, 137.823814, -12.297794], [26.391799, 137.769208, -12.407461], [26.45757, 137.863802, -12.512194], [26.54581, 137.765352, -12.429963], [26.487894, 137.823814, -12.297794], [26.399647, 137.922271, -12.380023], [26.553665, 137.918409, -12.402527], [26.54581, 137.765352, -12.429963], [26.391799, 137.769208, -12.407461], [26.399647, 137.922271, -12.380023], [26.45757, 137.863802, -12.512194], [26.54581, 137.765352, -12.429963], [19.577965, 145.245926, -10.049224]]}, {"shapeName": "L_upArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[27.197923, 152.303645, -9.923672], [27.14, 152.362114, -9.791501], [27.228247, 152.263657, -9.709273], [27.286171, 152.205188, -9.841444], [27.197923, 152.303645, -9.923672], [27.294011, 152.358245, -9.814006], [27.228247, 152.263657, -9.709273], [27.132152, 152.20905, -9.81894], [27.14, 152.362114, -9.791501], [27.294011, 152.358245, -9.814006], [27.286171, 152.205188, -9.841444], [27.132152, 152.20905, -9.81894], [27.197923, 152.303645, -9.923672], [27.294011, 152.358245, -9.814006], [19.577965, 145.245926, -10.049224]]}, {"shapeName": "L_upArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[21.089259, 143.434289, 0.066353], [20.935241, 143.438151, 0.088857], [20.927393, 143.285088, 0.061419], [21.081411, 143.281225, 0.038914], [21.089259, 143.434289, 0.066353], [21.023487, 143.339696, 0.171076], [20.927393, 143.285088, 0.061419], [20.993164, 143.379682, -0.043314], [20.935241, 143.438151, 0.088857], [21.023487, 143.339696, 0.171076], [21.081411, 143.281225, 0.038914], [20.993164, 143.379682, -0.043314], [21.089259, 143.434289, 0.066353], [21.023487, 143.339696, 0.171076], [19.577965, 145.245926, -10.049224]]}]},
-			"R_loArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "R_loArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[-36.500788, 121.368595, -20.600804], [-39.676814, 123.84031, -22.123499], [-42.345412, 126.755918, -20.422635], [-42.943348, 128.407493, -16.494545], [-41.120367, 127.827572, -12.640254], [-37.944341, 125.355857, -11.117559], [-35.275743, 122.440249, -12.818424], [-34.677807, 120.788674, -16.746514]]}]},
-			"R_arm_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "R_arm_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-62.653711, 106.428981, -8.852488], [-62.510061, 106.264644, -8.911493], [-62.32687, 106.392876, -8.98674], [-62.180036, 106.321821, -9.047053], [-62.146503, 106.088679, -9.060826], [-61.937436, 106.082286, -9.146702], [-61.891776, 106.312986, -9.165457], [-61.741465, 106.37499, -9.227198], [-61.565259, 106.235753, -9.299576], [-61.413241, 106.391054, -9.362018], [-61.53187, 106.589112, -9.31329], [-61.466126, 106.74783, -9.340295], [-61.250472, 106.784087, -9.428876], [-61.244558, 107.010104, -9.431305], [-61.457976, 107.059476, -9.343643], [-61.515298, 107.221977, -9.320098], [-61.386517, 107.412455, -9.372995], [-61.530167, 107.576792, -9.31399], [-61.713371, 107.448575, -9.238738], [-61.860205, 107.51963, -9.178425], [-61.893738, 107.752772, -9.164651], [-62.102796, 107.759155, -9.078779], [-62.148479, 107.52845, -9.060015], [-62.298776, 107.466461, -8.99828], [-62.474969, 107.605683, -8.925908], [-62.626986, 107.450382, -8.863465], [-62.508371, 107.252339, -8.912187], [-62.57413, 107.093607, -8.885177], [-62.78976, 107.057354, -8.796605], [-62.795683, 106.831347, -8.794173], [-62.582265, 106.781975, -8.881835], [-62.524943, 106.619474, -8.90538], [-62.653711, 106.428981, -8.852488]]}, {"shapeName": "R_arm_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[-62.341045, 106.930529, -8.980917], [-62.240629, 107.17299, -9.022164], [-62.011034, 107.267668, -9.116471], [-61.786775, 107.159101, -9.208587], [-61.699196, 106.910922, -9.24456], [-61.799612, 106.668462, -9.203314], [-62.029207, 106.573783, -9.109006], [-62.253457, 106.68234, -9.016895]]}, {"shapeName": "R_arm_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[-61.48925, 106.313404, -9.330797], [-58.56385, 102.966713, -10.53242]]}]},
-			"R_arm_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-65.588617, 95.83296, -7.765984], [-65.616732, 95.912981, -7.635411], [-65.504953, 95.83296, -7.562302], [-65.476837, 95.75294, -7.692874], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-65.504953, 95.83296, -7.562302], [-65.472765, 95.908579, -7.694547], [-65.616732, 95.912981, -7.635411], [-65.620798, 95.757349, -7.633742], [-65.476837, 95.75294, -7.692874], [-65.472765, 95.908579, -7.694547], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_arm_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-65.204449, 110.515778, -7.923782], [-65.088598, 110.591397, -7.852345], [-65.120786, 110.515778, -7.720101], [-65.236637, 110.44016, -7.791537], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-65.120786, 110.515778, -7.720101], [-65.09267, 110.435758, -7.850673], [-65.088598, 110.591397, -7.852345], [-65.232559, 110.595792, -7.793213], [-65.236637, 110.44016, -7.791537], [-65.09267, 110.435758, -7.850673], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_arm_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-54.687444, 103.046734, -0.896134], [-54.543477, 103.042331, -0.95527], [-54.547549, 102.886692, -0.953597], [-54.691516, 102.891095, -0.894462], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-54.547549, 102.886692, -0.953597], [-54.659328, 102.966713, -1.026707], [-54.543477, 103.042331, -0.95527], [-54.575669, 102.966713, -0.823034], [-54.691516, 102.891095, -0.894462], [-54.659328, 102.966713, -1.026707], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-58.56385, 102.966713, -10.53242]]}]},
-			"L_legBase_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.420897, -2.827685], [9.978517, 92.076032, 1.182703], [9.978517, 92.326272, 2.714539], [19.532495, 92.076032, 1.182703], [25.437185, 91.420897, -2.827685], [25.437185, 90.611101, -7.784821], [19.532495, 89.955965, -11.795209], [9.978517, 89.705725, -13.327045], [9.978517, 89.955965, -11.795209], [9.978517, 90.611101, -7.784821], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
-			"L_middle_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_C_CTLShape", "degree": 3, "form": 2, "points": [[65.048387, 95.785128, -5.838564], [66.153156, 96.450189, -5.898069], [66.742962, 97.310215, -5.13725], [66.472304, 97.861413, -4.001782], [65.499732, 97.780901, -3.156808], [64.394963, 97.11584, -3.097303], [63.805156, 96.255815, -3.858122], [64.075814, 95.704617, -4.993589]]}]},
-			"L_shoulder_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [5.735875, 146.397685, -2.106752], [8.196663, 146.19293, -3.518731], [9.136602, 146.114721, -4.05806], [4.868265, 146.19293, -9.319441], [0.350412, 146.397685, -11.492502], [-2.691303, 146.650777, -9.747193], [-3.095025, 146.855532, -4.750174], [-0.706567, 146.933741, 1.589865], [0.233372, 146.855532, 1.050536], [2.69416, 146.650777, -0.361442], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
-			"L_thumb_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[58.579959, 90.498095, 5.054677], [58.443824, 90.545324, 5.113663], [58.368959, 90.444519, 5.021595], [58.505095, 90.397289, 4.962609], [58.579959, 90.498095, 5.054677], [58.481715, 90.394338, 5.116509], [58.368959, 90.444519, 5.021595], [58.467203, 90.548283, 4.959756], [58.443824, 90.545324, 5.113663], [58.481715, 90.394338, 5.116509], [58.505095, 90.397289, 4.962609], [58.467203, 90.548283, 4.959756], [58.579959, 90.498095, 5.054677], [58.481715, 90.394338, 5.116509], [57.789896, 97.733129, -2.356194]]}, {"shapeName": "L_thumb_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[55.005271, 104.74263, 4.785493], [54.892515, 104.792817, 4.690572], [54.794271, 104.689054, 4.752412], [54.907028, 104.638866, 4.847333], [55.005271, 104.74263, 4.785493], [54.869138, 104.789852, 4.844473], [54.794271, 104.689054, 4.752412], [54.930407, 104.641824, 4.693425], [54.892515, 104.792817, 4.690572], [54.869138, 104.789852, 4.844473], [54.907028, 104.638866, 4.847333], [54.930407, 104.641824, 4.693425], [55.005271, 104.74263, 4.785493], [54.869138, 104.789852, 4.844473], [57.789896, 97.733129, -2.356194]]}, {"shapeName": "L_thumb_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[47.806504, 95.279999, -3.841107], [47.829883, 95.282957, -3.995015], [47.867775, 95.131964, -3.992162], [47.844396, 95.129005, -3.838254], [47.806504, 95.279999, -3.841107], [47.731649, 95.179196, -3.933174], [47.867775, 95.131964, -3.992162], [47.94264, 95.232769, -3.900094], [47.829883, 95.282957, -3.995015], [47.731649, 95.179196, -3.933174], [47.844396, 95.129005, -3.838254], [47.94264, 95.232769, -3.900094], [47.806504, 95.279999, -3.841107], [47.731649, 95.179196, -3.933174], [57.789896, 97.733129, -2.356194]]}]},
-			"R_index_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "R_index_B_CTLShape", "degree": 3, "form": 2, "points": [[-63.414773, 97.794765, -9.685632], [-64.340003, 98.607958, -10.071673], [-65.009331, 99.5603, -9.513637], [-65.030674, 100.093922, -8.338412], [-64.39153, 99.896237, -7.23443], [-63.4663, 99.083044, -6.84839], [-62.796971, 98.130701, -7.406425], [-62.775629, 97.597079, -8.58165]]}]},
-			"R_toe_IK_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[-12.761265, 4.449263, 7.532235], [-9.978517, 5.601833, 7.549737], [-7.195769, 4.449755, 7.511804], [-6.043119, 1.667894, 7.440656], [-7.195769, -1.114169, 7.377972], [-9.978517, -2.266739, 7.360471], [-12.761265, -1.114661, 7.398404], [-13.913914, 1.667199, 7.469551]]}]},
-			"L_index_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_D_CTLShape", "degree": 3, "form": 2, "points": [[68.139891, 92.543426, -7.630837], [69.222461, 93.171503, -7.946944], [70.049129, 93.938729, -7.318975], [70.135643, 94.395673, -6.114783], [69.431327, 94.274665, -5.039768], [68.348758, 93.646589, -4.723661], [67.522089, 92.879363, -5.35163], [67.435575, 92.422418, -6.555822]]}]},
-			"R_toe_IK_CTL": {"color": 13, "shapes": [{"shapeName": "R_toe_IK_CTLShape", "degree": 3, "form": 2, "points": [[-13.944556, 5.580432, 10.101116], [-9.969202, 7.22696, 10.126118], [-5.993848, 5.581134, 10.071928], [-4.347206, 1.607048, 9.970289], [-5.993848, -2.367329, 9.88074], [-9.969202, -4.013857, 9.855738], [-13.944556, -2.368031, 9.909928], [-15.591198, 1.606055, 10.011567]]}]},
-			"L_toe_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toe_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.940376, 1.527856, 17.841151], [9.830279, 1.4178, 17.838099], [9.940376, 1.307725, 17.835856], [10.050472, 1.417781, 17.838907], [9.940376, 1.527856, 17.841151], [9.939971, 1.415143, 17.948558], [9.940376, 1.307725, 17.835856], [9.94078, 1.420438, 17.728438], [9.830279, 1.4178, 17.838099], [9.939971, 1.415143, 17.948558], [10.050472, 1.417781, 17.838907], [9.94078, 1.420438, 17.728438], [9.940376, 1.527856, 17.841151], [9.939971, 1.415143, 17.948558], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_toe_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.407886, 1.77853, 7.419621], [-0.407482, 1.671111, 7.306909], [-0.407886, 1.558398, 7.414326], [-0.40829, 1.665817, 7.527039], [-0.407886, 1.77853, 7.419621], [-0.517973, 1.668474, 7.41657], [-0.407886, 1.558398, 7.414326], [-0.297789, 1.668454, 7.417378], [-0.407482, 1.671111, 7.306909], [-0.517973, 1.668474, 7.41657], [-0.40829, 1.665817, 7.527039], [-0.297789, 1.668454, 7.417378], [-0.407886, 1.77853, 7.419621], [-0.517973, 1.668474, 7.41657], [9.978517, 1.667547, 7.455104]]}, {"shapeName": "L_toe_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.86842, -8.715913, 7.204942], [9.978921, -8.713275, 7.095281], [10.088613, -8.715932, 7.20575], [9.978112, -8.71857, 7.315411], [9.86842, -8.715913, 7.204942], [9.978517, -8.825978, 7.202699], [10.088613, -8.715932, 7.20575], [9.978517, -8.605857, 7.207993], [9.978921, -8.713275, 7.095281], [9.978517, -8.825978, 7.202699], [9.978112, -8.71857, 7.315411], [9.978517, -8.605857, 7.207993], [9.86842, -8.715913, 7.204942], [9.978517, -8.825978, 7.202699], [9.978517, 1.667547, 7.455104]]}]},
-			"L_wrist_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_CTLShape", "degree": 3, "form": 2, "points": [[60.959382, 96.592941, -13.846122], [64.110682, 99.482316, -14.331862], [66.010685, 102.371691, -11.771272], [65.546391, 103.568506, -7.664304], [62.989783, 102.371691, -4.416766], [59.838483, 99.482316, -3.931026], [57.938479, 96.592941, -6.491616], [58.402773, 95.396126, -10.598583]]}]},
-			"R_middle_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_middle_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-70.242824, 89.042772, 0.328447], [-70.263657, 89.134893, 0.452232], [-70.128053, 89.086224, 0.511274], [-70.10722, 88.994103, 0.387489], [-70.242824, 89.042772, 0.328447], [-70.237494, 88.982689, 0.471982], [-70.128053, 89.086224, 0.511274], [-70.133378, 89.146315, 0.367734], [-70.263657, 89.134893, 0.452232], [-70.237494, 88.982689, 0.471982], [-70.10722, 88.994103, 0.387489], [-70.133378, 89.146315, 0.367734], [-70.242824, 89.042772, 0.328447], [-70.237494, 88.982689, 0.471982], [-65.2741, 96.783, -4.49769]]}, {"shapeName": "R_middle_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-72.710511, 103.402258, -1.535233], [-72.601065, 103.505801, -1.495947], [-72.595741, 103.44571, -1.352407], [-72.705187, 103.342167, -1.391694], [-72.710511, 103.402258, -1.535233], [-72.731337, 103.494373, -1.411452], [-72.595741, 103.44571, -1.352407], [-72.574908, 103.353589, -1.476191], [-72.601065, 103.505801, -1.495947], [-72.731337, 103.494373, -1.411452], [-72.705187, 103.342167, -1.391694], [-72.574908, 103.353589, -1.476191], [-72.710511, 103.402258, -1.535233], [-72.731337, 103.494373, -1.411452], [-65.2741, 96.783, -4.49769]]}, {"shapeName": "R_middle_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-59.938674, 98.902998, 4.158508], [-59.808395, 98.914419, 4.07401], [-59.782237, 98.762208, 4.093766], [-59.912516, 98.750786, 4.178263], [-59.938674, 98.902998, 4.158508], [-59.803076, 98.854326, 4.217542], [-59.782237, 98.762208, 4.093766], [-59.91784, 98.810877, 4.034724], [-59.808395, 98.914419, 4.07401], [-59.803076, 98.854326, 4.217542], [-59.912516, 98.750786, 4.178263], [-59.91784, 98.810877, 4.034724], [-59.938674, 98.902998, 4.158508], [-59.803076, 98.854326, 4.217542], [-65.2741, 96.783, -4.49769]]}]},
-			"C_jaw_CTL": {"color": 18, "shapes": [{"shapeName": "C_jaw_CTLShape", "degree": 3, "form": 0, "points": [[0.0, 165.665077, -3.905633], [0.0, 165.665077, -3.905633], [0.0, 165.665077, -3.905633], [-3.348563, 165.665077, -3.905633], [-8.766626, 165.665077, -3.905633], [-10.836147, 165.665077, -3.905633], [-8.766626, 155.012956, 7.930065], [-3.348563, 148.429577, 15.244936], [3.348563, 148.429577, 15.244936], [8.766626, 155.012956, 7.930065], [10.836147, 165.665077, -3.905633], [8.766626, 165.665077, -3.905633], [3.348563, 165.665077, -3.905633], [0.0, 165.665077, -3.905633], [0.0, 165.665077, -3.905633], [0.0, 165.665077, -3.905633]]}]},
-			"R_arm_PV_CTL": {"color": 13, "shapes": [{"shapeName": "R_arm_PV_CTLShape", "degree": 1, "form": 0, "points": [[-38.889805, 127.780623, -117.039834], [-38.889805, 125.751363, -117.039834], [-38.889805, 125.751363, -119.069094], [-38.889805, 127.780623, -119.069094], [-40.919065, 127.780623, -119.069094], [-40.919065, 125.751363, -119.069094], [-40.919065, 125.751363, -117.039834], [-40.919065, 127.780623, -117.039834], [-38.889805, 127.780623, -117.039834], [-38.889805, 127.780623, -119.069094], [-38.889805, 125.751363, -119.069094], [-40.919065, 125.751363, -119.069094], [-40.919065, 127.780623, -119.069094], [-40.919065, 127.780623, -117.039834], [-40.919065, 125.751363, -117.039834], [-38.889805, 125.751363, -117.039834]]}]},
-			"R_wrist_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_wrist_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-65.588617, 95.83296, -7.765984], [-65.616732, 95.912981, -7.635411], [-65.504953, 95.83296, -7.562302], [-65.476837, 95.75294, -7.692874], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-65.504953, 95.83296, -7.562302], [-65.472765, 95.908579, -7.694547], [-65.616732, 95.912981, -7.635411], [-65.620798, 95.757349, -7.633742], [-65.476837, 95.75294, -7.692874], [-65.472765, 95.908579, -7.694547], [-65.588617, 95.83296, -7.765984], [-65.620798, 95.757349, -7.633742], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_wrist_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-65.204449, 110.515778, -7.923782], [-65.088598, 110.591397, -7.852345], [-65.120786, 110.515778, -7.720101], [-65.236637, 110.44016, -7.791537], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-65.120786, 110.515778, -7.720101], [-65.09267, 110.435758, -7.850673], [-65.088598, 110.591397, -7.852345], [-65.232559, 110.595792, -7.793213], [-65.236637, 110.44016, -7.791537], [-65.09267, 110.435758, -7.850673], [-65.204449, 110.515778, -7.923782], [-65.232559, 110.595792, -7.793213], [-58.56385, 102.966713, -10.53242]]}, {"shapeName": "R_wrist_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-54.687444, 103.046734, -0.896134], [-54.543477, 103.042331, -0.95527], [-54.547549, 102.886692, -0.953597], [-54.691516, 102.891095, -0.894462], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-54.547549, 102.886692, -0.953597], [-54.659328, 102.966713, -1.026707], [-54.543477, 103.042331, -0.95527], [-54.575669, 102.966713, -0.823034], [-54.691516, 102.891095, -0.894462], [-54.659328, 102.966713, -1.026707], [-54.687444, 103.046734, -0.896134], [-54.575669, 102.966713, -0.823034], [-58.56385, 102.966713, -10.53242]]}]},
-			"R_loLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "R_loLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-9.978517, 41.496164, -0.380045], [-9.868419, 41.513046, -0.48884], [-9.978517, 41.529929, -0.597635], [-10.088614, 41.513046, -0.48884], [-9.978517, 41.496164, -0.380045], [-9.978517, 41.404261, -0.505721], [-9.978517, 41.529929, -0.597635], [-9.978517, 41.621842, -0.471957], [-9.868419, 41.513046, -0.48884], [-9.978517, 41.404261, -0.505721], [-10.088614, 41.513046, -0.48884], [-9.978517, 41.621842, -0.471957], [-9.978517, 41.496164, -0.380045], [-9.978517, 41.404261, -0.505721], [-9.978517, 51.776676, 1.103868]]}, {"shapeName": "R_loLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.407956, 51.759793, 1.212663], [0.407956, 51.885472, 1.120751], [0.407956, 51.793559, 0.995073], [0.407956, 51.667881, 1.086985], [0.407956, 51.759793, 1.212663], [0.518043, 51.776676, 1.103868], [0.407956, 51.793559, 0.995073], [0.297859, 51.776676, 1.103868], [0.407956, 51.885472, 1.120751], [0.518043, 51.776676, 1.103868], [0.407956, 51.667881, 1.086985], [0.297859, 51.776676, 1.103868], [0.407956, 51.759793, 1.212663], [0.518043, 51.776676, 1.103868], [-9.978517, 51.776676, 1.103868]]}, {"shapeName": "R_loLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-9.868419, 53.369384, -9.159762], [-9.978517, 53.47818, -9.142879], [-10.088614, 53.369384, -9.159762], [-9.978517, 53.260589, -9.176645], [-9.868419, 53.369384, -9.159762], [-9.978517, 53.386265, -9.268547], [-10.088614, 53.369384, -9.159762], [-9.978517, 53.352501, -9.050966], [-9.978517, 53.47818, -9.142879], [-9.978517, 53.386265, -9.268547], [-9.978517, 53.260589, -9.176645], [-9.978517, 53.352501, -9.050966], [-9.868419, 53.369384, -9.159762], [-9.978517, 53.386265, -9.268547], [-9.978517, 51.776676, 1.103868]]}]},
-			"C_neckBase_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[8.586823, 153.343453, -15.142039], [0.0, 150.543911, -18.922211], [-8.586823, 153.343453, -15.142039], [-12.143594, 155.099205, -7.302195], [-8.586823, 149.779738, -1.281473], [0.0, 145.50406, 0.679577], [8.586823, 149.779738, -1.281473], [12.143594, 155.099205, -7.302195]]}]},
-			"R_shoulder_C_OFF_CTL": {"color": 13, "shapes": [{"shapeName": "R_shoulder_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-5.735875, 146.397685, -2.106752], [-8.196663, 146.19293, -3.518731], [-9.136602, 146.114721, -4.05806], [-4.868265, 146.19293, -9.319441], [-0.350412, 146.397685, -11.492502], [2.691303, 146.650777, -9.747193], [3.095025, 146.855532, -4.750174], [0.706567, 146.933741, 1.589865], [-0.233372, 146.855532, 1.050536], [-2.69416, 146.650777, -0.361442], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097], [-4.215017, 146.524231, -1.234097]]}]},
-			"C_reverseJaw_CTL": {"color": 18, "shapes": [{"shapeName": "C_reverseJaw_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 180.748452, 9.669394], [0.776557, 180.863266, 9.772727], [1.43489, 181.190244, 10.067007], [1.874793, 181.679579, 10.507408], [2.02926, 182.256789, 11.026897], [1.874793, 182.834, 11.546386], [1.43489, 183.323335, 11.986787], [0.776557, 183.650312, 12.281067], [-0.0, 183.765127, 12.3844], [-0.776557, 183.650312, 12.281067], [-1.43489, 183.323335, 11.986787], [-1.874793, 182.834, 11.546386], [-2.02926, 182.256789, 11.026897], [-1.874793, 181.679579, 10.507408], [-1.43489, 181.190244, 10.067007], [-0.776557, 180.863266, 9.772727], [-0.0, 180.748452, 9.669394], [-0.0, 165.665077, -3.905633]]}]},
-			"L_toe_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.1588, 4.846651, 7.543254], [9.978517, 6.163874, 7.563256], [6.798233, 4.847213, 7.519904], [5.48092, 1.667944, 7.438593], [6.798233, -1.511558, 7.366953], [9.978517, -2.82878, 7.346952], [13.1588, -1.512119, 7.390304], [14.476114, 1.66715, 7.471615]]}]},
-			"R_innerBall_CTL": {"color": 20, "shapes": [{"shapeName": "R_innerBall_CTLShape", "degree": 1, "form": 0, "points": [[-3.336185, 1.940984, 8.543172], [-3.330852, 0.905771, 7.549566], [-4.345356, 1.920187, 7.523325], [-3.336185, 1.940984, 8.543172], [-2.316125, 1.920187, 7.534214], [-3.330852, 0.905771, 7.549566], [-3.325297, 1.899391, 6.514367], [-2.316125, 1.920187, 7.534214], [-3.330629, 2.934604, 7.507974], [-3.336185, 1.940984, 8.543172], [-4.345356, 1.920187, 7.523325], [-3.325297, 1.899391, 6.514367], [-3.330629, 2.934604, 7.507974], [-4.345356, 1.920187, 7.523325]]}]},
+			"C_cog_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_CTLShape", "degree": 1, "form": 0, "points": [[29.97882, 98.683497, -6.476546], [29.9472, 98.683497, -11.192816], [21.80913, 98.683497, -14.024636], [20.697, 98.683497, -17.371316], [25.52145, 98.683497, -24.509696], [22.72374, 98.683497, -28.306646], [14.47416, 98.683497, -25.819226], [11.60811, 98.683497, -27.873176], [11.31579, 98.683497, -36.478826], [6.82056, 98.683497, -37.906196], [1.61055, 98.683497, -31.049606], [-1.91469, 98.683497, -31.026296], [-7.21215, 98.683497, -37.812176], [-11.68782, 98.683497, -36.324716], [-11.86824, 98.683497, -27.717986], [-14.70615, 98.683497, -25.626326], [-22.98528, 98.683497, -28.000436], [-25.73187, 98.683497, -24.166316], [-20.81376, 98.683497, -17.096906], [-21.88035, 98.683497, -13.735856], [-29.97882, 98.683497, -10.791386], [-29.9472, 98.683497, -6.075116], [-21.80913, 98.683497, -3.243296], [-20.697, 98.683497, 0.103384], [-25.52145, 98.683497, 7.241764], [-22.72374, 98.683497, 11.038714], [-14.47416, 98.683497, 8.551294], [-11.60811, 98.683497, 10.605244], [-11.31579, 98.683497, 19.210894], [-6.82056, 98.683497, 20.638264], [-1.61055, 98.683497, 13.781674], [1.91469, 98.683497, 13.758364], [7.21215, 98.683497, 20.544244], [11.68782, 98.683497, 19.056784], [11.86824, 98.683497, 10.450054], [14.70615, 98.683497, 8.358394], [22.98528, 98.683497, 10.732504], [25.73187, 98.683497, 6.898384], [20.81376, 98.683497, -0.171026], [21.88035, 98.683497, -3.532076], [29.97882, 98.683497, -6.476546]]}]},
+			"L_wrist_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[56.381143, 99.261663, -14.43344], [59.638512, 101.775154, -16.112277], [62.26636, 104.986643, -14.522516], [62.725325, 107.014883, -10.595407], [60.746558, 106.671763, -6.631401], [57.489189, 104.158272, -4.952563], [54.86134, 100.946783, -6.542325], [54.402376, 98.918543, -10.469434]]}]},
+			"L_leg_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_CTLShape", "degree": 3, "form": 2, "points": [[15.855607, 7.470624, -15.566686], [9.978517, 7.470624, -19.623961], [4.101427, 7.470624, -15.566686], [1.667062, 7.470624, -5.771536], [4.101427, 7.470624, 4.023614], [9.978517, 7.470624, 8.080889], [15.855607, 7.470624, 4.023614], [18.289972, 7.470624, -5.771536]]}]},
+			"L_outterBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_outterBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[25.215227, 2.475595, 4.120068], [25.215227, 2.57902, 4.233435], [25.215227, 2.465653, 4.33686], [25.215227, 2.362228, 4.223492], [25.215227, 2.475595, 4.120068], [25.323727, 2.470624, 4.228464], [25.215227, 2.465653, 4.33686], [25.106717, 2.470624, 4.228464], [25.215227, 2.57902, 4.233435], [25.323727, 2.470624, 4.228464], [25.215227, 2.362228, 4.223492], [25.106717, 2.470624, 4.228464], [25.215227, 2.475595, 4.120068], [25.323727, 2.470624, 4.228464], [14.978517, 2.470624, 4.228464]]}, {"shapeName": "L_outterBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[14.978517, 12.701557, 4.589049], [14.870007, 12.696585, 4.697446], [14.978517, 12.691614, 4.805842], [15.087027, 12.696585, 4.697446], [14.978517, 12.701557, 4.589049], [14.978517, 12.804971, 4.702416], [14.978517, 12.691614, 4.805842], [14.978517, 12.588189, 4.692474], [14.870007, 12.696585, 4.697446], [14.978517, 12.804971, 4.702416], [15.087027, 12.696585, 4.697446], [14.978517, 12.588189, 4.692474], [14.978517, 12.701557, 4.589049], [14.978517, 12.804971, 4.702416], [14.978517, 2.470624, 4.228464]]}, {"shapeName": "L_outterBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[14.978517, 2.110038, 14.459396], [14.870007, 2.001642, 14.454425], [14.978517, 1.893246, 14.449454], [15.087027, 2.001642, 14.454425], [14.978517, 2.110038, 14.459396], [14.978517, 1.996671, 14.562811], [14.978517, 1.893246, 14.449454], [14.978517, 2.006613, 14.346029], [14.870007, 2.001642, 14.454425], [14.978517, 1.996671, 14.562811], [15.087027, 2.001642, 14.454425], [14.978517, 2.006613, 14.346029], [14.978517, 2.110038, 14.459396], [14.978517, 1.996671, 14.562811], [14.978517, 2.470624, 4.228464]]}]},
+			"C_torso_FK_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 106.315182, -8.688221], [-0.054255, 106.315182, -8.633966], [-0.0, 106.315182, -8.579711], [0.054255, 106.315182, -8.633966], [-0.0, 106.315182, -8.688221], [-0.0, 106.369432, -8.633966], [-0.0, 106.315182, -8.579711], [-0.0, 106.260927, -8.633966], [-0.054255, 106.315182, -8.633966], [-0.0, 106.369432, -8.633966], [0.054255, 106.315182, -8.633966], [-0.0, 106.260927, -8.633966], [-0.0, 106.315182, -8.688221], [-0.0, 106.369432, -8.633966], [-0.0, 101.196827, -8.633966]]}, {"shapeName": "C_torso_FK_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 101.196827, -8.688221], [-5.118355, 101.142572, -8.633966], [-5.118355, 101.196827, -8.579711], [-5.118355, 101.251082, -8.633966], [-5.118355, 101.196827, -8.688221], [-5.172605, 101.196827, -8.633966], [-5.118355, 101.196827, -8.579711], [-5.0641, 101.196827, -8.633966], [-5.118355, 101.142572, -8.633966], [-5.172605, 101.196827, -8.633966], [-5.118355, 101.251082, -8.633966], [-5.0641, 101.196827, -8.633966], [-5.118355, 101.196827, -8.688221], [-5.172605, 101.196827, -8.633966], [-0.0, 101.196827, -8.633966]]}, {"shapeName": "C_torso_FK_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 101.196827, -3.515611], [-0.0, 101.142572, -3.515611], [0.054255, 101.196827, -3.515611], [-0.0, 101.251082, -3.515611], [-0.054255, 101.196827, -3.515611], [-0.0, 101.196827, -3.461361], [0.054255, 101.196827, -3.515611], [-0.0, 101.196827, -3.569866], [-0.0, 101.142572, -3.515611], [-0.0, 101.196827, -3.461361], [-0.0, 101.251082, -3.515611], [-0.0, 101.196827, -3.569866], [-0.054255, 101.196827, -3.515611], [-0.0, 101.196827, -3.461361], [-0.0, 101.196827, -8.633966]]}]},
+			"L_index_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_A_CTLShape", "degree": 3, "form": 2, "points": [[60.694294, 101.361497, -8.602376], [60.79848, 101.43377, -8.612789], [60.851912, 101.525259, -8.542352], [60.82329, 101.58237, -8.432326], [60.729381, 101.571649, -8.347163], [60.625196, 101.499375, -8.336751], [60.571764, 101.407887, -8.407187], [60.600385, 101.350775, -8.517213]]}]},
+			"L_toe_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toe_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978516, 1.435298, 17.689754], [9.870006, 1.326849, 17.686143], [9.978516, 1.218399, 17.682531], [10.087026, 1.326849, 17.686143], [9.978516, 1.435298, 17.689754], [9.978516, 1.323237, 17.794583], [9.978516, 1.218399, 17.682531], [9.978516, 1.33046, 17.577693], [9.870006, 1.326849, 17.686143], [9.978516, 1.323237, 17.794583], [10.087026, 1.326849, 17.686143], [9.978516, 1.33046, 17.577693], [9.978516, 1.435298, 17.689754], [9.978516, 1.323237, 17.794583], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_toe_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258194, 1.775997, 7.458715], [-0.258194, 1.671158, 7.346654], [-0.258194, 1.559097, 7.451492], [-0.258194, 1.663935, 7.563554], [-0.258194, 1.775997, 7.458715], [-0.366694, 1.667547, 7.455104], [-0.258194, 1.559097, 7.451492], [-0.149684, 1.667547, 7.455104], [-0.258194, 1.671158, 7.346654], [-0.366694, 1.667547, 7.455104], [-0.258194, 1.663935, 7.563554], [-0.149684, 1.667547, 7.455104], [-0.258194, 1.775997, 7.458715], [-0.366694, 1.667547, 7.455104], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_toe_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870006, -8.563492, 7.114406], [9.978516, -8.559881, 7.005956], [10.087026, -8.563492, 7.114406], [9.978516, -8.567103, 7.222856], [9.870006, -8.563492, 7.114406], [9.978516, -8.671932, 7.110795], [10.087026, -8.563492, 7.114406], [9.978516, -8.455042, 7.118017], [9.978516, -8.559881, 7.005956], [9.978516, -8.671932, 7.110795], [9.978516, -8.567103, 7.222856], [9.978516, -8.455042, 7.118017], [9.870006, -8.563492, 7.114406], [9.978516, -8.671932, 7.110795], [9.978516, 1.667547, 7.455104]]}]},
+			"L_leg_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[15.267898, 7.470624, -14.587171], [9.978517, 7.470624, -18.238719], [4.689136, 7.470624, -14.587171], [2.498207, 7.470624, -5.771536], [4.689136, 7.470624, 3.044099], [9.978517, 7.470624, 6.695646], [15.267898, 7.470624, 3.044099], [17.458826, 7.470624, -5.771536]]}]},
+			"L_pinky_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[66.427112, 93.760792, -14.092988], [66.438836, 93.761679, -14.083126], [66.430299, 93.754841, -14.072363], [66.418575, 93.753954, -14.082225], [66.427112, 93.760792, -14.092988], [66.432252, 93.748123, -14.08602], [66.430299, 93.754841, -14.072363], [66.425158, 93.767511, -14.079331], [66.438836, 93.761679, -14.083126], [66.432252, 93.748123, -14.08602], [66.418575, 93.753954, -14.082225], [66.425158, 93.767511, -14.079331], [66.427112, 93.760792, -14.092988], [66.432252, 93.748123, -14.08602], [66.094084, 94.67235, -13.767144]]}, {"shapeName": "L_pinky_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[67.048178, 95.039679, -13.819988], [67.046225, 95.046398, -13.806331], [67.051365, 95.033729, -13.799362], [67.053319, 95.02701, -13.81302], [67.048178, 95.039679, -13.819988], [67.059901, 95.040566, -13.810126], [67.051365, 95.033729, -13.799362], [67.039641, 95.032842, -13.809224], [67.046225, 95.046398, -13.806331], [67.059901, 95.040566, -13.810126], [67.053319, 95.02701, -13.81302], [67.039641, 95.032842, -13.809224], [67.048178, 95.039679, -13.819988], [67.059901, 95.040566, -13.810126], [66.094084, 94.67235, -13.767144]]}, {"shapeName": "L_pinky_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[66.254517, 94.395538, -12.794696], [66.24084, 94.40137, -12.7909], [66.234257, 94.387814, -12.793794], [66.247934, 94.381982, -12.797589], [66.254517, 94.395538, -12.794696], [66.24598, 94.388701, -12.783933], [66.234257, 94.387814, -12.793794], [66.242794, 94.394651, -12.804558], [66.24084, 94.40137, -12.7909], [66.24598, 94.388701, -12.783933], [66.247934, 94.381982, -12.797589], [66.242794, 94.394651, -12.804558], [66.254517, 94.395538, -12.794696], [66.24598, 94.388701, -12.783933], [66.094084, 94.67235, -13.767144]]}]},
+			"C_head_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_CTLShape", "degree": 3, "form": 2, "points": [[14.850032, 185.510325, -4.968417], [0.0, 191.29331, -4.968417], [-14.850032, 185.510325, -4.968417], [-21.001103, 171.548932, -4.968417], [-14.850032, 157.58754, -4.968417], [0.0, 151.804554, -4.968417], [14.850032, 157.58754, -4.968417], [21.001103, 171.548932, -4.968417]]}]},
+			"world_A_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-0.021561, 0.0, 103.109677], [-45.819651, 0.0, 57.247797], [-34.352112, 0.0, 57.250189], [-34.34732, 0.0, 34.324037], [-57.273472, 0.0, 34.319245], [-57.275873, 0.0, 45.786783], [-103.109677, 0.0, -0.021561], [-57.247797, 0.0, -45.819651], [-57.250189, 0.0, -34.352112], [-34.324037, 0.0, -34.34732], [-34.319245, 0.0, -57.273472], [-45.786783, 0.0, -57.275873], [0.021561, 0.0, -103.109677], [45.819651, 0.0, -57.247797], [34.352112, 0.0, -57.250189], [34.34732, 0.0, -34.324037], [57.273472, 0.0, -34.319245], [57.275873, 0.0, -45.786783], [103.109677, 0.0, 0.021561], [57.247797, 0.0, 45.819651], [57.250189, 0.0, 34.352112], [34.324037, 0.0, 34.34732], [34.319245, 0.0, 57.273472], [45.786783, 0.0, 57.275873], [-0.021561, 0.0, 103.109677], [-8.997413, 0.124938, 94.29073], [-8.211908, 0.0, 93.452029], [-8.211195, 0.0, 90.025154], [-7.497262, 0.0, 90.025305], [-7.542606, 0.0, 93.478944], [-7.033876, 0.0, 93.220242], [-7.051411, 0.0, 91.720984], [-6.328555, 0.0, 91.721136], [-6.328867, 0.0, 93.220394], [-5.882713, 0.0, 93.479283], [-5.881981, 0.0, 89.972091], [-5.159125, 0.0, 89.972242], [-5.159875, 0.0, 93.568677], [-5.740069, 0.0, 94.148631], [-6.632387, 0.0, 93.702235], [-7.614142, 0.0, 94.148238], [-8.211917, 0.0, 93.469877], [-7.614142, 0.0, 94.148238], [-6.641311, 0.0, 93.71116], [-5.740061, 0.0, 94.139706], [-3.999859, 0.0, 94.148996], [-4.588729, 0.0, 93.568801], [-4.588104, 0.0, 90.561361], [-3.998985, 0.0, 89.972492], [-2.115988, 0.0, 89.972885], [-1.536043, 0.0, 90.561995], [-1.536668, 0.0, 93.569435], [-2.116863, 0.0, 94.149389], [-3.999859, 0.0, 94.148996], [-3.776613, 0.0, 93.479729], [-3.865274, 0.0, 90.713224], [-2.250011, 0.0, 90.731411], [-2.259507, 0.0, 93.480042], [-3.785537, 0.0, 93.497578], [-3.999859, 0.0, 94.148996], [-2.116863, 0.0, 94.149389], [-0.912102, 0.0, 94.149639], [-0.955848, 0.0, 89.973126], [1.078859, 0.0, 89.973545], [1.667728, 0.0, 90.562664], [1.667469, 0.0, 91.82097], [1.069426, 0.0, 92.400915], [1.03372, 0.0, 92.445527], [2.202437, 0.0, 94.132442], [2.202428, 0.0, 94.15029], [1.363557, 0.0, 94.150112], [0.19485, 0.0, 92.454282], [-0.242434, 0.0, 92.454192], [-0.242059, 0.0, 90.669362], [0.882385, 0.0, 90.669594], [0.891086, 0.0, 91.731568], [-0.242282, 0.0, 91.731336], [-0.242791, 0.0, 94.149782], [-0.912102, 0.0, 94.149639], [5.718544, 0.0, 94.151022], [5.718687, 0.0, 93.481711], [3.380559, 0.0, 93.472296], [3.381291, 0.0, 89.974027], [2.658434, 0.0, 89.973884], [2.65756, 0.0, 94.15038], [8.761681, 0.0, 94.151656], [9.297255, 0.0, 93.571702], [9.342501, 0.0, 90.564271], [8.762556, 0.0, 89.975161], [6.290565, 0.0, 89.974643], [6.28969, 0.0, 94.151147], [7.021614, 0.0, 93.481987], [7.004354, 0.0, 90.653021], [8.530385, 0.0, 90.653343], [8.511947, 0.0, 93.464451], [6.994841, 0.0, 93.499827], [6.271842, 0.0, 94.151138]]}]},
+			"C_cog_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_cog_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 98.683497, -8.688221], [5.118355, 98.737752, -8.633966], [5.118355, 98.683497, -8.579711], [5.118355, 98.629242, -8.633966], [5.118355, 98.683497, -8.688221], [5.172605, 98.683497, -8.633966], [5.118355, 98.683497, -8.579711], [5.0641, 98.683497, -8.633966], [5.118355, 98.737752, -8.633966], [5.172605, 98.683497, -8.633966], [5.118355, 98.629242, -8.633966], [5.0641, 98.683497, -8.633966], [5.118355, 98.683497, -8.688221], [5.172605, 98.683497, -8.633966], [-0.0, 98.683497, -8.633966]]}, {"shapeName": "C_cog_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 103.801852, -8.688221], [-0.054255, 103.801852, -8.633966], [-0.0, 103.801852, -8.579711], [0.054255, 103.801852, -8.633966], [-0.0, 103.801852, -8.688221], [-0.0, 103.856102, -8.633966], [-0.0, 103.801852, -8.579711], [-0.0, 103.747597, -8.633966], [-0.054255, 103.801852, -8.633966], [-0.0, 103.856102, -8.633966], [0.054255, 103.801852, -8.633966], [-0.0, 103.747597, -8.633966], [-0.0, 103.801852, -8.688221], [-0.0, 103.856102, -8.633966], [-0.0, 98.683497, -8.633966]]}, {"shapeName": "C_cog_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 98.737752, -3.515611], [-0.054255, 98.683497, -3.515611], [-0.0, 98.629242, -3.515611], [0.054255, 98.683497, -3.515611], [-0.0, 98.737752, -3.515611], [-0.0, 98.683497, -3.461361], [-0.0, 98.629242, -3.515611], [-0.0, 98.683497, -3.569866], [-0.054255, 98.683497, -3.515611], [-0.0, 98.683497, -3.461361], [0.054255, 98.683497, -3.515611], [-0.0, 98.683497, -3.569866], [-0.0, 98.737752, -3.515611], [-0.0, 98.683497, -3.461361], [-0.0, 98.683497, -8.633966]]}]},
+			"L_ring_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_C_CTLShape", "degree": 3, "form": 2, "points": [[67.45268, 93.128889, -10.747471], [67.562183, 93.172451, -10.795408], [67.672667, 93.211765, -10.746069], [67.719411, 93.223801, -10.628355], [67.675034, 93.201509, -10.511221], [67.565531, 93.157947, -10.463284], [67.455048, 93.118633, -10.512623], [67.408304, 93.106597, -10.630337]]}]},
+			"C_lookAt_CTL": {"color": 17, "shapes": [{"shapeName": "C_lookAt_CTLShape", "degree": 1, "form": 0, "points": [[-4.98069, 169.237392, 71.241043], [-4.98069, 168.612872, 71.241043], [-4.98069, 168.612872, 70.616523], [-4.98069, 169.237392, 70.616523], [-4.98069, 169.237392, 71.241043], [4.98069, 169.237392, 71.241043], [4.98069, 168.612872, 71.241043], [4.98069, 168.612872, 70.616523], [4.98069, 169.237392, 70.616523], [4.98069, 169.237392, 71.241043], [4.98069, 168.612872, 71.241043], [-4.98069, 168.612872, 71.241043], [-4.98069, 168.612872, 70.616523], [4.98069, 168.612872, 70.616523], [4.98069, 169.237392, 70.616523], [-4.98069, 169.237392, 70.616523], [-4.98069, 169.237392, 71.241043], [-0.31, 169.235132, 71.238783], [-0.31226, 163.944442, 71.241043], [-0.31226, 163.944442, 70.616523], [0.31226, 163.944442, 70.616523], [0.31226, 163.944442, 71.241043], [-0.31226, 163.944442, 71.241043], [-0.31226, 173.905822, 71.241043], [0.31226, 173.905822, 71.241043], [0.31226, 173.905822, 70.616523], [-0.31226, 173.905822, 70.616523], [-0.31226, 173.905822, 71.241043], [-0.31226, 173.905822, 70.616523], [-0.31226, 163.944442, 70.616523], [0.31226, 163.944442, 70.616523], [0.31226, 173.905822, 70.616523], [0.31226, 173.905822, 71.241043], [0.31226, 163.944442, 71.241043], [0.31, 168.615132, 71.238783], [0.31226, 168.612872, 75.909473], [-0.31226, 168.612872, 75.909473], [-0.31226, 169.237392, 75.909473], [0.31226, 169.237392, 75.909473], [0.31226, 168.612872, 75.909473], [0.31226, 168.612872, 65.948093], [0.31226, 169.237392, 65.948093], [-0.31226, 169.237392, 65.948093], [-0.31226, 168.612872, 65.948093], [0.31226, 168.612872, 65.948093], [-0.31226, 168.612872, 65.948093], [-0.31226, 168.612872, 75.909473], [-0.31226, 169.237392, 75.909473], [-0.31226, 169.237392, 65.948093], [0.31226, 169.237392, 65.948093], [0.31226, 169.237392, 75.909473]]}]},
+			"L_index_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[66.767251, 89.821742, -2.155873], [66.771318, 89.824205, -2.141282], [66.756526, 89.825272, -2.13734], [66.752459, 89.822809, -2.15193], [66.767251, 89.821742, -2.155873], [66.761618, 89.812824, -2.144728], [66.756526, 89.825272, -2.13734], [66.762158, 89.83419, -2.148485], [66.771318, 89.824205, -2.141282], [66.761618, 89.812824, -2.144728], [66.752459, 89.822809, -2.15193], [66.762158, 89.83419, -2.148485], [66.767251, 89.821742, -2.155873], [66.761618, 89.812824, -2.144728], [66.78735, 90.831395, -2.323847]]}, {"shapeName": "L_index_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[67.682264, 90.895482, -1.830855], [67.677171, 90.907931, -1.823467], [67.671539, 90.899012, -1.812322], [67.676631, 90.886564, -1.81971], [67.682264, 90.895482, -1.830855], [67.68633, 90.897945, -1.816265], [67.671539, 90.899012, -1.812322], [67.667472, 90.896549, -1.826912], [67.677171, 90.907931, -1.823467], [67.68633, 90.897945, -1.816265], [67.676631, 90.886564, -1.81971], [67.667472, 90.896549, -1.826912], [67.682264, 90.895482, -1.830855], [67.68633, 90.897945, -1.816265], [66.78735, 90.831395, -2.323847]]}, {"shapeName": "L_index_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[66.290862, 90.998605, -1.444323], [66.281703, 91.00859, -1.451526], [66.272004, 90.997209, -1.454971], [66.281163, 90.987223, -1.447769], [66.290862, 90.998605, -1.444323], [66.276071, 90.999672, -1.440382], [66.272004, 90.997209, -1.454971], [66.286796, 90.996142, -1.458914], [66.281703, 91.00859, -1.451526], [66.276071, 90.999672, -1.440382], [66.281163, 90.987223, -1.447769], [66.286796, 90.996142, -1.458914], [66.290862, 90.998605, -1.444323], [66.276071, 90.999672, -1.440382], [66.78735, 90.831395, -2.323847]]}]},
+			"L_toeTip_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toeTip_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.215226, 1.455603, 13.860597], [20.215226, 1.559027, 13.973964], [20.215226, 1.44566, 14.077389], [20.215226, 1.342235, 13.964022], [20.215226, 1.455603, 13.860597], [20.323726, 1.450631, 13.968993], [20.215226, 1.44566, 14.077389], [20.106716, 1.450631, 13.968993], [20.215226, 1.559027, 13.973964], [20.323726, 1.450631, 13.968993], [20.215226, 1.342235, 13.964022], [20.106716, 1.450631, 13.968993], [20.215226, 1.455603, 13.860597], [20.323726, 1.450631, 13.968993], [9.978516, 1.450631, 13.968993]]}, {"shapeName": "L_toeTip_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.978516, 11.681564, 14.329579], [9.870006, 11.676593, 14.437975], [9.978516, 11.671622, 14.546371], [10.087026, 11.676593, 14.437975], [9.978516, 11.681564, 14.329579], [9.978516, 11.784979, 14.442945], [9.978516, 11.671622, 14.546371], [9.978516, 11.568197, 14.433003], [9.870006, 11.676593, 14.437975], [9.978516, 11.784979, 14.442945], [10.087026, 11.676593, 14.437975], [9.978516, 11.568197, 14.433003], [9.978516, 11.681564, 14.329579], [9.978516, 11.784979, 14.442945], [9.978516, 1.450631, 13.968993]]}, {"shapeName": "L_toeTip_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.978516, 1.090046, 24.199925], [9.870006, 0.98165, 24.194954], [9.978516, 0.873253, 24.189983], [10.087026, 0.98165, 24.194954], [9.978516, 1.090046, 24.199925], [9.978516, 0.976679, 24.30334], [9.978516, 0.873253, 24.189983], [9.978516, 0.986621, 24.086558], [9.870006, 0.98165, 24.194954], [9.978516, 0.976679, 24.30334], [10.087026, 0.98165, 24.194954], [9.978516, 0.986621, 24.086558], [9.978516, 1.090046, 24.199925], [9.978516, 0.976679, 24.30334], [9.978516, 1.450631, 13.968993]]}]},
+			"L_middle_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[68.52269, 88.885946, -6.167311], [68.530925, 88.888837, -6.154688], [68.518223, 88.887729, -6.146148], [68.509989, 88.884838, -6.158771], [68.52269, 88.885946, -6.167311], [68.522238, 88.87621, -6.155458], [68.518223, 88.887729, -6.146148], [68.518675, 88.897465, -6.158001], [68.530925, 88.888837, -6.154688], [68.522238, 88.87621, -6.155458], [68.509989, 88.884838, -6.158771], [68.518675, 88.897465, -6.158001], [68.52269, 88.885946, -6.167311], [68.522238, 88.87621, -6.155458], [68.352369, 89.889469, -6.276646]]}, {"shapeName": "L_middle_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[69.342151, 90.077168, -6.094655], [69.338136, 90.088687, -6.085345], [69.337684, 90.078951, -6.073492], [69.341699, 90.067431, -6.082802], [69.342151, 90.077168, -6.094655], [69.350385, 90.080058, -6.082032], [69.337684, 90.078951, -6.073492], [69.329449, 90.07606, -6.086115], [69.338136, 90.088687, -6.085345], [69.350385, 90.080058, -6.082032], [69.341699, 90.067431, -6.082802], [69.329449, 90.07606, -6.086115], [69.342151, 90.077168, -6.094655], [69.350385, 90.080058, -6.082032], [68.352369, 89.889469, -6.276646]]}, {"shapeName": "L_middle_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[68.152131, 89.975532, -5.276387], [68.139881, 89.984161, -5.279699], [68.131195, 89.971534, -5.280469], [68.143445, 89.962905, -5.277157], [68.152131, 89.975532, -5.276387], [68.13943, 89.974424, -5.267848], [68.131195, 89.971534, -5.280469], [68.143896, 89.972642, -5.289009], [68.139881, 89.984161, -5.279699], [68.13943, 89.974424, -5.267848], [68.143445, 89.962905, -5.277157], [68.143896, 89.972642, -5.289009], [68.152131, 89.975532, -5.276387], [68.13943, 89.974424, -5.267848], [68.352369, 89.889469, -6.276646]]}]},
+			"C_midNeck_C_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[10.273668, 159.997179, -14.88271], [0.0, 160.880237, -18.31724], [-10.273668, 159.997179, -14.88271], [-14.529152, 157.865284, -6.591002], [-10.273668, 155.733389, 1.700706], [0.0, 154.850331, 5.135237], [10.273668, 155.733389, 1.700706], [14.529152, 157.865284, -6.591002]]}]},
+			"world_C_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-0.016769, 0.0, 80.196416], [-35.637506, 0.0, 44.526065], [-26.71831, 0.0, 44.527925], [-26.714582, 0.0, 26.696473], [-44.546034, 0.0, 26.692746], [-44.547901, 0.0, 35.611942], [-80.196416, 0.0, -0.016769], [-44.526065, 0.0, -35.637506], [-44.527925, 0.0, -26.71831], [-26.696473, 0.0, -26.714582], [-26.692746, 0.0, -44.546034], [-35.611942, 0.0, -44.547901], [0.016769, 0.0, -80.196416], [35.637506, 0.0, -44.526065], [26.71831, 0.0, -44.527925], [26.714582, 0.0, -26.696473], [44.546034, 0.0, -26.692746], [44.547901, 0.0, -35.611942], [80.196416, 0.0, 0.016769], [44.526065, 0.0, 35.637506], [44.527925, 0.0, 26.71831], [26.696473, 0.0, 26.714582], [26.692746, 0.0, 44.546034], [35.611942, 0.0, 44.547901], [-0.016769, 0.0, 80.196416], [-6.997988, 0.097174, 73.337234], [-6.38704, 0.0, 72.684911], [-6.386485, 0.0, 70.019564], [-5.831204, 0.0, 70.019682], [-5.866471, 0.0, 72.705845], [-5.470792, 0.0, 72.504633], [-5.484431, 0.0, 71.338543], [-4.922209, 0.0, 71.338661], [-4.922452, 0.0, 72.504751], [-4.575444, 0.0, 72.706109], [-4.574874, 0.0, 69.978293], [-4.012653, 0.0, 69.978411], [-4.013236, 0.0, 72.775637], [-4.464498, 0.0, 73.226713], [-5.158523, 0.0, 72.879516], [-5.92211, 0.0, 73.226407], [-6.387047, 0.0, 72.698793], [-5.92211, 0.0, 73.226407], [-5.165464, 0.0, 72.886457], [-4.464492, 0.0, 73.219772], [-3.111002, 0.0, 73.226997], [-3.569011, 0.0, 72.775734], [-3.568525, 0.0, 70.436614], [-3.110322, 0.0, 69.978605], [-1.645769, 0.0, 69.97891], [-1.1947, 0.0, 70.437107], [-1.195186, 0.0, 72.776227], [-1.646449, 0.0, 73.227303], [-3.111002, 0.0, 73.226997], [-2.937366, 0.0, 72.706456], [-3.006324, 0.0, 70.55473], [-1.750009, 0.0, 70.568875], [-1.757394, 0.0, 72.706699], [-2.944307, 0.0, 72.720338], [-3.111002, 0.0, 73.226997], [-1.646449, 0.0, 73.227303], [-0.709413, 0.0, 73.227497], [-0.743438, 0.0, 69.979098], [0.839112, 0.0, 69.979424], [1.297122, 0.0, 70.437628], [1.296921, 0.0, 71.41631], [0.831776, 0.0, 71.867379], [0.804005, 0.0, 71.902077], [1.713006, 0.0, 73.214122], [1.712999, 0.0, 73.228004], [1.060544, 0.0, 73.227865], [0.15155, 0.0, 71.908886], [-0.188559, 0.0, 71.908816], [-0.188268, 0.0, 70.520615], [0.686299, 0.0, 70.520795], [0.693067, 0.0, 71.346775], [-0.188441, 0.0, 71.346595], [-0.188837, 0.0, 73.227608], [-0.709413, 0.0, 73.227497], [4.447757, 0.0, 73.228573], [4.447868, 0.0, 72.707997], [2.629324, 0.0, 72.700674], [2.629893, 0.0, 69.979799], [2.067671, 0.0, 69.979688], [2.066991, 0.0, 73.228073], [6.814641, 0.0, 73.229066], [7.231198, 0.0, 72.77799], [7.266389, 0.0, 70.438877], [6.815321, 0.0, 69.98068], [4.892662, 0.0, 69.980278], [4.891981, 0.0, 73.22867], [5.461255, 0.0, 72.708212], [5.447831, 0.0, 70.507906], [6.634744, 0.0, 70.508155], [6.620404, 0.0, 72.694573], [5.440432, 0.0, 72.722087], [4.878099, 0.0, 73.228663]]}]},
+			"C_neckBase_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neckBase_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 151.575099, -8.264302], [5.118355, 151.614135, -8.198245], [5.118355, 151.548079, -8.15921], [5.118355, 151.509043, -8.225266], [5.118355, 151.575099, -8.264302], [5.172605, 151.561589, -8.211756], [5.118355, 151.548079, -8.15921], [5.0641, 151.561589, -8.211756], [5.118355, 151.614135, -8.198245], [5.172605, 151.561589, -8.211756], [5.118355, 151.509043, -8.225266], [5.0641, 151.561589, -8.211756], [5.118355, 151.575099, -8.264302], [5.172605, 151.561589, -8.211756], [0.0, 151.561589, -8.211756]]}, {"shapeName": "C_neckBase_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 156.532227, -6.989766], [-0.054255, 156.518717, -6.93722], [0.0, 156.505207, -6.884674], [0.054255, 156.518717, -6.93722], [0.0, 156.532227, -6.989766], [0.0, 156.571258, -6.923711], [0.0, 156.505207, -6.884674], [0.0, 156.466171, -6.95073], [-0.054255, 156.518717, -6.93722], [0.0, 156.571258, -6.923711], [0.054255, 156.518717, -6.93722], [0.0, 156.466171, -6.95073], [0.0, 156.532227, -6.989766], [0.0, 156.571258, -6.923711], [0.0, 151.561589, -8.211756]]}, {"shapeName": "C_neckBase_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 150.339599, -3.241117], [-0.054255, 150.287053, -3.254628], [0.0, 150.234508, -3.268138], [0.054255, 150.287053, -3.254628], [0.0, 150.339599, -3.241117], [0.0, 150.273545, -3.202087], [0.0, 150.234508, -3.268138], [0.0, 150.300564, -3.307174], [-0.054255, 150.287053, -3.254628], [0.0, 150.273545, -3.202087], [0.054255, 150.287053, -3.254628], [0.0, 150.300564, -3.307174], [0.0, 150.339599, -3.241117], [0.0, 150.273545, -3.202087], [0.0, 151.561589, -8.211756]]}]},
+			"C_chest_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_chest_FK_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 126.183497, -13.633966], [-0.0, 126.374837, -13.672026], [-0.0, 126.537047, -13.780416], [-0.0, 126.645437, -13.942626], [-0.0, 126.683497, -14.133966], [-0.0, 126.645437, -14.325306], [-0.0, 126.537047, -14.487516], [-0.0, 126.374837, -14.595906], [-0.0, 126.183497, -14.633966], [-0.0, 125.992157, -14.595906], [-0.0, 125.829947, -14.487516], [-0.0, 125.721557, -14.325306], [-0.0, 125.683497, -14.133966], [-0.0, 125.721557, -13.942626], [-0.0, 125.829947, -13.780416], [-0.0, 125.992157, -13.672026], [-0.0, 126.183497, -13.633966], [-0.0, 126.183497, -8.633966]]}]},
+			"L_shoulder_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [7.136189, 146.281169, -2.91024], [11.862721, 145.887888, -5.622284], [13.6681, 145.737668, -6.658195], [8.440995, 149.681815, -12.135815], [1.599717, 152.419875, -13.449359], [-4.242626, 152.905998, -10.097073], [-6.854413, 150.954501, -3.359442], [-5.238065, 147.310794, 4.19], [-3.432687, 147.160574, 3.154089], [1.293846, 146.767293, 0.442046], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
+			"L_ring_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[67.924534, 92.208765, -10.685612], [67.934798, 92.212117, -10.674707], [67.924753, 92.207818, -10.663931], [67.914489, 92.204466, -10.674836], [67.924534, 92.208765, -10.685612], [67.928468, 92.198149, -10.675253], [67.924753, 92.207818, -10.663931], [67.920819, 92.218435, -10.67429], [67.934798, 92.212117, -10.674707], [67.928468, 92.198149, -10.675253], [67.914489, 92.204466, -10.674836], [67.920819, 92.218435, -10.67429], [67.924534, 92.208765, -10.685612], [67.928468, 92.198149, -10.675253], [67.563857, 93.165199, -10.629346]]}, {"shapeName": "L_ring_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[68.521678, 93.526555, -10.634083], [68.517963, 93.536224, -10.622762], [68.521896, 93.525608, -10.612403], [68.525611, 93.515938, -10.623725], [68.521678, 93.526555, -10.634083], [68.53194, 93.529906, -10.623178], [68.521896, 93.525608, -10.612403], [68.511633, 93.522256, -10.623308], [68.517963, 93.536224, -10.622762], [68.53194, 93.529906, -10.623178], [68.525611, 93.515938, -10.623725], [68.511633, 93.522256, -10.623308], [68.521678, 93.526555, -10.634083], [68.53194, 93.529906, -10.623178], [67.563857, 93.165199, -10.629346]]}, {"shapeName": "L_ring_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[67.584321, 93.124365, -9.606637], [67.570342, 93.130683, -9.60622], [67.564012, 93.116715, -9.606766], [67.577991, 93.110397, -9.607183], [67.584321, 93.124365, -9.606637], [67.574276, 93.120067, -9.595862], [67.564012, 93.116715, -9.606766], [67.574057, 93.121013, -9.617542], [67.570342, 93.130683, -9.60622], [67.574276, 93.120067, -9.595862], [67.577991, 93.110397, -9.607183], [67.574057, 93.121013, -9.617542], [67.584321, 93.124365, -9.606637], [67.574276, 93.120067, -9.595862], [67.563857, 93.165199, -10.629346]]}]},
+			"L_ankleOffset_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ankleOffset_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.215227, 7.46518, -5.87991], [20.215227, 7.578997, -5.776981], [20.215227, 7.476068, -5.663163], [20.215227, 7.362251, -5.766092], [20.215227, 7.46518, -5.87991], [20.323727, 7.470624, -5.771536], [20.215227, 7.476068, -5.663163], [20.106717, 7.470624, -5.771536], [20.215227, 7.578997, -5.776981], [20.323727, 7.470624, -5.771536], [20.215227, 7.362251, -5.766092], [20.106717, 7.470624, -5.771536], [20.215227, 7.46518, -5.87991], [20.323727, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_ankleOffset_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.978517, 17.688996, -6.393531], [9.870007, 17.694441, -6.285158], [9.978517, 17.699885, -6.176784], [10.087027, 17.694441, -6.285158], [9.978517, 17.688996, -6.393531], [9.978517, 17.802804, -6.290602], [9.978517, 17.699885, -6.176784], [9.978517, 17.586067, -6.279713], [9.870007, 17.694441, -6.285158], [9.978517, 17.802804, -6.290602], [10.087027, 17.694441, -6.285158], [9.978517, 17.586067, -6.279713], [9.978517, 17.688996, -6.393531], [9.978517, 17.802804, -6.290602], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_ankleOffset_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.978516, 8.092619, 4.446836], [9.870006, 7.984245, 4.45228], [9.978516, 7.875872, 4.457725], [10.087026, 7.984245, 4.45228], [9.978516, 8.092619, 4.446836], [9.978516, 7.989689, 4.560644], [9.978516, 7.875872, 4.457725], [9.978516, 7.978801, 4.343907], [9.870006, 7.984245, 4.45228], [9.978516, 7.989689, 4.560644], [10.087026, 7.984245, 4.45228], [9.978516, 7.978801, 4.343907], [9.978516, 8.092619, 4.446836], [9.978516, 7.989689, 4.560644], [9.978517, 7.470624, -5.771536]]}]},
+			"L_shoulder_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_shoulder_PIV_CTLShape", "degree": 1, "form": 0, "points": [[11.263831, 145.974519, -5.367537], [11.324378, 146.011636, -5.267399], [11.335594, 145.89495, -5.230931], [11.275047, 145.857834, -5.331069], [11.263831, 145.974519, -5.367537], [11.374804, 145.928486, -5.342321], [11.335594, 145.89495, -5.230931], [11.224614, 145.940983, -5.256143], [11.324378, 146.011636, -5.267399], [11.374804, 145.928486, -5.342321], [11.275047, 145.857834, -5.331069], [11.224614, 145.940983, -5.256143], [11.263831, 145.974519, -5.367537], [11.374804, 145.928486, -5.342321], [4.215017, 146.524231, -1.234097]]}, {"shapeName": "L_shoulder_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[6.506042, 153.818775, 1.700885], [6.466825, 153.785239, 1.812279], [6.577805, 153.739206, 1.837491], [6.617022, 153.772742, 1.726097], [6.506042, 153.818775, 1.700885], [6.566587, 153.855884, 1.80102], [6.577805, 153.739206, 1.837491], [6.517258, 153.702089, 1.737353], [6.466825, 153.785239, 1.812279], [6.566587, 153.855884, 1.80102], [6.617022, 153.772742, 1.726097], [6.517258, 153.702089, 1.737353], [6.506042, 153.818775, 1.700885], [6.566587, 153.855884, 1.80102], [4.215017, 146.524231, -1.234097]]}, {"shapeName": "L_shoulder_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[7.624701, 142.847905, 5.241393], [7.524938, 142.777253, 5.252648], [7.575371, 142.694103, 5.177722], [7.675134, 142.764756, 5.166467], [7.624701, 142.847905, 5.241393], [7.635914, 142.731224, 5.277855], [7.575371, 142.694103, 5.177722], [7.564155, 142.810789, 5.141254], [7.524938, 142.777253, 5.252648], [7.635914, 142.731224, 5.277855], [7.675134, 142.764756, 5.166467], [7.564155, 142.810789, 5.141254], [7.624701, 142.847905, 5.241393], [7.635914, 142.731224, 5.277855], [4.215017, 146.524231, -1.234097]]}]},
+			"L_wrist_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[56.108304, 98.798532, -14.921067], [59.772845, 101.626209, -16.80976], [62.729174, 105.239135, -15.021278], [63.245509, 107.520904, -10.60328], [61.019397, 107.134894, -6.143773], [57.354856, 104.307217, -4.255081], [54.398527, 100.694291, -6.043563], [53.882191, 98.412522, -10.46156]]}]},
+			"L_loArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_loArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[44.230698, 118.665576, -15.039099], [44.281136, 118.736096, -14.952184], [44.203948, 118.688977, -14.869159], [44.15351, 118.618456, -14.956074], [44.230698, 118.665576, -15.039099], [44.27463, 118.614521, -14.936467], [44.203948, 118.688977, -14.869159], [44.160011, 118.740037, -14.971793], [44.281136, 118.736096, -14.952184], [44.27463, 118.614521, -14.936467], [44.15351, 118.618456, -14.956074], [44.160011, 118.740037, -14.971793], [44.230698, 118.665576, -15.039099], [44.27463, 118.614521, -14.936467], [38.810577, 124.598083, -16.620529]]}, {"shapeName": "L_loArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[44.843976, 130.135381, -16.521983], [44.773289, 130.209843, -16.454677], [44.817226, 130.158782, -16.352043], [44.887913, 130.084321, -16.419349], [44.843976, 130.135381, -16.521983], [44.894408, 130.205896, -16.435068], [44.817226, 130.158782, -16.352043], [44.766788, 130.088262, -16.438958], [44.773289, 130.209843, -16.454677], [44.894408, 130.205896, -16.435068], [44.887913, 130.084321, -16.419349], [44.766788, 130.088262, -16.438958], [44.843976, 130.135381, -16.521983], [44.894408, 130.205896, -16.435068], [38.810577, 124.598083, -16.620529]]}, {"shapeName": "L_loArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[37.612581, 125.760718, -8.602651], [37.491457, 125.764659, -8.62226], [37.484956, 125.643078, -8.606542], [37.606081, 125.639137, -8.586932], [37.612581, 125.760718, -8.602651], [37.535395, 125.713597, -8.519635], [37.484956, 125.643078, -8.606542], [37.562144, 125.690197, -8.689566], [37.491457, 125.764659, -8.62226], [37.535395, 125.713597, -8.519635], [37.606081, 125.639137, -8.586932], [37.562144, 125.690197, -8.689566], [37.612581, 125.760718, -8.602651], [37.535395, 125.713597, -8.519635], [38.810577, 124.598083, -16.620529]]}]},
+			"L_ring_A_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_A_CTLShape", "degree": 3, "form": 2, "points": [[61.289857, 100.887727, -11.407642], [61.381403, 100.963509, -11.453062], [61.460932, 101.048877, -11.402329], [61.481857, 101.093824, -11.285161], [61.431921, 101.072021, -11.170193], [61.340375, 100.99624, -11.124773], [61.260846, 100.910871, -11.175506], [61.23992, 100.865924, -11.292675]]}]},
+			"L_legBase_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 86.823346, -4.621343], [9.978517, 80.039522, -3.51314], [9.978517, 77.448326, -3.089843], [9.978517, 82.645065, 12.436596], [9.978517, 91.039204, 21.185882], [9.978517, 99.424511, 19.816062], [9.978517, 104.598018, 8.85037], [9.978517, 104.583671, -7.522663], [9.978517, 101.992476, -7.099366], [9.978517, 95.208652, -5.991163], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
+			"C_head_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_head_FK_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 164.1761, -9.968417], [0.0, 164.36744, -10.006477], [0.0, 164.52965, -10.114867], [0.0, 164.63804, -10.277077], [0.0, 164.6761, -10.468417], [0.0, 164.63804, -10.659757], [0.0, 164.52965, -10.821967], [0.0, 164.36744, -10.930357], [0.0, 164.1761, -10.968417], [0.0, 163.98476, -10.930357], [0.0, 163.82255, -10.821967], [0.0, 163.71416, -10.659757], [0.0, 163.6761, -10.468417], [0.0, 163.71416, -10.277077], [0.0, 163.82255, -10.114867], [0.0, 163.98476, -10.006477], [0.0, 164.1761, -9.968417], [0.0, 164.1761, -4.968417]]}]},
+			"L_middle_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.635372, 95.863556, -7.597983], [65.641884, 95.870551, -7.585976], [65.630227, 95.866084, -7.577052], [65.623715, 95.859089, -7.589058], [65.635372, 95.863556, -7.597983], [65.638147, 95.855694, -7.5851], [65.630227, 95.866084, -7.577052], [65.627451, 95.873947, -7.589934], [65.641884, 95.870551, -7.585976], [65.638147, 95.855694, -7.5851], [65.623715, 95.859089, -7.589058], [65.627451, 95.873947, -7.589934], [65.635372, 95.863556, -7.597983], [65.638147, 95.855694, -7.5851], [65.128259, 96.725837, -7.815532]]}, {"shapeName": "L_middle_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.987829, 97.265249, -7.680652], [65.979909, 97.27564, -7.672604], [65.982684, 97.267777, -7.659721], [65.990605, 97.257386, -7.66777], [65.987829, 97.265249, -7.680652], [65.99434, 97.272244, -7.668646], [65.982684, 97.267777, -7.659721], [65.976173, 97.260782, -7.671728], [65.979909, 97.27564, -7.672604], [65.99434, 97.272244, -7.668646], [65.990605, 97.257386, -7.66777], [65.976173, 97.260782, -7.671728], [65.987829, 97.265249, -7.680652], [65.99434, 97.272244, -7.668646], [65.128259, 96.725837, -7.815532]]}, {"shapeName": "L_middle_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[64.89466, 96.850821, -6.826679], [64.880228, 96.854217, -6.830637], [64.876492, 96.839358, -6.82976], [64.890924, 96.835963, -6.825803], [64.89466, 96.850821, -6.826679], [64.883004, 96.846354, -6.817755], [64.876492, 96.839358, -6.82976], [64.888148, 96.843826, -6.838685], [64.880228, 96.854217, -6.830637], [64.883004, 96.846354, -6.817755], [64.890924, 96.835963, -6.825803], [64.888148, 96.843826, -6.838685], [64.89466, 96.850821, -6.826679], [64.883004, 96.846354, -6.817755], [65.128259, 96.725837, -7.815532]]}]},
+			"C_midNeck_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_midNeck_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 157.878794, -6.643548], [5.118355, 157.91783, -6.577492], [5.118355, 157.851774, -6.538456], [5.118355, 157.812738, -6.604512], [5.118355, 157.878794, -6.643548], [5.172605, 157.865284, -6.591002], [5.118355, 157.851774, -6.538456], [5.0641, 157.865284, -6.591002], [5.118355, 157.91783, -6.577492], [5.172605, 157.865284, -6.591002], [5.118355, 157.812738, -6.604512], [5.0641, 157.865284, -6.591002], [5.118355, 157.878794, -6.643548], [5.172605, 157.865284, -6.591002], [0.0, 157.865284, -6.591002]]}, {"shapeName": "C_midNeck_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 162.835922, -5.369012], [-0.054255, 162.822412, -5.316466], [0.0, 162.808902, -5.26392], [0.054255, 162.822412, -5.316466], [0.0, 162.835922, -5.369012], [0.0, 162.874953, -5.302957], [0.0, 162.808902, -5.26392], [0.0, 162.769866, -5.329976], [-0.054255, 162.822412, -5.316466], [0.0, 162.874953, -5.302957], [0.054255, 162.822412, -5.316466], [0.0, 162.769866, -5.329976], [0.0, 162.835922, -5.369012], [0.0, 162.874953, -5.302957], [0.0, 157.865284, -6.591002]]}, {"shapeName": "C_midNeck_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 156.643294, -1.620364], [-0.054255, 156.590748, -1.633874], [0.0, 156.538202, -1.647384], [0.054255, 156.590748, -1.633874], [0.0, 156.643294, -1.620364], [0.0, 156.577239, -1.581333], [0.0, 156.538202, -1.647384], [0.0, 156.604259, -1.68642], [-0.054255, 156.590748, -1.633874], [0.0, 156.577239, -1.581333], [0.054255, 156.590748, -1.633874], [0.0, 156.604259, -1.68642], [0.0, 156.643294, -1.620364], [0.0, 156.577239, -1.581333], [0.0, 157.865284, -6.591002]]}]},
+			"L_toeTip_CTL": {"color": 20, "shapes": [{"shapeName": "L_toeTip_CTLShape", "degree": 1, "form": 0, "points": [[9.978516, 1.31319, 16.965843], [9.978516, 0.360054, 15.921079], [10.978516, 1.359004, 15.966893], [9.978516, 1.31319, 16.965843], [8.978516, 1.359004, 15.966893], [9.978516, 0.360054, 15.921079], [9.978516, 1.404818, 14.967943], [8.978516, 1.359004, 15.966893], [9.978516, 2.357954, 16.012706], [9.978516, 1.31319, 16.965843], [10.978516, 1.359004, 15.966893], [9.978516, 1.404818, 14.967943], [9.978516, 2.357954, 16.012706], [10.978516, 1.359004, 15.966893]]}]},
+			"C_chest_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[16.926019, 126.183497, -22.738982], [-0.0, 133.383497, -28.581458], [-16.926019, 126.183497, -22.738982], [-23.93699, 118.983497, -8.633966], [-16.926019, 126.183497, 5.47105], [-0.0, 133.383497, 11.313526], [16.926019, 126.183497, 5.47105], [23.93699, 118.983497, -8.633966]]}]},
+			"L_ring_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[65.618478, 96.164909, -10.486592], [65.6277, 96.170327, -10.475588], [65.618709, 96.163949, -10.464912], [65.609487, 96.158531, -10.475916], [65.618478, 96.164909, -10.486592], [65.624492, 96.155335, -10.476218], [65.618709, 96.163949, -10.464912], [65.612694, 96.173525, -10.475286], [65.6277, 96.170327, -10.475588], [65.624492, 96.155335, -10.476218], [65.609487, 96.158531, -10.475916], [65.612694, 96.173525, -10.475286], [65.618478, 96.164909, -10.486592], [65.624492, 96.155335, -10.476218], [65.062071, 97.022482, -10.43181]]}, {"shapeName": "L_ring_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.921063, 97.579376, -10.427169], [65.915279, 97.587991, -10.415864], [65.921294, 97.578416, -10.40549], [65.927078, 97.5698, -10.416795], [65.921063, 97.579376, -10.427169], [65.930284, 97.584793, -10.416166], [65.921294, 97.578416, -10.40549], [65.912072, 97.572998, -10.416494], [65.915279, 97.587991, -10.415864], [65.930284, 97.584793, -10.416166], [65.927078, 97.5698, -10.416795], [65.912072, 97.572998, -10.416494], [65.921063, 97.579376, -10.427169], [65.930284, 97.584793, -10.416166], [65.062071, 97.022482, -10.43181]]}, {"shapeName": "L_ring_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[65.082086, 96.983086, -9.409036], [65.06708, 96.986283, -9.408734], [65.063873, 96.97129, -9.409364], [65.078878, 96.968092, -9.409666], [65.082086, 96.983086, -9.409036], [65.073095, 96.976708, -9.398361], [65.063873, 96.97129, -9.409364], [65.072864, 96.977668, -9.42004], [65.06708, 96.986283, -9.408734], [65.073095, 96.976708, -9.398361], [65.078878, 96.968092, -9.409666], [65.072864, 96.977668, -9.42004], [65.082086, 96.983086, -9.409036], [65.073095, 96.976708, -9.398361], [65.062071, 97.022482, -10.43181]]}]},
+			"L_heel_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_heel_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.215227, 2.475595, -8.379932], [20.215227, 2.57902, -8.266565], [20.215227, 2.465653, -8.16314], [20.215227, 2.362228, -8.276508], [20.215227, 2.475595, -8.379932], [20.323727, 2.470624, -8.271536], [20.215227, 2.465653, -8.16314], [20.106717, 2.470624, -8.271536], [20.215227, 2.57902, -8.266565], [20.323727, 2.470624, -8.271536], [20.215227, 2.362228, -8.276508], [20.106717, 2.470624, -8.271536], [20.215227, 2.475595, -8.379932], [20.323727, 2.470624, -8.271536], [9.978517, 2.470624, -8.271536]]}, {"shapeName": "L_heel_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.978517, 12.701557, -7.910951], [9.870007, 12.696585, -7.802554], [9.978517, 12.691614, -7.694158], [10.087027, 12.696585, -7.802554], [9.978517, 12.701557, -7.910951], [9.978517, 12.804971, -7.797584], [9.978517, 12.691614, -7.694158], [9.978517, 12.588189, -7.807526], [9.870007, 12.696585, -7.802554], [9.978517, 12.804971, -7.797584], [10.087027, 12.696585, -7.802554], [9.978517, 12.588189, -7.807526], [9.978517, 12.701557, -7.910951], [9.978517, 12.804971, -7.797584], [9.978517, 2.470624, -8.271536]]}, {"shapeName": "L_heel_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.978517, 2.110038, 1.959396], [9.870007, 2.001642, 1.954425], [9.978517, 1.893246, 1.949454], [10.087027, 2.001642, 1.954425], [9.978517, 2.110038, 1.959396], [9.978517, 1.996671, 2.062811], [9.978517, 1.893246, 1.949454], [9.978517, 2.006613, 1.846029], [9.870007, 2.001642, 1.954425], [9.978517, 1.996671, 2.062811], [10.087027, 2.001642, 1.954425], [9.978517, 2.006613, 1.846029], [9.978517, 2.110038, 1.959396], [9.978517, 1.996671, 2.062811], [9.978517, 2.470624, -8.271536]]}]},
+			"L_middle_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_D_CTLShape", "degree": 3, "form": 2, "points": [[68.263169, 89.858161, -6.413377], [68.386585, 89.875818, -6.438742], [68.489957, 89.901471, -6.369153], [68.512733, 89.920093, -6.245375], [68.441569, 89.920776, -6.139915], [68.318154, 89.903119, -6.11455], [68.214781, 89.877466, -6.184138], [68.192006, 89.858844, -6.307917]]}]},
+			"L_arm_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[61.433087, 108.71553, -4.959725], [52.825726, 100.342522, -4.829448], [55.048496, 97.877969, -16.370511], [63.655857, 106.250976, -16.500789], [64.301975, 105.590904, -16.235392], [55.694614, 97.217896, -16.105115], [53.471844, 99.68245, -4.564052], [62.079204, 108.055457, -4.694329], [61.433087, 108.71553, -4.959725], [63.655857, 106.250976, -16.500789], [55.048496, 97.877969, -16.370511], [55.694614, 97.217896, -16.105115], [64.301975, 105.590904, -16.235392], [62.079204, 108.055457, -4.694329], [53.471844, 99.68245, -4.564052], [52.825726, 100.342522, -4.829448]]}]},
+			"L_middle_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_B_CTLShape", "degree": 3, "form": 2, "points": [[65.057721, 96.650061, -7.945588], [65.167667, 96.706472, -7.975857], [65.254528, 96.774226, -7.91221], [65.267423, 96.813635, -7.79193], [65.198797, 96.801612, -7.685476], [65.088851, 96.745202, -7.655207], [65.001989, 96.677447, -7.718854], [64.989095, 96.638039, -7.839134]]}]},
+			"C_neck_FK_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_C_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 161.213953, -10.892641], [0.0, 161.408743, -10.881856], [0.0, 161.592834, -10.94644], [0.0, 161.738202, -11.076549], [0.0, 161.82271, -11.252385], [0.0, 161.833495, -11.447175], [0.0, 161.768911, -11.631266], [0.0, 161.638801, -11.776634], [0.0, 161.462966, -11.861141], [0.0, 161.268176, -11.871926], [0.0, 161.084085, -11.807343], [0.0, 160.938717, -11.677233], [0.0, 160.85421, -11.501398], [0.0, 160.843425, -11.306607], [0.0, 160.908008, -11.122516], [0.0, 161.038118, -10.977148], [0.0, 161.213953, -10.892641], [0.0, 159.968889, -6.05014]]}]},
+			"C_lookAt_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_lookAt_PIV_CTLShape", "degree": 1, "form": 0, "points": [[10.23671, 168.925132, 70.820273], [10.23671, 169.033642, 70.928783], [10.23671, 168.925132, 71.037293], [10.23671, 168.816622, 70.928783], [10.23671, 168.925132, 70.820273], [10.34521, 168.925132, 70.928783], [10.23671, 168.925132, 71.037293], [10.1282, 168.925132, 70.928783], [10.23671, 169.033642, 70.928783], [10.34521, 168.925132, 70.928783], [10.23671, 168.816622, 70.928783], [10.1282, 168.925132, 70.928783], [10.23671, 168.925132, 70.820273], [10.34521, 168.925132, 70.928783], [0.0, 168.925132, 70.928783]]}, {"shapeName": "C_lookAt_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 179.161842, 70.820273], [-0.10851, 179.161842, 70.928783], [0.0, 179.161842, 71.037293], [0.10851, 179.161842, 70.928783], [0.0, 179.161842, 70.820273], [0.0, 179.270342, 70.928783], [0.0, 179.161842, 71.037293], [0.0, 179.053332, 70.928783], [-0.10851, 179.161842, 70.928783], [0.0, 179.270342, 70.928783], [0.10851, 179.161842, 70.928783], [0.0, 179.053332, 70.928783], [0.0, 179.161842, 70.820273], [0.0, 179.270342, 70.928783], [0.0, 168.925132, 70.928783]]}, {"shapeName": "C_lookAt_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 169.033642, 81.165493], [-0.10851, 168.925132, 81.165493], [0.0, 168.816622, 81.165493], [0.10851, 168.925132, 81.165493], [0.0, 169.033642, 81.165493], [0.0, 168.925132, 81.273993], [0.0, 168.816622, 81.165493], [0.0, 168.925132, 81.056983], [-0.10851, 168.925132, 81.165493], [0.0, 168.925132, 81.273993], [0.10851, 168.925132, 81.165493], [0.0, 168.925132, 81.056983], [0.0, 169.033642, 81.165493], [0.0, 168.925132, 81.273993], [0.0, 168.925132, 70.928783]]}]},
+			"L_legBase_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 85.625445, -4.425654], [9.978517, 76.903386, -3.000822], [9.978517, 73.571849, -2.456583], [9.978517, 80.25337, 17.505981], [9.978517, 91.045834, 28.755064], [9.978517, 101.826943, 26.993866], [9.978517, 108.478595, 12.895119], [9.978517, 108.460149, -8.155923], [9.978517, 105.128612, -7.611684], [9.978517, 96.406553, -6.186852], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
+			"C_hip_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_hip_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 98.683497, -8.688221], [5.118355, 98.737752, -8.633966], [5.118355, 98.683497, -8.579711], [5.118355, 98.629242, -8.633966], [5.118355, 98.683497, -8.688221], [5.172605, 98.683497, -8.633966], [5.118355, 98.683497, -8.579711], [5.0641, 98.683497, -8.633966], [5.118355, 98.737752, -8.633966], [5.172605, 98.683497, -8.633966], [5.118355, 98.629242, -8.633966], [5.0641, 98.683497, -8.633966], [5.118355, 98.683497, -8.688221], [5.172605, 98.683497, -8.633966], [-0.0, 98.683497, -8.633966]]}, {"shapeName": "C_hip_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 103.801852, -8.688221], [-0.054255, 103.801852, -8.633966], [-0.0, 103.801852, -8.579711], [0.054255, 103.801852, -8.633966], [-0.0, 103.801852, -8.688221], [-0.0, 103.856102, -8.633966], [-0.0, 103.801852, -8.579711], [-0.0, 103.747597, -8.633966], [-0.054255, 103.801852, -8.633966], [-0.0, 103.856102, -8.633966], [0.054255, 103.801852, -8.633966], [-0.0, 103.747597, -8.633966], [-0.0, 103.801852, -8.688221], [-0.0, 103.856102, -8.633966], [-0.0, 98.683497, -8.633966]]}, {"shapeName": "C_hip_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 98.737752, -3.515611], [-0.054255, 98.683497, -3.515611], [-0.0, 98.629242, -3.515611], [0.054255, 98.683497, -3.515611], [-0.0, 98.737752, -3.515611], [-0.0, 98.683497, -3.461361], [-0.0, 98.629242, -3.515611], [-0.0, 98.683497, -3.569866], [-0.054255, 98.683497, -3.515611], [-0.0, 98.683497, -3.461361], [0.054255, 98.683497, -3.515611], [-0.0, 98.683497, -3.569866], [-0.0, 98.737752, -3.515611], [-0.0, 98.683497, -3.461361], [-0.0, 98.683497, -8.633966]]}]},
+			"L_legEnd_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_legEnd_FK_CTLShape", "degree": 3, "form": 2, "points": [[18.341656, 6.188183, 2.49269], [9.978517, 5.65698, 5.915838], [1.615377, 6.188183, 2.49269], [-1.848741, 7.470624, -5.771536], [1.615377, 8.753065, -14.035763], [9.978517, 9.284268, -17.45891], [18.341656, 8.753065, -14.035763], [21.805774, 7.470624, -5.771536]]}]},
+			"L_innerBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_innerBall_CTLShape", "degree": 1, "form": 0, "points": [[2.978517, 2.42481, 5.227414], [2.978517, 1.471674, 4.18265], [3.978517, 2.470624, 4.228464], [2.978517, 2.42481, 5.227414], [1.978517, 2.470624, 4.228464], [2.978517, 1.471674, 4.18265], [2.978517, 2.516438, 3.229514], [1.978517, 2.470624, 4.228464], [2.978517, 3.469574, 4.274277], [2.978517, 2.42481, 5.227414], [3.978517, 2.470624, 4.228464], [2.978517, 2.516438, 3.229514], [2.978517, 3.469574, 4.274277], [3.978517, 2.470624, 4.228464]]}]},
+			"C_neckBase_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[18.17069, 155.3322, -22.87702], [0.0, 149.408053, -30.876291], [-18.17069, 155.3322, -22.87702], [-25.697219, 159.047572, -6.287022], [-18.17069, 147.790978, 6.453509], [0.0, 138.743161, 10.603313], [18.17069, 147.790978, 6.453509], [25.697219, 159.047572, -6.287022]]}]},
+			"C_world_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_world_PIV_CTLShape", "degree": 1, "form": 0, "points": [[1.023671, 0.0, -0.010851], [1.023671, 0.010851, 0.0], [1.023671, 0.0, 0.010851], [1.023671, -0.010851, 0.0], [1.023671, 0.0, -0.010851], [1.034521, 0.0, 0.0], [1.023671, 0.0, 0.010851], [1.01282, 0.0, 0.0], [1.023671, 0.010851, 0.0], [1.034521, 0.0, 0.0], [1.023671, -0.010851, 0.0], [1.01282, 0.0, 0.0], [1.023671, 0.0, -0.010851], [1.034521, 0.0, 0.0], [0.0, 0.0, 0.0]]}, {"shapeName": "C_world_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 1.023671, -0.010851], [-0.010851, 1.023671, 0.0], [0.0, 1.023671, 0.010851], [0.010851, 1.023671, 0.0], [0.0, 1.023671, -0.010851], [0.0, 1.034521, 0.0], [0.0, 1.023671, 0.010851], [0.0, 1.01282, 0.0], [-0.010851, 1.023671, 0.0], [0.0, 1.034521, 0.0], [0.010851, 1.023671, 0.0], [0.0, 1.01282, 0.0], [0.0, 1.023671, -0.010851], [0.0, 1.034521, 0.0], [0.0, 0.0, 0.0]]}, {"shapeName": "C_world_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 0.010851, 1.023671], [-0.010851, 0.0, 1.023671], [0.0, -0.010851, 1.023671], [0.010851, 0.0, 1.023671], [0.0, 0.010851, 1.023671], [0.0, 0.0, 1.034521], [0.0, -0.010851, 1.023671], [0.0, 0.0, 1.01282], [-0.010851, 0.0, 1.023671], [0.0, 0.0, 1.034521], [0.010851, 0.0, 1.023671], [0.0, 0.0, 1.01282], [0.0, 0.010851, 1.023671], [0.0, 0.0, 1.034521], [0.0, 0.0, 0.0]]}]},
+			"L_arm_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.085716, 97.324185, -8.354311], [64.131868, 97.402526, -8.271826], [64.053581, 97.359816, -8.187457], [64.007428, 97.281474, -8.269943], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [64.053581, 97.359816, -8.187457], [64.011286, 97.401623, -8.294857], [64.131868, 97.402526, -8.271826], [64.128005, 97.282383, -8.246914], [64.007428, 97.281474, -8.269943], [64.011286, 97.401623, -8.294857], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.449692, 108.658855, -10.70469], [64.375262, 108.736293, -10.645235], [64.417556, 108.694486, -10.537836], [64.491986, 108.617048, -10.59729], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [64.417556, 108.694486, -10.537836], [64.371404, 108.616144, -10.620321], [64.375262, 108.736293, -10.645235], [64.495839, 108.737191, -10.622204], [64.491986, 108.617048, -10.59729], [64.371404, 108.616144, -10.620321], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.110257, 104.707937, -2.662955], [56.989674, 104.707033, -2.685985], [56.985816, 104.586885, -2.661071], [57.106398, 104.587788, -2.63804], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [56.985816, 104.586885, -2.661071], [57.064104, 104.629595, -2.74544], [56.989674, 104.707033, -2.685985], [57.03197, 104.665225, -2.578594], [57.106398, 104.587788, -2.63804], [57.064104, 104.629595, -2.74544], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [58.56385, 102.966713, -10.53242]]}]},
+			"L_arm_PV_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_PV_CTLShape", "degree": 1, "form": 0, "points": [[38.873046, 127.107404, -95.797616], [38.873046, 125.507404, -95.797616], [38.873046, 125.507404, -97.397616], [38.873046, 127.107404, -97.397616], [40.473046, 127.107404, -97.397616], [40.473046, 125.507404, -97.397616], [40.473046, 125.507404, -95.797616], [40.473046, 127.107404, -95.797616], [38.873046, 127.107404, -95.797616], [38.873046, 127.107404, -97.397616], [38.873046, 125.507404, -97.397616], [40.473046, 125.507404, -97.397616], [40.473046, 127.107404, -97.397616], [40.473046, 127.107404, -95.797616], [40.473046, 125.507404, -95.797616], [38.873046, 125.507404, -95.797616]]}]},
+			"C_cog_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[20.985174, 98.683497, -7.123772], [20.96304, 98.683497, -10.425161], [15.266391, 98.683497, -12.407435], [14.4879, 98.683497, -14.750111], [17.865015, 98.683497, -19.746977], [15.906618, 98.683497, -22.404842], [10.131912, 98.683497, -20.663648], [8.125677, 98.683497, -22.101413], [7.921053, 98.683497, -28.125368], [4.774392, 98.683497, -29.124527], [1.127385, 98.683497, -24.324914], [-1.340283, 98.683497, -24.308597], [-5.048505, 98.683497, -29.058713], [-8.181474, 98.683497, -28.017491], [-8.307768, 98.683497, -21.99278], [-10.294305, 98.683497, -20.528618], [-16.089696, 98.683497, -22.190495], [-18.012309, 98.683497, -19.506611], [-14.569632, 98.683497, -14.558024], [-15.316245, 98.683497, -12.205289], [-20.985174, 98.683497, -10.14416], [-20.96304, 98.683497, -6.842771], [-15.266391, 98.683497, -4.860497], [-14.4879, 98.683497, -2.517821], [-17.865015, 98.683497, 2.479045], [-15.906618, 98.683497, 5.13691], [-10.131912, 98.683497, 3.395716], [-8.125677, 98.683497, 4.833481], [-7.921053, 98.683497, 10.857436], [-4.774392, 98.683497, 11.856595], [-1.127385, 98.683497, 7.056982], [1.340283, 98.683497, 7.040665], [5.048505, 98.683497, 11.790781], [8.181474, 98.683497, 10.749559], [8.307768, 98.683497, 4.724848], [10.294305, 98.683497, 3.260686], [16.089696, 98.683497, 4.922563], [18.012309, 98.683497, 2.238679], [14.569632, 98.683497, -2.709908], [15.316245, 98.683497, -5.062643], [20.985174, 98.683497, -7.123772]]}]},
+			"C_neck_FK_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_A_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 152.806653, -13.054257], [0.0, 153.001443, -13.043472], [0.0, 153.185534, -13.108055], [0.0, 153.330902, -13.238165], [0.0, 153.415409, -13.414], [0.0, 153.426194, -13.608791], [0.0, 153.361611, -13.792881], [0.0, 153.231501, -13.93825], [0.0, 153.055666, -14.022757], [0.0, 152.860875, -14.033542], [0.0, 152.676784, -13.968958], [0.0, 152.531416, -13.838848], [0.0, 152.446909, -13.663013], [0.0, 152.436124, -13.468223], [0.0, 152.500708, -13.284132], [0.0, 152.630817, -13.138764], [0.0, 152.806653, -13.054257], [0.0, 151.561589, -8.211756]]}]},
+			"L_toe_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_toe_FK_CTLShape", "degree": 3, "form": 2, "points": [[13.896576, 5.583436, 7.585505], [9.978516, 7.205447, 7.639519], [6.060456, 5.583436, 7.585505], [4.437546, 1.667547, 7.455104], [6.060456, -2.248343, 7.324703], [9.978516, -3.870353, 7.270689], [13.896576, -2.248343, 7.324703], [15.519486, 1.667547, 7.455104]]}]},
+			"C_head_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.365029, 184.114186, -4.968417], [0.0, 189.318872, -4.968417], [-13.365029, 184.114186, -4.968417], [-18.900992, 171.548932, -4.968417], [-13.365029, 158.983679, -4.968417], [0.0, 153.778992, -4.968417], [13.365029, 158.983679, -4.968417], [18.900992, 171.548932, -4.968417]]}]},
+			"C_chest_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.694514, 126.183497, -19.212728], [-0.0, 131.583497, -23.594585], [-12.694514, 126.183497, -19.212728], [-17.952743, 120.783497, -8.633966], [-12.694514, 126.183497, 1.944796], [-0.0, 131.583497, 6.326653], [12.694514, 126.183497, 1.944796], [17.952743, 120.783497, -8.633966]]}]},
+			"C_lookAt_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_lookAt_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-4.482621, 169.206166, 71.209817], [-4.482621, 168.644098, 71.209817], [-4.482621, 168.644098, 70.647749], [-4.482621, 169.206166, 70.647749], [-4.482621, 169.206166, 71.209817], [4.482621, 169.206166, 71.209817], [4.482621, 168.644098, 71.209817], [4.482621, 168.644098, 70.647749], [4.482621, 169.206166, 70.647749], [4.482621, 169.206166, 71.209817], [4.482621, 168.644098, 71.209817], [-4.482621, 168.644098, 71.209817], [-4.482621, 168.644098, 70.647749], [4.482621, 168.644098, 70.647749], [4.482621, 169.206166, 70.647749], [-4.482621, 169.206166, 70.647749], [-4.482621, 169.206166, 71.209817], [-0.279, 169.204132, 71.207783], [-0.281034, 164.442511, 71.209817], [-0.281034, 164.442511, 70.647749], [0.281034, 164.442511, 70.647749], [0.281034, 164.442511, 71.209817], [-0.281034, 164.442511, 71.209817], [-0.281034, 173.407753, 71.209817], [0.281034, 173.407753, 71.209817], [0.281034, 173.407753, 70.647749], [-0.281034, 173.407753, 70.647749], [-0.281034, 173.407753, 71.209817], [-0.281034, 173.407753, 70.647749], [-0.281034, 164.442511, 70.647749], [0.281034, 164.442511, 70.647749], [0.281034, 173.407753, 70.647749], [0.281034, 173.407753, 71.209817], [0.281034, 164.442511, 71.209817], [0.279, 168.646132, 71.207783], [0.281034, 168.644098, 75.411404], [-0.281034, 168.644098, 75.411404], [-0.281034, 169.206166, 75.411404], [0.281034, 169.206166, 75.411404], [0.281034, 168.644098, 75.411404], [0.281034, 168.644098, 66.446162], [0.281034, 169.206166, 66.446162], [-0.281034, 169.206166, 66.446162], [-0.281034, 168.644098, 66.446162], [0.281034, 168.644098, 66.446162], [-0.281034, 168.644098, 66.446162], [-0.281034, 168.644098, 75.411404], [-0.281034, 169.206166, 75.411404], [-0.281034, 169.206166, 66.446162], [0.281034, 169.206166, 66.446162], [0.281034, 169.206166, 75.411404]]}]},
+			"L_ring_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[62.052879, 100.240345, -11.139694], [62.059436, 100.248852, -11.128734], [62.0502, 100.242482, -11.118264], [62.043643, 100.233975, -11.129224], [62.052879, 100.240345, -11.139694], [62.05886, 100.233587, -11.127284], [62.0502, 100.242482, -11.118264], [62.044219, 100.249242, -11.130675], [62.059436, 100.248852, -11.128734], [62.05886, 100.233587, -11.127284], [62.043643, 100.233975, -11.129224], [62.044219, 100.249242, -11.130675], [62.052879, 100.240345, -11.139694], [62.05886, 100.233587, -11.127284], [61.360889, 100.979874, -11.288918]]}, {"shapeName": "L_ring_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[62.107174, 101.680533, -11.276498], [62.098514, 101.689429, -11.267478], [62.104496, 101.68267, -11.255068], [62.113156, 101.673774, -11.264088], [62.107174, 101.680533, -11.276498], [62.113731, 101.689039, -11.265538], [62.104496, 101.68267, -11.255068], [62.097939, 101.674163, -11.266028], [62.098514, 101.689429, -11.267478], [62.113731, 101.689039, -11.265538], [62.113156, 101.673774, -11.264088], [62.097939, 101.674163, -11.266028], [62.107174, 101.680533, -11.276498], [62.113731, 101.689039, -11.265538], [61.360889, 100.979874, -11.288918]]}, {"shapeName": "L_ring_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.242458, 101.088094, -10.277838], [61.227241, 101.088484, -10.279778], [61.226665, 101.073218, -10.278328], [61.241883, 101.072828, -10.276388], [61.242458, 101.088094, -10.277838], [61.233223, 101.081724, -10.267369], [61.226665, 101.073218, -10.278328], [61.235901, 101.079588, -10.288798], [61.227241, 101.088484, -10.279778], [61.233223, 101.081724, -10.267369], [61.241883, 101.072828, -10.276388], [61.235901, 101.079588, -10.288798], [61.242458, 101.088094, -10.277838], [61.233223, 101.081724, -10.267369], [61.360889, 100.979874, -11.288918]]}]},
+			"C_torso_FK_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_D_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 116.183497, -13.633966], [-0.0, 116.374837, -13.672026], [-0.0, 116.537047, -13.780416], [-0.0, 116.645437, -13.942626], [-0.0, 116.683497, -14.133966], [-0.0, 116.645437, -14.325306], [-0.0, 116.537047, -14.487516], [-0.0, 116.374837, -14.595906], [-0.0, 116.183497, -14.633966], [-0.0, 115.992157, -14.595906], [-0.0, 115.829947, -14.487516], [-0.0, 115.721557, -14.325306], [-0.0, 115.683497, -14.133966], [-0.0, 115.721557, -13.942626], [-0.0, 115.829947, -13.780416], [-0.0, 115.992157, -13.672026], [-0.0, 116.183497, -13.633966], [-0.0, 116.183497, -8.633966]]}]},
+			"L_wrist_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_wrist_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.085716, 97.324185, -8.354311], [64.131868, 97.402526, -8.271826], [64.053581, 97.359816, -8.187457], [64.007428, 97.281474, -8.269943], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [64.053581, 97.359816, -8.187457], [64.011286, 97.401623, -8.294857], [64.131868, 97.402526, -8.271826], [64.128005, 97.282383, -8.246914], [64.007428, 97.281474, -8.269943], [64.011286, 97.401623, -8.294857], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.449692, 108.658855, -10.70469], [64.375262, 108.736293, -10.645235], [64.417556, 108.694486, -10.537836], [64.491986, 108.617048, -10.59729], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [64.417556, 108.694486, -10.537836], [64.371404, 108.616144, -10.620321], [64.375262, 108.736293, -10.645235], [64.495839, 108.737191, -10.622204], [64.491986, 108.617048, -10.59729], [64.371404, 108.616144, -10.620321], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.110257, 104.707937, -2.662955], [56.989674, 104.707033, -2.685985], [56.985816, 104.586885, -2.661071], [57.106398, 104.587788, -2.63804], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [56.985816, 104.586885, -2.661071], [57.064104, 104.629595, -2.74544], [56.989674, 104.707033, -2.685985], [57.03197, 104.665225, -2.578594], [57.106398, 104.587788, -2.63804], [57.064104, 104.629595, -2.74544], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [58.56385, 102.966713, -10.53242]]}]},
+			"L_heel_CTL": {"color": 20, "shapes": [{"shapeName": "L_heel_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 2.516438, -9.270486], [9.978517, 1.563301, -10.31525], [10.978517, 2.562251, -10.269436], [9.978517, 2.516438, -9.270486], [8.978517, 2.562251, -10.269436], [9.978517, 1.563301, -10.31525], [9.978517, 2.608065, -11.268386], [8.978517, 2.562251, -10.269436], [9.978517, 3.561201, -10.223623], [9.978517, 2.516438, -9.270486], [10.978517, 2.562251, -10.269436], [9.978517, 2.608065, -11.268386], [9.978517, 3.561201, -10.223623], [10.978517, 2.562251, -10.269436]]}]},
+			"world_D_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-0.014374, 0.0, 68.739785], [-30.546434, 0.0, 38.165198], [-22.901408, 0.0, 38.166793], [-22.898213, 0.0, 22.882691], [-38.182315, 0.0, 22.879497], [-38.183915, 0.0, 30.524522], [-68.739785, 0.0, -0.014374], [-38.165198, 0.0, -30.546434], [-38.166793, 0.0, -22.901408], [-22.882691, 0.0, -22.898213], [-22.879497, 0.0, -38.182315], [-30.524522, 0.0, -38.183915], [0.014374, 0.0, -68.739785], [30.546434, 0.0, -38.165198], [22.901408, 0.0, -38.166793], [22.898213, 0.0, -22.882691], [38.182315, 0.0, -22.879497], [38.183915, 0.0, -30.524522], [68.739785, 0.0, 0.014374], [38.165198, 0.0, 30.546434], [38.166793, 0.0, 22.901408], [22.882691, 0.0, 22.898213], [22.879497, 0.0, 38.182315], [30.524522, 0.0, 38.183915], [-0.014374, 0.0, 68.739785], [-5.998275, 0.083292, 62.860487], [-5.474606, 0.0, 62.301353], [-5.47413, 0.0, 60.016769], [-4.998175, 0.0, 60.01687], [-5.028404, 0.0, 62.319296], [-4.68925, 0.0, 62.146828], [-4.700941, 0.0, 61.147323], [-4.219037, 0.0, 61.147424], [-4.219245, 0.0, 62.146929], [-3.921809, 0.0, 62.319522], [-3.921321, 0.0, 59.981394], [-3.439417, 0.0, 59.981495], [-3.439916, 0.0, 62.379118], [-3.826713, 0.0, 62.765754], [-4.421591, 0.0, 62.468157], [-5.076095, 0.0, 62.765492], [-5.474612, 0.0, 62.313251], [-5.076095, 0.0, 62.765492], [-4.427541, 0.0, 62.474106], [-3.826707, 0.0, 62.759804], [-2.666573, 0.0, 62.765998], [-3.059152, 0.0, 62.379201], [-3.058736, 0.0, 60.374241], [-2.66599, 0.0, 59.981662], [-1.410659, 0.0, 59.981923], [-1.024029, 0.0, 60.374663], [-1.024445, 0.0, 62.379623], [-1.411242, 0.0, 62.766259], [-2.666573, 0.0, 62.765998], [-2.517742, 0.0, 62.31982], [-2.57685, 0.0, 60.475483], [-1.500008, 0.0, 60.487607], [-1.506338, 0.0, 62.320028], [-2.523691, 0.0, 62.331719], [-2.666573, 0.0, 62.765998], [-1.411242, 0.0, 62.766259], [-0.608068, 0.0, 62.766426], [-0.637232, 0.0, 59.982084], [0.719239, 0.0, 59.982364], [1.111819, 0.0, 60.37511], [1.111646, 0.0, 61.21398], [0.712951, 0.0, 61.60061], [0.689147, 0.0, 61.630351], [1.468291, 0.0, 62.754961], [1.468285, 0.0, 62.76686], [0.909038, 0.0, 62.766741], [0.1299, 0.0, 61.636188], [-0.161622, 0.0, 61.636128], [-0.161373, 0.0, 60.446241], [0.588256, 0.0, 60.446396], [0.594057, 0.0, 61.154379], [-0.161521, 0.0, 61.154224], [-0.16186, 0.0, 62.766521], [-0.608068, 0.0, 62.766426], [3.812363, 0.0, 62.767348], [3.812458, 0.0, 62.32114], [2.253706, 0.0, 62.314864], [2.254194, 0.0, 59.982685], [1.772289, 0.0, 59.98259], [1.771706, 0.0, 62.76692], [5.841121, 0.0, 62.767771], [6.19817, 0.0, 62.381135], [6.228334, 0.0, 60.376181], [5.841704, 0.0, 59.98344], [4.19371, 0.0, 59.983095], [4.193127, 0.0, 62.767431], [4.681076, 0.0, 62.321325], [4.66957, 0.0, 60.435348], [5.686923, 0.0, 60.435562], [5.674632, 0.0, 62.309634], [4.663228, 0.0, 62.333218], [4.181228, 0.0, 62.767425]]}]},
+			"L_ring_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_B_CTLShape", "degree": 3, "form": 2, "points": [[64.962172, 96.963793, -10.551008], [65.0603, 97.029837, -10.597867], [65.159464, 97.091572, -10.547453], [65.201577, 97.112835, -10.429297], [65.161969, 97.081171, -10.312613], [65.063842, 97.015127, -10.265754], [64.964677, 96.953391, -10.316168], [64.922564, 96.932128, -10.434324]]}]},
+			"L_pinky_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_A_CTLShape", "degree": 3, "form": 2, "points": [[61.410455, 100.96827, -12.853165], [61.504836, 101.042558, -12.895119], [61.595029, 101.113252, -12.839854], [61.628199, 101.138941, -12.719744], [61.584917, 101.104576, -12.605148], [61.490536, 101.030288, -12.563195], [61.400344, 100.959594, -12.61846], [61.367173, 100.933905, -12.738569]]}]},
+			"L_middle_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_A_CTLShape", "degree": 3, "form": 2, "points": [[61.041234, 101.118892, -9.693871], [61.138707, 101.192599, -9.729266], [61.210959, 101.28002, -9.671615], [61.215666, 101.329945, -9.554688], [61.15007, 101.313129, -9.44698], [61.052597, 101.239422, -9.411586], [60.980345, 101.152001, -9.469237], [60.975638, 101.102076, -9.586164]]}]},
+			"L_pinky_D_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_D_CTLShape", "degree": 3, "form": 2, "points": [[66.787584, 92.426302, -14.645442], [66.895311, 92.460255, -14.703996], [67.017796, 92.466947, -14.670241], [67.083287, 92.442456, -14.563951], [67.053423, 92.40113, -14.447389], [66.945696, 92.367176, -14.388835], [66.823211, 92.360485, -14.42259], [66.75772, 92.384975, -14.528879]]}]},
+			"L_arm_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[62.252868, 110.358049, -3.367527], [51.186262, 99.592754, -3.200027], [54.044109, 96.424042, -18.038537], [65.110716, 107.189337, -18.206037], [65.941439, 106.340672, -17.864813], [54.874832, 95.575377, -17.697313], [52.016985, 98.744089, -2.858803], [63.083591, 109.509384, -3.026303], [62.252868, 110.358049, -3.367527], [65.110716, 107.189337, -18.206037], [54.044109, 96.424042, -18.038537], [54.874832, 95.575377, -17.697313], [65.941439, 106.340672, -17.864813], [63.083591, 109.509384, -3.026303], [52.016985, 98.744089, -2.858803], [51.186262, 99.592754, -3.200027]]}]},
+			"C_torso_FK_E_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_E_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 126.301852, -8.688221], [-0.054255, 126.301852, -8.633966], [-0.0, 126.301852, -8.579711], [0.054255, 126.301852, -8.633966], [-0.0, 126.301852, -8.688221], [-0.0, 126.356102, -8.633966], [-0.0, 126.301852, -8.579711], [-0.0, 126.247597, -8.633966], [-0.054255, 126.301852, -8.633966], [-0.0, 126.356102, -8.633966], [0.054255, 126.301852, -8.633966], [-0.0, 126.247597, -8.633966], [-0.0, 126.301852, -8.688221], [-0.0, 126.356102, -8.633966], [-0.0, 121.183497, -8.633966]]}, {"shapeName": "C_torso_FK_E_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 121.183497, -8.688221], [-5.118355, 121.129242, -8.633966], [-5.118355, 121.183497, -8.579711], [-5.118355, 121.237752, -8.633966], [-5.118355, 121.183497, -8.688221], [-5.172605, 121.183497, -8.633966], [-5.118355, 121.183497, -8.579711], [-5.0641, 121.183497, -8.633966], [-5.118355, 121.129242, -8.633966], [-5.172605, 121.183497, -8.633966], [-5.118355, 121.237752, -8.633966], [-5.0641, 121.183497, -8.633966], [-5.118355, 121.183497, -8.688221], [-5.172605, 121.183497, -8.633966], [-0.0, 121.183497, -8.633966]]}, {"shapeName": "C_torso_FK_E_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 121.183497, -3.515611], [-0.0, 121.129242, -3.515611], [0.054255, 121.183497, -3.515611], [-0.0, 121.237752, -3.515611], [-0.054255, 121.183497, -3.515611], [-0.0, 121.183497, -3.461361], [0.054255, 121.183497, -3.515611], [-0.0, 121.183497, -3.569866], [-0.0, 121.129242, -3.515611], [-0.0, 121.183497, -3.461361], [-0.0, 121.237752, -3.515611], [-0.0, 121.183497, -3.569866], [-0.054255, 121.183497, -3.515611], [-0.0, 121.183497, -3.461361], [-0.0, 121.183497, -8.633966]]}]},
+			"L_leg_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[27.397811, 10.060679, -5.369612], [26.688565, 10.060679, -5.369612], [26.554247, 9.341506, -5.481213], [26.050256, 9.135156, -5.513235], [25.440619, 9.549836, -5.448885], [24.939101, 9.05425, -5.52579], [25.358722, 8.45189, -5.619264], [25.149992, 7.953794, -5.696558], [24.422144, 7.821063, -5.717155], [24.422144, 7.120185, -5.825917], [25.149992, 6.987454, -5.846515], [25.358722, 6.489424, -5.923799], [24.939101, 5.886998, -6.017283], [25.440619, 5.391412, -6.094188], [26.050256, 5.806092, -6.029838], [26.554247, 5.599742, -6.061859], [26.688565, 4.880569, -6.173461], [27.397811, 4.880569, -6.173461], [27.532196, 5.599742, -6.061859], [28.036187, 5.806092, -6.029838], [28.645824, 5.391412, -6.094188], [29.147297, 5.886998, -6.017283], [28.727721, 6.489424, -5.923799], [28.936451, 6.987454, -5.846515], [29.664232, 7.120185, -5.825917], [29.664232, 7.821063, -5.717155], [28.936451, 7.953794, -5.696558], [28.727721, 8.45189, -5.619264], [29.147297, 9.05425, -5.52579], [28.645824, 9.549836, -5.448885], [28.036187, 9.135156, -5.513235], [27.532196, 9.341506, -5.481213], [27.397811, 10.060679, -5.369612]]}, {"shapeName": "L_leg_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[27.813043, 8.231384, -5.653482], [28.131941, 7.470624, -5.771536], [27.813043, 6.709864, -5.889591], [27.043199, 6.394803, -5.938482], [26.2734, 6.709864, -5.889591], [25.954502, 7.470624, -5.771536], [26.2734, 8.231384, -5.653482], [27.043199, 8.546445, -5.604591]]}, {"shapeName": "L_leg_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[24.422144, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
+			"C_chest_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_CTLShape", "degree": 3, "form": 2, "points": [[21.157524, 126.183497, -26.265236], [-0.0, 135.183497, -33.568331], [-21.157524, 126.183497, -26.265236], [-29.921238, 117.183497, -8.633966], [-21.157524, 126.183497, 8.997304], [-0.0, 135.183497, 16.300399], [21.157524, 126.183497, 8.997304], [29.921238, 117.183497, -8.633966]]}]},
+			"C_neck_FK_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 156.532227, -6.989766], [-0.054255, 156.518717, -6.93722], [0.0, 156.505207, -6.884674], [0.054255, 156.518717, -6.93722], [0.0, 156.532227, -6.989766], [0.0, 156.571258, -6.923711], [0.0, 156.505207, -6.884674], [0.0, 156.466171, -6.95073], [-0.054255, 156.518717, -6.93722], [0.0, 156.571258, -6.923711], [0.054255, 156.518717, -6.93722], [0.0, 156.466171, -6.95073], [0.0, 156.532227, -6.989766], [0.0, 156.571258, -6.923711], [0.0, 151.561589, -8.211756]]}, {"shapeName": "C_neck_FK_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 151.575099, -8.264302], [-5.118355, 151.509043, -8.225266], [-5.118355, 151.548079, -8.15921], [-5.118355, 151.614135, -8.198245], [-5.118355, 151.575099, -8.264302], [-5.172605, 151.561589, -8.211756], [-5.118355, 151.548079, -8.15921], [-5.0641, 151.561589, -8.211756], [-5.118355, 151.509043, -8.225266], [-5.172605, 151.561589, -8.211756], [-5.118355, 151.614135, -8.198245], [-5.0641, 151.561589, -8.211756], [-5.118355, 151.575099, -8.264302], [-5.172605, 151.561589, -8.211756], [0.0, 151.561589, -8.211756]]}, {"shapeName": "C_neck_FK_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 150.287053, -3.254628], [0.0, 150.234508, -3.268138], [0.054255, 150.287053, -3.254628], [0.0, 150.339599, -3.241117], [-0.054255, 150.287053, -3.254628], [0.0, 150.273545, -3.202087], [0.054255, 150.287053, -3.254628], [0.0, 150.300564, -3.307174], [0.0, 150.234508, -3.268138], [0.0, 150.273545, -3.202087], [0.0, 150.339599, -3.241117], [0.0, 150.300564, -3.307174], [-0.054255, 150.287053, -3.254628], [0.0, 150.273545, -3.202087], [0.0, 151.561589, -8.211756]]}]},
+			"C_chest_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_chest_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 126.183497, -8.688221], [5.118355, 126.237752, -8.633966], [5.118355, 126.183497, -8.579711], [5.118355, 126.129242, -8.633966], [5.118355, 126.183497, -8.688221], [5.172605, 126.183497, -8.633966], [5.118355, 126.183497, -8.579711], [5.0641, 126.183497, -8.633966], [5.118355, 126.237752, -8.633966], [5.172605, 126.183497, -8.633966], [5.118355, 126.129242, -8.633966], [5.0641, 126.183497, -8.633966], [5.118355, 126.183497, -8.688221], [5.172605, 126.183497, -8.633966], [-0.0, 126.183497, -8.633966]]}, {"shapeName": "C_chest_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 131.301852, -8.688221], [-0.054255, 131.301852, -8.633966], [-0.0, 131.301852, -8.579711], [0.054255, 131.301852, -8.633966], [-0.0, 131.301852, -8.688221], [-0.0, 131.356102, -8.633966], [-0.0, 131.301852, -8.579711], [-0.0, 131.247597, -8.633966], [-0.054255, 131.301852, -8.633966], [-0.0, 131.356102, -8.633966], [0.054255, 131.301852, -8.633966], [-0.0, 131.247597, -8.633966], [-0.0, 131.301852, -8.688221], [-0.0, 131.356102, -8.633966], [-0.0, 126.183497, -8.633966]]}, {"shapeName": "C_chest_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 126.237752, -3.515611], [-0.054255, 126.183497, -3.515611], [-0.0, 126.129242, -3.515611], [0.054255, 126.183497, -3.515611], [-0.0, 126.237752, -3.515611], [-0.0, 126.183497, -3.461361], [-0.0, 126.129242, -3.515611], [-0.0, 126.183497, -3.569866], [-0.054255, 126.183497, -3.515611], [-0.0, 126.183497, -3.461361], [0.054255, 126.183497, -3.515611], [-0.0, 126.183497, -3.569866], [-0.0, 126.237752, -3.515611], [-0.0, 126.183497, -3.461361], [-0.0, 126.183497, -8.633966]]}]},
+			"L_arm_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[45.225312, 120.28898, -96.753203], [45.288188, 120.345946, -96.664474], [45.22344, 120.285271, -96.579637], [45.160563, 120.228306, -96.668365], [45.225312, 120.28898, -96.753203], [45.283215, 120.223316, -96.667149], [45.22344, 120.285271, -96.579637], [45.165531, 120.350941, -96.66569], [45.288188, 120.345946, -96.664474], [45.283215, 120.223316, -96.667149], [45.160563, 120.228306, -96.668365], [45.165531, 120.350941, -96.66569], [45.225312, 120.28898, -96.753203], [45.283215, 120.223316, -96.667149], [39.673046, 126.307404, -96.597616]]}, {"shapeName": "L_arm_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[45.694005, 131.858257, -96.500883], [45.634225, 131.920218, -96.41337], [45.692133, 131.854547, -96.327316], [45.751914, 131.792587, -96.414829], [45.694005, 131.858257, -96.500883], [45.756876, 131.915217, -96.412154], [45.692133, 131.854547, -96.327316], [45.629257, 131.797582, -96.416045], [45.634225, 131.920218, -96.41337], [45.756876, 131.915217, -96.412154], [45.751914, 131.792587, -96.414829], [45.629257, 131.797582, -96.416045], [45.694005, 131.858257, -96.500883], [45.756876, 131.915217, -96.412154], [39.673046, 126.307404, -96.597616]]}, {"shapeName": "L_arm_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[39.64857, 126.191245, -88.408648], [39.525913, 126.196241, -88.409864], [39.520944, 126.073606, -88.412539], [39.643602, 126.06861, -88.411323], [39.64857, 126.191245, -88.408648], [39.583821, 126.130571, -88.323818], [39.520944, 126.073606, -88.412539], [39.585693, 126.13428, -88.497376], [39.525913, 126.196241, -88.409864], [39.583821, 126.130571, -88.323818], [39.643602, 126.06861, -88.411323], [39.585693, 126.13428, -88.497376], [39.64857, 126.191245, -88.408648], [39.583821, 126.130571, -88.323818], [39.673046, 126.307404, -96.597616]]}]},
+			"C_neck_FK_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 160.732317, -5.909874], [-0.054255, 160.718807, -5.857328], [0.0, 160.705296, -5.804782], [0.054255, 160.718807, -5.857328], [0.0, 160.732317, -5.909874], [0.0, 160.771348, -5.843819], [0.0, 160.705296, -5.804782], [0.0, 160.666261, -5.870838], [-0.054255, 160.718807, -5.857328], [0.0, 160.771348, -5.843819], [0.054255, 160.718807, -5.857328], [0.0, 160.666261, -5.870838], [0.0, 160.732317, -5.909874], [0.0, 160.771348, -5.843819], [0.0, 155.761679, -7.131863]]}, {"shapeName": "C_neck_FK_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 155.775189, -7.184409], [-5.118355, 155.709133, -7.145374], [-5.118355, 155.748168, -7.079317], [-5.118355, 155.814225, -7.118353], [-5.118355, 155.775189, -7.184409], [-5.172605, 155.761679, -7.131863], [-5.118355, 155.748168, -7.079317], [-5.0641, 155.761679, -7.131863], [-5.118355, 155.709133, -7.145374], [-5.172605, 155.761679, -7.131863], [-5.118355, 155.814225, -7.118353], [-5.0641, 155.761679, -7.131863], [-5.118355, 155.775189, -7.184409], [-5.172605, 155.761679, -7.131863], [0.0, 155.761679, -7.131863]]}, {"shapeName": "C_neck_FK_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 154.487143, -2.174735], [0.0, 154.434597, -2.188246], [0.054255, 154.487143, -2.174735], [0.0, 154.539689, -2.161225], [-0.054255, 154.487143, -2.174735], [0.0, 154.473634, -2.122194], [0.054255, 154.487143, -2.174735], [0.0, 154.500653, -2.227281], [0.0, 154.434597, -2.188246], [0.0, 154.473634, -2.122194], [0.0, 154.539689, -2.161225], [0.0, 154.500653, -2.227281], [-0.054255, 154.487143, -2.174735], [0.0, 154.473634, -2.122194], [0.0, 155.761679, -7.131863]]}]},
+			"L_hand_CTL": {"color": 1, "shapes": [{"shapeName": "L_hand_CTLShape", "degree": 1, "form": 0, "points": [[72.137029, 112.090588, 0.0], [71.552389, 112.194538, 0.0], [70.949164, 112.218268, 0.0], [70.377439, 112.205038, 0.0], [69.808654, 112.217323, 0.0], [69.427084, 112.246198, 0.0], [69.128674, 112.441708, 0.0], [68.879824, 112.896778, 0.0], [68.613124, 113.488033, 0.0], [68.400079, 114.147853, 0.0], [68.199529, 115.083088, 0.0], [68.099884, 116.030818, 0.0], [68.055364, 116.768548, 0.0], [68.042029, 117.348673, 0.0], [67.978294, 117.716173, 0.0], [67.910884, 118.166308, 0.0], [67.776589, 118.664953, 0.0], [67.692274, 119.110678, 0.0], [67.602394, 119.471773, 0.0], [67.467049, 119.896918, 0.0], [67.322359, 120.445963, 0.0], [67.319629, 120.870793, 0.0], [67.492564, 121.206898, 0.0], [67.698469, 121.272628, 0.0], [67.970629, 121.148098, 0.0], [68.073529, 120.824908, 0.0], [68.195854, 120.408058, 0.0], [68.357449, 119.998768, 0.0], [68.520199, 119.572048, 0.0], [68.689669, 119.054503, 0.0], [68.885179, 118.634293, 0.0], [69.058849, 118.457683, 0.0], [69.139489, 118.443823, 0.0], [69.273574, 118.705063, 0.0], [69.288169, 119.082013, 0.0], [69.190624, 119.517133, 0.0], [69.128674, 119.807458, 0.0], [69.084049, 120.247198, 0.0], [69.051499, 120.644728, 0.0], [68.982934, 121.061998, 0.0], [68.937364, 121.416268, 0.0], [68.892319, 121.717618, 0.0], [68.804434, 122.159353, 0.0], [68.730514, 122.509318, 0.0], [68.699119, 122.848573, 0.0], [68.801914, 123.161683, 0.0], [69.002884, 123.364543, 0.0], [69.296569, 123.375043, 0.0], [69.547519, 123.222898, 0.0], [69.674674, 122.887003, 0.0], [69.754894, 122.491153, 0.0], [69.833119, 122.140348, 0.0], [69.930454, 121.727278, 0.0], [70.018339, 121.344133, 0.0], [70.083859, 120.978523, 0.0], [70.134049, 120.583513, 0.0], [70.238734, 120.115003, 0.0], [70.316119, 119.796223, 0.0], [70.379434, 119.421688, 0.0], [70.572739, 119.129683, 0.0], [70.703149, 119.327503, 0.0], [70.780639, 119.847358, 0.0], [70.797859, 120.238273, 0.0], [70.785574, 120.744583, 0.0], [70.807204, 121.195243, 0.0], [70.832089, 121.591093, 0.0], [70.835029, 122.047948, 0.0], [70.812349, 122.481283, 0.0], [70.813504, 123.096583, 0.0], [70.830199, 123.544933, 0.0], [70.890994, 123.926818, 0.0], [71.115274, 124.088938, 0.0], [71.410324, 124.175773, 0.0], [71.671564, 124.087573, 0.0], [71.807014, 123.812893, 0.0], [71.842294, 123.360343, 0.0], [71.875054, 122.911888, 0.0], [71.893114, 122.539663, 0.0], [71.860669, 122.052883, 0.0], [71.855734, 121.606108, 0.0], [71.917579, 121.127098, 0.0], [71.956849, 120.892108, 0.0], [71.946349, 120.574798, 0.0], [71.962414, 120.219688, 0.0], [71.990974, 119.789608, 0.0], [72.016279, 119.275843, 0.0], [72.078649, 119.157928, 0.0], [72.230899, 119.300098, 0.0], [72.303349, 119.656888, 0.0], [72.405304, 120.126868, 0.0], [72.533824, 120.681268, 0.0], [72.620239, 121.163638, 0.0], [72.709804, 121.590673, 0.0], [72.844729, 121.988833, 0.0], [72.990049, 122.461648, 0.0], [73.104499, 122.952208, 0.0], [73.224724, 123.329368, 0.0], [73.362064, 123.626623, 0.0], [73.585504, 123.853213, 0.0], [73.755709, 123.816358, 0.0], [74.056009, 123.621478, 0.0], [74.164579, 123.173758, 0.0], [74.096644, 122.725093, 0.0], [74.042149, 122.417338, 0.0], [73.994269, 122.033878, 0.0], [73.921294, 121.626688, 0.0], [73.777339, 121.181383, 0.0], [73.714444, 120.897988, 0.0], [73.684519, 120.390733, 0.0], [73.666774, 120.061768, 0.0], [73.595164, 119.643658, 0.0], [73.532689, 119.266183, 0.0], [73.502764, 118.848178, 0.0], [73.451104, 118.216813, 0.0], [73.507489, 117.313708, 0.0], [73.616689, 116.849818, 0.0], [73.790884, 116.555608, 0.0], [74.013064, 116.237038, 0.0], [74.195554, 116.625433, 0.0], [74.487454, 117.059293, 0.0], [74.639599, 117.369778, 0.0], [74.709949, 117.722368, 0.0], [74.882779, 118.079578, 0.0], [75.165229, 118.441093, 0.0], [75.541864, 118.711573, 0.0], [75.808249, 118.792423, 0.0], [76.065919, 118.629568, 0.0], [76.111594, 118.372948, 0.0], [76.045444, 117.938248, 0.0], [75.905374, 117.658528, 0.0], [75.885949, 117.405058, 0.0], [75.876499, 116.917753, 0.0], [75.723094, 116.619448, 0.0], [75.535669, 116.378998, 0.0], [75.483274, 116.148313, 0.0], [75.443059, 115.851793, 0.0], [75.260254, 115.380973, 0.0], [75.026419, 114.366253, 0.0], [74.741134, 113.863198, 0.0], [74.370379, 113.294098, 0.0], [74.004139, 112.798498, 0.0], [73.715809, 112.432888, 0.0], [73.200574, 112.148548, 0.0], [72.728914, 112.057933, 0.0], [72.145324, 112.089853, 0.0]]}]},
+			"C_torso_FK_E_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_E_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 121.183497, -13.633966], [-0.0, 121.374837, -13.672026], [-0.0, 121.537047, -13.780416], [-0.0, 121.645437, -13.942626], [-0.0, 121.683497, -14.133966], [-0.0, 121.645437, -14.325306], [-0.0, 121.537047, -14.487516], [-0.0, 121.374837, -14.595906], [-0.0, 121.183497, -14.633966], [-0.0, 120.992157, -14.595906], [-0.0, 120.829947, -14.487516], [-0.0, 120.721557, -14.325306], [-0.0, 120.683497, -14.133966], [-0.0, 120.721557, -13.942626], [-0.0, 120.829947, -13.780416], [-0.0, 120.992157, -13.672026], [-0.0, 121.183497, -13.633966], [-0.0, 121.183497, -8.633966]]}]},
+			"L_upLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_upLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[20.367485, 92.690935, 4.946808], [9.978517, 93.384715, 9.193755], [-0.410452, 92.690935, 4.946808], [-4.713694, 91.015999, -5.306253], [-0.410452, 89.341063, -15.559314], [9.978517, 88.647283, -19.806261], [20.367485, 89.341063, -15.559314], [24.670727, 91.015999, -5.306253]]}]},
+			"C_neckBase_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.132759, 154.494287, -19.618072], [0.0, 149.886616, -25.839728], [-14.132759, 154.494287, -19.618072], [-19.986726, 157.38402, -6.71474], [-14.132759, 148.628892, 3.194561], [0.0, 141.5917, 6.422186], [14.132759, 148.628892, 3.194561], [19.986726, 157.38402, -6.71474]]}]},
+			"C_head_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_head_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 169.294455, -5.022672], [-0.054255, 169.294455, -4.968417], [0.0, 169.294455, -4.914162], [0.054255, 169.294455, -4.968417], [0.0, 169.294455, -5.022672], [0.0, 169.348705, -4.968417], [0.0, 169.294455, -4.914162], [0.0, 169.2402, -4.968417], [-0.054255, 169.294455, -4.968417], [0.0, 169.348705, -4.968417], [0.054255, 169.294455, -4.968417], [0.0, 169.2402, -4.968417], [0.0, 169.294455, -5.022672], [0.0, 169.348705, -4.968417], [0.0, 164.1761, -4.968417]]}, {"shapeName": "C_head_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 164.1761, -5.022672], [-5.118355, 164.121845, -4.968417], [-5.118355, 164.1761, -4.914162], [-5.118355, 164.230355, -4.968417], [-5.118355, 164.1761, -5.022672], [-5.172605, 164.1761, -4.968417], [-5.118355, 164.1761, -4.914162], [-5.0641, 164.1761, -4.968417], [-5.118355, 164.121845, -4.968417], [-5.172605, 164.1761, -4.968417], [-5.118355, 164.230355, -4.968417], [-5.0641, 164.1761, -4.968417], [-5.118355, 164.1761, -5.022672], [-5.172605, 164.1761, -4.968417], [0.0, 164.1761, -4.968417]]}, {"shapeName": "C_head_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 164.1761, 0.149938], [0.0, 164.121845, 0.149938], [0.054255, 164.1761, 0.149938], [0.0, 164.230355, 0.149938], [-0.054255, 164.1761, 0.149938], [0.0, 164.1761, 0.204188], [0.054255, 164.1761, 0.149938], [0.0, 164.1761, 0.095683], [0.0, 164.121845, 0.149938], [0.0, 164.1761, 0.204188], [0.0, 164.230355, 0.149938], [0.0, 164.1761, 0.095683], [-0.054255, 164.1761, 0.149938], [0.0, 164.1761, 0.204188], [0.0, 164.1761, -4.968417]]}]},
+			"C_midNeck_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_CTLShape", "degree": 3, "form": 2, "points": [[14.676669, 160.910849, -18.436299], [0.0, 162.17236, -23.342771], [-14.676669, 160.910849, -18.436299], [-20.755931, 157.865284, -6.591002], [-14.676669, 154.819719, 5.254296], [0.0, 153.558208, 10.160768], [14.676669, 154.819719, 5.254296], [20.755931, 157.865284, -6.591002]]}]},
+			"C_chest_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[19.041772, 126.183497, -24.502109], [-0.0, 134.283497, -31.074894], [-19.041772, 126.183497, -24.502109], [-26.929114, 118.083497, -8.633966], [-19.041772, 126.183497, 7.234177], [-0.0, 134.283497, 13.806963], [19.041772, 126.183497, 7.234177], [26.929114, 118.083497, -8.633966]]}]},
+			"C_head_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[8.910019, 179.925768, -4.968417], [0.0, 183.395559, -4.968417], [-8.910019, 179.925768, -4.968417], [-12.600662, 171.548932, -4.968417], [-8.910019, 163.172097, -4.968417], [0.0, 159.702306, -4.968417], [8.910019, 163.172097, -4.968417], [12.600662, 171.548932, -4.968417]]}]},
+			"C_lookAt_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_lookAt_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-2.988414, 169.112488, 71.116139], [-2.988414, 168.737776, 71.116139], [-2.988414, 168.737776, 70.741427], [-2.988414, 169.112488, 70.741427], [-2.988414, 169.112488, 71.116139], [2.988414, 169.112488, 71.116139], [2.988414, 168.737776, 71.116139], [2.988414, 168.737776, 70.741427], [2.988414, 169.112488, 70.741427], [2.988414, 169.112488, 71.116139], [2.988414, 168.737776, 71.116139], [-2.988414, 168.737776, 71.116139], [-2.988414, 168.737776, 70.741427], [2.988414, 168.737776, 70.741427], [2.988414, 169.112488, 70.741427], [-2.988414, 169.112488, 70.741427], [-2.988414, 169.112488, 71.116139], [-0.186, 169.111132, 71.114783], [-0.187356, 165.936718, 71.116139], [-0.187356, 165.936718, 70.741427], [0.187356, 165.936718, 70.741427], [0.187356, 165.936718, 71.116139], [-0.187356, 165.936718, 71.116139], [-0.187356, 171.913546, 71.116139], [0.187356, 171.913546, 71.116139], [0.187356, 171.913546, 70.741427], [-0.187356, 171.913546, 70.741427], [-0.187356, 171.913546, 71.116139], [-0.187356, 171.913546, 70.741427], [-0.187356, 165.936718, 70.741427], [0.187356, 165.936718, 70.741427], [0.187356, 171.913546, 70.741427], [0.187356, 171.913546, 71.116139], [0.187356, 165.936718, 71.116139], [0.186, 168.739132, 71.114783], [0.187356, 168.737776, 73.917197], [-0.187356, 168.737776, 73.917197], [-0.187356, 169.112488, 73.917197], [0.187356, 169.112488, 73.917197], [0.187356, 168.737776, 73.917197], [0.187356, 168.737776, 67.940369], [0.187356, 169.112488, 67.940369], [-0.187356, 169.112488, 67.940369], [-0.187356, 168.737776, 67.940369], [0.187356, 168.737776, 67.940369], [-0.187356, 168.737776, 67.940369], [-0.187356, 168.737776, 73.917197], [-0.187356, 169.112488, 73.917197], [-0.187356, 169.112488, 67.940369], [0.187356, 169.112488, 67.940369], [0.187356, 169.112488, 73.917197]]}]},
+			"L_loLeg_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_loLeg_FK_CTLShape", "degree": 3, "form": 2, "points": [[17.462463, 50.629054, 8.499301], [9.978517, 50.153695, 11.562582], [2.49457, 50.629054, 8.499301], [-0.605376, 51.776676, 1.103868], [2.49457, 52.924298, -6.291565], [9.978517, 53.399657, -9.354846], [17.462463, 52.924298, -6.291565], [20.562409, 51.776676, 1.103868]]}]},
+			"C_reverseJaw_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_reverseJaw_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.054255, 161.930574, 2.131058], [0.0, 161.979329, 2.154861], [-0.054255, 161.930574, 2.131058], [0.0, 161.881819, 2.107255], [0.054255, 161.930574, 2.131058], [0.0, 161.906773, 2.179808], [-0.054255, 161.930574, 2.131058], [0.0, 161.954377, 2.082303], [0.0, 161.979329, 2.154861], [0.0, 161.906773, 2.179808], [0.0, 161.881819, 2.107255], [0.0, 161.954377, 2.082303], [0.054255, 161.930574, 2.131058], [0.0, 161.906773, 2.179808], [0.0, 164.1761, -2.468417]]}, {"shapeName": "C_reverseJaw_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.054255, 168.775575, -0.222891], [0.0, 168.799378, -0.271646], [-0.054255, 168.775575, -0.222891], [0.0, 168.751772, -0.174136], [0.054255, 168.775575, -0.222891], [0.0, 168.824326, -0.19909], [-0.054255, 168.775575, -0.222891], [0.0, 168.72682, -0.246693], [0.0, 168.799378, -0.271646], [0.0, 168.824326, -0.19909], [0.0, 168.751772, -0.174136], [0.0, 168.72682, -0.246693], [0.054255, 168.775575, -0.222891], [0.0, 168.824326, -0.19909], [0.0, 164.1761, -2.468417]]}, {"shapeName": "C_reverseJaw_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-5.118355, 164.224855, -2.444614], [-5.118355, 164.199903, -2.517172], [-5.118355, 164.127345, -2.49222], [-5.118355, 164.152298, -2.419662], [-5.118355, 164.224855, -2.444614], [-5.172605, 164.1761, -2.468417], [-5.118355, 164.127345, -2.49222], [-5.0641, 164.1761, -2.468417], [-5.118355, 164.199903, -2.517172], [-5.172605, 164.1761, -2.468417], [-5.118355, 164.152298, -2.419662], [-5.0641, 164.1761, -2.468417], [-5.118355, 164.224855, -2.444614], [-5.172605, 164.1761, -2.468417], [0.0, 164.1761, -2.468417]]}]},
+			"L_wrist_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[56.92682, 100.187925, -13.458185], [59.369847, 102.073044, -14.717313], [61.340733, 104.481661, -13.524992], [61.684956, 106.00284, -10.57966], [60.200881, 105.745501, -7.606656], [57.757854, 103.860382, -6.347527], [55.786968, 101.451765, -7.539848], [55.442744, 99.930586, -10.48518]]}]},
+			"L_pinky_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[67.056405, 91.450091, -14.864185], [67.068676, 91.448929, -14.855043], [67.059694, 91.444015, -14.843612], [67.047423, 91.445177, -14.852754], [67.056405, 91.450091, -14.864185], [67.059507, 91.436807, -14.857158], [67.059694, 91.444015, -14.843612], [67.056591, 91.457299, -14.850639], [67.068676, 91.448929, -14.855043], [67.059507, 91.436807, -14.857158], [67.047423, 91.445177, -14.852754], [67.056591, 91.457299, -14.850639], [67.056405, 91.450091, -14.864185], [67.059507, 91.436807, -14.857158], [66.920503, 92.413716, -14.546415]]}, {"shapeName": "L_pinky_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[67.921314, 92.593743, -14.664691], [67.9215, 92.600951, -14.651146], [67.924603, 92.587667, -14.644118], [67.924416, 92.580458, -14.657664], [67.921314, 92.593743, -14.664691], [67.933583, 92.592581, -14.655549], [67.924603, 92.587667, -14.644118], [67.912332, 92.588829, -14.65326], [67.9215, 92.600951, -14.651146], [67.933583, 92.592581, -14.655549], [67.924416, 92.580458, -14.657664], [67.912332, 92.588829, -14.65326], [67.921314, 92.593743, -14.664691], [67.933583, 92.592581, -14.655549], [66.920503, 92.413716, -14.546415]]}, {"shapeName": "L_pinky_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[67.086268, 92.128991, -13.577151], [67.074184, 92.137362, -13.572747], [67.065016, 92.125239, -13.574861], [67.0771, 92.116869, -13.579265], [67.086268, 92.128991, -13.577151], [67.077286, 92.124078, -13.56572], [67.065016, 92.125239, -13.574861], [67.073997, 92.130153, -13.586292], [67.074184, 92.137362, -13.572747], [67.077286, 92.124078, -13.56572], [67.0771, 92.116869, -13.579265], [67.073997, 92.130153, -13.586292], [67.086268, 92.128991, -13.577151], [67.077286, 92.124078, -13.56572], [66.920503, 92.413716, -14.546415]]}]},
+			"C_neckBase_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[16.151724, 154.913244, -21.247546], [0.0, 149.647335, -28.35801], [-16.151724, 154.913244, -21.247546], [-22.841973, 158.215796, -6.500881], [-16.151724, 148.209935, 4.824035], [0.0, 140.16743, 8.51275], [16.151724, 148.209935, 4.824035], [22.841973, 158.215796, -6.500881]]}]},
+			"L_arm_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[65.964594, 117.077383, -12.120346], [65.753131, 116.474723, -12.032377], [65.100233, 116.552419, -12.174714], [64.774125, 116.179209, -12.157824], [64.945734, 115.550578, -11.990531], [64.373887, 115.256619, -12.037893], [63.985691, 115.773851, -12.223111], [63.499, 115.72935, -12.307343], [63.168883, 115.146286, -12.246411], [62.571623, 115.333237, -12.401364], [62.675525, 115.987108, -12.520985], [62.313358, 116.297313, -12.65698], [61.674884, 116.101442, -12.738121], [61.402094, 116.659783, -12.909891], [61.937232, 117.067194, -12.893826], [61.911656, 117.550486, -13.001957], [61.338853, 117.85645, -13.177615], [61.550316, 118.45911, -13.265584], [62.203234, 118.38147, -13.123254], [62.529342, 118.754681, -13.140145], [62.357734, 119.383312, -13.307438], [62.929567, 119.677233, -13.26007], [63.317833, 119.160021, -13.074843], [63.804467, 119.20454, -12.990626], [64.134564, 119.787546, -13.051549], [64.731824, 119.600596, -12.896596], [64.627942, 118.946781, -12.776984], [64.990166, 118.636559, -12.640974], [65.62857, 118.83241, -12.559842], [65.901373, 118.274106, -12.388078], [65.366235, 117.866696, -12.404143], [65.391812, 117.383403, -12.296011], [65.964594, 117.077383, -12.120346]]}, {"shapeName": "L_arm_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[64.529547, 117.918155, -12.576275], [63.976338, 118.392053, -12.78402], [63.232969, 118.324001, -12.912658], [62.734956, 117.753887, -12.886828], [62.773921, 117.015735, -12.721694], [63.327129, 116.541837, -12.513949], [64.070499, 116.609889, -12.38531], [64.568498, 117.179965, -12.411135]]}, {"shapeName": "L_arm_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[62.870253, 115.239762, -12.323888], [58.56385, 102.966713, -10.53242]]}]},
+			"L_arm_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[61.023196, 107.89427, -5.755825], [53.645458, 100.717407, -5.644158], [55.55069, 98.604932, -15.536498], [62.928427, 105.781796, -15.648165], [63.482243, 105.216019, -15.420682], [56.104505, 98.039156, -15.309016], [54.199274, 100.15163, -5.416676], [61.577011, 107.328494, -5.528342], [61.023196, 107.89427, -5.755825], [62.928427, 105.781796, -15.648165], [55.55069, 98.604932, -15.536498], [56.104505, 98.039156, -15.309016], [63.482243, 105.216019, -15.420682], [61.577011, 107.328494, -5.528342], [54.199274, 100.15163, -5.416676], [53.645458, 100.717407, -5.644158]]}]},
+			"C_midTorso_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_CTLShape", "degree": 3, "form": 2, "points": [[22.190832, 113.683497, -27.126325], [-0.0, 113.683497, -34.786095], [-22.190832, 113.683497, -27.126325], [-31.382555, 113.683497, -8.633966], [-22.190832, 113.683497, 9.858394], [-0.0, 113.683497, 17.518163], [22.190832, 113.683497, 9.858394], [31.382555, 113.683497, -8.633966]]}]},
+			"visibility_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "visibility_CTLShape", "degree": 3, "form": 2, "points": [[10.583682, 221.764305, -16.704618], [0.5, 229.849514, -16.704618], [-9.583682, 221.764305, -16.704618], [-9.5572, 221.764305, -16.704618], [-9.583682, 221.764305, -16.704618], [0.5, 213.679096, -16.704618], [10.583682, 221.764305, -16.704618], [10.583682, 221.764305, -16.704618]]}, {"shapeName": "visibility_CTLShape1", "degree": 3, "form": 2, "points": [[4.72047, 225.984775, -16.704618], [0.5, 227.732941, -16.704618], [-3.72047, 225.984775, -16.704618], [-5.468635, 221.764305, -16.704618], [-3.72047, 217.543836, -16.704618], [0.5, 215.79567, -16.704618], [4.72047, 217.543836, -16.704618], [6.468635, 221.764305, -16.704618]]}]},
+			"L_ring_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_ring_D_CTLShape", "degree": 3, "form": 2, "points": [[68.524947, 90.303452, -10.882141], [68.642138, 90.309213, -10.931331], [68.759902, 90.311158, -10.883222], [68.809254, 90.308148, -10.765997], [68.761285, 90.301946, -10.648323], [68.644094, 90.296185, -10.599134], [68.52633, 90.294239, -10.647242], [68.476978, 90.29725, -10.764468]]}]},
+			"C_torso_FK_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 116.301852, -8.688221], [-0.054255, 116.301852, -8.633966], [-0.0, 116.301852, -8.579711], [0.054255, 116.301852, -8.633966], [-0.0, 116.301852, -8.688221], [-0.0, 116.356102, -8.633966], [-0.0, 116.301852, -8.579711], [-0.0, 116.247597, -8.633966], [-0.054255, 116.301852, -8.633966], [-0.0, 116.356102, -8.633966], [0.054255, 116.301852, -8.633966], [-0.0, 116.247597, -8.633966], [-0.0, 116.301852, -8.688221], [-0.0, 116.356102, -8.633966], [-0.0, 111.183497, -8.633966]]}, {"shapeName": "C_torso_FK_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 111.183497, -8.688221], [-5.118355, 111.129242, -8.633966], [-5.118355, 111.183497, -8.579711], [-5.118355, 111.237752, -8.633966], [-5.118355, 111.183497, -8.688221], [-5.172605, 111.183497, -8.633966], [-5.118355, 111.183497, -8.579711], [-5.0641, 111.183497, -8.633966], [-5.118355, 111.129242, -8.633966], [-5.172605, 111.183497, -8.633966], [-5.118355, 111.237752, -8.633966], [-5.0641, 111.183497, -8.633966], [-5.118355, 111.183497, -8.688221], [-5.172605, 111.183497, -8.633966], [-0.0, 111.183497, -8.633966]]}, {"shapeName": "C_torso_FK_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 111.183497, -3.515611], [-0.0, 111.129242, -3.515611], [0.054255, 111.183497, -3.515611], [-0.0, 111.237752, -3.515611], [-0.054255, 111.183497, -3.515611], [-0.0, 111.183497, -3.461361], [0.054255, 111.183497, -3.515611], [-0.0, 111.183497, -3.569866], [-0.0, 111.129242, -3.515611], [-0.0, 111.183497, -3.461361], [-0.0, 111.237752, -3.515611], [-0.0, 111.183497, -3.569866], [-0.054255, 111.183497, -3.515611], [-0.0, 111.183497, -3.461361], [-0.0, 111.183497, -8.633966]]}]},
+			"L_shoulder_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [8.109913, 146.200148, -3.468955], [14.411956, 145.675774, -7.085013], [16.819128, 145.475481, -8.466227], [9.849654, 150.734344, -15.769721], [0.72795, 154.385089, -17.521113], [-7.061841, 155.033254, -13.051398], [-10.544223, 152.431257, -4.06789], [-8.389093, 147.572981, 5.998032], [-5.981921, 147.372688, 4.616818], [0.320122, 146.848314, 1.00076], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
+			"L_leg_PV_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_PV_CTLShape", "degree": 1, "form": 0, "points": [[8.978517, 52.219762, 102.102317], [8.978517, 50.219762, 102.102317], [8.978517, 50.219762, 100.102317], [8.978517, 52.219762, 100.102317], [10.978517, 52.219762, 100.102317], [10.978517, 50.219762, 100.102317], [10.978517, 50.219762, 102.102317], [10.978517, 52.219762, 102.102317], [8.978517, 52.219762, 102.102317], [8.978517, 52.219762, 100.102317], [8.978517, 50.219762, 100.102317], [10.978517, 50.219762, 100.102317], [10.978517, 52.219762, 100.102317], [10.978517, 52.219762, 102.102317], [10.978517, 50.219762, 102.102317], [8.978517, 50.219762, 102.102317]]}]},
+			"C_neckBase_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_CTLShape", "degree": 3, "form": 2, "points": [[20.189655, 155.751157, -24.506493], [0.0, 149.168771, -33.394573], [-20.189655, 155.751157, -24.506493], [-28.552466, 159.879347, -6.073162], [-20.189655, 147.372021, 8.082982], [0.0, 137.318891, 12.693876], [20.189655, 147.372021, 8.082982], [28.552466, 159.879347, -6.073162]]}]},
+			"C_midNeck_A_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.209002, 160.606292, -17.251769], [0.0, 161.741653, -21.667594], [-13.209002, 160.606292, -17.251769], [-18.680338, 157.865284, -6.591002], [-13.209002, 155.124276, 4.069766], [0.0, 153.988916, 8.485591], [13.209002, 155.124276, 4.069766], [18.680338, 157.865284, -6.591002]]}]},
+			"C_midNeck_B_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[11.741335, 160.301736, -16.06724], [0.0, 161.310945, -19.992417], [-11.741335, 160.301736, -16.06724], [-16.604745, 157.865284, -6.591002], [-11.741335, 155.428832, 2.885236], [0.0, 154.419623, 6.810414], [11.741335, 155.428832, 2.885236], [16.604745, 157.865284, -6.591002]]}]},
+			"L_toe_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.329352, 4.01708, 7.533345], [9.978516, 4.990287, 7.565753], [7.62768, 4.01708, 7.533344], [6.653934, 1.667547, 7.455104], [7.62768, -0.681987, 7.376863], [9.978516, -1.655193, 7.344455], [12.329352, -0.681987, 7.376863], [13.303098, 1.667547, 7.455104]]}]},
+			"C_torso_FK_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_A_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 101.196827, -13.633966], [-0.0, 101.388167, -13.672026], [-0.0, 101.550377, -13.780416], [-0.0, 101.658767, -13.942626], [-0.0, 101.696827, -14.133966], [-0.0, 101.658767, -14.325306], [-0.0, 101.550377, -14.487516], [-0.0, 101.388167, -14.595906], [-0.0, 101.196827, -14.633966], [-0.0, 101.005487, -14.595906], [-0.0, 100.843277, -14.487516], [-0.0, 100.734887, -14.325306], [-0.0, 100.696827, -14.133966], [-0.0, 100.734887, -13.942626], [-0.0, 100.843277, -13.780416], [-0.0, 101.005487, -13.672026], [-0.0, 101.196827, -13.633966], [-0.0, 101.196827, -8.633966]]}]},
+			"L_thumb_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[57.807642, 100.742528, -7.270903], [57.794152, 100.748227, -7.266318], [57.786846, 100.737247, -7.274163], [57.800336, 100.731548, -7.278749], [57.807642, 100.742528, -7.270903], [57.797504, 100.733468, -7.26379], [57.786846, 100.737247, -7.274163], [57.796985, 100.746308, -7.281277], [57.794152, 100.748227, -7.266318], [57.797504, 100.733468, -7.26379], [57.800336, 100.731548, -7.278749], [57.796985, 100.746308, -7.281277], [57.807642, 100.742528, -7.270903], [57.797504, 100.733468, -7.26379], [57.772776, 101.345592, -8.097412]]}, {"shapeName": "L_thumb_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[57.491471, 102.13499, -7.509417], [57.480814, 102.13877, -7.519791], [57.470675, 102.12971, -7.512677], [57.481333, 102.125929, -7.502303], [57.491471, 102.13499, -7.509417], [57.477982, 102.140689, -7.504832], [57.470675, 102.12971, -7.512677], [57.484165, 102.12401, -7.517262], [57.480814, 102.13877, -7.519791], [57.477982, 102.140689, -7.504832], [57.481333, 102.125929, -7.502303], [57.484165, 102.12401, -7.517262], [57.491471, 102.13499, -7.509417], [57.477982, 102.140689, -7.504832], [57.772776, 101.345592, -8.097412]]}, {"shapeName": "L_thumb_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[56.788759, 101.104861, -8.244991], [56.791591, 101.102942, -8.25995], [56.794943, 101.088182, -8.257422], [56.79211, 101.090101, -8.242463], [56.788759, 101.104861, -8.244991], [56.781454, 101.093881, -8.252836], [56.794943, 101.088182, -8.257422], [56.802249, 101.099161, -8.249576], [56.791591, 101.102942, -8.25995], [56.781454, 101.093881, -8.252836], [56.79211, 101.090101, -8.242463], [56.802249, 101.099161, -8.249576], [56.788759, 101.104861, -8.244991], [56.781454, 101.093881, -8.252836], [57.772776, 101.345592, -8.097412]]}]},
+			"L_leg_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[24.90934, 9.690671, -5.42703], [24.301416, 9.690671, -5.42703], [24.186285, 9.074237, -5.522688], [23.754293, 8.897366, -5.550135], [23.231747, 9.252806, -5.494978], [22.801875, 8.828018, -5.560896], [23.16155, 8.311709, -5.641017], [22.982639, 7.884769, -5.707269], [22.358769, 7.771001, -5.724924], [22.358769, 7.170247, -5.818149], [22.982639, 7.056479, -5.835803], [23.16155, 6.629596, -5.902047], [22.801875, 6.11323, -5.982176], [23.231747, 5.688442, -6.048095], [23.754293, 6.043882, -5.992938], [24.186285, 5.867011, -6.020385], [24.301416, 5.250577, -6.116043], [24.90934, 5.250577, -6.116043], [25.024528, 5.867011, -6.020385], [25.45652, 6.043882, -5.992938], [25.979066, 5.688442, -6.048095], [26.4089, 6.11323, -5.982176], [26.049263, 6.629596, -5.902047], [26.228174, 7.056479, -5.835803], [26.851987, 7.170247, -5.818149], [26.851987, 7.771001, -5.724924], [26.228174, 7.884769, -5.707269], [26.049263, 8.311709, -5.641017], [26.4089, 8.828018, -5.560896], [25.979066, 9.252806, -5.494978], [25.45652, 8.897366, -5.550135], [25.024528, 9.074237, -5.522688], [24.90934, 9.690671, -5.42703]]}, {"shapeName": "L_leg_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[25.265253, 8.122704, -5.670347], [25.538595, 7.470624, -5.771536], [25.265253, 6.818544, -5.872726], [24.605387, 6.548491, -5.914633], [23.94556, 6.818544, -5.872726], [23.672218, 7.470624, -5.771536], [23.94556, 8.122704, -5.670347], [24.605387, 8.392756, -5.62844]]}, {"shapeName": "L_leg_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[22.358769, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
+			"L_arm_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_CTLShape", "degree": 1, "form": 0, "points": [[61.067409, 107.982856, -5.669953], [53.557037, 100.676969, -5.556279], [55.49652, 98.526518, -15.62646], [63.006892, 105.832404, -15.740134], [63.570664, 105.256456, -15.508562], [56.060292, 97.95057, -15.394888], [54.120809, 100.101022, -5.324706], [61.631181, 107.406908, -5.43838], [61.067409, 107.982856, -5.669953], [63.006892, 105.832404, -15.740134], [55.49652, 98.526518, -15.62646], [56.060292, 97.95057, -15.394888], [63.570664, 105.256456, -15.508562], [61.631181, 107.406908, -5.43838], [54.120809, 100.101022, -5.324706], [53.557037, 100.676969, -5.556279]]}]},
+			"L_legBase_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_B_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 86.224395, -4.523498], [9.978517, 78.471454, -3.256981], [9.978517, 75.510088, -2.773213], [9.978517, 81.449217, 14.971289], [9.978517, 91.042519, 24.970473], [9.978517, 100.625727, 23.404964], [9.978517, 106.538307, 10.872744], [9.978517, 106.52191, -7.839293], [9.978517, 103.560544, -7.355525], [9.978517, 95.807603, -6.089008], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
+			"L_outterBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_outterBall_CTLShape", "degree": 1, "form": 0, "points": [[16.978517, 2.42481, 5.227414], [16.978517, 1.471674, 4.18265], [17.978517, 2.470624, 4.228464], [16.978517, 2.42481, 5.227414], [15.978517, 2.470624, 4.228464], [16.978517, 1.471674, 4.18265], [16.978517, 2.516438, 3.229514], [15.978517, 2.470624, 4.228464], [16.978517, 3.469574, 4.274277], [16.978517, 2.42481, 5.227414], [17.978517, 2.470624, 4.228464], [16.978517, 2.516438, 3.229514], [16.978517, 3.469574, 4.274277], [17.978517, 2.470624, 4.228464]]}]},
+			"C_midTorso_D_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.314499, 113.683497, -19.729381], [-0.0, 113.683497, -24.325243], [-13.314499, 113.683497, -19.729381], [-18.829533, 113.683497, -8.633966], [-13.314499, 113.683497, 2.46145], [-0.0, 113.683497, 7.057312], [13.314499, 113.683497, 2.46145], [18.829533, 113.683497, -8.633966]]}]},
+			"L_toe_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.721158, 4.408669, 7.546385], [9.978516, 5.544077, 7.584194], [7.235874, 4.408669, 7.546385], [6.099837, 1.667547, 7.455104], [7.235874, -1.073576, 7.363823], [9.978516, -2.208983, 7.326014], [12.721158, -1.073576, 7.363823], [13.857195, 1.667547, 7.455104]]}]},
+			"C_cog_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[26.980938, 98.683497, -6.692288], [26.95248, 98.683497, -10.936931], [19.628217, 98.683497, -13.485569], [18.6273, 98.683497, -16.497581], [22.969305, 98.683497, -22.922123], [20.451366, 98.683497, -26.339378], [13.026744, 98.683497, -24.1007], [10.447299, 98.683497, -25.949255], [10.184211, 98.683497, -33.69434], [6.138504, 98.683497, -34.978973], [1.449495, 98.683497, -28.808042], [-1.723221, 98.683497, -28.787063], [-6.490935, 98.683497, -34.894355], [-10.519038, 98.683497, -33.555641], [-10.681416, 98.683497, -25.809584], [-13.235535, 98.683497, -23.92709], [-20.686752, 98.683497, -26.063789], [-23.158683, 98.683497, -22.613081], [-18.732384, 98.683497, -16.250612], [-19.692315, 98.683497, -13.225667], [-26.980938, 98.683497, -10.575644], [-26.95248, 98.683497, -6.331001], [-19.628217, 98.683497, -3.782363], [-18.6273, 98.683497, -0.770351], [-22.969305, 98.683497, 5.654191], [-20.451366, 98.683497, 9.071446], [-13.026744, 98.683497, 6.832768], [-10.447299, 98.683497, 8.681323], [-10.184211, 98.683497, 16.426408], [-6.138504, 98.683497, 17.711041], [-1.449495, 98.683497, 11.54011], [1.723221, 98.683497, 11.519131], [6.490935, 98.683497, 17.626423], [10.519038, 98.683497, 16.287709], [10.681416, 98.683497, 8.541652], [13.235535, 98.683497, 6.659158], [20.686752, 98.683497, 8.795857], [23.158683, 98.683497, 5.345149], [18.732384, 98.683497, -1.01732], [19.692315, 98.683497, -4.042265], [26.980938, 98.683497, -6.692288]]}]},
+			"L_arm_IK_switch_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[64.114408, 113.549716, -11.723364], [63.955811, 113.09772, -11.657388], [63.466138, 113.155993, -11.764141], [63.221556, 112.876085, -11.751473], [63.350263, 112.404612, -11.626003], [62.921378, 112.184142, -11.661525], [62.630231, 112.572067, -11.800438], [62.265213, 112.538691, -11.863612], [62.017625, 112.101393, -11.817913], [61.56968, 112.241606, -11.934128], [61.647607, 112.732009, -12.023844], [61.375981, 112.964663, -12.12584], [60.897125, 112.81776, -12.186696], [60.692533, 113.236516, -12.315523], [61.093887, 113.542074, -12.303475], [61.074704, 113.904543, -12.384573], [60.645102, 114.134016, -12.516316], [60.8037, 114.586011, -12.582293], [61.293388, 114.527781, -12.475546], [61.537969, 114.807689, -12.488213], [61.409263, 115.279162, -12.613683], [61.838138, 115.499603, -12.578158], [62.129337, 115.111694, -12.439237], [62.494313, 115.145083, -12.376074], [62.741886, 115.582338, -12.421767], [63.189831, 115.442125, -12.305552], [63.111919, 114.951764, -12.215843], [63.383587, 114.719097, -12.113835], [63.86239, 114.865985, -12.052987], [64.066993, 114.447258, -11.924163], [63.665639, 114.1417, -11.936212], [63.684821, 113.779231, -11.855113], [64.114408, 113.549716, -11.723364]]}, {"shapeName": "L_arm_IK_switch_D_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[63.038123, 114.180294, -12.065311], [62.623216, 114.535718, -12.22112], [62.065689, 114.484679, -12.317599], [61.69218, 114.057094, -12.298226], [61.721403, 113.503479, -12.174375], [62.136309, 113.148056, -12.018566], [62.693837, 113.199095, -11.922088], [63.067336, 113.626652, -11.941456]]}, {"shapeName": "L_arm_IK_switch_D_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[61.793652, 112.171499, -11.876021], [58.56385, 102.966713, -10.53242]]}]},
+			"C_hip_A_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[19.041772, 98.683497, -24.502109], [-0.0, 90.583497, -31.074894], [-19.041772, 98.683497, -24.502109], [-26.929114, 106.783497, -8.633966], [-19.041772, 98.683497, 7.234177], [-0.0, 90.583497, 13.806963], [19.041772, 98.683497, 7.234177], [26.929114, 106.783497, -8.633966]]}]},
+			"L_index_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[66.349614, 92.441652, -2.936398], [66.353091, 92.44772, -2.922739], [66.338642, 92.445494, -2.918072], [66.335165, 92.439426, -2.931732], [66.349614, 92.441652, -2.936398], [66.346833, 92.433733, -2.923552], [66.338642, 92.445494, -2.918072], [66.341422, 92.453415, -2.930919], [66.353091, 92.44772, -2.922739], [66.346833, 92.433733, -2.923552], [66.335165, 92.439426, -2.931732], [66.341422, 92.453415, -2.930919], [66.349614, 92.441652, -2.936398], [66.346833, 92.433733, -2.923552], [66.08888, 93.372015, -3.274723]]}, {"shapeName": "L_index_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[66.939902, 93.761304, -2.859712], [66.931711, 93.773067, -2.854232], [66.928931, 93.765147, -2.841386], [66.937122, 93.753384, -2.846865], [66.939902, 93.761304, -2.859712], [66.943379, 93.767372, -2.846053], [66.928931, 93.765147, -2.841386], [66.925454, 93.759079, -2.855045], [66.931711, 93.773067, -2.854232], [66.943379, 93.767372, -2.846053], [66.937122, 93.753384, -2.846865], [66.925454, 93.759079, -2.855045], [66.939902, 93.761304, -2.859712], [66.943379, 93.767372, -2.846053], [66.08888, 93.372015, -3.274723]]}, {"shapeName": "L_index_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[65.580331, 93.557415, -2.405801], [65.568663, 93.563109, -2.41398], [65.562406, 93.549121, -2.414793], [65.574074, 93.543426, -2.406613], [65.580331, 93.557415, -2.405801], [65.565883, 93.555189, -2.401135], [65.562406, 93.549121, -2.414793], [65.576854, 93.551346, -2.41946], [65.568663, 93.563109, -2.41398], [65.565883, 93.555189, -2.401135], [65.574074, 93.543426, -2.406613], [65.576854, 93.551346, -2.41946], [65.580331, 93.557415, -2.405801], [65.565883, 93.555189, -2.401135], [66.08888, 93.372015, -3.274723]]}]},
+			"L_leg_IK_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.504771, 7.470624, -11.648626], [9.978517, 7.470624, -14.082991], [6.452263, 7.470624, -11.648626], [4.991644, 7.470624, -5.771536], [6.452263, 7.470624, 0.105554], [9.978517, 7.470624, 2.539919], [13.504771, 7.470624, 0.105554], [14.96539, 7.470624, -5.771536]]}]},
+			"C_chest_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_chest_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.810267, 126.183497, -20.975855], [-0.0, 132.483497, -26.088021], [-14.810267, 126.183497, -20.975855], [-20.944867, 119.883497, -8.633966], [-14.810267, 126.183497, 3.707923], [-0.0, 132.483497, 8.82009], [14.810267, 126.183497, 3.707923], [20.944867, 119.883497, -8.633966]]}]},
+			"L_shoulder_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [5.714113, 144.86207, 1.619553], [8.139691, 142.172649, 6.236833], [9.066181, 141.145379, 8.000481], [26.660943, 140.63155, -4.390502], [35.682141, 142.368519, -15.575843], [32.683949, 145.692842, -21.283143], [18.811597, 149.334715, -19.332363], [-0.636146, 151.903083, -10.468676], [0.290344, 150.875813, -8.705028], [2.715921, 148.186392, -4.087747], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
+			"C_chest_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_chest_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 131.301852, -8.688221], [-0.054255, 131.301852, -8.633966], [-0.0, 131.301852, -8.579711], [0.054255, 131.301852, -8.633966], [-0.0, 131.301852, -8.688221], [-0.0, 131.356102, -8.633966], [-0.0, 131.301852, -8.579711], [-0.0, 131.247597, -8.633966], [-0.054255, 131.301852, -8.633966], [-0.0, 131.356102, -8.633966], [0.054255, 131.301852, -8.633966], [-0.0, 131.247597, -8.633966], [-0.0, 131.301852, -8.688221], [-0.0, 131.356102, -8.633966], [-0.0, 126.183497, -8.633966]]}, {"shapeName": "C_chest_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 126.183497, -8.688221], [-5.118355, 126.129242, -8.633966], [-5.118355, 126.183497, -8.579711], [-5.118355, 126.237752, -8.633966], [-5.118355, 126.183497, -8.688221], [-5.172605, 126.183497, -8.633966], [-5.118355, 126.183497, -8.579711], [-5.0641, 126.183497, -8.633966], [-5.118355, 126.129242, -8.633966], [-5.172605, 126.183497, -8.633966], [-5.118355, 126.237752, -8.633966], [-5.0641, 126.183497, -8.633966], [-5.118355, 126.183497, -8.688221], [-5.172605, 126.183497, -8.633966], [-0.0, 126.183497, -8.633966]]}, {"shapeName": "C_chest_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 126.183497, -3.515611], [-0.0, 126.129242, -3.515611], [0.054255, 126.183497, -3.515611], [-0.0, 126.237752, -3.515611], [-0.054255, 126.183497, -3.515611], [-0.0, 126.183497, -3.461361], [0.054255, 126.183497, -3.515611], [-0.0, 126.183497, -3.569866], [-0.0, 126.129242, -3.515611], [-0.0, 126.183497, -3.461361], [-0.0, 126.237752, -3.515611], [-0.0, 126.183497, -3.569866], [-0.054255, 126.183497, -3.515611], [-0.0, 126.183497, -3.461361], [-0.0, 126.183497, -8.633966]]}]},
+			"L_thumb_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_C_CTLShape", "degree": 3, "form": 2, "points": [[58.603667, 95.31383, -2.227553], [58.621396, 95.379362, -2.119952], [58.54584, 95.420713, -2.026316], [58.421258, 95.413662, -2.001494], [58.320628, 95.362338, -2.060027], [58.302899, 95.296806, -2.167627], [58.378455, 95.255455, -2.261264], [58.503037, 95.262506, -2.286086]]}]},
+			"C_midTorso_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_midTorso_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 113.683497, -8.688221], [5.118355, 113.737752, -8.633966], [5.118355, 113.683497, -8.579711], [5.118355, 113.629242, -8.633966], [5.118355, 113.683497, -8.688221], [5.172605, 113.683497, -8.633966], [5.118355, 113.683497, -8.579711], [5.0641, 113.683497, -8.633966], [5.118355, 113.737752, -8.633966], [5.172605, 113.683497, -8.633966], [5.118355, 113.629242, -8.633966], [5.0641, 113.683497, -8.633966], [5.118355, 113.683497, -8.688221], [5.172605, 113.683497, -8.633966], [-0.0, 113.683497, -8.633966]]}, {"shapeName": "C_midTorso_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.0, 118.801852, -8.688221], [-0.054255, 118.801852, -8.633966], [-0.0, 118.801852, -8.579711], [0.054255, 118.801852, -8.633966], [-0.0, 118.801852, -8.688221], [-0.0, 118.856102, -8.633966], [-0.0, 118.801852, -8.579711], [-0.0, 118.747597, -8.633966], [-0.054255, 118.801852, -8.633966], [-0.0, 118.856102, -8.633966], [0.054255, 118.801852, -8.633966], [-0.0, 118.747597, -8.633966], [-0.0, 118.801852, -8.688221], [-0.0, 118.856102, -8.633966], [-0.0, 113.683497, -8.633966]]}, {"shapeName": "C_midTorso_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.0, 113.737752, -3.515611], [-0.054255, 113.683497, -3.515611], [-0.0, 113.629242, -3.515611], [0.054255, 113.683497, -3.515611], [-0.0, 113.737752, -3.515611], [-0.0, 113.683497, -3.461361], [-0.0, 113.629242, -3.515611], [-0.0, 113.683497, -3.569866], [-0.054255, 113.683497, -3.515611], [-0.0, 113.683497, -3.461361], [0.054255, 113.683497, -3.515611], [-0.0, 113.683497, -3.569866], [-0.0, 113.737752, -3.515611], [-0.0, 113.683497, -3.461361], [-0.0, 113.683497, -8.633966]]}]},
+			"C_visibility_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_visibility_PIV_CTLShape", "degree": 1, "form": 0, "points": [[1.523671, 200.0, -0.010851], [1.523671, 200.010851, 0.0], [1.523671, 200.0, 0.010851], [1.523671, 199.989149, 0.0], [1.523671, 200.0, -0.010851], [1.534521, 200.0, 0.0], [1.523671, 200.0, 0.010851], [1.51282, 200.0, 0.0], [1.523671, 200.010851, 0.0], [1.534521, 200.0, 0.0], [1.523671, 199.989149, 0.0], [1.51282, 200.0, 0.0], [1.523671, 200.0, -0.010851], [1.534521, 200.0, 0.0], [0.5, 200.0, 0.0]]}, {"shapeName": "C_visibility_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.5, 201.023671, -0.010851], [0.489149, 201.023671, 0.0], [0.5, 201.023671, 0.010851], [0.510851, 201.023671, 0.0], [0.5, 201.023671, -0.010851], [0.5, 201.034521, 0.0], [0.5, 201.023671, 0.010851], [0.5, 201.01282, 0.0], [0.489149, 201.023671, 0.0], [0.5, 201.034521, 0.0], [0.510851, 201.023671, 0.0], [0.5, 201.01282, 0.0], [0.5, 201.023671, -0.010851], [0.5, 201.034521, 0.0], [0.5, 200.0, 0.0]]}, {"shapeName": "C_visibility_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.5, 200.010851, 1.023671], [0.489149, 200.0, 1.023671], [0.5, 199.989149, 1.023671], [0.510851, 200.0, 1.023671], [0.5, 200.010851, 1.023671], [0.5, 200.0, 1.034521], [0.5, 199.989149, 1.023671], [0.5, 200.0, 1.01282], [0.489149, 200.0, 1.023671], [0.5, 200.0, 1.034521], [0.510851, 200.0, 1.023671], [0.5, 200.0, 1.01282], [0.5, 200.010851, 1.023671], [0.5, 200.0, 1.034521], [0.5, 200.0, 0.0]]}]},
+			"L_index_C_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_C_CTLShape", "degree": 3, "form": 2, "points": [[66.051215, 93.306282, -3.422684], [66.172916, 93.342582, -3.415093], [66.24539, 93.396123, -3.325274], [66.226182, 93.435541, -3.205843], [66.126545, 93.437747, -3.126761], [66.004844, 93.401447, -3.134353], [65.932369, 93.347906, -3.224171], [65.951577, 93.308488, -3.343602]]}]},
+			"L_ring_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_ring_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[68.676398, 89.28079, -10.816365], [68.687307, 89.28072, -10.805573], [68.676526, 89.27994, -10.79468], [68.665617, 89.280009, -10.805473], [68.676398, 89.28079, -10.816365], [68.676816, 89.269529, -10.80595], [68.676526, 89.27994, -10.79468], [68.676109, 89.291202, -10.805096], [68.687307, 89.28072, -10.805573], [68.676816, 89.269529, -10.80595], [68.665617, 89.280009, -10.805473], [68.676109, 89.291202, -10.805096], [68.676398, 89.28079, -10.816365], [68.676816, 89.269529, -10.80595], [68.643116, 90.302699, -10.765232]]}, {"shapeName": "L_ring_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[69.666162, 90.336681, -10.780782], [69.665873, 90.347093, -10.769513], [69.66629, 90.335831, -10.759097], [69.66658, 90.325419, -10.770367], [69.666162, 90.336681, -10.780782], [69.67707, 90.336612, -10.76999], [69.66629, 90.335831, -10.759097], [69.655381, 90.3359, -10.76989], [69.665873, 90.347093, -10.769513], [69.67707, 90.336612, -10.76999], [69.66658, 90.325419, -10.770367], [69.655381, 90.3359, -10.76989], [69.666162, 90.336681, -10.780782], [69.67707, 90.336612, -10.76999], [68.643116, 90.302699, -10.765232]]}, {"shapeName": "L_ring_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[68.659983, 90.262939, -9.742415], [68.648785, 90.27342, -9.741938], [68.638293, 90.262228, -9.742315], [68.649492, 90.251747, -9.742792], [68.659983, 90.262939, -9.742415], [68.649202, 90.262158, -9.731524], [68.638293, 90.262228, -9.742315], [68.649074, 90.263009, -9.753208], [68.648785, 90.27342, -9.741938], [68.649202, 90.262158, -9.731524], [68.649492, 90.251747, -9.742792], [68.649074, 90.263009, -9.753208], [68.659983, 90.262939, -9.742415], [68.649202, 90.262158, -9.731524], [68.643116, 90.302699, -10.765232]]}]},
+			"C_torso_FK_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_C_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 111.183497, -13.633966], [-0.0, 111.374837, -13.672026], [-0.0, 111.537047, -13.780416], [-0.0, 111.645437, -13.942626], [-0.0, 111.683497, -14.133966], [-0.0, 111.645437, -14.325306], [-0.0, 111.537047, -14.487516], [-0.0, 111.374837, -14.595906], [-0.0, 111.183497, -14.633966], [-0.0, 110.992157, -14.595906], [-0.0, 110.829947, -14.487516], [-0.0, 110.721557, -14.325306], [-0.0, 110.683497, -14.133966], [-0.0, 110.721557, -13.942626], [-0.0, 110.829947, -13.780416], [-0.0, 110.992157, -13.672026], [-0.0, 111.183497, -13.633966], [-0.0, 111.183497, -8.633966]]}]},
+			"world_B_OFF_CTL": {"color": 1, "shapes": [{"shapeName": "world_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-0.019165, 0.0, 91.653046], [-40.728578, 0.0, 50.886931], [-30.535211, 0.0, 50.889057], [-30.530951, 0.0, 30.510255], [-50.909753, 0.0, 30.505995], [-50.911887, 0.0, 40.699363], [-91.653046, 0.0, -0.019165], [-50.886931, 0.0, -40.728578], [-50.889057, 0.0, -30.535211], [-30.510255, 0.0, -30.530951], [-30.505995, 0.0, -50.909753], [-40.699363, 0.0, -50.911887], [0.019165, 0.0, -91.653046], [40.728578, 0.0, -50.886931], [30.535211, 0.0, -50.889057], [30.530951, 0.0, -30.510255], [50.909753, 0.0, -30.505995], [50.911887, 0.0, -40.699363], [91.653046, 0.0, 0.019165], [50.886931, 0.0, 40.728578], [50.889057, 0.0, 30.535211], [30.510255, 0.0, 30.530951], [30.505995, 0.0, 50.909753], [40.699363, 0.0, 50.911887], [-0.019165, 0.0, 91.653046], [-7.9977, 0.111056, 83.813982], [-7.299474, 0.0, 83.06847], [-7.29884, 0.0, 80.022359], [-6.664233, 0.0, 80.022494], [-6.704539, 0.0, 83.092395], [-6.252334, 0.0, 82.862437], [-6.267921, 0.0, 81.529763], [-5.625382, 0.0, 81.529898], [-5.62566, 0.0, 82.862572], [-5.229078, 0.0, 83.092696], [-5.228428, 0.0, 79.975192], [-4.585889, 0.0, 79.975327], [-4.586555, 0.0, 83.172157], [-5.102284, 0.0, 83.687672], [-5.895455, 0.0, 83.290876], [-6.768126, 0.0, 83.687323], [-7.299482, 0.0, 83.084335], [-6.768126, 0.0, 83.687323], [-5.903387, 0.0, 83.298808], [-5.102276, 0.0, 83.679739], [-3.555431, 0.0, 83.687997], [-4.07887, 0.0, 83.172268], [-4.078315, 0.0, 80.498988], [-3.554653, 0.0, 79.975549], [-1.880879, 0.0, 79.975898], [-1.365372, 0.0, 80.499551], [-1.365927, 0.0, 83.172831], [-1.881656, 0.0, 83.688346], [-3.555431, 0.0, 83.687997], [-3.356989, 0.0, 83.093093], [-3.435799, 0.0, 80.633977], [-2.00001, 0.0, 80.650143], [-2.00845, 0.0, 83.09337], [-3.364922, 0.0, 83.108958], [-3.555431, 0.0, 83.687997], [-1.881656, 0.0, 83.688346], [-0.810757, 0.0, 83.688568], [-0.849643, 0.0, 79.976112], [0.958986, 0.0, 79.976485], [1.482425, 0.0, 80.500146], [1.482195, 0.0, 81.61864], [0.950601, 0.0, 82.134147], [0.918863, 0.0, 82.173802], [1.957721, 0.0, 83.673282], [1.957714, 0.0, 83.689147], [1.212051, 0.0, 83.688988], [0.1732, 0.0, 82.181584], [-0.215497, 0.0, 82.181504], [-0.215163, 0.0, 80.594988], [0.784342, 0.0, 80.595194], [0.792076, 0.0, 81.539172], [-0.215362, 0.0, 81.538965], [-0.215814, 0.0, 83.688695], [-0.810757, 0.0, 83.688568], [5.083151, 0.0, 83.689797], [5.083278, 0.0, 83.094854], [3.004941, 0.0, 83.086485], [3.005592, 0.0, 79.976913], [2.363053, 0.0, 79.976786], [2.362275, 0.0, 83.689226], [7.788161, 0.0, 83.690361], [8.264227, 0.0, 83.174846], [8.304445, 0.0, 80.501574], [7.788938, 0.0, 79.977921], [5.591613, 0.0, 79.97746], [5.590836, 0.0, 83.689909], [6.241434, 0.0, 83.0951], [6.226093, 0.0, 80.580464], [7.582564, 0.0, 80.580749], [7.566176, 0.0, 83.079512], [6.217637, 0.0, 83.110957], [5.574971, 0.0, 83.689901]]}]},
+			"L_upLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_upLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 80.930699, -3.548774], [9.870007, 80.913205, -3.655864], [9.978517, 80.89571, -3.762955], [10.087027, 80.913205, -3.655864], [9.978517, 80.930699, -3.548774], [9.978517, 80.806124, -3.638372], [9.978517, 80.89571, -3.762955], [9.978517, 81.020295, -3.673359], [9.870007, 80.913205, -3.655864], [9.978517, 80.806124, -3.638372], [10.087027, 80.913205, -3.655864], [9.978517, 81.020295, -3.673359], [9.978517, 80.930699, -3.548774], [9.978517, 80.806124, -3.638372], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_upLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 91.033493, -5.199162], [-0.258193, 91.123089, -5.323747], [-0.258193, 90.998505, -5.413343], [-0.258193, 90.908908, -5.288759], [-0.258193, 91.033493, -5.199162], [-0.366693, 91.015999, -5.306253], [-0.258193, 90.998505, -5.413343], [-0.149683, 91.015999, -5.306253], [-0.258193, 91.123089, -5.323747], [-0.366693, 91.015999, -5.306253], [-0.258193, 90.908908, -5.288759], [-0.149683, 91.015999, -5.306253], [-0.258193, 91.033493, -5.199162], [-0.366693, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_upLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 89.36561, -15.409047], [9.978517, 89.472701, -15.426541], [10.087027, 89.36561, -15.409047], [9.978517, 89.25852, -15.391553], [9.870007, 89.36561, -15.409047], [9.978517, 89.348118, -15.516128], [10.087027, 89.36561, -15.409047], [9.978517, 89.383104, -15.301957], [9.978517, 89.472701, -15.426541], [9.978517, 89.348118, -15.516128], [9.978517, 89.25852, -15.391553], [9.978517, 89.383104, -15.301957], [9.870007, 89.36561, -15.409047], [9.978517, 89.348118, -15.516128], [9.978517, 91.015999, -5.306253]]}]},
+			"C_torso_FK_D_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_D_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 121.301852, -8.688221], [-0.054255, 121.301852, -8.633966], [-0.0, 121.301852, -8.579711], [0.054255, 121.301852, -8.633966], [-0.0, 121.301852, -8.688221], [-0.0, 121.356102, -8.633966], [-0.0, 121.301852, -8.579711], [-0.0, 121.247597, -8.633966], [-0.054255, 121.301852, -8.633966], [-0.0, 121.356102, -8.633966], [0.054255, 121.301852, -8.633966], [-0.0, 121.247597, -8.633966], [-0.0, 121.301852, -8.688221], [-0.0, 121.356102, -8.633966], [-0.0, 116.183497, -8.633966]]}, {"shapeName": "C_torso_FK_D_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 116.183497, -8.688221], [-5.118355, 116.129242, -8.633966], [-5.118355, 116.183497, -8.579711], [-5.118355, 116.237752, -8.633966], [-5.118355, 116.183497, -8.688221], [-5.172605, 116.183497, -8.633966], [-5.118355, 116.183497, -8.579711], [-5.0641, 116.183497, -8.633966], [-5.118355, 116.129242, -8.633966], [-5.172605, 116.183497, -8.633966], [-5.118355, 116.237752, -8.633966], [-5.0641, 116.183497, -8.633966], [-5.118355, 116.183497, -8.688221], [-5.172605, 116.183497, -8.633966], [-0.0, 116.183497, -8.633966]]}, {"shapeName": "C_torso_FK_D_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 116.183497, -3.515611], [-0.0, 116.129242, -3.515611], [0.054255, 116.183497, -3.515611], [-0.0, 116.237752, -3.515611], [-0.054255, 116.183497, -3.515611], [-0.0, 116.183497, -3.461361], [0.054255, 116.183497, -3.515611], [-0.0, 116.183497, -3.569866], [-0.0, 116.129242, -3.515611], [-0.0, 116.183497, -3.461361], [-0.0, 116.237752, -3.515611], [-0.0, 116.183497, -3.569866], [-0.054255, 116.183497, -3.515611], [-0.0, 116.183497, -3.461361], [-0.0, 116.183497, -8.633966]]}]},
+			"L_reverseBall_CTL": {"color": 20, "shapes": [{"shapeName": "L_reverseBall_CTLShape", "degree": 1, "form": 0, "points": [[9.978516, 1.667547, 7.455104], [9.978516, 6.162822, 7.661266], [9.978516, 7.207586, 6.70813], [10.978516, 7.161772, 7.70708], [9.978516, 8.160722, 7.752893], [9.978516, 7.207586, 6.70813], [8.978516, 7.161772, 7.70708], [9.978516, 6.162822, 7.661266], [9.978516, 7.115958, 8.70603], [8.978516, 7.161772, 7.70708], [9.978516, 8.160722, 7.752893], [9.978516, 7.115958, 8.70603], [10.978516, 7.161772, 7.70708], [9.978516, 6.162822, 7.661266]]}]},
+			"L_arm_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[67.814781, 120.605051, -12.517327], [67.550452, 119.851725, -12.407366], [66.734329, 119.948846, -12.585288], [66.326694, 119.482333, -12.564175], [66.541204, 118.696544, -12.355059], [65.826396, 118.329095, -12.414261], [65.341151, 118.975636, -12.645784], [64.732788, 118.920009, -12.751074], [64.320142, 118.19118, -12.674909], [63.573566, 118.424868, -12.8686], [63.703444, 119.242207, -13.018126], [63.250735, 119.629963, -13.18812], [62.452642, 119.385125, -13.289546], [62.111655, 120.083051, -13.504259], [62.780578, 120.592314, -13.484178], [62.748607, 121.196429, -13.619342], [62.032603, 121.578884, -13.838914], [62.296932, 122.332209, -13.948875], [63.11308, 122.235159, -13.770963], [63.520715, 122.701672, -13.792076], [63.306204, 123.487462, -14.001192], [64.020997, 123.854863, -13.941983], [64.506329, 123.208348, -13.710449], [65.114621, 123.263997, -13.605177], [65.527242, 123.992755, -13.681331], [66.273818, 123.759067, -13.48764], [66.143965, 122.941799, -13.338125], [66.596744, 122.55402, -13.168112], [67.39475, 122.798834, -13.066698], [67.735754, 122.100955, -12.851992], [67.066831, 121.591692, -12.872073], [67.098802, 120.987576, -12.736909], [67.814781, 120.605051, -12.517327]]}, {"shapeName": "L_arm_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[66.020971, 121.656015, -13.087238], [65.32946, 122.248387, -13.34692], [64.400248, 122.163323, -13.507718], [63.777732, 121.450681, -13.47543], [63.826438, 120.52799, -13.269012], [64.517949, 119.935618, -13.009331], [65.447161, 120.020683, -12.848533], [66.06966, 120.733277, -12.880814]]}, {"shapeName": "L_arm_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[63.946854, 118.308024, -12.771755], [58.56385, 102.966713, -10.53242]]}]},
+			"C_cog_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_D_OFF_CTLShape", "degree": 1, "form": 0, "points": [[17.987292, 98.683497, -7.339514], [17.96832, 98.683497, -10.169276], [13.085478, 98.683497, -11.868368], [12.4182, 98.683497, -13.876376], [15.31287, 98.683497, -18.159404], [13.634244, 98.683497, -20.437574], [8.684496, 98.683497, -18.945122], [6.964866, 98.683497, -20.177492], [6.789474, 98.683497, -25.340882], [4.092336, 98.683497, -26.197304], [0.96633, 98.683497, -22.08335], [-1.148814, 98.683497, -22.069364], [-4.32729, 98.683497, -26.140892], [-7.012692, 98.683497, -25.248416], [-7.120944, 98.683497, -20.084378], [-8.82369, 98.683497, -18.829382], [-13.791168, 98.683497, -20.253848], [-15.439122, 98.683497, -17.953376], [-12.488256, 98.683497, -13.71173], [-13.12821, 98.683497, -11.6951], [-17.987292, 98.683497, -9.928418], [-17.96832, 98.683497, -7.098656], [-13.085478, 98.683497, -5.399564], [-12.4182, 98.683497, -3.391556], [-15.31287, 98.683497, 0.891472], [-13.634244, 98.683497, 3.169642], [-8.684496, 98.683497, 1.67719], [-6.964866, 98.683497, 2.90956], [-6.789474, 98.683497, 8.07295], [-4.092336, 98.683497, 8.929372], [-0.96633, 98.683497, 4.815418], [1.148814, 98.683497, 4.801432], [4.32729, 98.683497, 8.87296], [7.012692, 98.683497, 7.980484], [7.120944, 98.683497, 2.816446], [8.82369, 98.683497, 1.56145], [13.791168, 98.683497, 2.985916], [15.439122, 98.683497, 0.685444], [12.488256, 98.683497, -3.556202], [13.12821, 98.683497, -5.572832], [17.987292, 98.683497, -7.339514]]}]},
+			"L_pinky_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_B_CTLShape", "degree": 3, "form": 2, "points": [[64.245994, 97.359775, -12.855202], [64.338622, 97.435276, -12.89886], [64.445132, 97.48459, -12.849764], [64.503131, 97.478829, -12.736673], [64.478644, 97.421367, -12.625835], [64.386016, 97.345865, -12.582177], [64.279506, 97.296551, -12.631273], [64.221508, 97.302313, -12.744364]]}]},
+			"L_leg_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 17.707334, -5.880046], [9.870007, 17.707334, -5.771536], [9.978517, 17.707334, -5.663026], [10.087027, 17.707334, -5.771536], [9.978517, 17.707334, -5.880046], [9.978517, 17.815834, -5.771536], [9.978517, 17.707334, -5.663026], [9.978517, 17.598824, -5.771536], [9.870007, 17.707334, -5.771536], [9.978517, 17.815834, -5.771536], [10.087027, 17.707334, -5.771536], [9.978517, 17.598824, -5.771536], [9.978517, 17.707334, -5.880046], [9.978517, 17.815834, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 7.470624, -5.880046], [-0.258193, 7.362114, -5.771536], [-0.258193, 7.470624, -5.663026], [-0.258193, 7.579134, -5.771536], [-0.258193, 7.470624, -5.880046], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.470624, -5.663026], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.362114, -5.771536], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.579134, -5.771536], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.470624, -5.880046], [-0.366693, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 7.470624, 4.465174], [9.978517, 7.362114, 4.465174], [10.087027, 7.470624, 4.465174], [9.978517, 7.579134, 4.465174], [9.870007, 7.470624, 4.465174], [9.978517, 7.470624, 4.573674], [10.087027, 7.470624, 4.465174], [9.978517, 7.470624, 4.356664], [9.978517, 7.362114, 4.465174], [9.978517, 7.470624, 4.573674], [9.978517, 7.579134, 4.465174], [9.978517, 7.470624, 4.356664], [9.870007, 7.470624, 4.465174], [9.978517, 7.470624, 4.573674], [9.978517, 7.470624, -5.771536]]}]},
+			"L_thumb_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_B_CTLShape", "degree": 3, "form": 2, "points": [[58.029331, 98.470742, -4.303342], [58.046892, 98.542154, -4.199523], [57.971239, 98.588371, -4.10827], [57.846687, 98.582319, -4.083039], [57.746197, 98.527544, -4.138608], [57.728635, 98.456132, -4.242427], [57.804289, 98.409915, -4.33368], [57.928841, 98.415967, -4.358912]]}]},
+			"L_loLeg_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_loLeg_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 41.644398, -0.358648], [9.870007, 41.661038, -0.465875], [9.978517, 41.677677, -0.573101], [10.087027, 41.661038, -0.465875], [9.978517, 41.644398, -0.358648], [9.978517, 41.553821, -0.482513], [9.978517, 41.677677, -0.573101], [9.978517, 41.768264, -0.449235], [9.870007, 41.661038, -0.465875], [9.978517, 41.553821, -0.482513], [10.087027, 41.661038, -0.465875], [9.978517, 41.768264, -0.449235], [9.978517, 41.644398, -0.358648], [9.978517, 41.553821, -0.482513], [9.978517, 51.776676, 1.103868]]}, {"shapeName": "L_loLeg_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 51.760037, 1.211095], [-0.258193, 51.883903, 1.120507], [-0.258193, 51.793316, 0.996641], [-0.258193, 51.66945, 1.087229], [-0.258193, 51.760037, 1.211095], [-0.366693, 51.776676, 1.103868], [-0.258193, 51.793316, 0.996641], [-0.149683, 51.776676, 1.103868], [-0.258193, 51.883903, 1.120507], [-0.366693, 51.776676, 1.103868], [-0.258193, 51.66945, 1.087229], [-0.149683, 51.776676, 1.103868], [-0.258193, 51.760037, 1.211095], [-0.366693, 51.776676, 1.103868], [9.978517, 51.776676, 1.103868]]}, {"shapeName": "L_loLeg_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 53.346419, -9.01177], [9.978517, 53.453646, -8.995131], [10.087027, 53.346419, -9.01177], [9.978517, 53.239192, -9.02841], [9.870007, 53.346419, -9.01177], [9.978517, 53.363057, -9.118987], [10.087027, 53.346419, -9.01177], [9.978517, 53.32978, -8.904544], [9.978517, 53.453646, -8.995131], [9.978517, 53.363057, -9.118987], [9.978517, 53.239192, -9.02841], [9.978517, 53.32978, -8.904544], [9.870007, 53.346419, -9.01177], [9.978517, 53.363057, -9.118987], [9.978517, 51.776676, 1.103868]]}]},
+			"L_arm_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[66.889688, 118.841217, -12.318836], [66.651791, 118.163224, -12.219871], [65.917281, 118.250633, -12.380001], [65.550409, 117.830771, -12.361], [65.743469, 117.123561, -12.172795], [65.100141, 116.792857, -12.226077], [64.663421, 117.374744, -12.434448], [64.115894, 117.324679, -12.529208], [63.744512, 116.668733, -12.46066], [63.072595, 116.879052, -12.634982], [63.189485, 117.614658, -12.769555], [62.782046, 117.963638, -12.92255], [62.063763, 117.743283, -13.013833], [61.756875, 118.371417, -13.207075], [62.358905, 118.829754, -13.189002], [62.330131, 119.373458, -13.31065], [61.685728, 119.717667, -13.508264], [61.923624, 120.39566, -13.607229], [62.658157, 120.308315, -13.447108], [63.025029, 120.728176, -13.46611], [62.831969, 121.435387, -13.654315], [63.475282, 121.766048, -13.601027], [63.912081, 121.184184, -13.392646], [64.459544, 121.234268, -13.297901], [64.830903, 121.890151, -13.36644], [65.502821, 121.679832, -13.192118], [65.385953, 120.94429, -13.057554], [65.793455, 120.595289, -12.904543], [66.51166, 120.815622, -12.81327], [66.818564, 120.18753, -12.620035], [66.216533, 119.729194, -12.638108], [66.245307, 119.18549, -12.51646], [66.889688, 118.841217, -12.318836]]}, {"shapeName": "L_arm_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[65.275259, 119.787085, -12.831757], [64.652899, 120.32022, -13.06547], [63.816609, 120.243662, -13.210188], [63.256344, 119.602284, -13.181129], [63.300179, 118.771863, -12.995353], [63.922539, 118.238728, -12.76164], [64.75883, 118.315286, -12.616922], [65.319079, 118.956621, -12.645974]]}, {"shapeName": "L_arm_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[63.408553, 116.773893, -12.547821], [58.56385, 102.966713, -10.53242]]}]},
+			"L_reverseBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_reverseBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[20.215226, 1.672518, 7.346708], [20.215226, 1.775943, 7.460075], [20.215226, 1.662576, 7.5635], [20.215226, 1.559151, 7.450133], [20.215226, 1.672518, 7.346708], [20.323726, 1.667547, 7.455104], [20.215226, 1.662576, 7.5635], [20.106716, 1.667547, 7.455104], [20.215226, 1.775943, 7.460075], [20.323726, 1.667547, 7.455104], [20.215226, 1.559151, 7.450133], [20.106716, 1.667547, 7.455104], [20.215226, 1.672518, 7.346708], [20.323726, 1.667547, 7.455104], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_reverseBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[9.978516, 11.89848, 7.81569], [9.870006, 11.893508, 7.924086], [9.978516, 11.888537, 8.032482], [10.087026, 11.893508, 7.924086], [9.978516, 11.89848, 7.81569], [9.978516, 12.001894, 7.929057], [9.978516, 11.888537, 8.032482], [9.978516, 11.785112, 7.919115], [9.870006, 11.893508, 7.924086], [9.978516, 12.001894, 7.929057], [10.087026, 11.893508, 7.924086], [9.978516, 11.785112, 7.919115], [9.978516, 11.89848, 7.81569], [9.978516, 12.001894, 7.929057], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_reverseBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.978516, 1.306961, 17.686037], [9.870006, 1.198565, 17.681065], [9.978516, 1.090169, 17.676094], [10.087026, 1.198565, 17.681065], [9.978516, 1.306961, 17.686037], [9.978516, 1.193594, 17.789452], [9.978516, 1.090169, 17.676094], [9.978516, 1.203536, 17.572669], [9.870006, 1.198565, 17.681065], [9.978516, 1.193594, 17.789452], [10.087026, 1.198565, 17.681065], [9.978516, 1.203536, 17.572669], [9.978516, 1.306961, 17.686037], [9.978516, 1.193594, 17.789452], [9.978516, 1.667547, 7.455104]]}]},
+			"L_pinky_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.88486, 96.570868, -13.061545], [64.895599, 96.573711, -13.050958], [64.887954, 96.565031, -13.040873], [64.877215, 96.562188, -13.05146], [64.88486, 96.570868, -13.061545], [64.891962, 96.55923, -13.054502], [64.887954, 96.565031, -13.040873], [64.880852, 96.576669, -13.047915], [64.895599, 96.573711, -13.050958], [64.891962, 96.55923, -13.054502], [64.877215, 96.562188, -13.05146], [64.880852, 96.576669, -13.047915], [64.88486, 96.570868, -13.061545], [64.891962, 96.55923, -13.054502], [64.362319, 97.390571, -12.740519]]}, {"shapeName": "L_pinky_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[65.227916, 97.936998, -12.727175], [65.223908, 97.9428, -12.713545], [65.23101, 97.931162, -12.706503], [65.235019, 97.92536, -12.720132], [65.227916, 97.936998, -12.727175], [65.238654, 97.939841, -12.716588], [65.23101, 97.931162, -12.706503], [65.220271, 97.928319, -12.71709], [65.223908, 97.9428, -12.713545], [65.238654, 97.939841, -12.716588], [65.235019, 97.92536, -12.720132], [65.220271, 97.928319, -12.71709], [65.227916, 97.936998, -12.727175], [65.238654, 97.939841, -12.716588], [64.362319, 97.390571, -12.740519]]}, {"shapeName": "L_pinky_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[64.51744, 97.121025, -11.765171], [64.502693, 97.123984, -11.762129], [64.499056, 97.109503, -11.765673], [64.513803, 97.106544, -11.768715], [64.51744, 97.121025, -11.765171], [64.509795, 97.112346, -11.755087], [64.499056, 97.109503, -11.765673], [64.506701, 97.118182, -11.775758], [64.502693, 97.123984, -11.762129], [64.509795, 97.112346, -11.755087], [64.513803, 97.106544, -11.768715], [64.506701, 97.118182, -11.775758], [64.51744, 97.121025, -11.765171], [64.509795, 97.112346, -11.755087], [64.362319, 97.390571, -12.740519]]}]},
+			"L_middle_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[61.755258, 100.483163, -9.294973], [61.760281, 100.492128, -9.283577], [61.749637, 100.486219, -9.274236], [61.744613, 100.477254, -9.285632], [61.755258, 100.483163, -9.294973], [61.759409, 100.47694, -9.281575], [61.749637, 100.486219, -9.274236], [61.745485, 100.492443, -9.287634], [61.760281, 100.492128, -9.283577], [61.759409, 100.47694, -9.281575], [61.744613, 100.477254, -9.285632], [61.745485, 100.492443, -9.287634], [61.755258, 100.483163, -9.294973], [61.759409, 100.47694, -9.281575], [61.095652, 101.216011, -9.570426]]}, {"shapeName": "L_middle_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[61.837531, 101.916115, -9.483878], [61.827758, 101.925395, -9.476539], [61.83191, 101.919171, -9.46314], [61.841682, 101.909891, -9.470479], [61.837531, 101.916115, -9.483878], [61.842554, 101.925079, -9.472482], [61.83191, 101.919171, -9.46314], [61.826886, 101.910205, -9.474536], [61.827758, 101.925395, -9.476539], [61.842554, 101.925079, -9.472482], [61.841682, 101.909891, -9.470479], [61.826886, 101.910205, -9.474536], [61.837531, 101.916115, -9.483878], [61.842554, 101.925079, -9.472482], [61.095652, 101.216011, -9.570426]]}, {"shapeName": "L_middle_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[60.838344, 101.367622, -8.591229], [60.823547, 101.367937, -8.595286], [60.822675, 101.352748, -8.593284], [60.837472, 101.352433, -8.589227], [60.838344, 101.367622, -8.591229], [60.827699, 101.361713, -8.581889], [60.822675, 101.352748, -8.593284], [60.83332, 101.358657, -8.602625], [60.823547, 101.367937, -8.595286], [60.827699, 101.361713, -8.581889], [60.837472, 101.352433, -8.589227], [60.83332, 101.358657, -8.602625], [60.838344, 101.367622, -8.591229], [60.827699, 101.361713, -8.581889], [61.095652, 101.216011, -9.570426]]}]},
+			"C_torso_FK_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_torso_FK_B_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 106.183497, -13.633966], [-0.0, 106.374837, -13.672026], [-0.0, 106.537047, -13.780416], [-0.0, 106.645437, -13.942626], [-0.0, 106.683497, -14.133966], [-0.0, 106.645437, -14.325306], [-0.0, 106.537047, -14.487516], [-0.0, 106.374837, -14.595906], [-0.0, 106.183497, -14.633966], [-0.0, 105.992157, -14.595906], [-0.0, 105.829947, -14.487516], [-0.0, 105.721557, -14.325306], [-0.0, 105.683497, -14.133966], [-0.0, 105.721557, -13.942626], [-0.0, 105.829947, -13.780416], [-0.0, 105.992157, -13.672026], [-0.0, 106.183497, -13.633966], [-0.0, 106.183497, -8.633966]]}]},
+			"L_index_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.574533, 96.186411, -4.830278], [64.57707, 96.194725, -4.817631], [64.563432, 96.19042, -4.812066], [64.560895, 96.182107, -4.824713], [64.574533, 96.186411, -4.830278], [64.573622, 96.179819, -4.816451], [64.563432, 96.19042, -4.812066], [64.564342, 96.197014, -4.825893], [64.57707, 96.194725, -4.817631], [64.573622, 96.179819, -4.816451], [64.560895, 96.182107, -4.824713], [64.564342, 96.197014, -4.825893], [64.574533, 96.186411, -4.830278], [64.573622, 96.179819, -4.816451], [64.131249, 96.999544, -5.266552]]}, {"shapeName": "L_index_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.899761, 97.592695, -4.941617], [64.88957, 97.603298, -4.937233], [64.88866, 97.596705, -4.923406], [64.89885, 97.586102, -4.92779], [64.899761, 97.592695, -4.941617], [64.902297, 97.601008, -4.928971], [64.88866, 97.596705, -4.923406], [64.886123, 97.588391, -4.936052], [64.88957, 97.603298, -4.937233], [64.902297, 97.601008, -4.928971], [64.89885, 97.586102, -4.92779], [64.886123, 97.588391, -4.936052], [64.899761, 97.592695, -4.941617], [64.902297, 97.601008, -4.928971], [64.131249, 96.999544, -5.266552]]}, {"shapeName": "L_index_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[63.615712, 97.194963, -4.403967], [63.602984, 97.197252, -4.412229], [63.599537, 97.182346, -4.411049], [63.612264, 97.180056, -4.402787], [63.615712, 97.194963, -4.403967], [63.602074, 97.190659, -4.398403], [63.599537, 97.182346, -4.411049], [63.613175, 97.18665, -4.416614], [63.602984, 97.197252, -4.412229], [63.602074, 97.190659, -4.398403], [63.612264, 97.180056, -4.402787], [63.613175, 97.18665, -4.416614], [63.615712, 97.194963, -4.403967], [63.602074, 97.190659, -4.398403], [64.131249, 96.999544, -5.266552]]}]},
+			"L_thumb_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[58.051838, 97.656149, -3.663784], [58.03877, 97.658771, -3.656181], [58.031063, 97.650534, -3.666585], [58.044132, 97.647912, -3.674189], [58.051838, 97.656149, -3.663784], [58.04308, 97.644377, -3.659294], [58.031063, 97.650534, -3.666585], [58.039822, 97.662307, -3.671076], [58.03877, 97.658771, -3.656181], [58.04308, 97.644377, -3.659294], [58.044132, 97.647912, -3.674189], [58.039822, 97.662307, -3.671076], [58.051838, 97.656149, -3.663784], [58.04308, 97.644377, -3.659294], [57.887764, 98.499143, -4.220975]]}, {"shapeName": "L_thumb_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[57.64519, 99.014167, -3.370135], [57.633174, 99.020325, -3.377427], [57.624415, 99.008552, -3.372936], [57.636432, 99.002394, -3.365644], [57.64519, 99.014167, -3.370135], [57.632122, 99.016788, -3.362532], [57.624415, 99.008552, -3.372936], [57.637484, 99.00593, -3.38054], [57.633174, 99.020325, -3.377427], [57.632122, 99.016788, -3.362532], [57.636432, 99.002394, -3.365644], [57.637484, 99.00593, -3.38054], [57.64519, 99.014167, -3.370135], [57.632122, 99.016788, -3.362532], [57.887764, 98.499143, -4.220975]]}, {"shapeName": "L_thumb_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[56.905137, 98.239701, -4.344077], [56.906189, 98.243237, -4.358973], [56.9105, 98.228842, -4.362086], [56.909447, 98.225306, -4.34719], [56.905137, 98.239701, -4.344077], [56.897432, 98.231464, -4.354482], [56.9105, 98.228842, -4.362086], [56.918206, 98.237079, -4.351681], [56.906189, 98.243237, -4.358973], [56.897432, 98.231464, -4.354482], [56.909447, 98.225306, -4.34719], [56.918206, 98.237079, -4.351681], [56.905137, 98.239701, -4.344077], [56.897432, 98.231464, -4.354482], [57.887764, 98.499143, -4.220975]]}]},
+			"C_hip_D_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.694514, 98.683497, -19.212728], [-0.0, 93.283497, -23.594585], [-12.694514, 98.683497, -19.212728], [-17.952743, 104.083497, -8.633966], [-12.694514, 98.683497, 1.944796], [-0.0, 93.283497, 6.326653], [12.694514, 98.683497, 1.944796], [17.952743, 104.083497, -8.633966]]}]},
+			"C_lookAt_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_lookAt_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-3.984552, 169.17494, 71.178591], [-3.984552, 168.675324, 71.178591], [-3.984552, 168.675324, 70.678975], [-3.984552, 169.17494, 70.678975], [-3.984552, 169.17494, 71.178591], [3.984552, 169.17494, 71.178591], [3.984552, 168.675324, 71.178591], [3.984552, 168.675324, 70.678975], [3.984552, 169.17494, 70.678975], [3.984552, 169.17494, 71.178591], [3.984552, 168.675324, 71.178591], [-3.984552, 168.675324, 71.178591], [-3.984552, 168.675324, 70.678975], [3.984552, 168.675324, 70.678975], [3.984552, 169.17494, 70.678975], [-3.984552, 169.17494, 70.678975], [-3.984552, 169.17494, 71.178591], [-0.248, 169.173132, 71.176783], [-0.249808, 164.94058, 71.178591], [-0.249808, 164.94058, 70.678975], [0.249808, 164.94058, 70.678975], [0.249808, 164.94058, 71.178591], [-0.249808, 164.94058, 71.178591], [-0.249808, 172.909684, 71.178591], [0.249808, 172.909684, 71.178591], [0.249808, 172.909684, 70.678975], [-0.249808, 172.909684, 70.678975], [-0.249808, 172.909684, 71.178591], [-0.249808, 172.909684, 70.678975], [-0.249808, 164.94058, 70.678975], [0.249808, 164.94058, 70.678975], [0.249808, 172.909684, 70.678975], [0.249808, 172.909684, 71.178591], [0.249808, 164.94058, 71.178591], [0.248, 168.677132, 71.176783], [0.249808, 168.675324, 74.913335], [-0.249808, 168.675324, 74.913335], [-0.249808, 169.17494, 74.913335], [0.249808, 169.17494, 74.913335], [0.249808, 168.675324, 74.913335], [0.249808, 168.675324, 66.944231], [0.249808, 169.17494, 66.944231], [-0.249808, 169.17494, 66.944231], [-0.249808, 168.675324, 66.944231], [0.249808, 168.675324, 66.944231], [-0.249808, 168.675324, 66.944231], [-0.249808, 168.675324, 74.913335], [-0.249808, 169.17494, 74.913335], [-0.249808, 169.17494, 66.944231], [0.249808, 169.17494, 66.944231], [0.249808, 169.17494, 74.913335]]}]},
+			"C_head_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[11.880025, 182.718046, -4.968417], [0.0, 187.344435, -4.968417], [-11.880025, 182.718046, -4.968417], [-16.800882, 171.548932, -4.968417], [-11.880025, 160.379818, -4.968417], [0.0, 155.75343, -4.968417], [11.880025, 160.379818, -4.968417], [16.800882, 171.548932, -4.968417]]}]},
+			"L_ankleOffset_CTL": {"color": 20, "shapes": [{"shapeName": "L_ankleOffset_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 7.470624, -5.771536], [9.978516, 12.229085, -1.009207], [9.978516, 14.344816, -1.008347], [11.474564, 13.286521, 0.049088], [9.978516, 14.343957, 1.107384], [9.978516, 14.344816, -1.008347], [8.482468, 13.286521, 0.049088], [9.978516, 12.229085, -1.009207], [9.978516, 12.228225, 1.106524], [8.482468, 13.286521, 0.049088], [9.978516, 14.343957, 1.107384], [9.978516, 12.228225, 1.106524], [11.474564, 13.286521, 0.049088], [9.978516, 12.229085, -1.009207]]}]},
+			"L_legEnd_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_legEnd_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, -2.661654, -7.234052], [9.870007, -2.645014, -7.341279], [9.978517, -2.628375, -7.448506], [10.087027, -2.645014, -7.341279], [9.978517, -2.661654, -7.234052], [9.978517, -2.752231, -7.357917], [9.978517, -2.628375, -7.448506], [9.978517, -2.537788, -7.32464], [9.870007, -2.645014, -7.341279], [9.978517, -2.752231, -7.357917], [10.087027, -2.645014, -7.341279], [9.978517, -2.537788, -7.32464], [9.978517, -2.661654, -7.234052], [9.978517, -2.752231, -7.357917], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_legEnd_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 7.453985, -5.66431], [-0.258193, 7.577851, -5.754897], [-0.258193, 7.487263, -5.878763], [-0.258193, 7.363397, -5.788176], [-0.258193, 7.453985, -5.66431], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.487263, -5.878763], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.577851, -5.754897], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.363397, -5.788176], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.453985, -5.66431], [-0.366693, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_legEnd_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 9.040367, -15.887175], [9.978517, 9.147593, -15.870535], [10.087027, 9.040367, -15.887175], [9.978517, 8.93314, -15.903814], [9.870007, 9.040367, -15.887175], [9.978517, 9.057005, -15.994391], [10.087027, 9.040367, -15.887175], [9.978517, 9.023727, -15.779948], [9.978517, 9.147593, -15.870535], [9.978517, 9.057005, -15.994391], [9.978517, 8.93314, -15.903814], [9.978517, 9.023727, -15.779948], [9.870007, 9.040367, -15.887175], [9.978517, 9.057005, -15.994391], [9.978517, 7.470624, -5.771536]]}]},
+			"L_pinky_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_pinky_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[62.130602, 100.231898, -12.742499], [62.138655, 100.23819, -12.731051], [62.129668, 100.231097, -12.720832], [62.121616, 100.224806, -12.73228], [62.130602, 100.231898, -12.742499], [62.136838, 100.222966, -12.731692], [62.129668, 100.231097, -12.720832], [62.123431, 100.24003, -12.731639], [62.138655, 100.23819, -12.731051], [62.136838, 100.222966, -12.731692], [62.121616, 100.224806, -12.73228], [62.123431, 100.24003, -12.731639], [62.130602, 100.231898, -12.742499], [62.136838, 100.222966, -12.731692], [61.497686, 101.036423, -12.729157]]}, {"shapeName": "L_pinky_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[62.301877, 101.668148, -12.682026], [62.294706, 101.676279, -12.671166], [62.300943, 101.667347, -12.660359], [62.308114, 101.659215, -12.671219], [62.301877, 101.668148, -12.682026], [62.309929, 101.674439, -12.670578], [62.300943, 101.667347, -12.660359], [62.292891, 101.661055, -12.671807], [62.294706, 101.676279, -12.671166], [62.309929, 101.674439, -12.670578], [62.308114, 101.659215, -12.671219], [62.292891, 101.661055, -12.671807], [62.301877, 101.668148, -12.682026], [62.309929, 101.674439, -12.670578], [61.497686, 101.036423, -12.729157]]}, {"shapeName": "L_pinky_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[61.462174, 101.005333, -11.706517], [61.446951, 101.007174, -11.707105], [61.445135, 100.991949, -11.707746], [61.460359, 100.990109, -11.707158], [61.462174, 101.005333, -11.706517], [61.453188, 100.998241, -11.696299], [61.445135, 100.991949, -11.707746], [61.454122, 100.999042, -11.717965], [61.446951, 101.007174, -11.707105], [61.453188, 100.998241, -11.696299], [61.460359, 100.990109, -11.707158], [61.454122, 100.999042, -11.717965], [61.462174, 101.005333, -11.706517], [61.453188, 100.998241, -11.696299], [61.497686, 101.036423, -12.729157]]}]},
+			"C_neck_FK_B_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "C_neck_FK_B_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 157.006742, -11.974364], [0.0, 157.201533, -11.963579], [0.0, 157.385624, -12.028163], [0.0, 157.530992, -12.158273], [0.0, 157.615499, -12.334108], [0.0, 157.626284, -12.528898], [0.0, 157.5617, -12.712989], [0.0, 157.431591, -12.858357], [0.0, 157.255755, -12.942865], [0.0, 157.060965, -12.95365], [0.0, 156.876874, -12.889066], [0.0, 156.731506, -12.758956], [0.0, 156.646999, -12.583121], [0.0, 156.636214, -12.388331], [0.0, 156.700797, -12.20424], [0.0, 156.830907, -12.058872], [0.0, 157.006742, -11.974364], [0.0, 155.761679, -7.131863]]}]},
+			"L_leg_IK_switch_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_IK_switch_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, -2.661654, -7.234052], [9.870007, -2.645014, -7.341279], [9.978517, -2.628375, -7.448506], [10.087027, -2.645014, -7.341279], [9.978517, -2.661654, -7.234052], [9.978517, -2.752231, -7.357917], [9.978517, -2.628375, -7.448506], [9.978517, -2.537788, -7.32464], [9.870007, -2.645014, -7.341279], [9.978517, -2.752231, -7.357917], [10.087027, -2.645014, -7.341279], [9.978517, -2.537788, -7.32464], [9.978517, -2.661654, -7.234052], [9.978517, -2.752231, -7.357917], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_switch_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 7.453985, -5.66431], [-0.258193, 7.577851, -5.754897], [-0.258193, 7.487263, -5.878763], [-0.258193, 7.363397, -5.788176], [-0.258193, 7.453985, -5.66431], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.487263, -5.878763], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.577851, -5.754897], [-0.366693, 7.470624, -5.771536], [-0.258193, 7.363397, -5.788176], [-0.149683, 7.470624, -5.771536], [-0.258193, 7.453985, -5.66431], [-0.366693, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}, {"shapeName": "L_leg_IK_switch_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 9.040367, -15.887175], [9.978517, 9.147593, -15.870535], [10.087027, 9.040367, -15.887175], [9.978517, 8.93314, -15.903814], [9.870007, 9.040367, -15.887175], [9.978517, 9.057005, -15.994391], [10.087027, 9.040367, -15.887175], [9.978517, 9.023727, -15.779948], [9.978517, 9.147593, -15.870535], [9.978517, 9.057005, -15.994391], [9.978517, 8.93314, -15.903814], [9.978517, 9.023727, -15.779948], [9.870007, 9.040367, -15.887175], [9.978517, 9.057005, -15.994391], [9.978517, 7.470624, -5.771536]]}]},
+			"C_jaw_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_jaw_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.054255, 161.930574, 2.131058], [0.0, 161.979329, 2.154861], [-0.054255, 161.930574, 2.131058], [0.0, 161.881819, 2.107255], [0.054255, 161.930574, 2.131058], [0.0, 161.906773, 2.179808], [-0.054255, 161.930574, 2.131058], [0.0, 161.954377, 2.082303], [0.0, 161.979329, 2.154861], [0.0, 161.906773, 2.179808], [0.0, 161.881819, 2.107255], [0.0, 161.954377, 2.082303], [0.054255, 161.930574, 2.131058], [0.0, 161.906773, 2.179808], [0.0, 164.1761, -2.468417]]}, {"shapeName": "C_jaw_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.054255, 168.775575, -0.222891], [0.0, 168.799378, -0.271646], [-0.054255, 168.775575, -0.222891], [0.0, 168.751772, -0.174136], [0.054255, 168.775575, -0.222891], [0.0, 168.824326, -0.19909], [-0.054255, 168.775575, -0.222891], [0.0, 168.72682, -0.246693], [0.0, 168.799378, -0.271646], [0.0, 168.824326, -0.19909], [0.0, 168.751772, -0.174136], [0.0, 168.72682, -0.246693], [0.054255, 168.775575, -0.222891], [0.0, 168.824326, -0.19909], [0.0, 164.1761, -2.468417]]}, {"shapeName": "C_jaw_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-5.118355, 164.224855, -2.444614], [-5.118355, 164.199903, -2.517172], [-5.118355, 164.127345, -2.49222], [-5.118355, 164.152298, -2.419662], [-5.118355, 164.224855, -2.444614], [-5.172605, 164.1761, -2.468417], [-5.118355, 164.127345, -2.49222], [-5.0641, 164.1761, -2.468417], [-5.118355, 164.199903, -2.517172], [-5.172605, 164.1761, -2.468417], [-5.118355, 164.152298, -2.419662], [-5.0641, 164.1761, -2.468417], [-5.118355, 164.224855, -2.444614], [-5.172605, 164.1761, -2.468417], [0.0, 164.1761, -2.468417]]}]},
+			"C_head_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_head_PIV_CTLShape", "degree": 1, "form": 0, "points": [[5.118355, 164.1761, -5.022672], [5.118355, 164.230355, -4.968417], [5.118355, 164.1761, -4.914162], [5.118355, 164.121845, -4.968417], [5.118355, 164.1761, -5.022672], [5.172605, 164.1761, -4.968417], [5.118355, 164.1761, -4.914162], [5.0641, 164.1761, -4.968417], [5.118355, 164.230355, -4.968417], [5.172605, 164.1761, -4.968417], [5.118355, 164.121845, -4.968417], [5.0641, 164.1761, -4.968417], [5.118355, 164.1761, -5.022672], [5.172605, 164.1761, -4.968417], [0.0, 164.1761, -4.968417]]}, {"shapeName": "C_head_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.0, 169.294455, -5.022672], [-0.054255, 169.294455, -4.968417], [0.0, 169.294455, -4.914162], [0.054255, 169.294455, -4.968417], [0.0, 169.294455, -5.022672], [0.0, 169.348705, -4.968417], [0.0, 169.294455, -4.914162], [0.0, 169.2402, -4.968417], [-0.054255, 169.294455, -4.968417], [0.0, 169.348705, -4.968417], [0.054255, 169.294455, -4.968417], [0.0, 169.2402, -4.968417], [0.0, 169.294455, -5.022672], [0.0, 169.348705, -4.968417], [0.0, 164.1761, -4.968417]]}, {"shapeName": "C_head_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.0, 164.230355, 0.149938], [-0.054255, 164.1761, 0.149938], [0.0, 164.121845, 0.149938], [0.054255, 164.1761, 0.149938], [0.0, 164.230355, 0.149938], [0.0, 164.1761, 0.204188], [0.0, 164.121845, 0.149938], [0.0, 164.1761, 0.095683], [-0.054255, 164.1761, 0.149938], [0.0, 164.1761, 0.204188], [0.054255, 164.1761, 0.149938], [0.0, 164.1761, 0.095683], [0.0, 164.230355, 0.149938], [0.0, 164.1761, 0.204188], [0.0, 164.1761, -4.968417]]}]},
+			"C_cog_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_cog_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[23.983056, 98.683497, -6.90803], [23.95776, 98.683497, -10.681046], [17.447304, 98.683497, -12.946502], [16.5576, 98.683497, -15.623846], [20.41716, 98.683497, -21.33455], [18.178992, 98.683497, -24.37211], [11.579328, 98.683497, -22.382174], [9.286488, 98.683497, -24.025334], [9.052632, 98.683497, -30.909854], [5.456448, 98.683497, -32.05175], [1.28844, 98.683497, -26.566478], [-1.531752, 98.683497, -26.54783], [-5.76972, 98.683497, -31.976534], [-9.350256, 98.683497, -30.786566], [-9.494592, 98.683497, -23.901182], [-11.76492, 98.683497, -22.227854], [-18.388224, 98.683497, -24.127142], [-20.585496, 98.683497, -21.059846], [-16.651008, 98.683497, -15.404318], [-17.50428, 98.683497, -12.715478], [-23.983056, 98.683497, -10.359902], [-23.95776, 98.683497, -6.586886], [-17.447304, 98.683497, -4.32143], [-16.5576, 98.683497, -1.644086], [-20.41716, 98.683497, 4.066618], [-18.178992, 98.683497, 7.104178], [-11.579328, 98.683497, 5.114242], [-9.286488, 98.683497, 6.757402], [-9.052632, 98.683497, 13.641922], [-5.456448, 98.683497, 14.783818], [-1.28844, 98.683497, 9.298546], [1.531752, 98.683497, 9.279898], [5.76972, 98.683497, 14.708602], [9.350256, 98.683497, 13.518634], [9.494592, 98.683497, 6.63325], [11.76492, 98.683497, 4.959922], [18.388224, 98.683497, 6.85921], [20.585496, 98.683497, 3.791914], [16.651008, 98.683497, -1.863614], [17.50428, 98.683497, -4.552454], [23.983056, 98.683497, -6.90803]]}]},
+			"L_arm_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_arm_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.085716, 97.324185, -8.354311], [64.131868, 97.402526, -8.271826], [64.053581, 97.359816, -8.187457], [64.007428, 97.281474, -8.269943], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [64.053581, 97.359816, -8.187457], [64.011286, 97.401623, -8.294857], [64.131868, 97.402526, -8.271826], [64.128005, 97.282383, -8.246914], [64.007428, 97.281474, -8.269943], [64.011286, 97.401623, -8.294857], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.449692, 108.658855, -10.70469], [64.375262, 108.736293, -10.645235], [64.417556, 108.694486, -10.537836], [64.491986, 108.617048, -10.59729], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [64.417556, 108.694486, -10.537836], [64.371404, 108.616144, -10.620321], [64.375262, 108.736293, -10.645235], [64.495839, 108.737191, -10.622204], [64.491986, 108.617048, -10.59729], [64.371404, 108.616144, -10.620321], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_arm_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.110257, 104.707937, -2.662955], [56.989674, 104.707033, -2.685985], [56.985816, 104.586885, -2.661071], [57.106398, 104.587788, -2.63804], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [56.985816, 104.586885, -2.661071], [57.064104, 104.629595, -2.74544], [56.989674, 104.707033, -2.685985], [57.03197, 104.665225, -2.578594], [57.106398, 104.587788, -2.63804], [57.064104, 104.629595, -2.74544], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [58.56385, 102.966713, -10.53242]]}]},
+			"C_torso_FK_B_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_torso_FK_B_PIV_CTLShape", "degree": 1, "form": 0, "points": [[-0.0, 111.301852, -8.688221], [-0.054255, 111.301852, -8.633966], [-0.0, 111.301852, -8.579711], [0.054255, 111.301852, -8.633966], [-0.0, 111.301852, -8.688221], [-0.0, 111.356102, -8.633966], [-0.0, 111.301852, -8.579711], [-0.0, 111.247597, -8.633966], [-0.054255, 111.301852, -8.633966], [-0.0, 111.356102, -8.633966], [0.054255, 111.301852, -8.633966], [-0.0, 111.247597, -8.633966], [-0.0, 111.301852, -8.688221], [-0.0, 111.356102, -8.633966], [-0.0, 106.183497, -8.633966]]}, {"shapeName": "C_torso_FK_B_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 106.183497, -8.688221], [-5.118355, 106.129242, -8.633966], [-5.118355, 106.183497, -8.579711], [-5.118355, 106.237752, -8.633966], [-5.118355, 106.183497, -8.688221], [-5.172605, 106.183497, -8.633966], [-5.118355, 106.183497, -8.579711], [-5.0641, 106.183497, -8.633966], [-5.118355, 106.129242, -8.633966], [-5.172605, 106.183497, -8.633966], [-5.118355, 106.237752, -8.633966], [-5.0641, 106.183497, -8.633966], [-5.118355, 106.183497, -8.688221], [-5.172605, 106.183497, -8.633966], [-0.0, 106.183497, -8.633966]]}, {"shapeName": "C_torso_FK_B_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 106.183497, -3.515611], [-0.0, 106.129242, -3.515611], [0.054255, 106.183497, -3.515611], [-0.0, 106.237752, -3.515611], [-0.054255, 106.183497, -3.515611], [-0.0, 106.183497, -3.461361], [0.054255, 106.183497, -3.515611], [-0.0, 106.183497, -3.569866], [-0.0, 106.129242, -3.515611], [-0.0, 106.183497, -3.461361], [-0.0, 106.237752, -3.515611], [-0.0, 106.183497, -3.569866], [-0.054255, 106.183497, -3.515611], [-0.0, 106.183497, -3.461361], [-0.0, 106.183497, -8.633966]]}]},
+			"C_neck_FK_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "C_neck_FK_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 164.939528, -4.82815], [-0.054255, 164.926017, -4.775604], [0.0, 164.912507, -4.723059], [0.054255, 164.926017, -4.775604], [0.0, 164.939528, -4.82815], [0.0, 164.978558, -4.762096], [0.0, 164.912507, -4.723059], [0.0, 164.873471, -4.789115], [-0.054255, 164.926017, -4.775604], [0.0, 164.978558, -4.762096], [0.054255, 164.926017, -4.775604], [0.0, 164.873471, -4.789115], [0.0, 164.939528, -4.82815], [0.0, 164.978558, -4.762096], [0.0, 159.968889, -6.05014]]}, {"shapeName": "C_neck_FK_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-5.118355, 159.9824, -6.102686], [-5.118355, 159.916343, -6.06365], [-5.118355, 159.955379, -5.997594], [-5.118355, 160.021435, -6.03663], [-5.118355, 159.9824, -6.102686], [-5.172605, 159.968889, -6.05014], [-5.118355, 159.955379, -5.997594], [-5.0641, 159.968889, -6.05014], [-5.118355, 159.916343, -6.06365], [-5.172605, 159.968889, -6.05014], [-5.118355, 160.021435, -6.03663], [-5.0641, 159.968889, -6.05014], [-5.118355, 159.9824, -6.102686], [-5.172605, 159.968889, -6.05014], [0.0, 159.968889, -6.05014]]}, {"shapeName": "C_neck_FK_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[-0.054255, 158.694354, -1.093012], [0.0, 158.641808, -1.106522], [0.054255, 158.694354, -1.093012], [0.0, 158.7469, -1.079502], [-0.054255, 158.694354, -1.093012], [0.0, 158.680845, -1.040471], [0.054255, 158.694354, -1.093012], [0.0, 158.707864, -1.145558], [0.0, 158.641808, -1.106522], [0.0, 158.680845, -1.040471], [0.0, 158.7469, -1.079502], [0.0, 158.707864, -1.145558], [-0.054255, 158.694354, -1.093012], [0.0, 158.680845, -1.040471], [0.0, 159.968889, -6.05014]]}]},
+			"C_midTorso_A_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[19.971748, 113.683497, -25.277089], [-0.0, 113.683497, -32.170882], [-19.971748, 113.683497, -25.277089], [-28.244299, 113.683497, -8.633966], [-19.971748, 113.683497, 8.009158], [-0.0, 113.683497, 14.90295], [19.971748, 113.683497, 8.009158], [28.244299, 113.683497, -8.633966]]}]},
+			"C_midTorso_C_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[15.533582, 113.683497, -21.578617], [-0.0, 113.683497, -26.940456], [-15.533582, 113.683497, -21.578617], [-21.967788, 113.683497, -8.633966], [-15.533582, 113.683497, 4.310686], [-0.0, 113.683497, 9.672524], [15.533582, 113.683497, 4.310686], [21.967788, 113.683497, -8.633966]]}]},
+			"C_hip_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.810267, 98.683497, -20.975855], [-0.0, 92.383497, -26.088021], [-14.810267, 98.683497, -20.975855], [-20.944867, 104.983497, -8.633966], [-14.810267, 98.683497, 3.707923], [-0.0, 92.383497, 8.82009], [14.810267, 98.683497, 3.707923], [20.944867, 104.983497, -8.633966]]}]},
+			"L_middle_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_middle_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[67.673388, 91.963672, -6.651065], [67.681043, 91.968367, -6.638621], [67.668609, 91.965796, -6.630002], [67.660954, 91.961101, -6.642446], [67.673388, 91.963672, -6.651065], [67.674337, 91.954565, -6.63875], [67.668609, 91.965796, -6.630002], [67.667659, 91.974903, -6.642317], [67.681043, 91.968367, -6.638621], [67.674337, 91.954565, -6.63875], [67.660954, 91.961101, -6.642446], [67.667659, 91.974903, -6.642317], [67.673388, 91.963672, -6.651065], [67.674337, 91.954565, -6.63875], [67.35601, 92.924101, -6.808754]]}, {"shapeName": "L_middle_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[68.305962, 93.265787, -6.63887], [68.300234, 93.277019, -6.630122], [68.301184, 93.267912, -6.617808], [68.306912, 93.25668, -6.626556], [68.305962, 93.265787, -6.63887], [68.313616, 93.270482, -6.626427], [68.301184, 93.267912, -6.617808], [68.293529, 93.263216, -6.630251], [68.300234, 93.277019, -6.630122], [68.313616, 93.270482, -6.626427], [68.306912, 93.25668, -6.626556], [68.293529, 93.263216, -6.630251], [68.305962, 93.265787, -6.63887], [68.313616, 93.270482, -6.626427], [67.35601, 92.924101, -6.808754]]}, {"shapeName": "L_middle_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[67.140648, 93.027934, -5.813335], [67.127265, 93.03447, -5.817031], [67.120559, 93.020667, -5.81716], [67.133942, 93.014131, -5.813465], [67.140648, 93.027934, -5.813335], [67.128214, 93.025363, -5.804717], [67.120559, 93.020667, -5.81716], [67.132993, 93.023238, -5.825779], [67.127265, 93.03447, -5.817031], [67.128214, 93.025363, -5.804717], [67.133942, 93.014131, -5.813465], [67.132993, 93.023238, -5.825779], [67.140648, 93.027934, -5.813335], [67.128214, 93.025363, -5.804717], [67.35601, 92.924101, -6.808754]]}]},
+			"L_arm_IK_switch_C_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_arm_IK_switch_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[65.039501, 115.313549, -11.921855], [64.854471, 114.786222, -11.844882], [64.283186, 114.854206, -11.969428], [63.997841, 114.527647, -11.954649], [64.147998, 113.977595, -11.808267], [63.647632, 113.720381, -11.849709], [63.307961, 114.172959, -12.011775], [62.882106, 114.13402, -12.085478], [62.593254, 113.62384, -12.032162], [62.070651, 113.787421, -12.167746], [62.161566, 114.359559, -12.272414], [61.844669, 114.630988, -12.39141], [61.286005, 114.459601, -12.462408], [61.047314, 114.94815, -12.612707], [61.515559, 115.304634, -12.59865], [61.49318, 115.727515, -12.693265], [60.991978, 115.995233, -12.846966], [61.177008, 116.52256, -12.923938], [61.748311, 116.454626, -12.7994], [62.033656, 116.781185, -12.814179], [61.883498, 117.331237, -12.960561], [62.383853, 117.588418, -12.919114], [62.723585, 117.135857, -12.75704], [63.14939, 117.174812, -12.68335], [63.438225, 117.684942, -12.736658], [63.960828, 117.521361, -12.601074], [63.86993, 116.949273, -12.496413], [64.186876, 116.677828, -12.377405], [64.74548, 116.849197, -12.306415], [64.984183, 116.360682, -12.156121], [64.515937, 116.004198, -12.170177], [64.538316, 115.581317, -12.075562], [65.039501, 115.313549, -11.921855]]}, {"shapeName": "L_arm_IK_switch_C_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[63.783835, 116.049225, -12.320793], [63.299777, 116.463885, -12.50257], [62.649329, 116.40434, -12.615129], [62.213568, 115.90549, -12.592527], [62.247662, 115.259607, -12.448035], [62.731719, 114.844947, -12.266258], [63.382168, 114.904492, -12.153699], [63.817917, 115.403308, -12.176296]]}, {"shapeName": "L_arm_IK_switch_C_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[62.331953, 113.70563, -12.099954], [58.56385, 102.966713, -10.53242]]}]},
+			"L_leg_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.680189, 7.470624, -13.607656], [9.978517, 7.470624, -16.853476], [5.276845, 7.470624, -13.607656], [3.329353, 7.470624, -5.771536], [5.276845, 7.470624, 2.064584], [9.978517, 7.470624, 5.310404], [14.680189, 7.470624, 2.064584], [16.627681, 7.470624, -5.771536]]}]},
+			"L_upArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_upArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[16.842168, 143.691301, -13.171416], [18.96751, 146.050941, -14.365333], [21.450448, 147.939015, -13.030936], [22.836509, 148.249511, -9.949889], [22.313762, 146.800551, -6.927032], [20.18842, 144.440911, -5.733115], [17.705482, 142.552837, -7.067512], [16.319421, 142.24234, -10.148558]]}]},
+			"L_thumb_A_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_thumb_A_CTLShape", "degree": 3, "form": 2, "points": [[57.918903, 101.283853, -8.147082], [57.932063, 101.386038, -8.072438], [57.851915, 101.46453, -8.012424], [57.725407, 101.47335, -8.002195], [57.626648, 101.407331, -8.047743], [57.613488, 101.305147, -8.122386], [57.693636, 101.226654, -8.1824], [57.820144, 101.217834, -8.192629]]}]},
+			"L_index_A_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_index_A_PIV_CTLShape", "degree": 1, "form": 0, "points": [[61.258, 100.758328, -7.976656], [61.259619, 100.768029, -7.964876], [61.246688, 100.762611, -7.958637], [61.245069, 100.752911, -7.970417], [61.258, 100.758328, -7.976656], [61.258073, 100.752986, -7.962272], [61.246688, 100.762611, -7.958637], [61.246615, 100.767954, -7.973022], [61.259619, 100.768029, -7.964876], [61.258073, 100.752986, -7.962272], [61.245069, 100.752911, -7.970417], [61.246615, 100.767954, -7.973022], [61.258, 100.758328, -7.976656], [61.258073, 100.752986, -7.962272], [60.711838, 101.466573, -8.47477]]}, {"shapeName": "L_index_A_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[61.403839, 102.177534, -8.222404], [61.392454, 102.18716, -8.21877], [61.392528, 102.181816, -8.204385], [61.403913, 102.17219, -8.208019], [61.403839, 102.177534, -8.222404], [61.405458, 102.187233, -8.210624], [61.392528, 102.181816, -8.204385], [61.390908, 102.172116, -8.216165], [61.392454, 102.18716, -8.21877], [61.405458, 102.187233, -8.210624], [61.403913, 102.17219, -8.208019], [61.390908, 102.172116, -8.216165], [61.403839, 102.177534, -8.222404], [61.405458, 102.187233, -8.210624], [60.711838, 101.466573, -8.47477]]}, {"shapeName": "L_index_A_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[60.185555, 101.676137, -7.622051], [60.17255, 101.676062, -7.630197], [60.171004, 101.661019, -7.627592], [60.184009, 101.661093, -7.619446], [60.185555, 101.676137, -7.622051], [60.172624, 101.670719, -7.615813], [60.171004, 101.661019, -7.627592], [60.183935, 101.666436, -7.633831], [60.17255, 101.676062, -7.630197], [60.172624, 101.670719, -7.615813], [60.184009, 101.661093, -7.619446], [60.183935, 101.666436, -7.633831], [60.185555, 101.676137, -7.622051], [60.172624, 101.670719, -7.615813], [60.711838, 101.466573, -8.47477]]}]},
+			"C_hip_B_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[16.926019, 98.683497, -22.738982], [-0.0, 91.483497, -28.581458], [-16.926019, 98.683497, -22.738982], [-23.93699, 105.883497, -8.633966], [-16.926019, 98.683497, 5.47105], [-0.0, 91.483497, 11.313526], [16.926019, 98.683497, 5.47105], [23.93699, 105.883497, -8.633966]]}]},
+			"C_hip_CTL": {"color": 17, "shapes": [{"shapeName": "C_hip_CTLShape", "degree": 3, "form": 2, "points": [[21.157524, 98.683497, -26.265236], [-0.0, 89.683497, -33.568331], [-21.157524, 98.683497, -26.265236], [-29.921238, 107.683497, -8.633966], [-21.157524, 98.683497, 8.997304], [-0.0, 89.683497, 16.300399], [21.157524, 98.683497, 8.997304], [29.921238, 107.683497, -8.633966]]}]},
+			"world_CTL": {"color": 1, "shapes": [{"shapeName": "world_CTLShape", "degree": 1, "form": 0, "points": [[-0.023956, 0.0, 114.566308], [-50.910723, 0.0, 63.608664], [-38.169014, 0.0, 63.611321], [-38.163689, 0.0, 38.137819], [-63.637191, 0.0, 38.132494], [-63.639859, 0.0, 50.874203], [-114.566308, 0.0, -0.023956], [-63.608664, 0.0, -50.910723], [-63.611321, 0.0, -38.169014], [-38.137819, 0.0, -38.163689], [-38.132494, 0.0, -63.637191], [-50.874203, 0.0, -63.639859], [0.023956, 0.0, -114.566308], [50.910723, 0.0, -63.608664], [38.169014, 0.0, -63.611321], [38.163689, 0.0, -38.137819], [63.637191, 0.0, -38.132494], [63.639859, 0.0, -50.874203], [114.566308, 0.0, 0.023956], [63.608664, 0.0, 50.910723], [63.611321, 0.0, 38.169014], [38.137819, 0.0, 38.163689], [38.132494, 0.0, 63.637191], [50.874203, 0.0, 63.639859], [-0.023956, 0.0, 114.566308], [-9.997125, 0.13882, 104.767478], [-9.124343, 0.0, 103.835588], [-9.12355, 0.0, 100.027949], [-8.330291, 0.0, 100.028117], [-8.380673, 0.0, 103.865493], [-7.815417, 0.0, 103.578046], [-7.834902, 0.0, 101.912204], [-7.031728, 0.0, 101.912373], [-7.032075, 0.0, 103.578215], [-6.536348, 0.0, 103.86587], [-6.535535, 0.0, 99.96899], [-5.732361, 0.0, 99.969158], [-5.733194, 0.0, 103.965196], [-6.377855, 0.0, 104.609589], [-7.369319, 0.0, 104.113595], [-8.460158, 0.0, 104.609153], [-9.124353, 0.0, 103.855419], [-8.460158, 0.0, 104.609153], [-7.379234, 0.0, 104.123511], [-6.377845, 0.0, 104.599674], [-4.444288, 0.0, 104.609996], [-5.098587, 0.0, 103.965335], [-5.097893, 0.0, 100.623735], [-4.443317, 0.0, 99.969436], [-2.351098, 0.0, 99.969872], [-1.706715, 0.0, 100.624439], [-1.707409, 0.0, 103.966039], [-2.35207, 0.0, 104.610432], [-4.444288, 0.0, 104.609996], [-4.196236, 0.0, 103.866366], [-4.294749, 0.0, 100.792471], [-2.500013, 0.0, 100.812679], [-2.510563, 0.0, 103.866713], [-4.206152, 0.0, 103.886198], [-4.444288, 0.0, 104.609996], [-2.35207, 0.0, 104.610432], [-1.013447, 0.0, 104.61071], [-1.062054, 0.0, 99.97014], [1.198732, 0.0, 99.970606], [1.853031, 0.0, 100.625183], [1.852744, 0.0, 102.0233], [1.188251, 0.0, 102.667684], [1.148578, 0.0, 102.717252], [2.447152, 0.0, 104.591602], [2.447142, 0.0, 104.611434], [1.515064, 0.0, 104.611235], [0.2165, 0.0, 102.72698], [-0.269371, 0.0, 102.72688], [-0.268954, 0.0, 100.743735], [0.980427, 0.0, 100.743993], [0.990095, 0.0, 101.923964], [-0.269202, 0.0, 101.923707], [-0.269767, 0.0, 104.610869], [-1.013447, 0.0, 104.61071], [6.353938, 0.0, 104.612247], [6.354097, 0.0, 103.868567], [3.756176, 0.0, 103.858106], [3.75699, 0.0, 99.971141], [2.953816, 0.0, 99.970983], [2.952844, 0.0, 104.611533], [9.735201, 0.0, 104.612951], [10.330284, 0.0, 103.968558], [10.380556, 0.0, 100.626968], [9.736173, 0.0, 99.972401], [6.989517, 0.0, 99.971826], [6.988545, 0.0, 104.612386], [7.801793, 0.0, 103.868875], [7.782616, 0.0, 100.725579], [9.478205, 0.0, 100.725936], [9.457719, 0.0, 103.84939], [7.772046, 0.0, 103.888696], [6.968713, 0.0, 104.612376]]}]},
+			"C_lookAt_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_lookAt_C_OFF_CTLShape", "degree": 1, "form": 0, "points": [[-3.486483, 169.143714, 71.147365], [-3.486483, 168.70655, 71.147365], [-3.486483, 168.70655, 70.710201], [-3.486483, 169.143714, 70.710201], [-3.486483, 169.143714, 71.147365], [3.486483, 169.143714, 71.147365], [3.486483, 168.70655, 71.147365], [3.486483, 168.70655, 70.710201], [3.486483, 169.143714, 70.710201], [3.486483, 169.143714, 71.147365], [3.486483, 168.70655, 71.147365], [-3.486483, 168.70655, 71.147365], [-3.486483, 168.70655, 70.710201], [3.486483, 168.70655, 70.710201], [3.486483, 169.143714, 70.710201], [-3.486483, 169.143714, 70.710201], [-3.486483, 169.143714, 71.147365], [-0.217, 169.142132, 71.145783], [-0.218582, 165.438649, 71.147365], [-0.218582, 165.438649, 70.710201], [0.218582, 165.438649, 70.710201], [0.218582, 165.438649, 71.147365], [-0.218582, 165.438649, 71.147365], [-0.218582, 172.411615, 71.147365], [0.218582, 172.411615, 71.147365], [0.218582, 172.411615, 70.710201], [-0.218582, 172.411615, 70.710201], [-0.218582, 172.411615, 71.147365], [-0.218582, 172.411615, 70.710201], [-0.218582, 165.438649, 70.710201], [0.218582, 165.438649, 70.710201], [0.218582, 172.411615, 70.710201], [0.218582, 172.411615, 71.147365], [0.218582, 165.438649, 71.147365], [0.217, 168.708132, 71.145783], [0.218582, 168.70655, 74.415266], [-0.218582, 168.70655, 74.415266], [-0.218582, 169.143714, 74.415266], [0.218582, 169.143714, 74.415266], [0.218582, 168.70655, 74.415266], [0.218582, 168.70655, 67.4423], [0.218582, 169.143714, 67.4423], [-0.218582, 169.143714, 67.4423], [-0.218582, 168.70655, 67.4423], [0.218582, 168.70655, 67.4423], [-0.218582, 168.70655, 67.4423], [-0.218582, 168.70655, 74.415266], [-0.218582, 169.143714, 74.415266], [-0.218582, 169.143714, 67.4423], [0.218582, 169.143714, 67.4423], [0.218582, 169.143714, 74.415266]]}]},
+			"L_legBase_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_legBase_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 80.930699, -3.548774], [9.870007, 80.913205, -3.655864], [9.978517, 80.89571, -3.762955], [10.087027, 80.913205, -3.655864], [9.978517, 80.930699, -3.548774], [9.978517, 80.806124, -3.638372], [9.978517, 80.89571, -3.762955], [9.978517, 81.020295, -3.673359], [9.870007, 80.913205, -3.655864], [9.978517, 80.806124, -3.638372], [10.087027, 80.913205, -3.655864], [9.978517, 81.020295, -3.673359], [9.978517, 80.930699, -3.548774], [9.978517, 80.806124, -3.638372], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_legBase_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 91.033493, -5.199162], [-0.258193, 91.123089, -5.323747], [-0.258193, 90.998505, -5.413343], [-0.258193, 90.908908, -5.288759], [-0.258193, 91.033493, -5.199162], [-0.366693, 91.015999, -5.306253], [-0.258193, 90.998505, -5.413343], [-0.149683, 91.015999, -5.306253], [-0.258193, 91.123089, -5.323747], [-0.366693, 91.015999, -5.306253], [-0.258193, 90.908908, -5.288759], [-0.149683, 91.015999, -5.306253], [-0.258193, 91.033493, -5.199162], [-0.366693, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}, {"shapeName": "L_legBase_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 89.36561, -15.409047], [9.978517, 89.472701, -15.426541], [10.087027, 89.36561, -15.409047], [9.978517, 89.25852, -15.391553], [9.870007, 89.36561, -15.409047], [9.978517, 89.348118, -15.516128], [10.087027, 89.36561, -15.409047], [9.978517, 89.383104, -15.301957], [9.978517, 89.472701, -15.426541], [9.978517, 89.348118, -15.516128], [9.978517, 89.25852, -15.391553], [9.978517, 89.383104, -15.301957], [9.870007, 89.36561, -15.409047], [9.978517, 89.348118, -15.516128], [9.978517, 91.015999, -5.306253]]}]},
+			"C_head_C_OFF_CTL": {"color": 17, "shapes": [{"shapeName": "C_head_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[10.395022, 181.321907, -4.968417], [0.0, 185.369997, -4.968417], [-10.395022, 181.321907, -4.968417], [-14.700772, 171.548932, -4.968417], [-10.395022, 161.775957, -4.968417], [0.0, 157.727868, -4.968417], [10.395022, 161.775957, -4.968417], [14.700772, 171.548932, -4.968417]]}]},
+			"L_hand_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_hand_PIV_CTLShape", "degree": 1, "form": 0, "points": [[1.273671, 1.0, -0.010851], [1.273671, 1.010851, 0.0], [1.273671, 1.0, 0.010851], [1.273671, 0.989149, 0.0], [1.273671, 1.0, -0.010851], [1.284521, 1.0, 0.0], [1.273671, 1.0, 0.010851], [1.26282, 1.0, 0.0], [1.273671, 1.010851, 0.0], [1.284521, 1.0, 0.0], [1.273671, 0.989149, 0.0], [1.26282, 1.0, 0.0], [1.273671, 1.0, -0.010851], [1.284521, 1.0, 0.0], [0.25, 1.0, 0.0]]}, {"shapeName": "L_hand_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[0.25, 2.023671, -0.010851], [0.239149, 2.023671, 0.0], [0.25, 2.023671, 0.010851], [0.260851, 2.023671, 0.0], [0.25, 2.023671, -0.010851], [0.25, 2.034521, 0.0], [0.25, 2.023671, 0.010851], [0.25, 2.01282, 0.0], [0.239149, 2.023671, 0.0], [0.25, 2.034521, 0.0], [0.260851, 2.023671, 0.0], [0.25, 2.01282, 0.0], [0.25, 2.023671, -0.010851], [0.25, 2.034521, 0.0], [0.25, 1.0, 0.0]]}, {"shapeName": "L_hand_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[0.25, 1.010851, 1.023671], [0.239149, 1.0, 1.023671], [0.25, 0.989149, 1.023671], [0.260851, 1.0, 1.023671], [0.25, 1.010851, 1.023671], [0.25, 1.0, 1.034521], [0.25, 0.989149, 1.023671], [0.25, 1.0, 1.01282], [0.239149, 1.0, 1.023671], [0.25, 1.0, 1.034521], [0.260851, 1.0, 1.023671], [0.25, 1.0, 1.01282], [0.25, 1.010851, 1.023671], [0.25, 1.0, 1.034521], [0.25, 1.0, 0.0]]}]},
+			"L_pinky_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_pinky_C_CTLShape", "degree": 3, "form": 2, "points": [[65.96709, 94.662741, -13.873973], [66.069677, 94.717927, -13.925129], [66.186561, 94.746414, -13.88374], [66.249273, 94.731515, -13.774051], [66.221078, 94.681958, -13.660316], [66.118491, 94.626772, -13.60916], [66.001606, 94.598285, -13.650549], [65.938894, 94.613184, -13.760238]]}]},
+			"L_index_B_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_B_CTLShape", "degree": 3, "form": 2, "points": [[64.103768, 96.909492, -5.403546], [64.216279, 96.968835, -5.406048], [64.27898, 97.046168, -5.326835], [64.255143, 97.096189, -5.212309], [64.158731, 97.089596, -5.129557], [64.04622, 97.030253, -5.127056], [63.983519, 96.95292, -5.206269], [64.007356, 96.902899, -5.320795]]}]},
+			"L_leg_IK_switch_A_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_A_OFF_CTLShape", "degree": 1, "form": 0, "points": [[32.374752, 10.800695, -5.254777], [31.462865, 10.800695, -5.254777], [31.290169, 9.876043, -5.398264], [30.642181, 9.610737, -5.439434], [29.858363, 10.143897, -5.356698], [29.213554, 9.506715, -5.455576], [29.753067, 8.732251, -5.575757], [29.4847, 8.091842, -5.675136], [28.548895, 7.921189, -5.701618], [28.548895, 7.020059, -5.841455], [29.4847, 6.849406, -5.867937], [29.753067, 6.209082, -5.967302], [29.213554, 5.434533, -6.087496], [29.858363, 4.797351, -6.186374], [30.642181, 5.330511, -6.103639], [31.290169, 5.065205, -6.144809], [31.462865, 4.140553, -6.288296], [32.374752, 4.140553, -6.288296], [32.547533, 5.065205, -6.144809], [33.195521, 5.330511, -6.103639], [33.97934, 4.797351, -6.186374], [34.624091, 5.434533, -6.087496], [34.084636, 6.209082, -5.967302], [34.353003, 6.849406, -5.867937], [35.288722, 7.020059, -5.841455], [35.288722, 7.921189, -5.701618], [34.353003, 8.091842, -5.675136], [34.084636, 8.732251, -5.575757], [34.624091, 9.506715, -5.455576], [33.97934, 10.143897, -5.356698], [33.195521, 9.610737, -5.439434], [32.547533, 9.876043, -5.398264], [32.374752, 10.800695, -5.254777]]}, {"shapeName": "L_leg_IK_switch_A_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[32.908622, 8.448745, -5.619752], [33.318634, 7.470624, -5.771536], [32.908622, 6.492503, -5.923321], [31.918823, 6.087425, -5.986181], [30.929081, 6.492503, -5.923321], [30.519069, 7.470624, -5.771536], [30.929081, 8.448745, -5.619752], [31.918823, 8.853823, -5.556892]]}, {"shapeName": "L_leg_IK_switch_A_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[28.548895, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
+			"L_innerBall_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_innerBall_PIV_CTLShape", "degree": 1, "form": 0, "points": [[15.215227, 2.475595, 4.120068], [15.215227, 2.57902, 4.233435], [15.215227, 2.465653, 4.33686], [15.215227, 2.362228, 4.223492], [15.215227, 2.475595, 4.120068], [15.323727, 2.470624, 4.228464], [15.215227, 2.465653, 4.33686], [15.106717, 2.470624, 4.228464], [15.215227, 2.57902, 4.233435], [15.323727, 2.470624, 4.228464], [15.215227, 2.362228, 4.223492], [15.106717, 2.470624, 4.228464], [15.215227, 2.475595, 4.120068], [15.323727, 2.470624, 4.228464], [4.978517, 2.470624, 4.228464]]}, {"shapeName": "L_innerBall_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[4.978517, 12.701557, 4.589049], [4.870007, 12.696585, 4.697446], [4.978517, 12.691614, 4.805842], [5.087027, 12.696585, 4.697446], [4.978517, 12.701557, 4.589049], [4.978517, 12.804971, 4.702416], [4.978517, 12.691614, 4.805842], [4.978517, 12.588189, 4.692474], [4.870007, 12.696585, 4.697446], [4.978517, 12.804971, 4.702416], [5.087027, 12.696585, 4.697446], [4.978517, 12.588189, 4.692474], [4.978517, 12.701557, 4.589049], [4.978517, 12.804971, 4.702416], [4.978517, 2.470624, 4.228464]]}, {"shapeName": "L_innerBall_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[4.978517, 2.110038, 14.459396], [4.870007, 2.001642, 14.454425], [4.978517, 1.893246, 14.449454], [5.087027, 2.001642, 14.454425], [4.978517, 2.110038, 14.459396], [4.978517, 1.996671, 14.562811], [4.978517, 1.893246, 14.449454], [4.978517, 2.006613, 14.346029], [4.870007, 2.001642, 14.454425], [4.978517, 1.996671, 14.562811], [5.087027, 2.001642, 14.454425], [4.978517, 2.006613, 14.346029], [4.978517, 2.110038, 14.459396], [4.978517, 1.996671, 14.562811], [4.978517, 2.470624, 4.228464]]}]},
+			"L_wrist_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_wrist_FK_CTLShape", "degree": 3, "form": 2, "points": [[58.036924, 96.086395, -14.504434], [62.108635, 99.228259, -16.602981], [65.393446, 103.242621, -14.615779], [65.967152, 105.77792, -9.706893], [63.493693, 105.34902, -4.751885], [59.421981, 102.207156, -2.653338], [56.137171, 98.192795, -4.64054], [55.563465, 95.657495, -9.549427]]}]},
+			"L_wrist_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_wrist_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[64.085716, 97.324185, -8.354311], [64.131868, 97.402526, -8.271826], [64.053581, 97.359816, -8.187457], [64.007428, 97.281474, -8.269943], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [64.053581, 97.359816, -8.187457], [64.011286, 97.401623, -8.294857], [64.131868, 97.402526, -8.271826], [64.128005, 97.282383, -8.246914], [64.007428, 97.281474, -8.269943], [64.011286, 97.401623, -8.294857], [64.085716, 97.324185, -8.354311], [64.128005, 97.282383, -8.246914], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[64.449692, 108.658855, -10.70469], [64.375262, 108.736293, -10.645235], [64.417556, 108.694486, -10.537836], [64.491986, 108.617048, -10.59729], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [64.417556, 108.694486, -10.537836], [64.371404, 108.616144, -10.620321], [64.375262, 108.736293, -10.645235], [64.495839, 108.737191, -10.622204], [64.491986, 108.617048, -10.59729], [64.371404, 108.616144, -10.620321], [64.449692, 108.658855, -10.70469], [64.495839, 108.737191, -10.622204], [58.56385, 102.966713, -10.53242]]}, {"shapeName": "L_wrist_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.110257, 104.707937, -2.662955], [56.989674, 104.707033, -2.685985], [56.985816, 104.586885, -2.661071], [57.106398, 104.587788, -2.63804], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [56.985816, 104.586885, -2.661071], [57.064104, 104.629595, -2.74544], [56.989674, 104.707033, -2.685985], [57.03197, 104.665225, -2.578594], [57.106398, 104.587788, -2.63804], [57.064104, 104.629595, -2.74544], [57.110257, 104.707937, -2.662955], [57.03197, 104.665225, -2.578594], [58.56385, 102.966713, -10.53242]]}]},
+			"L_wrist_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_CTLShape", "degree": 3, "form": 2, "points": [[60.238381, 93.83739, -13.600173], [64.310093, 96.979254, -15.698721], [67.594904, 100.993616, -13.711519], [68.168609, 103.528915, -8.802632], [65.695151, 103.100015, -3.847625], [61.623439, 99.958151, -1.749078], [58.338629, 95.94379, -3.73628], [57.764923, 93.40849, -8.645166]]}]},
+			"L_leg_IK_switch_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_CTLShape", "degree": 1, "form": 0, "points": [[34.863222, 11.170703, -5.197359], [33.850015, 11.170703, -5.197359], [33.658131, 10.143312, -5.356789], [32.938144, 9.848527, -5.402534], [32.067234, 10.440927, -5.310605], [31.35078, 9.732947, -5.42047], [31.950239, 8.872432, -5.554004], [31.652053, 8.160866, -5.664425], [30.61227, 7.971252, -5.693849], [30.61227, 6.969996, -5.849224], [31.652053, 6.780382, -5.878648], [31.950239, 6.06891, -5.989054], [31.35078, 5.208301, -6.122603], [32.067234, 4.500321, -6.232467], [32.938144, 5.092721, -6.140539], [33.658131, 4.797936, -6.186284], [33.850015, 3.770545, -6.345714], [34.863222, 3.770545, -6.345714], [35.055202, 4.797936, -6.186284], [35.775189, 5.092721, -6.140539], [36.646098, 4.500321, -6.232467], [37.362489, 5.208301, -6.122603], [36.763094, 6.06891, -5.989054], [37.061279, 6.780382, -5.878648], [38.100967, 6.969996, -5.849224], [38.100967, 7.971252, -5.693849], [37.061279, 8.160866, -5.664425], [36.763094, 8.872432, -5.554004], [37.362489, 9.732947, -5.42047], [36.646098, 10.440927, -5.310605], [35.775189, 9.848527, -5.402534], [35.055202, 10.143312, -5.356789], [34.863222, 11.170703, -5.197359]]}, {"shapeName": "L_leg_IK_switch_CTLShape1", "degree": 3, "form": 2, "points": [[35.456411, 8.557425, -5.602887], [35.91198, 7.470624, -5.771536], [35.456411, 6.383823, -5.940186], [34.356635, 5.933736, -6.01003], [33.256922, 6.383823, -5.940186], [32.801352, 7.470624, -5.771536], [33.256922, 8.557425, -5.602887], [34.356635, 9.007512, -5.533042]]}, {"shapeName": "L_leg_IK_switch_CTLShape2", "degree": 1, "form": 0, "points": [[30.61227, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
+			"C_midNeck_D_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midNeck_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[8.806001, 159.692623, -13.69818], [0.0, 160.44953, -16.642063], [-8.806001, 159.692623, -13.69818], [-12.453558, 157.865284, -6.591002], [-8.806001, 156.037945, 0.516177], [0.0, 155.281038, 3.46006], [8.806001, 156.037945, 0.516177], [12.453558, 157.865284, -6.591002]]}]},
+			"L_leg_PV_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_leg_PV_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978517, 40.982606, 101.153816], [9.870007, 40.983211, 101.045308], [9.978517, 40.983815, 100.936799], [10.087027, 40.983211, 101.045308], [9.978517, 40.982606, 101.153816], [9.978517, 40.874712, 101.044703], [9.978517, 40.983815, 100.936799], [9.978517, 41.091719, 101.045912], [9.870007, 40.983211, 101.045308], [9.978517, 40.874712, 101.044703], [10.087027, 40.983211, 101.045308], [9.978517, 41.091719, 101.045912], [9.978517, 40.982606, 101.153816], [9.978517, 40.874712, 101.044703], [9.978517, 51.219762, 101.102317]]}, {"shapeName": "L_leg_PV_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258193, 51.219158, 101.210826], [-0.258193, 51.32827, 101.102922], [-0.258193, 51.220366, 100.993809], [-0.258193, 51.111254, 101.101713], [-0.258193, 51.219158, 101.210826], [-0.366693, 51.219762, 101.102317], [-0.258193, 51.220366, 100.993809], [-0.149683, 51.219762, 101.102317], [-0.258193, 51.32827, 101.102922], [-0.366693, 51.219762, 101.102317], [-0.258193, 51.111254, 101.101713], [-0.149683, 51.219762, 101.102317], [-0.258193, 51.219158, 101.210826], [-0.366693, 51.219762, 101.102317], [9.978517, 51.219762, 101.102317]]}, {"shapeName": "L_leg_PV_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870007, 51.276772, 90.865766], [9.978517, 51.38528, 90.86637], [10.087027, 51.276772, 90.865766], [9.978517, 51.168263, 90.865162], [9.870007, 51.276772, 90.865766], [9.978517, 51.277376, 90.757268], [10.087027, 51.276772, 90.865766], [9.978517, 51.276167, 90.974274], [9.978517, 51.38528, 90.86637], [9.978517, 51.277376, 90.757268], [9.978517, 51.168263, 90.865162], [9.978517, 51.276167, 90.974274], [9.870007, 51.276772, 90.865766], [9.978517, 51.277376, 90.757268], [9.978517, 51.219762, 101.102317]]}]},
+			"L_leg_IK_switch_B_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "L_leg_IK_switch_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[29.886281, 10.430687, -5.312194], [29.075715, 10.430687, -5.312194], [28.922208, 9.608774, -5.439739], [28.346219, 9.372946, -5.476334], [27.649491, 9.846867, -5.402792], [27.076328, 9.280482, -5.490683], [27.555895, 8.59207, -5.597511], [27.317346, 8.022818, -5.685847], [26.48552, 7.871126, -5.709386], [26.48552, 7.070122, -5.833686], [27.317346, 6.91843, -5.857226], [27.555895, 6.349253, -5.94555], [27.076328, 5.660766, -6.05239], [27.649491, 5.094381, -6.140281], [28.346219, 5.568301, -6.066738], [28.922208, 5.332474, -6.103334], [29.075715, 4.510561, -6.230878], [29.886281, 4.510561, -6.230878], [30.039865, 5.332474, -6.103334], [30.615854, 5.568301, -6.066738], [31.312582, 5.094381, -6.140281], [31.885694, 5.660766, -6.05239], [31.406178, 6.349253, -5.94555], [31.644727, 6.91843, -5.857226], [32.476477, 7.070122, -5.833686], [32.476477, 7.871126, -5.709386], [31.644727, 8.022818, -5.685847], [31.406178, 8.59207, -5.597511], [31.885694, 9.280482, -5.490683], [31.312582, 9.846867, -5.402792], [30.615854, 9.372946, -5.476334], [30.039865, 9.608774, -5.439739], [29.886281, 10.430687, -5.312194]]}, {"shapeName": "L_leg_IK_switch_B_OFF_CTLShape1", "degree": 3, "form": 2, "points": [[30.360832, 8.340064, -5.636617], [30.725288, 7.470624, -5.771536], [30.360832, 6.601183, -5.906456], [29.481011, 6.241114, -5.962331], [28.601241, 6.601183, -5.906456], [28.236785, 7.470624, -5.771536], [28.601241, 8.340064, -5.636617], [29.481011, 8.700134, -5.580741]]}, {"shapeName": "L_leg_IK_switch_B_OFF_CTLShape2", "degree": 1, "form": 0, "points": [[26.48552, 7.470624, -5.771536], [9.978517, 7.470624, -5.771536]]}]},
+			"L_toe_IK_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_A_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.50477, 5.191847, 7.572465], [9.978516, 6.651657, 7.621077], [6.452262, 5.191847, 7.572465], [4.991643, 1.667547, 7.455104], [6.452262, -1.856754, 7.337743], [9.978516, -3.316563, 7.289131], [13.50477, -1.856754, 7.337743], [14.965389, 1.667547, 7.455104]]}]},
+			"L_leg_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_leg_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[14.09248, 7.470624, -12.628141], [9.978517, 7.470624, -15.468234], [5.864554, 7.470624, -12.628141], [4.160498, 7.470624, -5.771536], [5.864554, 7.470624, 1.085069], [9.978517, 7.470624, 3.925161], [14.09248, 7.470624, 1.085069], [15.796535, 7.470624, -5.771536]]}]},
+			"L_wrist_IK_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_wrist_IK_C_OFF_CTLShape", "degree": 3, "form": 2, "points": [[56.653981, 99.724794, -13.945812], [59.504179, 101.924099, -15.414795], [61.803547, 104.734152, -14.023754], [62.205141, 106.508862, -10.587533], [60.47372, 106.208632, -7.119028], [57.623521, 104.009327, -5.650045], [55.324154, 101.199274, -7.041087], [54.92256, 99.424564, -10.477307]]}]},
+			"L_legBase_D_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_D_OFF_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 87.422296, -4.719187], [9.978517, 81.60759, -3.769299], [9.978517, 79.386565, -3.406473], [9.978517, 83.840913, 9.901903], [9.978517, 91.035889, 17.401291], [9.978517, 98.223295, 16.22716], [9.978517, 102.65773, 6.827995], [9.978517, 102.645432, -7.206033], [9.978517, 100.424407, -6.843207], [9.978517, 94.609702, -5.893319], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
+			"L_shoulder_A_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_A_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [8.596775, 146.159638, -3.748312], [15.686573, 145.569717, -7.816377], [18.394641, 145.344387, -9.370243], [10.553984, 151.260608, -17.586673], [0.292067, 155.367696, -19.55699], [-8.471448, 156.096882, -14.528561], [-12.389128, 153.169636, -4.422114], [-9.964607, 147.704075, 6.902049], [-7.256539, 147.478745, 5.348183], [-0.16674, 146.888824, 1.280117], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
+			"L_toe_IK_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_CTLShape", "degree": 3, "form": 2, "points": [[13.896576, 5.500231, 10.08412], [9.978516, 7.122242, 10.138134], [6.060456, 5.500231, 10.08412], [4.437546, 1.584342, 9.953719], [6.060456, -2.331548, 9.823318], [9.978516, -3.953558, 9.769304], [13.896576, -2.331548, 9.823318], [15.519486, 1.584342, 9.953719]]}]},
+			"C_midTorso_B_OFF_CTL": {"color": 20, "shapes": [{"shapeName": "C_midTorso_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[17.752665, 113.683497, -23.427853], [-0.0, 113.683497, -29.555669], [-17.752665, 113.683497, -23.427853], [-25.106044, 113.683497, -8.633966], [-17.752665, 113.683497, 6.159922], [-0.0, 113.683497, 12.287737], [17.752665, 113.683497, 6.159922], [25.106044, 113.683497, -8.633966]]}]},
+			"L_loArm_FK_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_loArm_FK_CTLShape", "degree": 3, "form": 2, "points": [[33.536431, 117.223909, -25.709041], [40.788532, 122.867793, -29.185946], [46.881976, 129.525257, -25.302211], [48.247297, 133.296444, -16.332857], [44.084724, 131.972258, -7.532017], [36.832623, 126.328374, -4.055112], [30.739179, 119.67091, -7.938847], [29.373858, 115.899723, -16.908201]]}]},
+			"L_arm_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_arm_IK_B_OFF_CTLShape", "degree": 1, "form": 0, "points": [[61.842978, 109.536789, -4.163626], [52.005994, 99.967638, -4.014738], [54.546303, 97.151006, -17.204524], [64.383286, 106.720157, -17.353413], [65.121707, 105.965788, -17.050103], [55.284723, 96.396637, -16.901214], [52.744415, 99.213269, -3.711427], [62.581398, 108.78242, -3.860316], [61.842978, 109.536789, -4.163626], [64.383286, 106.720157, -17.353413], [54.546303, 97.151006, -17.204524], [55.284723, 96.396637, -16.901214], [65.121707, 105.965788, -17.050103], [62.581398, 108.78242, -3.860316], [52.744415, 99.213269, -3.711427], [52.005994, 99.967638, -4.014738]]}]},
+			"L_upArm_FK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_upArm_FK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[25.002291, 139.425381, -11.991189], [25.078059, 139.468437, -11.904721], [25.026201, 139.393852, -11.822143], [24.950433, 139.350797, -11.908611], [25.002291, 139.425381, -11.991189], [25.071866, 139.347757, -11.926353], [25.026201, 139.393852, -11.822143], [24.956621, 139.471482, -11.886977], [25.078059, 139.468437, -11.904721], [25.071866, 139.347757, -11.926353], [24.950433, 139.350797, -11.908611], [24.956621, 139.471482, -11.886977], [25.002291, 139.425381, -11.991189], [25.071866, 139.347757, -11.926353], [19.577965, 145.245926, -10.049224]]}, {"shapeName": "L_upArm_FK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[25.586034, 150.810689, -9.950231], [25.540364, 150.85679, -9.846019], [25.609943, 150.77916, -9.781184], [25.655614, 150.733059, -9.885397], [25.586034, 150.810689, -9.950231], [25.661795, 150.853739, -9.863763], [25.609943, 150.77916, -9.781184], [25.534176, 150.736104, -9.867653], [25.540364, 150.85679, -9.846019], [25.661795, 150.853739, -9.863763], [25.655614, 150.733059, -9.885397], [25.534176, 150.736104, -9.867653], [25.586034, 150.810689, -9.950231], [25.661795, 150.853739, -9.863763], [19.577965, 145.245926, -10.049224]]}, {"shapeName": "L_upArm_FK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[20.769567, 143.817514, -2.073448], [20.648129, 143.820559, -2.055704], [20.641942, 143.699874, -2.077338], [20.76338, 143.696828, -2.095082], [20.769567, 143.817514, -2.073448], [20.717708, 143.74293, -1.990877], [20.641942, 143.699874, -2.077338], [20.6938, 143.774459, -2.159916], [20.648129, 143.820559, -2.055704], [20.717708, 143.74293, -1.990877], [20.76338, 143.696828, -2.095082], [20.6938, 143.774459, -2.159916], [20.769567, 143.817514, -2.073448], [20.717708, 143.74293, -1.990877], [19.577965, 145.245926, -10.049224]]}]},
+			"L_legBase_CTL": {"color": 14, "shapes": [{"shapeName": "L_legBase_CTLShape", "degree": 3, "form": 0, "points": [[9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.994442, 0.683252], [9.978517, 93.577589, 10.374428], [9.978517, 94.182299, 14.076136], [33.065881, 93.577589, 10.374428], [47.334671, 91.994442, 0.683252], [47.334671, 90.037556, -11.295758], [33.065881, 88.454409, -20.986934], [9.978517, 87.849699, -24.688642], [9.978517, 88.454409, -20.986934], [9.978517, 90.037556, -11.295758], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253], [9.978517, 91.015999, -5.306253]]}]},
+			"L_middle_C_CTL": {"color": [0.0, 0.4435, 1.0], "shapes": [{"shapeName": "L_middle_C_CTLShape", "degree": 3, "form": 2, "points": [[67.273089, 92.873241, -6.943548], [67.392612, 92.907831, -6.970085], [67.490694, 92.951952, -6.902116], [67.50988, 92.979759, -6.779457], [67.43893, 92.974962, -6.67396], [67.319407, 92.940372, -6.647423], [67.221325, 92.896251, -6.715392], [67.202139, 92.868444, -6.838051]]}]},
+			"L_shoulder_C_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_shoulder_C_OFF_CTLShape", "degree": 3, "form": 0, "points": [[4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [7.623051, 146.240659, -3.189597], [13.137339, 145.781831, -6.353648], [15.243614, 145.606574, -7.562211], [9.145325, 150.20808, -13.952768], [1.163834, 153.402482, -15.485236], [-5.652233, 153.969626, -11.574235], [-8.699318, 151.692879, -3.713666], [-6.813579, 147.441888, 5.094016], [-4.707304, 147.266631, 3.885454], [0.806984, 146.807803, 0.721403], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097], [4.215017, 146.524231, -1.234097]]}]},
+			"L_thumb_C_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_thumb_C_PIV_CTLShape", "degree": 1, "form": 0, "points": [[58.6234, 94.465182, -1.633829], [58.610336, 94.467421, -1.626096], [58.60261, 94.459793, -1.636941], [58.615674, 94.457554, -1.644674], [58.6234, 94.465182, -1.633829], [58.614604, 94.453207, -1.629996], [58.60261, 94.459793, -1.636941], [58.611406, 94.471769, -1.640774], [58.610336, 94.467421, -1.626096], [58.614604, 94.453207, -1.629996], [58.615674, 94.457554, -1.644674], [58.611406, 94.471769, -1.640774], [58.6234, 94.465182, -1.633829], [58.614604, 94.453207, -1.629996], [58.462148, 95.338084, -2.14379]]}, {"shapeName": "L_thumb_C_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[58.220735, 95.8062, -1.265947], [58.208741, 95.812787, -1.272892], [58.199945, 95.800811, -1.269059], [58.211939, 95.794224, -1.262114], [58.220735, 95.8062, -1.265947], [58.207671, 95.808438, -1.258215], [58.199945, 95.800811, -1.269059], [58.213009, 95.798572, -1.276792], [58.208741, 95.812787, -1.272892], [58.207671, 95.808438, -1.258215], [58.211939, 95.794224, -1.262114], [58.213009, 95.798572, -1.276792], [58.220735, 95.8062, -1.265947], [58.207671, 95.808438, -1.258215], [58.462148, 95.338084, -2.14379]]}, {"shapeName": "L_thumb_C_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[57.478796, 95.08882, -2.281296], [57.479866, 95.093168, -2.295974], [57.484135, 95.078953, -2.299873], [57.483065, 95.074605, -2.285195], [57.478796, 95.08882, -2.281296], [57.471071, 95.081192, -2.29214], [57.484135, 95.078953, -2.299873], [57.491861, 95.086581, -2.289029], [57.479866, 95.093168, -2.295974], [57.471071, 95.081192, -2.29214], [57.483065, 95.074605, -2.285195], [57.491861, 95.086581, -2.289029], [57.478796, 95.08882, -2.281296], [57.471071, 95.081192, -2.29214], [58.462148, 95.338084, -2.14379]]}]},
+			"L_index_D_CTL": {"color": [0.0, 0.120646, 0.935], "shapes": [{"shapeName": "L_index_D_CTLShape", "degree": 3, "form": 2, "points": [[66.743299, 90.804715, -2.481897], [66.869503, 90.804356, -2.465804], [66.947583, 90.819837, -2.366554], [66.9318, 90.842089, -2.242287], [66.8314, 90.858076, -2.165797], [66.705196, 90.858434, -2.18189], [66.627117, 90.842954, -2.281139], [66.642899, 90.820702, -2.405406]]}]},
+			"L_toe_IK_PIV_CTL": {"color": 13, "shapes": [{"shapeName": "L_toe_IK_PIV_CTLShape", "degree": 1, "form": 0, "points": [[9.978516, 1.435298, 17.689754], [9.870006, 1.326849, 17.686143], [9.978516, 1.218399, 17.682531], [10.087026, 1.326849, 17.686143], [9.978516, 1.435298, 17.689754], [9.978516, 1.323237, 17.794583], [9.978516, 1.218399, 17.682531], [9.978516, 1.33046, 17.577693], [9.870006, 1.326849, 17.686143], [9.978516, 1.323237, 17.794583], [10.087026, 1.326849, 17.686143], [9.978516, 1.33046, 17.577693], [9.978516, 1.435298, 17.689754], [9.978516, 1.323237, 17.794583], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_toe_IK_PIV_CTLShape1", "degree": 1, "form": 0, "points": [[-0.258194, 1.775997, 7.458715], [-0.258194, 1.671158, 7.346654], [-0.258194, 1.559097, 7.451492], [-0.258194, 1.663935, 7.563554], [-0.258194, 1.775997, 7.458715], [-0.366694, 1.667547, 7.455104], [-0.258194, 1.559097, 7.451492], [-0.149684, 1.667547, 7.455104], [-0.258194, 1.671158, 7.346654], [-0.366694, 1.667547, 7.455104], [-0.258194, 1.663935, 7.563554], [-0.149684, 1.667547, 7.455104], [-0.258194, 1.775997, 7.458715], [-0.366694, 1.667547, 7.455104], [9.978516, 1.667547, 7.455104]]}, {"shapeName": "L_toe_IK_PIV_CTLShape2", "degree": 1, "form": 0, "points": [[9.870006, -8.563492, 7.114406], [9.978516, -8.559881, 7.005956], [10.087026, -8.563492, 7.114406], [9.978516, -8.567103, 7.222856], [9.870006, -8.563492, 7.114406], [9.978516, -8.671932, 7.110795], [10.087026, -8.563492, 7.114406], [9.978516, -8.455042, 7.118017], [9.978516, -8.559881, 7.005956], [9.978516, -8.671932, 7.110795], [9.978516, -8.567103, 7.222856], [9.978516, -8.455042, 7.118017], [9.870006, -8.563492, 7.114406], [9.978516, -8.671932, 7.110795], [9.978516, 1.667547, 7.455104]]}]},
+			"C_jaw_CTL": {"color": 18, "shapes": [{"shapeName": "C_jaw_CTLShape", "degree": 3, "form": 0, "points": [[0.0, 164.1761, -2.468417], [0.0, 164.1761, -2.468417], [0.0, 164.1761, -2.468417], [-1.65014, 164.1761, -2.468417], [-4.32011, 164.1761, -2.468417], [-5.33995, 164.1761, -2.468417], [-4.32011, 160.733528, 4.582948], [-1.65014, 158.605899, 8.940936], [1.65014, 158.605899, 8.940936], [4.32011, 160.733528, 4.582948], [5.33995, 164.1761, -2.468417], [4.32011, 164.1761, -2.468417], [1.65014, 164.1761, -2.468417], [0.0, 164.1761, -2.468417], [0.0, 164.1761, -2.468417], [0.0, 164.1761, -2.468417]]}]},
+			"C_neckBase_D_OFF_CTL": {"color": [0.434363, 0.248556, 1.0], "shapes": [{"shapeName": "C_neckBase_D_OFF_CTLShape", "degree": 3, "form": 2, "points": [[12.113793, 154.07533, -17.988598], [0.0, 150.125898, -23.321446], [-12.113793, 154.07533, -17.988598], [-17.13148, 156.552244, -6.9286], [-12.113793, 149.047848, 1.565087], [0.0, 143.01597, 4.331623], [12.113793, 149.047848, 1.565087], [17.13148, 156.552244, -6.9286]]}]},
+			"C_reverseJaw_CTL": {"color": 18, "shapes": [{"shapeName": "C_reverseJaw_CTLShape", "degree": 1, "form": 0, "points": [[0.0, 173.162337, 1.918786], [0.38268, 173.23074, 1.952181], [0.7071, 173.425544, 2.047287], [0.92388, 173.717075, 2.189617], [1.0, 174.060961, 2.357506], [0.92388, 174.404846, 2.525396], [0.7071, 174.696377, 2.667726], [0.38268, 174.891181, 2.762831], [0.0, 174.959584, 2.796227], [-0.38268, 174.891181, 2.762831], [-0.7071, 174.696377, 2.667726], [-0.92388, 174.404846, 2.525396], [-1.0, 174.060961, 2.357506], [-0.92388, 173.717075, 2.189617], [-0.7071, 173.425544, 2.047287], [-0.38268, 173.23074, 1.952181], [0.0, 173.162337, 1.918786], [0.0, 164.1761, -2.468417]]}]},
+			"L_toe_IK_B_OFF_CTL": {"color": 14, "shapes": [{"shapeName": "L_toe_IK_B_OFF_CTLShape", "degree": 3, "form": 2, "points": [[13.112964, 4.800258, 7.559425], [9.978516, 6.097867, 7.602636], [6.844068, 4.800258, 7.559425], [5.54574, 1.667547, 7.455104], [6.844068, -1.465165, 7.350783], [9.978516, -2.762773, 7.307572], [13.112964, -1.465165, 7.350783], [14.411292, 1.667547, 7.455104]]}]},
 		}
 
 		controlShapes.set_data(data)

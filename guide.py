@@ -507,10 +507,8 @@ def load(stream='guides', i=True, new_file=True, version='LATEST', check_scene=F
             if not utils.save_changes():
                 return
 
-        if use_published:
-            env.import_published_guides(version=version, asset=asset)
-        else:
-            env.import_stream(stream, version=version, asset=asset, workfile=0, new_file=new_file)
+
+        env.import_stream(stream, version=version, asset=asset, workfile=0, new_file=new_file)
 
     else:
         if check_scene:

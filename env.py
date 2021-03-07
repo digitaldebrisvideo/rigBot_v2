@@ -12,27 +12,27 @@ import maya.cmds as mc
 import maya.mel as mm
 
 # Try loading shotgun and commstd pipeline tools
-try:
-    from commstd import pipeline
-    import commstd
-    import sgtk
+# try:
+#     from commstd import pipeline
+#     import commstd
+#     import sgtk
+# 
+#     # Create tk instance
+#     if sgtk.platform.current_engine() == None:
+#         commstd.start_engine()
+# 
+#     tk = sgtk.platform.current_engine().sgtk
+#     shotgun = commstd.current_engine().shotgun
+#     project = os.environ.get('PL_DIVISION') or ''
 
-    # Create tk instance
-    if sgtk.platform.current_engine() == None:
-        commstd.start_engine()
+# except:
+pipeline = None
+commstd = None
+shotgun = None
+sgtk = None
+tk = None
 
-    tk = sgtk.platform.current_engine().sgtk
-    shotgun = commstd.current_engine().shotgun
-    project = os.environ.get('PL_DIVISION') or ''
-
-except:
-    pipeline = None
-    commstd = None
-    shotgun = None
-    sgtk = None
-    tk = None
-
-    mc.warning('Shotgun & commstd is not available in this envrionment!')
+    # mc.warning('Shotgun & commstd is not available in this envrionment!')
 
 # set initial empty vars
 try:
@@ -73,16 +73,16 @@ def reload_prefs(verbose=True):
         print 'Adding variable to os.environ: RIG_VARIANT'
 
     defaults = {
-        "USE_PLUGIN_FOR_GUIDES": True,
+        "USE_PLUGIN_FOR_GUIDES": False,
         "CACHE_RIG_BUILD": True,
         "CURRENT_PROJECT": "",
-        "RIGBUILD_SANDBOX_VAR_PATH": "/job/${PL_SHOW}/${PL_DIVISION}/sandbox/${RIG_USER}/common/rigbuild/${RIG_ASSET}",
-        "RIGBUILD_VAR_PATH": "C:/Users/Nicob/Documents/maya/projects/${PL_DIVISION}/assets/${RIG_ASSET}/rigbuild",
+        "RIGBUILD_VAR_PATH": "C:/Users/${RIG_USER}/Documents/maya/projects/${PL_DIVISION}",
         "PARTS_VAR_PATH": [
             "/job/${PL_SHOW}/${PL_DIVISION}/sandbox/${RIG_USER}/common/maya/2017.p5/python/Rigbuild_Library",
             "/job/${PL_SHOW}/${PL_DIVISION}/common/maya/2017.p5/python/Rigbuild_Library",
-            "C:/Users/Nicob/Documents/maya/2020/scripts/rigBot"]
+            "C:/Users/${RIG_USER}/Documents/maya/2020/scripts/rigBot"]
     }
+
 
     if not os.path.isfile(prefs_file_path):
         with open(prefs_file_path, 'w') as f:
@@ -120,14 +120,14 @@ def reload_prefs(verbose=True):
 
 def use_plugin():
     if os.environ['use_plugin_nodes'] == 'True':
-        result = True
+        result = False
     else:
         result = False
 
     if not mc.pluginInfo('cmRigNodes', q=1, l=1):
         result = False
 
-    return result
+    return False
 
 
 def use_plugin_for_guides():
@@ -136,7 +136,7 @@ def use_plugin_for_guides():
     if not mc.pluginInfo('cmRigNodes', q=1, l=1):
         result = False
 
-    return result
+    return False
 
 
 def edit_prefs():
@@ -180,9 +180,9 @@ def set_project(new_project=''):
 def list_projects(verbose=True):
     """If NOT in a shotgun environment, list all project directories on disk."""
 
-    if shotgun:
-        mc.warning('This function is not available in a shotgun environmen!')
-        return []
+    # if shotgun:
+    #     mc.warning('This function is not available in a shotgun environmen!')
+    #     return []
 
     path = prefs.get('RIGBUILD_VAR_PATH') or ''
     path = path.split('${PL_DIVISION}')[0]
@@ -205,20 +205,20 @@ def list_assets(verbose=True):
 
     global all_assets
 
-    if shotgun:
-        assets_from_shotgun = tk.shotgun.find('Asset', [['project.Project.name', 'is', project]], ['code']) or []
-        all_assets = [a['code'] for a in assets_from_shotgun]
+    # if shotgun:
+    #     assets_from_shotgun = tk.shotgun.find('Asset', [['project.Project.name', 'is', project]], ['code']) or []
+    #     all_assets = [a['code'] for a in assets_from_shotgun]
 
-    else:
-        asset_path = prefs.get('RIGBUILD_VAR_PATH') or ''
-        asset_path = asset_path.split('${RIG_ASSET}')[0].replace('${PL_DIVISION}', project)
-        asset_path = os.path.expandvars(asset_path)
-        asset_path = os.path.normpath(asset_path)
+    # else:
+    asset_path = prefs.get('RIGBUILD_VAR_PATH') or ''
+    asset_path = asset_path.split('${RIG_ASSET}')[0].replace('${PL_DIVISION}', project)
+    asset_path = os.path.expandvars(asset_path)
+    asset_path = os.path.normpath(asset_path)
 
-        assets = []
-        if os.path.isdir(asset_path):
-            all_assets = [str(d) for d in os.listdir(asset_path) if '.' not in d]
-            all_assets = [d for d in all_assets if os.path.isdir(os.path.join(asset_path, d))]
+    assets = []
+    if os.path.isdir(asset_path):
+        all_assets = [str(d) for d in os.listdir(asset_path) if '.' not in d]
+        all_assets = [d for d in all_assets if os.path.isdir(os.path.join(asset_path, d))]
 
     all_assets.sort()
     if verbose:
@@ -281,7 +281,7 @@ def set_asset(asset='', clear=False, verbose=True):
 def get_rigbuild_path(asset=None, verbose=False, live=False):
     """Get asset rigbuild path"""
 
-    global using_sandbox
+    using_sandbox=False
 
     if asset is None:
         try:
@@ -305,7 +305,7 @@ def get_rigbuild_path(asset=None, verbose=False, live=False):
         if os.path.isdir(asset_path) and not os.access(asset_path, os.W_OK):
             if os.path.isdir(sandbox_path):
                 asset_path = sandbox_path
-                using_sandbox = True
+                using_sandbox = False
 
     if not asset_path or not asset:
         asset_path = ''
@@ -712,15 +712,12 @@ def make_rig_asset(name='', variants=['default'], primary_variant='default', for
         mc.warning('Job not set! Cannot continue.')
         return
 
-    if not __check_asset_validity(name):
-        mc.warning('This is not a valid shotgun asset, cannot make rig directory.')
-        return
 
     if not force and check_if_asset_exists(name):
         mc.warning('{0} is already an existing rigBot asset.'.format(name))
         return
 
-    # Get SG context and create folders on disk
+
     rigbuild_path = get_rigbuild_path(asset=name)
 
     if not os.path.isdir(rigbuild_path):
@@ -742,7 +739,7 @@ def make_rig_asset(name='', variants=['default'], primary_variant='default', for
 
                 if not os.path.isdir(rigbuild_path):
                     raise IOError(
-                        'Could not create rig task system directory on disk! Check shotgun to make sure asset is valid.')
+                        'Could not create rig task system directory on disk!')
 
             except:
                 try:
@@ -767,7 +764,8 @@ def make_rig_asset(name='', variants=['default'], primary_variant='default', for
         f.write('')
 
     if not shotgun:
-        base = os.path.dirname(rigbuild_path)
+        b = os.path.dirname(rigbuild_path)
+        base= os.path.join (b, name )
         dirs = ['guides', 'rig', 'work', 'model']
         dirs = [os.path.join(base, d) for d in dirs]
         make_dirs(dirs)
@@ -1101,11 +1099,13 @@ def __check_asset_validity(asset):
 
 
 def save_new_versioned_file(path=None, asset=None, stream='', variant='rig', ext='ma', workfile=0):
-    """This is for saving new versioned maya files when shotgun is not available."""
+    """This is for saving new versioned maya files ."""
 
     if not path:
         print workfile
-        base_path = os.path.dirname(get_rigbuild_path())
+        # base_path = os.path.dirname(get_rigbuild_path())
+        base_path = get_rigbuild_path()
+
         if workfile:
             path = os.path.join(base_path, 'work')
 
@@ -1152,8 +1152,10 @@ def save_new_versioned_file(path=None, asset=None, stream='', variant='rig', ext
 
 
 def get_versioned_file(path=None, asset=None, stream='', variant='rig', ext='ma', workfile=0, version='HIGHEST'):
+
     if not path:
-        base_path = os.path.dirname(get_rigbuild_path())
+        # base_path = os.path.dirname(get_rigbuild_path())
+        base_path = get_rigbuild_path()
         path = os.path.join(base_path, variant)
         if workfile:
             path = os.path.join(base_path, 'work')
@@ -1182,7 +1184,7 @@ def get_versioned_file(path=None, asset=None, stream='', variant='rig', ext='ma'
 
 
 def create_workspace_file(workspace_file):
-    arg = """//Maya 2017 Project Definition
+    arg = """//Maya Project Definition
 
 workspace -fr "clips" "rig";
 workspace -fr "scene" "rigbuild";

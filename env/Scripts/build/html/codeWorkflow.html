@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scripted Workflow &#8212; rigBot 2021 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module Documentaiton" href="modules.html" />
+    <link rel="prev" title="UI Workflow" href="uiWorkflow.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="scripted-workflow">
+<h1>Scripted Workflow<a class="headerlink" href="#scripted-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="asset-environment">
+<h2>Asset Environment<a class="headerlink" href="#asset-environment" title="Permalink to this headline">¶</a></h2>
+<p>The asset environment is a set of os variables that allow your build process to
+find the appropriate python files, deformer data and asset info to create your final rig.</p>
+<div class="section" id="listing-available-assets">
+<h3>Listing available assets<a class="headerlink" href="#listing-available-assets" title="Permalink to this headline">¶</a></h3>
+<p>Once set to a project you can list all the available  assets in projoct folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">env</span>
+<span class="hll"><span class="n">env</span><span class="o">.</span><span class="n">list_assets</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="creating-rig-asset-files">
+<h3>Creating rig asset files<a class="headerlink" href="#creating-rig-asset-files" title="Permalink to this headline">¶</a></h3>
+<p>To start the rigging process from scratch you first need to create the appropriate file on disk.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">env</span>
+<span class="hll"><span class="n">env</span><span class="o">.</span><span class="n">make_rig_asset</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#env-label"><span class="std std-ref">env.make_rig_asset</span></a></p>
+</div>
+</div>
+<div class="section" id="setting-asset-environment">
+<h3>Setting asset environment<a class="headerlink" href="#setting-asset-environment" title="Permalink to this headline">¶</a></h3>
+<p>Setting your asset environment sets your <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>, and your build directories to import
+and save all your build files and data from its proper location on disk.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">env</span>
+<span class="hll"><span class="n">env</span><span class="o">.</span><span class="n">set_asset</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#env-label"><span class="std std-ref">env.set_asset</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="guides-parts">
+<h2>Guides &amp; Parts<a class="headerlink" href="#guides-parts" title="Permalink to this headline">¶</a></h2>
+<p>Guides are placement rigs used by riggers to position joints in their proper place on a model
+and to fit the animation controls around their character. Each part has its own unique set of options
+to allow you to vastly customize your rig to meet the needs of your anmators.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you wish to scale the whole guide rig then grab the top node in the outliner, named <code class="docutils literal notranslate"><span class="pre">guides</span></code> and scale that. Every guide part should be scalable.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more information on part modules see
+<a class="reference internal" href="modules.html#parts-label"><span class="std std-ref">Rig Parts</span></a></p>
+</div>
+<div class="section" id="listing-available-parts">
+<h3>Listing available parts<a class="headerlink" href="#listing-available-parts" title="Permalink to this headline">¶</a></h3>
+<p>To see a list of available parts in the script editor, simply run</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">list_parts</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="building-guides">
+<h3>Building guides<a class="headerlink" href="#building-guides" title="Permalink to this headline">¶</a></h3>
+<p>Build a guide using the
+<a class="reference internal" href="modules.html#label-name"><span class="std std-ref">guide</span></a> module.</p>
+<p>Build a guide using the default options</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s1">&#39;bipedArm&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Build a guide using specific options just include them as keyword arguments.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s1">&#39;bipedArm&#39;</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;front&#39;</span><span class="p">,</span> <span class="n">numberTwistJoints</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="mirroring-guides">
+<h3>Mirroring guides<a class="headerlink" href="#mirroring-guides" title="Permalink to this headline">¶</a></h3>
+<p>Mirror a guide either from left to right OR right to left. If the new mirrored part does not
+exists it will be created, otherwise it will update the existing part.</p>
+<p>To mirror you must select any node belonging to the part you wish to mirror.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">mirror</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="duplicating-guides">
+<h3>Duplicating guides<a class="headerlink" href="#duplicating-guides" title="Permalink to this headline">¶</a></h3>
+<p>Duplicating a guide creates an exact copy with the same build options.
+You will be prompted to specify a new name for this new part.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the moment this is a little buggy. It may rename your guides incorrectly so proceed with caution.</p>
+</div>
+<p>To duplicate you must select any node belonging to the part you wish to copy.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">duplicate</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="updating-guide-options">
+<h3>Updating guide options<a class="headerlink" href="#updating-guide-options" title="Permalink to this headline">¶</a></h3>
+<p>Updating options allows you to change build options, rename the part or update the side.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are some build options that are locked once the guide is built. If you try to change those options you will be promted to rebuild the part. Sometimes depending on what new joints or controls are created they may build in odd positions. You will have to position them accordinly.</p>
+</div>
+<p>To change options you must select any node belonging to the part you wish to modify.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">update_options</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myNewName&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;myNewParent&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="opening-saving-guides">
+<h3>Opening &amp; saving guides<a class="headerlink" href="#opening-saving-guides" title="Permalink to this headline">¶</a></h3>
+<p>To open the latest guide</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>To save the guides file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="assemblies">
+<h2>Assemblies<a class="headerlink" href="#assemblies" title="Permalink to this headline">¶</a></h2>
+<p>Assemblies are simply a template generated from a guides file. It records all parts, build options and positions.</p>
+<div class="section" id="saving-assemblies">
+<h3>Saving assemblies<a class="headerlink" href="#saving-assemblies" title="Permalink to this headline">¶</a></h3>
+<p>To save a new assembly. You will be prompted to specify a name.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">save_assembly</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="building-assemblies">
+<h3>Building assemblies<a class="headerlink" href="#building-assemblies" title="Permalink to this headline">¶</a></h3>
+<p>To load an assembly to use as a jump off point to build your guide</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="hll"><span class="n">guide</span><span class="o">.</span><span class="n">build_assembly</span><span class="p">(</span><span class="s1">&#39;genericMan&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="building-a-skeleton">
+<h2>Building A Skeleton<a class="headerlink" href="#building-a-skeleton" title="Permalink to this headline">¶</a></h2>
+<p>A clean skeleton is required for every rig build. This skeleton is used to generate
+the anim, mocap and any other rig variant you will be building.</p>
+<p>To build a skeleton you must have a guide rig opened.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">skel</span>
+<span class="hll"><span class="n">skel</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="building-the-anim-rig">
+<h2>Building The Anim Rig<a class="headerlink" href="#building-the-anim-rig" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="building-the-rig">
+<h3>Building the rig<a class="headerlink" href="#building-the-rig" title="Permalink to this headline">¶</a></h3>
+<p>You can either build the entire anim rig at once or build each part type
+one at a time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">rig</span>
+<span class="n">rig</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or build each part type one by one</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">rig</span>
+<span class="hll"><span class="n">rig</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s1">&#39;worldRoot&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="n">rig</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s1">&#39;torso&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="n">rig</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s1">&#39;bipedArm&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Once all parts have been build, the rig needs to be finalize. In this step the
+rig hooks are all connected, spaces are created and the rig is cleaned up.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">rig</span>
+<span class="n">rig</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can connect hooks and recreate spaces at any time during build by running connect hook command.
+This will check hook attribute on all part HOOK nodes and connect them.  If they are already connected to node specified in hook attr, it will skip.
+The spaces command works the same way</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">rig</span>
+<span class="n">rig</span><span class="o">.</span><span class="n">connect_hooks</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="importing-the-published-model">
+<h3>Importing the published model<a class="headerlink" href="#importing-the-published-model" title="Permalink to this headline">¶</a></h3>
+<p>To automatically load the latest version of model in rigbuild/model folder</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">rig</span>
+<span class="n">rig</span><span class="o">.</span><span class="n">import_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="deformers-data">
+<h2>Deformers &amp; Data<a class="headerlink" href="#deformers-data" title="Permalink to this headline">¶</a></h2>
+<p>Load and save deformer data to the asset. By default all data will be saved to your assets
+data folder in <code class="docutils literal notranslate"><span class="pre">rigbuild/data/${RIG_VARIANT}</span></code></p>
+<p>To load data</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To save data</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#data-label"><span class="std std-ref">data.load &amp; data.save</span></a></p>
+</div>
+</div>
+<div class="section" id="migrating-parts">
+<h2>Migrating Parts<a class="headerlink" href="#migrating-parts" title="Permalink to this headline">¶</a></h2>
+<p>You can migrate a part to the asset level. This creates a copy of the part module in the <code class="docutils literal notranslate"><span class="pre">asset/rigbuild</span></code> folder that
+you can modify to your liking. This newly modified module will only be sourced by the currently set asset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">migrate_part</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#label-name"><span class="std std-ref">guides.migrate_part</span></a></p>
+</div>
+</div>
+<div class="section" id="creating-new-parts">
+<h2>Creating New Parts<a class="headerlink" href="#creating-new-parts" title="Permalink to this headline">¶</a></h2>
+<p>You can create new part modules and code them up however you’d like. There are alot of helper functions to create placement joints and create reference controls that you have at your disposal.</p>
+<p>To create a new empty part module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">guide</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">create_new_part</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#label-name"><span class="std std-ref">guides.create_new_part</span></a></p>
+</div>
+</div>
+<div class="section" id="modifying-control-shapes-colors">
+<h2>Modifying Control Shapes &amp; Colors<a class="headerlink" href="#modifying-control-shapes-colors" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>In a guide scene all ctrls can be translated, scaled and rotated on a transform level. When the final rig is built, thier transform information gets transferred to the shape node and the ctrl pivots and offsets will be in their appropriate positions .</dt><dd><p>Guide controls are only REFERENCE used for shape placement, rotation, scaling and color.</p>
+</dd>
+</dl>
+<p>You can always change the shapes and colors of the controls either in the guide stage or after the rig has been built.</p>
+<div class="section" id="changing-control-shapes-colors">
+<h3>Changing control shapes &amp; colors<a class="headerlink" href="#changing-control-shapes-colors" title="Permalink to this headline">¶</a></h3>
+<p>To change control shapes just select one or more controls and run the following</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To change control colors just select one or more controls and run the following.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-shapes-colors">
+<h3>Saving shapes &amp; colors<a class="headerlink" href="#saving-shapes-colors" title="Permalink to this headline">¶</a></h3>
+<p>New shapes and RGB control colors can be saved out to the <code class="docutils literal notranslate"><span class="pre">controlData.json</span></code> file</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Shapes to be saved out should be moved to the origin.</p>
+</div>
+<p>To save shapes select the control</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">save_shape</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To save an RGB color select the control</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">save_color</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-shapes-and-colors">
+<h3>Available shapes and colors<a class="headerlink" href="#available-shapes-and-colors" title="Permalink to this headline">¶</a></h3>
+<p>To see a list of all available shapes</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">shapes</span>
+</pre></div>
+</div>
+<p>To see a list of all available colors</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rigBot</span> <span class="kn">import</span> <span class="n">control</span>
+<span class="n">control</span><span class="o">.</span><span class="n">colors</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#control-label"><span class="std std-ref">control</span></a> and
+<a class="reference internal" href="modules.html#control-shape-label"><span class="std std-ref">data.controlShapes</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="modifying-rigall-py">
+<h2>Modifying rigAll.py<a class="headerlink" href="#modifying-rigall-py" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">${RIG_ASSET}_rigAll.py</span></code> is your complete build list for your rig or rig variant.
+The following is a list of the standard operations run during a build.</p>
+<p>This file is created for each asset when the <code class="docutils literal notranslate"><span class="pre">env.make_rig_asset</span></code> function is called.
+If you wish to modify this file. It lives in <code class="docutils literal notranslate"><span class="pre">${RIG_ASSET}/work/rig/rig/rigbuild</span></code> folder.
+You will rarely need to modify this.</p>
+<p>the <code class="docutils literal notranslate"><span class="pre">${RIG_ASSET}_custom.py</span></code> file already has empty slots for your custom code.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the moment this file is a simple python file. Would like to allow for UI introspection in future.</p>
+</div>
+<p>Rig All build operations:</p>
+<ul class="simple">
+<li><p>Load the latest guide file</p></li>
+<li><p>Build skeleton</p></li>
+<li><p>Run asset.custom.post_skel code (this is for you to code any adjustments needed BEFORE THE animation rig is build for all the parts)</p></li>
+<li><p>Build the rig</p></li>
+<li><p>Run asset.custom.post_rig code</p></li>
+<li><p>Load the latest published model</p></li>
+<li><p>Run asset.custom.pre_bind code(this is for you to code any adjustments needed BEFORE THE deformation data is imported)</p></li>
+<li><p>Load deformers and other data</p></li>
+<li><p>Run asset.custom.post_bind code</p></li>
+<li><p>Connect hooks</p></li>
+<li><p>Create spaces</p></li>
+<li><p>Run asset.custom.post_finalize code</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="modules.html#rigall-label"><span class="std std-ref">asset_rigALL</span></a> and
+<a class="reference internal" href="modules.html#assetcustom-label"><span class="std std-ref">asset_rigALL</span></a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">rigBot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Loading rigBot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#key-concepts">Key Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">UI Workflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uiWorkflow.html">UI Workflow</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Coded Workflow:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scripted Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#asset-environment">Asset Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#guides-parts">Guides &amp; Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assemblies">Assemblies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-a-skeleton">Building A Skeleton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-anim-rig">Building The Anim Rig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deformers-data">Deformers &amp; Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-parts">Migrating Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-new-parts">Creating New Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-control-shapes-colors">Modifying Control Shapes &amp; Colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-rigall-py">Modifying rigAll.py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module Documentaiton</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="uiWorkflow.html" title="previous chapter">UI Workflow</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">Module Documentaiton</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Briana Hamilton.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2+/2e57929</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/codeWorkflow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

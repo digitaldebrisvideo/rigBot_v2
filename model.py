@@ -19,12 +19,7 @@ except:
 
 def save(variant='Default', version='NEXT'):
     """Save a model stream"""
-
-    if env.shotgun:
-        mc.warning('This feature is not available in a shotgun environment.')
-
-    else:
-        env.save_stream('model', token=variant, version=version, workfile=0)
+    env.save_stream('model', token=variant, version=version, workfile=0)
 
 def load(asset=None, name='Default', variant='primary', file_type=None, version='HIGHEST', soften_normals=None, unlock_normals=True, keep_cm_node=False, kill_layers=True):
 
@@ -42,22 +37,8 @@ def load(asset=None, name='Default', variant='primary', file_type=None, version=
             :kill_layers: (bool) Kill display layers in the scene and set display overrides to off. Defaults to True"""
 
     # testing new shotgun cm node loading
-    if env.shotgun:
-        if asset == None:
-            asset = ''
-        if name == 'Default':
-            name = ''
-        if variant == 'primary':
-            variant = ''
-        if version == 'HIGHEST':
-            version = None
-        if file_type == None:
-            file_type = 'Alembic Geometry'
 
-        return load_published(asset, name, variant, version, file_type, keep_cm_node, soften_normals, unlock_normals, kill_layers)
-
-    else:
-        return load_vanilla(asset, name, version, soften_normals, unlock_normals, kill_layers)
+    return load_vanilla(asset, name, version, soften_normals, unlock_normals, kill_layers)
 
 
 def load_vanilla(asset='', name='', version=None, soften_normals=False, unlock_normals=True, kill_layers=True):

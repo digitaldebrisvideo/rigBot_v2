@@ -229,8 +229,11 @@ class ApplyMocapUI(mayaWidget.MayaWidget):
                 if attrs == 'scaleX' or attrs == 'scaleY' or attrs == 'scaleZ':
                     mc.setAttr(each + '.' + attr, 1)
                 else:
-                    dv = mc.attributeQuery(attr, n=each, ld=1)
-                    mc.setAttr(each + '.' + attr, dv[0])
+                    try:
+                        dv = mc.attributeQuery(attr, n=each, ld=1)
+                        mc.setAttr(each + '.' + attr, dv[0])
+                    except:
+                        pass
 
     def zero_rig(self, ns=':', start=0):
         zero_frame = start - 10
@@ -311,3 +314,29 @@ def run(dockable=False, **kwargs):
     except Exception as e:
         raise RuntimeError(e)
 
+'''
+import maya.cmds as cmds
+
+window = cmds.window()
+cmds.columnLayout()
+cmds.textFieldButtonGrp( label='FBX Import', text='Text', buttonLabel='...' )
+cmds.textFieldButtonGrp( label='Rig Namespace', text='Text', buttonLabel='<<' )
+cmds.textFieldButtonGrp( label='Mocap Namespace', text='Text', buttonLabel='<<' )
+
+cmds.intFieldGrp( numberOfFields=1, label='Start Frame')
+
+
+cmds.floatSliderButtonGrp( label='Label', field=True, buttonLabel='Button', symbolButtonDisplay=True, columnWidth=(5, 23), image='cmdWndIcon.xpm' )
+
+#cmds.floatSliderButtonGrp(  field=True, buttonLabel='Connect Rig', symbolButtonDisplay=False, columnWidth=(5, 23) )
+
+cmds.intSliderGrp( field=True, label='Spine/Chest Blend' )
+cmds.intSliderGrp( field=True, label='Head/Neck Blend', minValue=0, maxValue=1, fieldMinValue=0, fieldMaxValue=1, value=0 )
+cmds.intSliderGrp( field=True, label='Left Leg Blend', minValue=0, maxValue=1, fieldMinValue=0, fieldMaxValue=1, value=0  )
+cmds.intSliderGrp( field=True, label='Right Leg Blend', minValue=0, maxValue=1, fieldMinValue=0, fieldMaxValue=1, value=0  )
+cmds.intSliderGrp( field=True, label='Left Arm Blend', minValue=0, maxValue=1, fieldMinValue=0, fieldMaxValue=1, value=0  )
+cmds.intSliderGrp( field=True, label='Right Arm Blend', minValue=0, maxValue=1, fieldMinValue=0, fieldMaxValue=1, value=0  )
+
+
+cmds.showWindow( window )
+'''

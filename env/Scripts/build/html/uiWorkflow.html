@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Workflow &#8212; rigBot 2021 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scripted Workflow" href="codeWorkflow.html" />
+    <link rel="prev" title="Loading rigBot2" href="intro.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ui-workflow">
+<h1>UI Workflow<a class="headerlink" href="#ui-workflow" title="Permalink to this headline">¶</a></h1>
+<p>The rigBot Rig Build UI is a central UI with several tabs. One for each step of the rigging process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The bottom path bar shows the full path the current asset’s rigbuild folder. To open a browser to that location on disk,
+click “…”</p>
+</div>
+<div class="section" id="asset-env-tab">
+<h2>Asset Env Tab<a class="headerlink" href="#asset-env-tab" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="assetEnv.jpg"><img alt="Shotgun asset without rigbuild files." src="assetEnv.jpg" /></a>
+<p class="caption"><span class="caption-text">rigBot Rig Build UI - Asset Env Tab</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="setting-asset-environment">
+<h3>Setting asset environment<a class="headerlink" href="#setting-asset-environment" title="Permalink to this headline">¶</a></h3>
+<p>The asset environment widget is a set of os variables that allow your build process to
+find the appropriate python files, deformer data and shotgun assets to create your final rig.</p>
+<p>The left side column lists all available shotgun assets. Some will already have rigbuild file and some will not.</p>
+<p>Select an asset in the list to set your environment to that asset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If rigbuild files do not exist, the environment will not be set. Instead, you will see a widget prompting you
+to create new rigbuild files.</p>
+</div>
+</div>
+<div class="section" id="creating-rig-asset-files">
+<h3>Creating rig asset files<a class="headerlink" href="#creating-rig-asset-files" title="Permalink to this headline">¶</a></h3>
+<p>If an asset does not yet have rigbuild files you will be prompted to create files for that asset.</p>
+<p>To create these files, click “Create Rig Files On Disk”</p>
+<p>A “Default” rig variant will be created automatically for each asset.</p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="create.jpg"><img alt="Shotgun asset without rigbuild files." src="create.jpg" /></a>
+<p class="caption"><span class="caption-text">Widget for creating new rigbuild assets.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="creating-rig-variants">
+<h3>Creating Rig Variants<a class="headerlink" href="#creating-rig-variants" title="Permalink to this headline">¶</a></h3>
+<p>To create a new rig variant for an asset click “Add Rig Variants”. You will be prompted to select a predifined variant or create a different one by choosing other.</p>
+<p>To set a variant as the “primary” tick the checkbox. This means that this will be the rig variant that swaps in at render time.</p>
+<dl class="simple">
+<dt>..note:: If you wish to change the primary rig, just click “Add Rig Variants” and set your primary rig. This works even though</dt><dd><p>the variant alreadyexists.</p>
+</dd>
+</dl>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="variant.jpg"><img alt="Shotgun asset without rigbuild files." src="variant.jpg" /></a>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="variant2.jpg"><img alt="Shotgun asset without rigbuild files." src="variant2.jpg" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="guides-tab">
+<h2>Guides Tab<a class="headerlink" href="#guides-tab" title="Permalink to this headline">¶</a></h2>
+<p>Guides are placement rigs used by riggers to position joints in their proper place on a model
+and to fit the animation controls around their character. Each part has its own unique set of options
+to allow you to vastly customize your rig to meet the needs of your animators.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you wish to scale the whole guide rig then grab the top node in the outliner, named <code class="docutils literal notranslate"><span class="pre">guides</span></code> and scale that. In addition, Every guide part is also scalable.
+any new parts added should also be coded to be scalable</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more information on part modules see
+<a class="reference internal" href="modules.html#parts-label"><span class="std std-ref">Rig Parts</span></a></p>
+</div>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="guides.jpg"><img alt="" src="guides.jpg" /></a>
+<p class="caption"><span class="caption-text">Widget for creating and modifying guides.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="building-guides-assemblies">
+<h3>Building guides &amp; assemblies<a class="headerlink" href="#building-guides-assemblies" title="Permalink to this headline">¶</a></h3>
+<p>To build a guide choose a part or assembly from “Add Part / Assembly” menu.</p>
+<p>Before the part builds, set all your options you want then click “Build Guide”.</p>
+<p>If building an assembly, no options will be displayed before building,  but you can set these to whatever you want once all the parts have built.</p>
+</div>
+<div class="section" id="updating-guide-options">
+<h3>Updating guide options<a class="headerlink" href="#updating-guide-options" title="Permalink to this headline">¶</a></h3>
+<p>Updating options allows you to change build options, rename the part or update the side.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are some build options that are locked once the guide is built. If you try to change those options you will be prompted to rebuild the part. Sometimes depending on what new joints or controls are created they may build in odd positions. You will have to position them accordingly.</p>
+</div>
+<p>To change options choose a guide in the left column and modify option you wish and hit enter.  You will notified if there are name conflicts, a new part needs to be built, etc.</p>
+</div>
+<div class="section" id="mirroring-guides">
+<h3>Mirroring guides<a class="headerlink" href="#mirroring-guides" title="Permalink to this headline">¶</a></h3>
+<p>Mirror a guide either from left to right OR right to left. If the new mirrored part does not
+exists it will be created, otherwise it will update the existing part.</p>
+<p>To mirror you must select a guide from the left column and click “Mirror Guide”.</p>
+<p>..note:: You can mirror from right to left or left to right, but center sided guides cannot be mirrored. You can mirror several guides at once.</p>
+</div>
+<div class="section" id="duplicating-guides">
+<h3>Duplicating guides<a class="headerlink" href="#duplicating-guides" title="Permalink to this headline">¶</a></h3>
+<p>Duplicating a guide creates an exact copy with the same build options.
+You will be prompted to specify a new name for this new part.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the moment this is a little buggy. It may rename your guides incorrectly so proceed with caution.</p>
+</div>
+<p>To duplicate you must select a guide from the left column and click “Duplicate Guide”.</p>
+</div>
+<div class="section" id="opening-saving-guides">
+<h3>Opening &amp; saving guides<a class="headerlink" href="#opening-saving-guides" title="Permalink to this headline">¶</a></h3>
+<p>To open the <strong>latest</strong> guides click “Load Guides”</p>
+<p>To save the guides click “Save Guides”</p>
+</div>
+<div class="section" id="saving-assemblies">
+<h3>Saving Assemblies<a class="headerlink" href="#saving-assemblies" title="Permalink to this headline">¶</a></h3>
+<p>Assemblies are simply a template generated from a guides file. It records all parts, build options and positions.</p>
+<dl class="simple">
+<dt>To save a new assembly You must have the guides loaded in your scene. Simply click “Save New Assembly” from the “Add / Part</dt><dd><p>Assembly” pulldown.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="creating-new-part-modules">
+<h3>Creating New Part Modules<a class="headerlink" href="#creating-new-part-modules" title="Permalink to this headline">¶</a></h3>
+<p>You can create new part modules and code them up however you’d like. There are many helper functions to create placement joints and create reference controls that you have at your disposal.  All parts are inherited from the StandardPart module.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the momment this function attemps to save to the rigBot directory, so you will need to be in your user sandbox to have the corrct write permissions. This will be ironed out in due time.</p>
+</div>
+<dl class="simple">
+<dt>To create a new empty part module choose “Create New Part Module” from the “Add / Part</dt><dd><p>Assembly” pulldown.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="build-rig-tab">
+<h2>Build Rig Tab<a class="headerlink" href="#build-rig-tab" title="Permalink to this headline">¶</a></h2>
+<p>This tab is where everything comes together. At the top you choose which rig variant you want to build. This will set your asset env’s rig_variant variable.</p>
+<div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="build.jpg"><img alt="build.jpg" src="build.jpg" /></a>
+<p class="caption"><span class="caption-text">Widget for creating and modifying controls.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>On the left is your rig build list. On the right is modules information for the selected step in the build list.</p>
+<p>To build single step at a time, in sequence. click “Build Next Step.”</p>
+<p>To build only selected steps, highlight the steps you wish to build and click “Build Selected Steps.”</p>
+<p>To build the entire rig. click “Build All Remaining Steps”</p>
+<div class="section" id="hand-pose-utility">
+<h3>Hand Pose Utility<a class="headerlink" href="#hand-pose-utility" title="Permalink to this headline">¶</a></h3>
+<p>Utility for setting hand poses in the rig</p>
+</div>
+</div>
+<div class="section" id="export-data-tab">
+<h2>Export Data Tab<a class="headerlink" href="#export-data-tab" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="modifying-control-shapes-colors">
+<h2>Modifying Control Shapes &amp; Colors<a class="headerlink" href="#modifying-control-shapes-colors" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>In a guide scene all ctrls can be translated, scaled and rotated on a transform level. When the final rig is built, thier transform information gets transferred to the shape node and the ctrl pivots and offsets will be in their appropriate positions .</dt><dd><p>Guide controls are only REFERENCE used for shape placement, rotation, scaling and color.</p>
+</dd>
+</dl>
+<p>You can always change the shapes and colors of the controls either in the guide stage or after the rig has been built.</p>
+<div class="section" id="changing-control-shapes-colors">
+<h3>Changing control shapes &amp; colors<a class="headerlink" href="#changing-control-shapes-colors" title="Permalink to this headline">¶</a></h3>
+<p>Use the modify section of the control UI to change shapes and colors for selected controls.</p>
+<div class="figure align-default" id="id5">
+<a class="reference internal image-reference" href="control.jpg"><img alt="control.jpg" src="control.jpg" /></a>
+<p class="caption"><span class="caption-text">Widget for creating and modifying controls.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can always adjust control shapes and colors <strong>after</strong> the rig has been built. That control data can then be exported to the asset rig build folder.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">rigBot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Loading rigBot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#key-concepts">Key Concepts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">UI Workflow:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UI Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#asset-env-tab">Asset Env Tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#guides-tab">Guides Tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-rig-tab">Build Rig Tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-data-tab">Export Data Tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-control-shapes-colors">Modifying Control Shapes &amp; Colors</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Coded Workflow:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codeWorkflow.html">Scripted Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module Documentaiton</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="intro.html" title="previous chapter">Loading rigBot2</a></li>
+      <li>Next: <a href="codeWorkflow.html" title="next chapter">Scripted Workflow</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Briana Hamilton.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2+/2e57929</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/uiWorkflow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

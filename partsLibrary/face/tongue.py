@@ -59,13 +59,15 @@ class Tongue(standardPart.StandardPart):
                 tool_tip='Add curling functionality',
                 data_type='bool',
                 default=True,
-                rebuild_to_modify=False)
+                rebuild_to_modify=False,
+            hidden=True)
 
         self.add_option('addVolumeControls',
             tool_tip='Add scale and volume preservation control',
             data_type='bool',
             default=True,
-            rebuild_to_modify=False)
+            rebuild_to_modify=False,
+            hidden=True)
 
         self.add_option('shiftCtrls', data_type='float', hidden=True, min=-1, max=1, default=0)
         self.add_option('shiftJoints', data_type='float', hidden=True, min=-1, max=1, default=0)
@@ -207,7 +209,7 @@ class Tongue(standardPart.StandardPart):
         noxform_grp      = self.noxform_grp
         world_scale_attr  = self.hooks[0]+'.worldScale'
 
-        use_plugin = env.use_plugin()
+        use_plugin = False
 
         # get options to build
         side = options.get('side')
