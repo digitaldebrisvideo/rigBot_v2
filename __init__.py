@@ -121,11 +121,11 @@ print '\nLoaded  rigBot :)'
 def help():
     """Load html help docs for rigBot"""
 
-    path = os.path.join(base_path, 'docs', '_build', 'html', 'index.html')
+    path = os.path.join(base_path, 'docs', 'build', 'index.html')
     if os.path.isfile(path):
         webbrowser.open(path)
     else:
-        mc.warning('Cannot find herlp docs! '+path)
+        mc.warning('Cannot find help docs! '+path)
 
 def menu(mainwin=None):
 

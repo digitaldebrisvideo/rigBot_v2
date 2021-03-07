@@ -1,8 +1,0 @@
-The hotkey script for z-press:
-if (startsWith(`whatIs okPushyActivate`, "Mel") != true) {
-      source "/the/path/to/the/script/please/replace/okPushy.mel";
-}
-okPushyActivate(); 
-
-The hotkey script for z-release:
-okPushyDeactivate();

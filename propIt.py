@@ -14,145 +14,145 @@ from rigBot import env
 from rigBot import skel
 from rigBot import model
 from rigBot import data
-
-def create_from_cmnode(asset=None, name='default', variant='primary', file_type='Maya Geometry'):
-
-    use_shotgun = False
-    cm_nodes = mc.ls(type='cmContent')
-    model_grp = [n for n in mc.ls('|*', type='transform') if n not in ['front','persp','side','top'] ]
-
-    if not model_grp:
-        mc.warning('No models in scene and asset is not set! Cannot continue.')
-        return
-
-    if cm_nodes:
-        use_shotgun = True
-        asset = mc.getAttr(cm_nodes[0]+'.entity').strip()
-        name = mc.getAttr(cm_nodes[0]+'.name').replace(asset, '').strip()
-        variant = mc.getAttr(cm_nodes[0]+'.variant').strip()
-        file_type = mc.getAttr(cm_nodes[0]+'.type').strip()
-        model_grp = utils.get_children(utils.get_parent(cm_nodes[0]))
-
-    if env.shotgun and not asset and not cm_nodes:
-        mc.warning('No models in scene and asset is not set! Cannot continue.')
-        return
-
-    if env.check_if_asset_exists(asset):
-        icon = 'warning'
-        title = 'PropIt | Overwrite Asset'
-        msg = 'Creating prop for asset:\n   {0} - {1} variant\n\nThis will OVERWRITE all existing rigbuild data on disk.'.format(asset, variant)
-        msg += '\nAre you sure you want to do this?'.format(asset)
-
-    else:
-        icon = 'question'
-        title = 'PropIt | New Asset'
-        msg = 'Creating prop for asset:\n   {0} - {1} variant\n\nThis will create rigbuild '.format(asset, variant)
-        msg += 'files on disk.\nAre you sure you want to do this?'
-
-    result = mc.confirmDialog(title=title,
-                              message=msg,
-                              icon=icon,
-                              button=['Yes','No'],
-                              defaultButton='Yes',
-                              cancelButton='No',
-                              dismissString='No' )
-
-    if result == 'No':
-        return
-
-    # Make rig asset and create a clean custom and rigbuildlist file
-    if env.check_if_asset_exists(asset):
-        rb_path = env.get_rigbuild_path(asset)
-        files_to_trash = [os.path.join(rb_path, f).replace('\\', '/') for f in os.listdir(rb_path)]
-
-        for file in files_to_trash:
-            if os.path.isfile(file):
-                os.remove(file)
-            elif os.path.isdir(file):
-                shutil.rmtree(file)
-
-    env.make_rig_asset(asset)
-    env.set_asset(asset)
-    rb_path = env.get_rigbuild_path(asset)
-
-    # Create guide
-    junk = mc.ls('guides', 'rig_GRP')
-    if junk:
-        mc.delete(junk)
-
-    guide.build('worldRoot')
-
-    bb = mc.exactWorldBoundingBox(model_grp)
-    sy = bb[4]*1.4
-    mc.xform('visibility_CTL', ws=1, t=[0,sy,0])
-
-    sx = (bb[3] - bb[0]) / 4.0
-    sz = (bb[5] - bb[2]) / 4.0
-    if sz > sx:
-        sx = sz
-
-    mc.setAttr('world_CTL.numOffsetCtrls', 2)
-    mc.xform('world_CTL', r=1, s=[sx*1.2,sx*1.2,sx*1.2])
-    mc.xform('visibility_CTL', r=1, s=[sx,sx,sx])
-
-    guide.save()
-
-    # Build rig
-    skel.build(shakeout=1)
-    rig.build()
-
-    model.load(name=name, variant=variant, file_type=file_type)
-
-    rig.connect_rig()
-    rig.finalize()
-
-    # constraint and export cons
-    cons = []
-    for m in [utils.strip_namespace(m) for m in model_grp]:
-        if mc.nodeType(m) in ['transform', 'joint']:
-            utils.set_attrs(m, k=1, l=0)
-
-            try:
-                cons.extend(mc.parentConstraint('C_root_JNT', m, n=m+'_PRC', mo=1))
-                cons.extend(mc.scaleConstraint('C_root_JNT', m, n=m+'_sC', mo=1))
-            except:
-                pass
-
-    env.set_variant('default')
-    mc.select(cons)
-
-    data.save('constraints', nodes=cons)
-
-    # Create new variant and save rig stream
-    if variant == 'primary':
-        variant = 'default'
-
-    env.add_variant(variant)
-    env.set_variant(variant)
-
-    # modify the default model load to reflect trhe current model.
-    build_file = os.path.join(rb_path, asset+'_buildList.py')
-    with open(build_file) as f:
-        lines = f.readlines()
-
-    cmd = "         'command': partial(model.load, name='{0}', variant='{1}', file_type='{2}', version='HIGHEST')".format(name, variant, file_type)
-    cmd += "},\n"
-
-    for i, line in enumerate(lines):
-        if 'model.load' in line:
-            lines[i] = cmd
-
-    all_lines = ''.join(lines)
-    with open(build_file, 'w') as f:
-                f.write(all_lines)
-
-    # Save completed rig as stream
-    env.save_stream(variant)
-
-    print '##############################'
-    print '# PropIt completed!\n'
-    print '    Asset:   '+asset
-    print '    Variant: '+variant
+#
+# def create_from_cmnode(asset=None, name='default', variant='primary', file_type='Maya Geometry'):
+#
+#     use_shotgun = False
+#     cm_nodes = mc.ls(type='cmContent')
+#     model_grp = [n for n in mc.ls('|*', type='transform') if n not in ['front','persp','side','top'] ]
+#
+#     if not model_grp:
+#         mc.warning('No models in scene and asset is not set! Cannot continue.')
+#         return
+#
+#     if cm_nodes:
+#         use_shotgun = True
+#         asset = mc.getAttr(cm_nodes[0]+'.entity').strip()
+#         name = mc.getAttr(cm_nodes[0]+'.name').replace(asset, '').strip()
+#         variant = mc.getAttr(cm_nodes[0]+'.variant').strip()
+#         file_type = mc.getAttr(cm_nodes[0]+'.type').strip()
+#         model_grp = utils.get_children(utils.get_parent(cm_nodes[0]))
+#
+#     if env.shotgun and not asset and not cm_nodes:
+#         mc.warning('No models in scene and asset is not set! Cannot continue.')
+#         return
+#
+#     if env.check_if_asset_exists(asset):
+#         icon = 'warning'
+#         title = 'PropIt | Overwrite Asset'
+#         msg = 'Creating prop for asset:\n   {0} - {1} variant\n\nThis will OVERWRITE all existing rigbuild data on disk.'.format(asset, variant)
+#         msg += '\nAre you sure you want to do this?'.format(asset)
+#
+#     else:
+#         icon = 'question'
+#         title = 'PropIt | New Asset'
+#         msg = 'Creating prop for asset:\n   {0} - {1} variant\n\nThis will create rigbuild '.format(asset, variant)
+#         msg += 'files on disk.\nAre you sure you want to do this?'
+#
+#     result = mc.confirmDialog(title=title,
+#                               message=msg,
+#                               icon=icon,
+#                               button=['Yes','No'],
+#                               defaultButton='Yes',
+#                               cancelButton='No',
+#                               dismissString='No' )
+#
+#     if result == 'No':
+#         return
+#
+#     # Make rig asset and create a clean custom and rigbuildlist file
+#     if env.check_if_asset_exists(asset):
+#         rb_path = env.get_rigbuild_path(asset)
+#         files_to_trash = [os.path.join(rb_path, f).replace('\\', '/') for f in os.listdir(rb_path)]
+#
+#         for file in files_to_trash:
+#             if os.path.isfile(file):
+#                 os.remove(file)
+#             elif os.path.isdir(file):
+#                 shutil.rmtree(file)
+#
+#     env.make_rig_asset(asset)
+#     env.set_asset(asset)
+#     rb_path = env.get_rigbuild_path(asset)
+#
+#     # Create guide
+#     junk = mc.ls('guides', 'rig_GRP')
+#     if junk:
+#         mc.delete(junk)
+#
+#     guide.build('worldRoot')
+#
+#     bb = mc.exactWorldBoundingBox(model_grp)
+#     sy = bb[4]*1.4
+#     mc.xform('visibility_CTL', ws=1, t=[0,sy,0])
+#
+#     sx = (bb[3] - bb[0]) / 4.0
+#     sz = (bb[5] - bb[2]) / 4.0
+#     if sz > sx:
+#         sx = sz
+#
+#     mc.setAttr('world_CTL.numOffsetCtrls', 2)
+#     mc.xform('world_CTL', r=1, s=[sx*1.2,sx*1.2,sx*1.2])
+#     mc.xform('visibility_CTL', r=1, s=[sx,sx,sx])
+#
+#     guide.save()
+#
+#     # Build rig
+#     skel.build(shakeout=1)
+#     rig.build()
+#
+#     model.load(name=name, variant=variant, file_type=file_type)
+#
+#     rig.connect_rig()
+#     rig.finalize()
+#
+#     # constraint and export cons
+#     cons = []
+#     for m in [utils.strip_namespace(m) for m in model_grp]:
+#         if mc.nodeType(m) in ['transform', 'joint']:
+#             utils.set_attrs(m, k=1, l=0)
+#
+#             try:
+#                 cons.extend(mc.parentConstraint('C_root_JNT', m, n=m+'_PRC', mo=1))
+#                 cons.extend(mc.scaleConstraint('C_root_JNT', m, n=m+'_sC', mo=1))
+#             except:
+#                 pass
+#
+#     env.set_variant('default')
+#     mc.select(cons)
+#
+#     data.save('constraints', nodes=cons)
+#
+#     # Create new variant and save rig stream
+#     if variant == 'primary':
+#         variant = 'default'
+#
+#     env.add_variant(variant)
+#     env.set_variant(variant)
+#
+#     # modify the default model load to reflect trhe current model.
+#     build_file = os.path.join(rb_path, asset+'_buildList.py')
+#     with open(build_file) as f:
+#         lines = f.readlines()
+#
+#     cmd = "         'command': partial(model.load, name='{0}', variant='{1}', file_type='{2}', version='HIGHEST')".format(name, variant, file_type)
+#     cmd += "},\n"
+#
+#     for i, line in enumerate(lines):
+#         if 'model.load' in line:
+#             lines[i] = cmd
+#
+#     all_lines = ''.join(lines)
+#     with open(build_file, 'w') as f:
+#                 f.write(all_lines)
+#
+#     # Save completed rig as stream
+#     env.save_stream(variant)
+#
+#     print '##############################'
+#     print '# PropIt completed!\n'
+#     print '    Asset:   '+asset
+#     print '    Variant: '+variant
 
 
 def create(name='', variant='primary', model_grp=None):

@@ -3,6 +3,7 @@ import maya.cmds as mc
 import maya.mel as mm
 import pymel.core as pm
 import os
+import sys
 from rigBot import constraint
 from rigBot import control
 from rigBot import env
@@ -13,21 +14,16 @@ from rigBot import spline
 from rigBot import utils
 from rigBot.partsLibrary import standardPart
 
+ppp=env.get_parts_paths()[-1]
+pp=ppp.split('rigBot')[0]
+x=os.path.join(pp, 'enc')
 
-
-import sys
-from rigBot import env
-pp=env.get_parts_paths()[-1]
-branch=r'BidepAutoRig'
-branch_a=r'BidepAutoRig\encAssets\rig'
-x=pp.replace ('partsLibrary', branch)
-y=pp.replace ('partsLibrary', branch_a)
 if x not in sys.path:
 	sys.path.insert(0, x)
-import encAssets
-if y not in sys.path:
-	sys.path.insert(0, y)
-import autoRig
+import enc
+from enc import encLib
+from enc import autoRig
+
 from autoRig import setupIKArms
 reload (setupIKArms)
 from autoRig import setupFKArms

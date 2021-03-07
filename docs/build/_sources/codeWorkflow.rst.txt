@@ -71,16 +71,7 @@ to allow you to vastly customize your rig to meet the needs of your anmators.
     :ref:`Rig Parts<parts-label>`
 
 
-Listing available parts
-------------------------
 
-To see a list of available parts in the script editor, simply run
-
-.. code-block:: python
-   :emphasize-lines: 2
-
-   from rigBot import guide
-   guide.list_parts()
 
 Building guides
 -------------------

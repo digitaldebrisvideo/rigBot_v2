@@ -12,7 +12,7 @@ Rig Parts
 *******************
 .. _parts-label:
 
-Available rig parts. These modules are all located under *rigBot.parts*
+Available rig parts. These modules are all located under *rigBot.partsLibrary*
 
 bipedArm
 ===================================
@@ -111,6 +111,16 @@ torso
     :show-inheritance:
 
 .. seealso:: For building guides and their respective rigs use :ref:`guide.build<label-name>`,
+    :ref:`skel.build<skel-name>` and
+    :ref:`rig.build<rig-name>`
+
+encTorso
+===================================
+.. automodule:: parts.encTorso
+    :members:
+    :show-inheritance:
+
+.. seealso:: CAUTION!   All parts with "enc" prefix, uses bipedAutoRig, so please only use for reference.  It's important that you DO NOT use the same exact rig another production :ref:`guide.build<label-name>`,
     :ref:`skel.build<skel-name>` and
     :ref:`rig.build<rig-name>`
 
